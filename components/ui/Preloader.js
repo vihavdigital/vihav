@@ -8,6 +8,13 @@ export default function Preloader() {
     const [counter, setCounter] = useState(0);
 
     useEffect(() => {
+        // Check session storage
+        const hasSeen = sessionStorage.getItem("hasSeenPreloader");
+        if (hasSeen) {
+            setIsLoading(false);
+            return;
+        }
+
         // Prevent scrolling
         if (isLoading) document.body.style.overflow = 'hidden';
 
@@ -22,6 +29,7 @@ export default function Preloader() {
         // Exit Trigger
         const timer = setTimeout(() => {
             setIsLoading(false);
+            sessionStorage.setItem("hasSeenPreloader", "true");
             document.body.style.overflow = 'unset';
             // Ensure counter hits 100 if it hasn't
             setCounter(100);
