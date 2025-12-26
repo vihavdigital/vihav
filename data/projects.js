@@ -95,7 +95,7 @@ export const PROJECTS = [
         ],
         connectivity: [{ label: "Alkapuri", time: "10 Mins" }],
         address: "New Alkapuri, Vadodara",
-        coordinates: { lat: 22.3105, lng: 73.1519 },
+        coordinates: { lat: 22.3165, lng: 73.1535 },
         mapEmbed: "https://maps.google.com/maps?q=Keystone+Skyvillas+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed"
     },
     {
@@ -194,7 +194,7 @@ export const PROJECTS = [
         features: ["5000 sq ft Carpet", "One Floor One Unit", "Dual Kitchens", "35% Green Area"],
         connectivity: [{ label: "New Alkapuri", time: "0 Mins" }],
         address: "Opp. Keystone Skyvillas, New Alkapuri, Vadodara",
-        coordinates: { lat: 22.3060, lng: 73.1480 },
+        coordinates: { lat: 22.3065, lng: 73.1485 },
         mapEmbed: "https://maps.google.com/maps?q=Keystone+Niwa+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed"
     },
     {
@@ -512,7 +512,7 @@ export const PROJECTS = [
         ],
         connectivity: [{ label: "Gotri", time: "0 Mins" }],
         address: "Gotri, Vadodara",
-        coordinates: { lat: 22.3215, lng: 73.1460 },
+        coordinates: { lat: 22.3144, lng: 73.1379 },
         mapEmbed: "https://maps.google.com/maps?q=Vihav+Supremus+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed"
     },
     {
@@ -640,7 +640,7 @@ export const PROJECTS = [
         ],
         connectivity: [{ label: "Bhayli", time: "0 Mins" }],
         address: "30 Mtr Main Road, Bhayli, Vadodara",
-        coordinates: { lat: 22.2960, lng: 73.1310 },
+        coordinates: { lat: 22.2861, lng: 73.1319 },
         mapEmbed: "https://maps.google.com/maps?q=Vihav+Skyone+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed"
     },
     {
