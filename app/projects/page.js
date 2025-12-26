@@ -8,35 +8,43 @@ import { Button } from "@/components/ui/Button";
 
 import { PROJECTS } from "@/data/projects";
 
+import { motion, AnimatePresence } from "framer-motion";
+
 export default function ProjectsPage() {
     const [filter, setFilter] = useState("All");
 
     const filteredProjects = filter === "All"
         ? PROJECTS
-        : PROJECTS.filter(p => p.category === filter); // Note: Project category is "Residential" or "Commercial". Filter buttons should match this.
+        : PROJECTS.filter(p => p.category === filter);
 
     return (
-        <main className="min-h-screen bg-luxury-black text-white">
+        <main className="min-h-screen bg-luxury-black text-white selection:bg-gold-500 selection:text-black">
             <Header />
 
             {/* Header Spacer */}
             <div className="h-24 bg-luxury-black" />
 
-            <section className="py-20 px-6 container mx-auto">
-                <div className="flex flex-col md:flex-row justify-between items-end mb-16">
-                    <div>
-                        <span className="text-gold-400 text-sm uppercase tracking-widest block mb-2">Our Portfolio</span>
-                        <h1 className="font-serif text-5xl md:text-6xl text-white">Exclusive <br /> Collections</h1>
+            {/* Mobile: Compact Title Section */}
+            <section className="pt-10 pb-6 px-6 container mx-auto md:py-20">
+                <div className="flex flex-col md:flex-row justify-between items-end">
+                    <div className="mb-6 md:mb-0">
+                        <span className="text-gold-400 text-xs md:text-sm uppercase tracking-widest block mb-2">Our Portfolio</span>
+                        <h1 className="font-serif text-4xl md:text-6xl text-white leading-tight">Exclusive <br /> Collections</h1>
                     </div>
+                </div>
+            </section>
 
-                    <div className="flex space-x-2 mt-8 md:mt-0 overflow-x-auto pb-2 md:pb-0">
+            {/* Sticky Filter Bar */}
+            <div className="sticky top-[50px] md:top-[64px] z-40 bg-luxury-black/90 backdrop-blur-xl border-y border-white/5 py-4 mb-8 transition-all duration-300">
+                <div className="w-full overflow-x-auto scrollbar-hide">
+                    <div className="flex gap-2 px-6 md:justify-end md:px-0 min-w-max md:w-full md:max-w-7xl md:mx-auto">
                         {["All", "Residential", "Commercial"].map(type => (
                             <button
                                 key={type}
                                 onClick={() => setFilter(type)}
-                                className={`px-6 py-2 rounded-full border text-sm uppercase tracking-wider transition-colors whitespace-nowrap cursor-pointer ${filter === type
-                                    ? "bg-gold-400 border-gold-400 text-white"
-                                    : "border-white/20 text-gray-400 hover:border-white hover:text-white"
+                                className={`px-6 py-3 rounded-full text-xs md:text-sm uppercase tracking-widest transition-all duration-300 whitespace-nowrap border ${filter === type
+                                    ? "bg-gold-500 border-gold-500 text-black font-bold shadow-lg shadow-gold-500/20"
+                                    : "border-white/10 text-gray-400 hover:border-white/30 hover:text-white bg-white/5"
                                     }`}
                             >
                                 {type}
@@ -44,12 +52,25 @@ export default function ProjectsPage() {
                         ))}
                     </div>
                 </div>
+            </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {filteredProjects.map((project, idx) => (
-                        <ProjectCard key={idx} project={project} />
-                    ))}
-                </div>
+            <section className="pb-20 px-6 container mx-auto min-h-screen">
+                <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <AnimatePresence mode="popLayout">
+                        {filteredProjects.map((project) => (
+                            <motion.div
+                                key={project.id}
+                                layout
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.9 }}
+                                transition={{ duration: 0.3 }}
+                            >
+                                <ProjectCard project={project} />
+                            </motion.div>
+                        ))}
+                    </AnimatePresence>
+                </motion.div>
             </section>
 
             <Footer />

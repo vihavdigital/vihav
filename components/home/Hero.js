@@ -8,9 +8,9 @@ const SLIDES = [
     {
         id: 1,
         type: "video",
-        src: "https://videos.pexels.com/video-files/3209045/3209045-uhd_2560_1440_25fps.mp4", // Luxury Interior
-        title: "VIHAV <br/> <span class='text-white/80 italic font-light'>Signature</span>",
-        subtitle: "Defining the skylines of tomorrow with architectural masterpieces that stand the test of time."
+        src: "/vihav-hero-video.webm", // Luxury Interior
+        title: "",
+        subtitle: ""
     },
     {
         id: 2,
@@ -39,11 +39,7 @@ export default function Hero() {
         setCurrentSlide((prev) => (prev - 1 + SLIDES.length) % SLIDES.length);
     };
 
-    // Auto-advance
-    useEffect(() => {
-        const timer = setInterval(nextSlide, 8000);
-        return () => clearInterval(timer);
-    }, []);
+    // Auto-advance removed as per request
 
     return (
         <section className="relative h-screen w-full overflow-hidden bg-luxury-black text-white">
@@ -65,7 +61,7 @@ export default function Hero() {
                             playsInline
                             className="w-full h-full object-cover brightness-50 transform scale-105"
                         >
-                            <source src={SLIDES[currentSlide].src} type="video/mp4" />
+                            <source src={SLIDES[currentSlide].src} type={SLIDES[currentSlide].src.endsWith('.webm') ? "video/webm" : "video/mp4"} />
                         </video>
                     ) : (
                         <div

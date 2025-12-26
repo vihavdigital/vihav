@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import ProjectCard from "@/components/projects/ProjectCard";
 import { Button } from "@/components/ui/Button";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export default function ProjectSection({ title, subtitle, projects, align = "left" }) {
     return (
@@ -27,9 +28,11 @@ export default function ProjectSection({ title, subtitle, projects, align = "lef
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                     >
-                        <Button variant="outline" className="group text-white border-white/20 hover:bg-gold-400 hover:border-gold-400 hover:text-black transition-all">
-                            View All <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                        </Button>
+                        <Link href="/projects">
+                            <Button variant="outline" className="group text-white border-white/20 hover:bg-gold-400 hover:border-gold-400 hover:text-black transition-all">
+                                View All <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                            </Button>
+                        </Link>
                     </motion.div>
                 </div>
 
@@ -50,12 +53,12 @@ export default function ProjectSection({ title, subtitle, projects, align = "lef
 
                     {/* View All Card (End of List) */}
                     <div className="flex-shrink-0 w-[40vw] md:w-[20vw] flex items-center justify-center snap-center">
-                        <div className="flex flex-col items-center justify-center text-center opacity-50 hover:opacity-100 transition-opacity cursor-pointer group">
+                        <Link href="/projects" className="flex flex-col items-center justify-center text-center opacity-50 hover:opacity-100 transition-opacity cursor-pointer group">
                             <div className="w-16 h-16 rounded-full border border-white/20 flex items-center justify-center mb-4 group-hover:border-gold-400 group-hover:text-gold-400 transition-colors">
                                 <ArrowRight size={24} />
                             </div>
                             <span className="uppercase tracking-widest text-xs">View All Collection</span>
-                        </div>
+                        </Link>
                     </div>
                 </div>
 

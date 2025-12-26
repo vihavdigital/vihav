@@ -32,15 +32,24 @@ const buttonVariants = cva(
     }
 );
 
-const Button = React.forwardRef(({ className, variant, size, asChild = false, ...props }, ref) => {
+import MagneticWrapper from "@/components/ui/MagneticWrapper";
+
+const Button = React.forwardRef(({ className, variant, size, asChild = false, magnetic = true, ...props }, ref) => {
     const Comp = asChild ? "span" : "button";
-    return (
+
+    const buttonContent = (
         <Comp
             className={cn(buttonVariants({ variant, size, className }))}
             ref={ref}
             {...props}
         />
     );
+
+    if (magnetic) {
+        return <MagneticWrapper className="inline-block">{buttonContent}</MagneticWrapper>;
+    }
+
+    return buttonContent;
 });
 Button.displayName = "Button";
 

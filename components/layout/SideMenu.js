@@ -24,9 +24,16 @@ const MENU_ITEMS = [
     {
         id: "about",
         label: "ABOUT US",
-        href: "#",
+        href: "/about",
         image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2000&auto=format&fit=crop",
         desc: "Our journey, leadership, and awards."
+    },
+    {
+        id: "awards",
+        label: "AWARDS",
+        href: "/awards",
+        image: "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?q=80&w=2000&auto=format&fit=crop",
+        desc: "Recognition of excellence."
     },
     {
         id: "career",

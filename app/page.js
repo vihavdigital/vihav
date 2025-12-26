@@ -9,8 +9,17 @@ import TextReveal from "@/components/ui/TextReveal";
 import { PROJECTS } from "@/data/projects";
 
 export default function Home() {
-  const residentialProjects = PROJECTS.filter(p => p.category === "Residential").slice(0, 3);
-  const commercialProjects = PROJECTS.filter(p => p.category === "Commercial").slice(0, 3);
+  const allResidential = PROJECTS.filter(p => p.category === "Residential");
+  // Custom Sort: Select -> Niwa -> 51 -> Rest
+  const prioritySlugs = ['keystone-select', 'keystone-niwa', 'keystone-51'];
+  const residentialProjects = [
+    ...allResidential.filter(p => prioritySlugs.includes(p.slug)).sort((a, b) => {
+      return prioritySlugs.indexOf(a.slug) - prioritySlugs.indexOf(b.slug);
+    }),
+    ...allResidential.filter(p => !prioritySlugs.includes(p.slug))
+  ];
+
+  const commercialProjects = PROJECTS.filter(p => p.category === "Commercial");
 
   return (
     <main className="min-h-screen bg-luxury-black text-white selection:bg-gold-400 selection:text-luxury-black">
