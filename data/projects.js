@@ -1,3 +1,16 @@
+/**
+ * HOW TO UPDATE PROJECT LOCATIONS (COORDINATES):
+ * 
+ * 1. Open Google Maps (maps.google.com).
+ * 2. Search for the exact location of the project.
+ * 3. Right-click on the red pin or the exact spot.
+ * 4. Click on the coordinates (first item in the menu, e.g., "22.3072, 73.1812").
+ *    This copies them to your clipboard.
+ * 5. Locate the project in this file (search by 'id' or 'title').
+ * 6. Update the `coordinates` field:
+ *    coordinates: { lat: 22.XXXX, lng: 73.XXXX },
+ * 7. Save this file. The map will update automatically.
+ */
 export const PROJECTS = [
     // --- RESIDENTIAL ---
     {
@@ -412,6 +425,7 @@ export const PROJECTS = [
         ],
         connectivity: [{ label: "D-Mart", time: "1 Min" }],
         address: "Vasna Bhayli Road, Vadodara",
+        coordinates: { lat: 22.2920, lng: 73.1380 },
         mapEmbed: "https://maps.google.com/maps?q=Supremus+III+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed"
     },
     {
@@ -446,6 +460,7 @@ export const PROJECTS = [
         ],
         connectivity: [{ label: "Gotri", time: "0 Mins" }],
         address: "Gotri Main Road, Vadodara",
+        coordinates: { lat: 22.3230, lng: 73.1450 },
         mapEmbed: "https://maps.google.com/maps?q=Vihav+Business+Square+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed"
     },
     {
@@ -726,9 +741,10 @@ export const PROJECTS = [
             { icon: "ArrowUpFromLine", label: "High Speed Lifts" }
         ],
         specifications: [{ category: "Flooring", items: ["Vitrified Tiles"] }],
-        connectivity: [{ label: "Bhayli X Road", time: "0 Mins" }],
-        address: "Bhayli Cross Road, Vadodara",
-        coordinates: { lat: 22.2980, lng: 73.1330 },
+        connectivity: [{ label: "Bhayli", time: "0 Mins" }],
+        address: "Bhayli Main Road, Vadodara",
+
+        coordinates: { lat: 22.290250, lng: 73.131861 },
         mapEmbed: "https://maps.google.com/maps?q=Vihav+CBD+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed"
     },
     {

@@ -14,7 +14,7 @@ export default function NRIHero() {
             {/* Background Image / Video */}
             <motion.div style={{ y }} className="absolute inset-0 z-0">
                 <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Laxmi_Vilas_Palace%2C_Vadodara.jpg/2560px-Laxmi_Vilas_Palace%2C_Vadodara.jpg"
+                    src="/vdr.webp"
                     alt="Laxmi Vilas Palace Vadodara"
                     className="w-full h-full object-cover opacity-60"
                 />

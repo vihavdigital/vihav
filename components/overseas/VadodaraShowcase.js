@@ -4,15 +4,15 @@ import { motion } from "framer-motion";
 
 const images = [
     {
-        url: "https://upload.wikimedia.org/wikipedia/commons/e/e6/Laxmi_Vilas_Palace_Vadodara.jpg",
+        url: "/vdr.webp",
         caption: "Laxmi Vilas Palace"
     },
     {
-        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Vadodara_Airport_New_Terminal.jpg/800px-Vadodara_Airport_New_Terminal.jpg",
+        url: "/vdr-airport.webp",
         caption: "Vadodara International Airport"
     },
     {
-        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Baroda_Museum_and_Picture_Gallery.jpg/800px-Baroda_Museum_and_Picture_Gallery.jpg",
+        url: "/vdr-museum.webp",
         caption: "Baroda Museum"
     }
 ];

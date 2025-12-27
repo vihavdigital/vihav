@@ -13,10 +13,10 @@ const createVihavIcon = (title, isActive) => L.divIcon({
             <div class="mt-1 px-3 py-1 bg-black/80 backdrop-blur-md border ${isActive ? 'border-emerald-400' : 'border-white/20'} rounded-sm shadow-xl mb-2 transition-all duration-300">
                 <span class="text-[10px] font-bold ${isActive ? 'text-emerald-400' : 'text-white'} whitespace-nowrap tracking-widest uppercase font-serif">${title}</span>
             </div>
-            <div class="relative flex items-center justify-center">
+            <div class="relative flex flex-col items-center justify-center">
                 <div class="w-3 h-3 ${isActive ? 'bg-emerald-400' : 'bg-white'} rounded-full shadow-[0_0_10px_rgba(0,0,0,0.5)] z-10"></div>
                 ${isActive ? '<div class="absolute w-8 h-8 bg-emerald-500/30 rounded-full animate-ping"></div>' : ''}
-                <div class="w-0.5 h-4 bg-white/30"></div>
+                <div class="w-0.5 h-4 bg-white/30 -mt-1"></div>
             </div>
         </div>
     `,
@@ -24,14 +24,19 @@ const createVihavIcon = (title, isActive) => L.divIcon({
     iconAnchor: [75, 80], // Center X (75), Bottom Y (80) points to lat/lng
 });
 
-// Custom Icon for Landmarks (Airport, Station)
-const landmarkIcon = new L.Icon({
-    iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-grey.png",
-    shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
-    iconSize: [20, 32], // Smaller
-    iconAnchor: [10, 32],
-    popupAnchor: [0, -28],
-    shadowSize: [32, 32]
+// Custom Icon for Landmarks (Text Label)
+const createLandmarkIcon = (name) => L.divIcon({
+    className: "custom-landmark-label",
+    html: `
+        <div class="flex flex-col items-center justify-center w-[120px] pointer-events-none">
+            <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest bg-black/40 px-2 py-0.5 rounded backdrop-blur-sm border border-white/10 shadow-sm">
+                ${name}
+            </div>
+            <div class="w-1 h-1 bg-gray-400 rounded-full mt-1 shadow-lg"></div>
+        </div>
+    `,
+    iconSize: [120, 40],
+    iconAnchor: [60, 30], // Center
 });
 
 // Component to handle map center updates
@@ -70,6 +75,9 @@ export default function LuxuryMap({ activeProject }) {
         const style = document.createElement('style');
         style.innerHTML = `
             .custom-leaflet-icon { background: transparent; border: none; }
+            .leaflet-popup-content-wrapper, .leaflet-popup-tip { background: transparent !important; box-shadow: none !important; }
+            .leaflet-popup-content-wrapper { padding: 0 !important; overflow: hidden; border-radius: 8px; }
+            .leaflet-popup-content { margin: 0 !important; width: 180px !important; }
         `;
         document.head.appendChild(style);
 
@@ -90,7 +98,9 @@ export default function LuxuryMap({ activeProject }) {
         { name: "Airport", coordinates: { lat: 22.3361, lng: 73.2263 } },
         { name: "Railway Station", coordinates: { lat: 22.3129, lng: 73.1812 } },
         { name: "Laxmi Vilas", coordinates: { lat: 22.2937, lng: 73.1919 } },
-        { name: "Alkapuri", coordinates: { lat: 22.3100, lng: 73.1600 } }
+        { name: "Alkapuri", coordinates: { lat: 22.3100, lng: 73.1600 } },
+        { name: "Waves Club", coordinates: { lat: 22.2960, lng: 73.1360 } },
+        { name: "D-Mart (Vna)", coordinates: { lat: 22.2890, lng: 73.1450 } }
     ];
 
     return (
@@ -99,7 +109,7 @@ export default function LuxuryMap({ activeProject }) {
                 center={center}
                 zoom={14}
                 style={{ height: "100%", width: "100%", background: "#111" }}
-                zoomControl={false}
+                zoomControl={true}
                 attributionControl={false}
             >
                 {/* CartoDB Dark Matter Tiles for Luxury/Dark Mode Look */}
@@ -109,17 +119,20 @@ export default function LuxuryMap({ activeProject }) {
                 />
 
                 <MapController center={center} />
-                <ScrollHandler />
 
                 {/* Landmarks */}
+                {/* Landmarks - Now Visible Labels */}
                 {landmarks.map((mark, idx) => (
-                    <Marker key={idx} position={mark.coordinates} icon={landmarkIcon} opacity={0.6}>
-                        <Popup>
-                            <span className="font-sans text-gray-800 font-bold">{mark.name}</span>
-                        </Popup>
-                    </Marker>
+                    <Marker
+                        key={idx}
+                        position={mark.coordinates}
+                        icon={createLandmarkIcon(mark.name)}
+                        zIndexOffset={50} // Below projects
+                        interactive={false} // purely visual
+                    />
                 ))}
 
+                {/* Vihav Projects */}
                 {/* Vihav Projects */}
                 {PROJECTS.map((project, idx) => {
                     const isActive = activeProject && project.id === activeProject.id;
@@ -132,11 +145,23 @@ export default function LuxuryMap({ activeProject }) {
                             icon={createVihavIcon(project.title, isActive)}
                             zIndexOffset={isActive ? 1000 : 100}
                         >
-                            <Popup>
-                                <div className="p-2 min-w-[200px]">
-                                    <h3 className="font-serif text-lg font-bold mb-1 border-b pb-1 text-emerald-900">{project.title}</h3>
-                                    <p className="text-xs uppercase text-gray-500 tracking-widest">{project.location}</p>
-                                </div>
+                            <Popup minWidth={180} closeButton={false} className="custom-popup">
+                                <a
+                                    href={`/projects/${project.slug}`}
+                                    className="block group relative min-w-[180px] bg-white/95 backdrop-blur-lg border border-black/10 rounded-lg p-4 shadow-xl hover:bg-white transition-colors"
+                                >
+                                    <div className="flex justify-between items-start gap-4">
+                                        <div>
+                                            <h3 className="font-serif text-sm font-bold text-black leading-tight mb-1 group-hover:text-black transition-colors">{project.title}</h3>
+                                            <p className="text-[9px] uppercase text-gray-500 tracking-widest font-medium line-clamp-1">{project.location}</p>
+                                        </div>
+                                        <div className="text-black/40 group-hover:text-black group-hover:translate-x-1 transition-all mt-1">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                                <path d="M5 12h14M12 5l7 7-7 7" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </a>
                             </Popup>
                         </Marker>
                     );
