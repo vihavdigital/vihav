@@ -1,0 +1,135 @@
+"use client";
+
+import { useState } from "react";
+import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/Button";
+import { COUNTRY_CODES } from "@/data/countryCodes";
+
+export default function EnquiryForm({ className, onSuccess, variant = "minimal", isCompact = false }) {
+    const [formState, setFormState] = useState({
+        name: "",
+        phone: "",
+        email: "",
+        countryCode: "+91"
+    });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(false);
+
+    // Prioritize common countries
+    const PRIORITY_CODES = ["+91", "+971", "+1", "+44", "+61", "+65"];
+    const sortedCountries = [
+        ...COUNTRY_CODES.filter(c => PRIORITY_CODES.includes(c.code)),
+        ...COUNTRY_CODES.filter(c => !PRIORITY_CODES.includes(c.code))
+    ];
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+        // Simulate API call
+        setTimeout(() => {
+            setIsSubmitting(false);
+            setIsSuccess(true);
+            setTimeout(() => {
+                setIsSuccess(false);
+                setFormState({ name: "", phone: "", email: "", countryCode: "+91" });
+                if (onSuccess) onSuccess();
+            }, 2000);
+        }, 1500);
+    };
+
+    // Styles based on variant
+    const styles = {
+        minimal: {
+            input: "w-full bg-transparent border-b border-white/20 py-4 text-xl text-white placeholder:text-white/20 focus:border-gold-400 focus:outline-none transition-all font-light",
+            select: "w-full bg-transparent border-b border-white/20 py-4 text-xl text-white focus:border-gold-400 focus:outline-none transition-all font-light appearance-none cursor-pointer",
+            button: "bg-white text-black hover:bg-gold-400 hover:text-black rounded-none py-6 tracking-[0.2em]"
+        },
+        standard: {
+            input: "w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder:text-gray-500 focus:border-gold-400 focus:outline-none transition-colors",
+            select: "w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:border-gold-400 focus:outline-none transition-colors appearance-none cursor-pointer",
+            button: "bg-gold-400 text-black hover:bg-white hover:text-black rounded-lg py-4 tracking-widest"
+        }
+    };
+
+    const currentStyle = styles[variant] || styles.minimal;
+
+    if (isSuccess) {
+        return (
+            <div className={`flex flex-col items-center justify-center py-12 text-center h-full ${className}`}>
+                <div className="w-16 h-16 rounded-full bg-green-500/20 text-green-500 flex items-center justify-center mb-6">
+                    <ArrowRight size={32} />
+                </div>
+                <h4 className="text-xl text-white font-serif mb-2">Thank You!</h4>
+                <p className="text-gray-400">Our team will get in touch with you shortly.</p>
+            </div>
+        );
+    }
+
+    return (
+        <form onSubmit={handleSubmit} className={`space-y-8 ${className}`}>
+            <div className={`space-y-6 ${variant === 'minimal' ? 'space-y-8' : ''}`}>
+                <div className="group">
+                    {variant === 'standard' && <label className="block text-xs uppercase tracking-widest text-gray-500 mb-2">Full Name</label>}
+                    <input
+                        type="text"
+                        required
+                        value={formState.name}
+                        onChange={(e) => setFormState({ ...formState, name: e.target.value })}
+                        className={currentStyle.input}
+                        placeholder={variant === 'minimal' ? "Your Name" : "Enter your name"}
+                    />
+                </div>
+
+                <div className={`grid grid-cols-1 md:grid-cols-2 ${variant === 'minimal' ? 'gap-8' : 'gap-6'}`}>
+                    {/* Phone Input with Country Code */}
+                    <div className="group">
+                        {variant === 'standard' && <label className="block text-xs uppercase tracking-widest text-gray-500 mb-2">Phone Number</label>}
+                        <div className="flex gap-4">
+                            <div className="w-28 flex-shrink-0 relative">
+                                <select
+                                    value={formState.countryCode}
+                                    onChange={(e) => setFormState({ ...formState, countryCode: e.target.value })}
+                                    className={currentStyle.select}
+                                >
+                                    {sortedCountries.map((item, index) => (
+                                        <option key={index} value={item.code} className="bg-neutral-900 text-white">
+                                            {item.flag} {item.code}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                            <input
+                                type="tel"
+                                required
+                                value={formState.phone}
+                                onChange={(e) => setFormState({ ...formState, phone: e.target.value })}
+                                className={currentStyle.input}
+                                placeholder={variant === 'minimal' ? "Phone Number" : "XXXXX XXXXX"}
+                            />
+                        </div>
+                    </div>
+
+                    <div className="group">
+                        {variant === 'standard' && <label className="block text-xs uppercase tracking-widest text-gray-500 mb-2">Email Address</label>}
+                        <input
+                            type="email"
+                            required
+                            value={formState.email}
+                            onChange={(e) => setFormState({ ...formState, email: e.target.value })}
+                            className={currentStyle.input}
+                            placeholder={variant === 'minimal' ? "Email Address" : "name@example.com"}
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <Button
+                type="submit"
+                className={`w-full md:w-auto px-12 font-bold uppercase transition-all duration-500 mt-4 ${currentStyle.button}`}
+                disabled={isSubmitting}
+            >
+                {isSubmitting ? "Sending..." : "Submit Request"}
+            </Button>
+        </form>
+    );
+}

@@ -13,13 +13,24 @@ import { PROJECTS } from "@/data/projects";
 import { motion, AnimatePresence } from "framer-motion";
 import EnquireModal from "@/components/ui/EnquireModal";
 
+import ProjectCard from "@/components/projects/ProjectCard";
+import FilterDropdown from "@/components/ui/FilterDropdown";
+import { useProjectFilters, FILTER_TYPES, FILTER_POSSESSION, FILTER_COMMERCIAL_TYPES } from "@/hooks/useProjectFilters";
+
 export default function OverseasPage() {
-    const [filter, setFilter] = useState("All");
     const [isEnquireOpen, setIsEnquireOpen] = useState(false);
 
-    const filteredProjects = filter === "All"
-        ? PROJECTS
-        : PROJECTS.filter(p => p.category === filter);
+    const {
+        activeCategory,
+        setActiveCategory,
+        activeType,
+        setActiveType,
+        activePossession,
+        setActivePossession,
+        filteredProjects,
+        FILTER_TYPES,
+        FILTER_POSSESSION
+    } = useProjectFilters(PROJECTS, "All");
 
     return (
         <main className="bg-neutral-950 min-h-screen text-white selection:bg-gold-500 selection:text-white pb-20 md:pb-0">
@@ -59,15 +70,47 @@ export default function OverseasPage() {
 
                 {/* Sticky Filter Bar */}
                 <div className="sticky top-[50px] md:top-[64px] z-40 bg-neutral-950/90 backdrop-blur-xl border-y border-white/5 py-4 mb-12 transition-all duration-300">
-                    <div className="w-full overflow-x-auto scrollbar-hide">
-                        <div className="flex gap-2 px-6 md:justify-center md:px-0 min-w-max md:w-full md:max-w-7xl md:mx-auto">
+                    <div className="container mx-auto px-6 flex flex-col-reverse md:flex-row items-center gap-4 justify-between">
+
+                        {/* Filters (Left on Desktop) */}
+                        <div className="flex gap-4 w-full md:w-auto overflow-x-auto scrollbar-hide pb-2 md:pb-0">
+                            {/* Type Dropdown */}
+                            {(activeCategory === "Residential" || activeCategory === "All") && (
+                                <FilterDropdown
+                                    label="Unit Type"
+                                    value={activeType}
+                                    options={FILTER_TYPES}
+                                    onChange={setActiveType}
+                                    className="min-w-[180px]"
+                                />
+                            )}
+                            {activeCategory === "Commercial" && (
+                                <FilterDropdown
+                                    label="Usage"
+                                    value={activeType}
+                                    options={FILTER_COMMERCIAL_TYPES}
+                                    onChange={setActiveType}
+                                    className="min-w-[180px]"
+                                />
+                            )}
+                            <FilterDropdown
+                                label="Possession"
+                                value={activePossession}
+                                options={FILTER_POSSESSION}
+                                onChange={setActivePossession}
+                                className="min-w-[180px]"
+                            />
+                        </div>
+
+                        {/* Category Tabs (Right on Desktop) */}
+                        <div className="flex bg-white/5 p-1 rounded-full border border-white/10 overflow-x-auto max-w-full">
                             {["All", "Residential", "Commercial"].map(type => (
                                 <button
                                     key={type}
-                                    onClick={() => setFilter(type)}
-                                    className={`px-6 py-3 rounded-full text-xs md:text-sm uppercase tracking-widest transition-all duration-300 whitespace-nowrap border ${filter === type
+                                    onClick={() => { setActiveCategory(type); setActiveType("All"); setActivePossession("All"); }}
+                                    className={`px-6 py-3 rounded-full text-xs md:text-sm uppercase tracking-widest transition-all duration-300 whitespace-nowrap border ${activeCategory === type
                                         ? "bg-gold-500 border-gold-500 text-black font-bold shadow-lg shadow-gold-900/40"
-                                        : "border-white/10 text-gray-400 hover:border-white/30 hover:text-white bg-white/5"
+                                        : "border-transparent text-gray-400 hover:text-white"
                                         }`}
                                 >
                                     {type}
@@ -79,38 +122,35 @@ export default function OverseasPage() {
 
                 <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <AnimatePresence mode="popLayout">
-                        {filteredProjects.map((project) => (
+                        {filteredProjects.length > 0 ? (
+                            filteredProjects.map((project) => (
+                                <motion.div
+                                    key={project.id}
+                                    layout
+                                    initial={{ opacity: 0, scale: 0.9 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    exit={{ opacity: 0, scale: 0.9 }}
+                                    transition={{ duration: 0.3 }}
+                                >
+                                    <ProjectCard project={project} />
+                                </motion.div>
+                            ))
+                        ) : (
                             <motion.div
-                                key={project.id}
-                                layout
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                exit={{ opacity: 0, scale: 0.9 }}
-                                transition={{ duration: 0.3 }}
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                className="col-span-full py-20 text-center border rounded-2xl border-white/10 bg-white/5"
                             >
-                                <Link href={`/projects/${project.slug}`} className="group block relative overflow-hidden rounded-xl border border-white/10 hover:border-gold-500/50 transition-colors h-full">
-                                    <div className="aspect-[4/3] overflow-hidden">
-                                        <img
-                                            src={project.heroImage || project.image}
-                                            alt={project.title}
-                                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                        />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80" />
-                                    </div>
-                                    <div className="absolute bottom-0 left-0 right-0 p-6">
-                                        <div className="flex justify-between items-end">
-                                            <div>
-                                                <p className="text-gold-400 text-xs uppercase tracking-widest mb-2">{project.category} • {project.location?.split(',')[0]}</p>
-                                                <h3 className="text-xl font-serif font-medium group-hover:text-gold-400 transition-colors">{project.title}</h3>
-                                            </div>
-                                            <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-gold-500 group-hover:border-gold-500 group-hover:text-black transition-all">
-                                                <ArrowRight size={16} className="-rotate-45 group-hover:rotate-0 transition-transform duration-300" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </Link>
+                                <h3 className="text-2xl text-white font-serif mb-2">No Projects Match</h3>
+                                <p className="text-gray-400">Try adjusting your filters.</p>
+                                <button
+                                    onClick={() => { setActiveCategory("All"); setActiveType("All"); setActivePossession("All"); }}
+                                    className="mt-6 text-gold-400 hover:text-white underline underline-offset-4"
+                                >
+                                    Clear All Filters
+                                </button>
                             </motion.div>
-                        ))}
+                        )}
                     </AnimatePresence>
                 </motion.div>
             </section>

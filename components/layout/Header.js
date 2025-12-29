@@ -6,10 +6,12 @@ import { Search, MapPin, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import SideMenu from "@/components/layout/SideMenu";
 import MagneticWrapper from "@/components/ui/MagneticWrapper";
+import EnquiryModal from "@/components/ui/EnquiryModal";
 
 export default function Header() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isEnquireModalOpen, setIsEnquireModalOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -53,11 +55,11 @@ export default function Header() {
                         <div className="flex flex-col items-center">
                             {/* Logo with improved sizing for elegance */}
                             <img
-                                src="/vihav-logo-final.png"
+                                src="/vihav-logo-main.png"
                                 alt="Vihav Group"
                                 className={cn(
                                     "w-auto object-contain transition-all duration-500",
-                                    isScrolled ? "h-10 md:h-12" : "h-12 md:h-16"
+                                    isScrolled ? "h-16 md:h-16" : "h-20 md:h-24"
                                 )}
                             />
                         </div>
@@ -66,18 +68,22 @@ export default function Header() {
                     {/* Right Actions (Enquire) */}
                     <div className="hidden md:flex items-center space-x-6 text-[10px] font-bold tracking-[0.3em] text-white">
                         <MagneticWrapper>
-                            <Link href={`/projects/keystone-skyvillas`} className="flex items-center gap-3 hover:text-gold-400 transition-colors group">
+                            <button
+                                onClick={() => setIsEnquireModalOpen(true)}
+                                className="flex items-center gap-3 hover:text-gold-400 transition-colors group"
+                            >
                                 <span className="group-hover:mr-2 transition-all duration-300">ENQUIRE</span>
                                 <div className="w-8 h-8 rounded-full border border-white/30 flex items-center justify-center group-hover:border-gold-400 group-hover:bg-gold-400 group-hover:text-black transition-all duration-300">
                                     <ArrowRight size={12} className="-rotate-45 group-hover:rotate-0 transition-transform duration-500" />
                                 </div>
-                            </Link>
+                            </button>
                         </MagneticWrapper>
                     </div>
                 </div>
             </header>
 
             <SideMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+            <EnquiryModal isOpen={isEnquireModalOpen} onClose={() => setIsEnquireModalOpen(false)} />
         </>
     );
 }

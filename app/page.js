@@ -7,19 +7,10 @@ import Hero from "@/components/home/Hero";
 import ProjectSection from "@/components/home/ProjectSection";
 import TextReveal from "@/components/ui/TextReveal";
 import { PROJECTS } from "@/data/projects";
+import EnquiryForm from "@/components/ui/EnquiryForm";
 
 export default function Home() {
-  const allResidential = PROJECTS.filter(p => p.category === "Residential");
-  // Custom Sort: Select -> Niwa -> 51 -> Rest
-  const prioritySlugs = ['keystone-select', 'keystone-niwa', 'keystone-51'];
-  const residentialProjects = [
-    ...allResidential.filter(p => prioritySlugs.includes(p.slug)).sort((a, b) => {
-      return prioritySlugs.indexOf(a.slug) - prioritySlugs.indexOf(b.slug);
-    }),
-    ...allResidential.filter(p => !prioritySlugs.includes(p.slug))
-  ];
-
-  const commercialProjects = PROJECTS.filter(p => p.category === "Commercial");
+  /* Projects are filtered internally by ProjectSection */
 
   return (
     <main className="min-h-screen bg-luxury-black text-white selection:bg-gold-400 selection:text-luxury-black">
@@ -53,38 +44,22 @@ export default function Home() {
           >
             For over three decades, Vihav Group has been the silent architect behind some of the world's most desired addresses. We don't just build structures; we curate lifestyles defined by privacy, exclusivity, and uncompromising craft.
           </motion.p>
+
+          {/* Quick Enquiry Form */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7, duration: 1 }}
+            className="max-w-3xl mx-auto mt-24 pt-16 border-t border-white/10"
+          >
+            <h3 className="text-xl md:text-2xl font-serif text-white mb-12 uppercase tracking-widest text-center">Begin Your Conversation</h3>
+            <EnquiryForm className="text-left" variant="minimal" />
+          </motion.div>
         </div>
       </section>
 
-      {/* Residential Projects - Real Data */}
-      <ProjectSection
-        title="Residential Collections"
-        subtitle="Curated Living"
-        align="left"
-        projects={residentialProjects.map(p => ({
-          title: p.title,
-          location: p.location,
-          type: p.type,
-          price: p.price,
-          slug: p.slug,
-          image: p.heroImage
-        }))}
-      />
-
-      {/* Commercial Projects - Real Data */}
-      <ProjectSection
-        title="Commercial Spaces"
-        subtitle="Corporate Excellence"
-        align="right"
-        projects={commercialProjects.map(p => ({
-          title: p.title,
-          location: p.location,
-          type: p.type,
-          price: p.price,
-          slug: p.slug,
-          image: p.heroImage
-        }))}
-      />
+      {/* Unified Project Discovery Section */}
+      <ProjectSection projects={PROJECTS} />
 
       {/* Immersive Philosophy Section */}
       <section className="relative py-32 bg-luxury-black">

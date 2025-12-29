@@ -11,10 +11,9 @@ export default function ProjectCard({ project }) {
                 <div className="absolute inset-0 bg-neutral-800 animate-pulse group-hover:animate-none transition-colors" />
                 {/* Real implementation would use Next/Image */}
                 <div
-                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 group-hover:brightness-[0.8] transition-all"
                     style={{ backgroundImage: `url(${project.heroImage || 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=1000&auto=format&fit=crop'})` }}
                 />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors" />
 
                 <div className="absolute top-4 right-4">
                     <Button size="icon" variant="outline" className="rounded-full bg-black/20 backdrop-blur-sm border-white/20 hover:bg-gold-400 hover:border-gold-400">

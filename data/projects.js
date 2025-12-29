@@ -60,7 +60,12 @@ export const PROJECTS = [
             "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1000&auto=format&fit=crop",
             "https://images.unsplash.com/photo-1590486803833-1c5dc8ce84ac?q=80&w=1000&auto=format&fit=crop",
             "https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=1000&auto=format&fit=crop"
-        ]
+        ],
+        filterData: {
+            category: "Residential",
+            type: ["4BHK", "5BHK", "Apartments"],
+            possession: "More than 1 Year"
+        }
     },
     {
         id: "keystone-skyvillas",
@@ -109,7 +114,12 @@ export const PROJECTS = [
         connectivity: [{ label: "Alkapuri", time: "10 Mins" }],
         address: "New Alkapuri, Vadodara",
         coordinates: { lat: 22.3165, lng: 73.1535 },
-        mapEmbed: "https://maps.google.com/maps?q=Keystone+Skyvillas+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed"
+        mapEmbed: "https://maps.google.com/maps?q=Keystone+Skyvillas+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
+        filterData: {
+            category: "Residential",
+            type: ["4BHK", "Apartments"],
+            possession: "Ready Possession"
+        }
     },
     {
         id: "keystone-skyvillas-xl",
@@ -145,7 +155,12 @@ export const PROJECTS = [
         connectivity: [{ label: "Bhayli", time: "0 Mins" }],
         address: "30 Mtr Main Road, Bhayli, Vadodara",
         coordinates: { lat: 22.2860, lng: 73.1300 },
-        mapEmbed: "https://maps.google.com/maps?q=Keystone+Skyvillas+XL+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed"
+        mapEmbed: "https://maps.google.com/maps?q=Keystone+Skyvillas+XL+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
+        filterData: {
+            category: "Residential",
+            type: ["4BHK", "5BHK", "Apartments"],
+            possession: "Ready Possession"
+        }
     },
     {
         id: "keystone-clermont",
@@ -186,7 +201,12 @@ export const PROJECTS = [
         connectivity: [{ label: "New Alkapuri", time: "0 Mins" }],
         address: "New Alkapuri, Vadodara",
         coordinates: { lat: 22.3150, lng: 73.1580 },
-        mapEmbed: "https://maps.google.com/maps?q=Keystone+Clermont+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed"
+        mapEmbed: "https://maps.google.com/maps?q=Keystone+Clermont+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
+        filterData: {
+            category: "Residential",
+            type: ["4BHK", "5BHK", "Apartments"],
+            possession: "Less than 1 Year"
+        }
     },
     {
         id: "keystone-niwa",
@@ -208,7 +228,12 @@ export const PROJECTS = [
         connectivity: [{ label: "New Alkapuri", time: "0 Mins" }],
         address: "Opp. Keystone Skyvillas, New Alkapuri, Vadodara",
         coordinates: { lat: 22.3065, lng: 73.1485 },
-        mapEmbed: "https://maps.google.com/maps?q=Keystone+Niwa+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed"
+        mapEmbed: "https://maps.google.com/maps?q=Keystone+Niwa+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
+        filterData: {
+            category: "Residential",
+            type: ["4BHK", "Apartments"],
+            possession: "More than 1 Year"
+        }
     },
     {
         id: "keystone-51",
@@ -244,7 +269,12 @@ export const PROJECTS = [
         connectivity: [{ label: "Bhayli", time: "0 Mins" }],
         address: "Nr Navrachana University, Bhayli, Vadodara",
         coordinates: { lat: 22.2960, lng: 73.1420 },
-        mapEmbed: "https://maps.google.com/maps?q=Keystone+51+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed"
+        mapEmbed: "https://maps.google.com/maps?q=Keystone+51+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
+        filterData: {
+            category: "Residential",
+            type: ["3BHK", "Apartments"],
+            possession: "More than 1 Year"
+        }
     },
     {
         id: "keystone-30",
@@ -280,7 +310,12 @@ export const PROJECTS = [
         connectivity: [{ label: "New Alkapuri", time: "0 Mins" }],
         address: "New Alkapuri, Vadodara",
         coordinates: { lat: 22.3180, lng: 73.1500 },
-        mapEmbed: "https://maps.google.com/maps?q=Keystone+30+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed"
+        mapEmbed: "https://maps.google.com/maps?q=Keystone+30+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
+        filterData: {
+            category: "Residential",
+            type: ["5BHK", "Apartments"],
+            possession: "Less than 1 Year"
+        }
     },
     {
         id: "vihav-elinor",
@@ -316,7 +351,12 @@ export const PROJECTS = [
         connectivity: [{ label: "Bhayli", time: "0 Mins" }],
         address: "75 Mtr Main Road, Bhayli, Vadodara",
         coordinates: { lat: 22.3000, lng: 73.1340 },
-        mapEmbed: "https://maps.google.com/maps?q=Vihav+Elinor+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed"
+        mapEmbed: "https://maps.google.com/maps?q=Vihav+Elinor+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
+        filterData: {
+            category: "Residential",
+            type: ["4BHK", "5BHK", "Apartments"],
+            possession: "More than 1 Year"
+        }
     },
     {
         id: "vihav-parvarish",
@@ -352,7 +392,12 @@ export const PROJECTS = [
         connectivity: [{ label: "Gotri", time: "0 Mins" }],
         address: "New Alkapuri, Gotri, Vadodara",
         coordinates: { lat: 22.3250, lng: 73.1480 },
-        mapEmbed: "https://maps.google.com/maps?q=Vihav+Parvarish+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed"
+        mapEmbed: "https://maps.google.com/maps?q=Vihav+Parvarish+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
+        filterData: {
+            category: "Residential",
+            type: ["3BHK", "4BHK", "Apartments"],
+            possession: "Ready Possession"
+        }
     },
     {
         id: "vihav-spring-woods",
@@ -388,7 +433,12 @@ export const PROJECTS = [
         connectivity: [{ label: "Bhayli", time: "0 Mins" }],
         address: "Bhayli Cross Road, Vadodara",
         coordinates: { lat: 22.2900, lng: 73.1200 },
-        mapEmbed: "https://maps.google.com/maps?q=Vihav+Spring+Woods+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed"
+        mapEmbed: "https://maps.google.com/maps?q=Vihav+Spring+Woods+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
+        filterData: {
+            category: "Residential",
+            type: ["4BHK", "5BHK", "Apartments"],
+            possession: "Ready Possession"
+        }
     },
 
     // --- COMMERCIAL ---
@@ -426,7 +476,12 @@ export const PROJECTS = [
         connectivity: [{ label: "D-Mart", time: "1 Min" }],
         address: "Vasna Bhayli Road, Vadodara",
         coordinates: { lat: 22.2920, lng: 73.1380 },
-        mapEmbed: "https://maps.google.com/maps?q=Supremus+III+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed"
+        mapEmbed: "https://maps.google.com/maps?q=Supremus+III+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
+        filterData: {
+            category: "Commercial",
+            type: [],
+            possession: "More than 1 Year"
+        }
     },
     {
         id: "vihav-business-square",
@@ -461,7 +516,12 @@ export const PROJECTS = [
         connectivity: [{ label: "Gotri", time: "0 Mins" }],
         address: "Gotri Main Road, Vadodara",
         coordinates: { lat: 22.3230, lng: 73.1450 },
-        mapEmbed: "https://maps.google.com/maps?q=Vihav+Business+Square+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed"
+        mapEmbed: "https://maps.google.com/maps?q=Vihav+Business+Square+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
+        filterData: {
+            category: "Commercial",
+            type: [],
+            possession: "Ready Possession"
+        }
     },
     {
         id: "wealth-square",
@@ -494,7 +554,12 @@ export const PROJECTS = [
         connectivity: [{ label: "Gotri", time: "0 Mins" }],
         address: "Gotri, Vadodara",
         coordinates: { lat: 22.3205, lng: 73.1470 },
-        mapEmbed: "https://maps.google.com/maps?q=Wealth+Square+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed"
+        mapEmbed: "https://maps.google.com/maps?q=Wealth+Square+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
+        filterData: {
+            category: "Commercial",
+            type: [],
+            possession: "Ready Possession"
+        }
     },
     {
         id: "vihav-supremus",
@@ -528,7 +593,12 @@ export const PROJECTS = [
         connectivity: [{ label: "Gotri", time: "0 Mins" }],
         address: "Gotri, Vadodara",
         coordinates: { lat: 22.3144, lng: 73.1379 },
-        mapEmbed: "https://maps.google.com/maps?q=Vihav+Supremus+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed"
+        mapEmbed: "https://maps.google.com/maps?q=Vihav+Supremus+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
+        filterData: {
+            category: "Commercial",
+            type: [],
+            possession: "Ready Possession"
+        }
     },
     {
         id: "vs-monolith",
@@ -562,7 +632,12 @@ export const PROJECTS = [
         connectivity: [{ label: "Bhayli", time: "0 Mins" }],
         address: "Bhayli Cross Road, Vadodara",
         coordinates: { lat: 22.2970, lng: 73.1320 },
-        mapEmbed: "https://maps.google.com/maps?q=VS+Monolith+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed"
+        mapEmbed: "https://maps.google.com/maps?q=VS+Monolith+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
+        filterData: {
+            category: "Commercial",
+            type: [],
+            possession: "More than 1 Year"
+        }
     },
     {
         id: "vihav-supremus-2",
@@ -594,7 +669,12 @@ export const PROJECTS = [
         connectivity: [{ label: "Atladra", time: "0 Mins" }],
         address: "Atladra Padra Road, Vadodara",
         coordinates: { lat: 22.2850, lng: 73.1650 },
-        mapEmbed: "https://maps.google.com/maps?q=Vihav+Supremus+II+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed"
+        mapEmbed: "https://maps.google.com/maps?q=Vihav+Supremus+II+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
+        filterData: {
+            category: "Commercial",
+            type: [],
+            possession: "Less than 1 Year"
+        }
     },
     {
         id: "vihav-trade-centre",
@@ -625,7 +705,12 @@ export const PROJECTS = [
         connectivity: [{ label: "Priya Cinema", time: "0 Mins" }],
         address: "Near Priya Cinema, Sevasi, Vadodara",
         coordinates: { lat: 22.3150, lng: 73.1200 },
-        mapEmbed: "https://maps.google.com/maps?q=Vihav+Trade+Centre+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed"
+        mapEmbed: "https://maps.google.com/maps?q=Vihav+Trade+Centre+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
+        filterData: {
+            category: "Commercial",
+            type: [],
+            possession: "Ready Possession"
+        }
     },
     {
         id: "vihav-skyone",
@@ -656,7 +741,12 @@ export const PROJECTS = [
         connectivity: [{ label: "Bhayli", time: "0 Mins" }],
         address: "30 Mtr Main Road, Bhayli, Vadodara",
         coordinates: { lat: 22.2861, lng: 73.1319 },
-        mapEmbed: "https://maps.google.com/maps?q=Vihav+Skyone+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed"
+        mapEmbed: "https://maps.google.com/maps?q=Vihav+Skyone+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
+        filterData: {
+            category: "Commercial",
+            type: [],
+            possession: "Less than 1 Year"
+        }
     },
     {
         id: "elite-square",
@@ -687,7 +777,12 @@ export const PROJECTS = [
         ],
         connectivity: [{ label: "Sun Pharma Rd", time: "0 Mins" }],
         address: "Sun Pharma Road, Vadodara",
-        mapEmbed: "https://maps.google.com/maps?q=Elite+Square+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed"
+        mapEmbed: "https://maps.google.com/maps?q=Elite+Square+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
+        filterData: {
+            category: "Commercial",
+            type: [],
+            possession: "Less than 1 Year"
+        }
     },
     {
         id: "vihav-parvarish-commercial",
@@ -718,7 +813,12 @@ export const PROJECTS = [
         connectivity: [{ label: "New Court", time: "0 Mins" }],
         address: "Vasna Gotri Road, Vadodara",
         coordinates: { lat: 22.3210, lng: 73.1460 }, // Same as Parvarish Resi approx
-        mapEmbed: "https://maps.google.com/maps?q=Vihav+Parvarish+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed"
+        mapEmbed: "https://maps.google.com/maps?q=Vihav+Parvarish+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
+        filterData: {
+            category: "Commercial",
+            type: ["Invest", "End Use"],
+            possession: "Ready Possession"
+        }
     },
     // --- NEW ADDITIONS ---
     {
@@ -745,7 +845,12 @@ export const PROJECTS = [
         address: "Bhayli Main Road, Vadodara",
 
         coordinates: { lat: 22.290250, lng: 73.131861 },
-        mapEmbed: "https://maps.google.com/maps?q=Vihav+CBD+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed"
+        mapEmbed: "https://maps.google.com/maps?q=Vihav+CBD+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
+        filterData: {
+            category: "Commercial",
+            type: ["Invest", "End Use", "Pre-lease"],
+            possession: "More than 1 Year"
+        }
     },
     {
         id: "keystone-mansions",
@@ -770,7 +875,12 @@ export const PROJECTS = [
         connectivity: [{ label: "Sevasi", time: "5 Mins" }],
         address: "Khanpur, Sevasi, Vadodara",
         coordinates: { lat: 22.3150, lng: 73.1050 },
-        mapEmbed: "https://maps.google.com/maps?q=Keystone+Mansions+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed"
+        mapEmbed: "https://maps.google.com/maps?q=Keystone+Mansions+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
+        filterData: {
+            category: "Residential",
+            type: ["5BHK", "Bunglows"],
+            possession: "Less than 1 Year"
+        }
     },
     {
         id: "keystone-72",
@@ -795,7 +905,12 @@ export const PROJECTS = [
         connectivity: [{ label: "New Alkapuri", time: "0 Mins" }],
         address: "New Alkapuri, Vadodara",
         coordinates: { lat: 22.3050, lng: 73.1550 },
-        mapEmbed: "https://maps.google.com/maps?q=Keystone+72+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed"
+        mapEmbed: "https://maps.google.com/maps?q=Keystone+72+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
+        filterData: {
+            category: "Residential",
+            type: ["4BHK", "5BHK", "Apartments"],
+            possession: "Under Construction"
+        }
     },
     {
         id: "keystone-48",

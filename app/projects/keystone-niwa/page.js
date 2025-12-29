@@ -14,12 +14,16 @@ import LuxuryMapWrapper from "@/components/projects/LuxuryMapWrapper";
 const keystoneNiwa = getProjectBySlug("keystone-niwa");
 
 // Real Content Images from Concept
+// Real Content Images from Concept
+const HERO_VIDEO = "/niwa-video.mp4"; // Placeholder Luxury Nature Video
+
 const GALLERY_IMAGES = [
-    { src: "https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2600&auto=format&fit=crop", title: "Garden Balconies", desc: "25% of your home opens to nature" },
-    { src: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=80&w=2600&auto=format&fit=crop", title: "5000 Sq. Ft. Carpet", desc: "Expansive single-floor residence" },
-    { src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2600&auto=format&fit=crop", title: "Dual Kitchens", desc: "Gourmet and utility culinary spaces" },
-    { src: "https://images.unsplash.com/photo-1572331165267-854da2b00cc6?q=80&w=2600&auto=format&fit=crop", title: "Private Pools", desc: "Signature penthouses with gazebos" },
-    { src: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2600&auto=format&fit=crop", title: "Resort Amenities", desc: "Staycation luxury every day" }
+    { type: 'image', src: "https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2600&auto=format&fit=crop", title: "Garden Balconies", desc: "25% of your home opens to nature" },
+    { type: 'image', src: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=80&w=2600&auto=format&fit=crop", title: "5000 Sq. Ft. Carpet", desc: "Expansive single-floor residence" },
+    { type: 'video', src: "https://cdn.pixabay.com/video/2020/05/25/40103-424930030_large.mp4", title: "Nurtured Ecosystem", desc: "Living in harmony with nature" }, // Video Example
+    { type: 'image', src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2600&auto=format&fit=crop", title: "Dual Kitchens", desc: "Gourmet and utility culinary spaces" },
+    { type: 'image', src: "https://images.unsplash.com/photo-1572331165267-854da2b00cc6?q=80&w=2600&auto=format&fit=crop", title: "Private Pools", desc: "Signature penthouses with gazebos" },
+    { type: 'image', src: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2600&auto=format&fit=crop", title: "Resort Amenities", desc: "Staycation luxury every day" }
 ];
 
 export default function KeystoneNiwaPage() {
@@ -170,13 +174,13 @@ export default function KeystoneNiwaPage() {
             </AnimatePresence>
 
             <main className="min-h-screen bg-[#0a1811] text-[#e8e6d9] selection:bg-emerald-500 selection:text-white overflow-hidden md:cursor-none">
-                <div onMouseEnter={textEnter} onMouseLeave={textLeave}>
+                <div>
                     <Header />
                 </div>
 
                 {/* Audio Control */}
                 <div className="fixed bottom-10 right-10 z-[50]">
-                    <audio ref={audioRef} loop src="https://cdn.pixabay.com/audio/2022/05/27/audio_1808fbf07a.mp3" />
+                    <audio ref={audioRef} loop src="/niwa-audio.m4a" />
                     <button
                         onClick={toggleAudio}
                         onMouseEnter={buttonEnter}
@@ -192,17 +196,27 @@ export default function KeystoneNiwaPage() {
                     {/* ... Same Hero Content ... */}
                     <motion.div style={{ y: heroY, opacity: opacityHero }} className="absolute inset-0 z-0">
                         {/* Leaves Image - Dark Minimalist Fern (Verified) */}
-                        <img
-                            src="https://images.pexels.com/photos/31067767/pexels-photo-31067767.jpeg"
-                            className="w-full h-full object-cover opacity-50 grayscale-[20%]"
-                            alt="Keystone Niwa Dark Leaf Theme"
-                        />
+                        {/* Hero Background: Video or Image */}
+                        {HERO_VIDEO ? (
+                            <video
+                                src={HERO_VIDEO}
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                className="w-full h-full object-cover opacity-60 grayscale-[20%]"
+                            />
+                        ) : (
+                            <img
+                                src="https://images.pexels.com/photos/31067767/pexels-photo-31067767.jpeg"
+                                className="w-full h-full object-cover opacity-50 grayscale-[20%]"
+                                alt="Keystone Niwa Dark Leaf Theme"
+                            />
+                        )}
                         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-[#0a1811]"></div>
                     </motion.div>
 
                     <div
-                        onMouseEnter={textEnter}
-                        onMouseLeave={textLeave}
                         className="relative z-10 w-full h-full flex flex-col justify-center items-center text-center px-6"
                     >
                         {/* ... Title Content ... */}
@@ -220,7 +234,7 @@ export default function KeystoneNiwaPage() {
                             variants={{
                                 visible: { transition: { staggerChildren: 0.05, delayChildren: 3 } }
                             }}
-                            className="text-6xl md:text-[8rem] font-serif leading-none text-white mix-blend-overlay flex flex-col items-center"
+                            className="text-6xl md:text-8xl lg:text-[10rem] font-serif leading-none text-white mix-blend-overlay flex flex-col items-center"
                         >
                             <div className="flex">
                                 {["K", "E", "Y", "S", "T", "O", "N", "E"].map((l, i) => (
@@ -300,7 +314,7 @@ export default function KeystoneNiwaPage() {
 
                         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20 pt-10 md:pt-20">
                             {/* Text Column (Left) with Parallax */}
-                            <motion.div style={{ y: textParallax }} className="lg:w-1/2 space-y-8 md:space-y-12 relative z-10" onMouseEnter={textEnter} onMouseLeave={textLeave}>
+                            <motion.div style={{ y: textParallax }} className="lg:w-1/2 space-y-8 md:space-y-12 relative z-10">
                                 <h2 className="text-5xl md:text-8xl font-serif leading-[0.85]">
                                     Not Built. <br /> <span className="text-emerald-500 italic block pl-10 md:pl-20">Nurtured.</span>
                                 </h2>
@@ -350,7 +364,7 @@ export default function KeystoneNiwaPage() {
                 <section className="py-20 md:py-32 bg-black overflow-hidden relative">
                     <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
                     <div className="container mx-auto px-6 mb-10 md:mb-16 flex flex-col md:flex-row justify-between items-end gap-8">
-                        <div onMouseEnter={textEnter} onMouseLeave={textLeave}>
+                        <div>
                             <span className="text-emerald-500 uppercase tracking-widest text-xs mb-4 block">The Collection</span>
                             <h2 className="text-4xl md:text-7xl font-serif">Visual <span className="text-emerald-500 italic">Symphony</span></h2>
                         </div>
@@ -375,11 +389,23 @@ export default function KeystoneNiwaPage() {
                                 transition={{ duration: 1, ease: "easeOut" }}
                                 className="absolute inset-0"
                             >
-                                <img
-                                    src={GALLERY_IMAGES[currentSlide].src}
-                                    className="w-full h-full object-cover brightness-[0.7] group-hover:brightness-[0.8] transition-all duration-1000"
-                                    alt={GALLERY_IMAGES[currentSlide].title}
-                                />
+                                {GALLERY_IMAGES[currentSlide].type === 'video' ? (
+                                    <video
+                                        src={GALLERY_IMAGES[currentSlide].src}
+                                        autoPlay
+                                        loop
+                                        muted
+                                        playsInline
+                                        key={GALLERY_IMAGES[currentSlide].src} // Re-mount on change
+                                        className="w-full h-full object-cover brightness-[0.7] group-hover:brightness-[0.8] transition-all duration-1000"
+                                    />
+                                ) : (
+                                    <img
+                                        src={GALLERY_IMAGES[currentSlide].src}
+                                        className="w-full h-full object-cover brightness-[0.7] group-hover:brightness-[0.8] transition-all duration-1000"
+                                        alt={GALLERY_IMAGES[currentSlide].title}
+                                    />
+                                )}
                                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent p-6 md:p-20 flex flex-col justify-end">
                                     <motion.div
                                         initial={{ y: 100, opacity: 0 }}
@@ -398,7 +424,7 @@ export default function KeystoneNiwaPage() {
 
                 {/* 4. VISUAL USP: ONE FLOOR ONE UNIT */}
                 <section className="py-20 md:py-40 bg-[#06120c] relative overflow-hidden">
-                    <div className="container mx-auto px-6 text-center mb-16 md:mb-24" onMouseEnter={textEnter} onMouseLeave={textLeave}>
+                    <div className="container mx-auto px-6 text-center mb-16 md:mb-24">
                         {/* ... USP Title ... */}
                         <motion.div
                             initial={{ opacity: 0, y: 30 }}
@@ -420,7 +446,7 @@ export default function KeystoneNiwaPage() {
                             {/* ... Diagram Content ... */}
                             <div className="absolute top-0 right-0 p-40 bg-emerald-500/5 blur-[120px] rounded-full"></div>
 
-                            <div className="grid md:grid-cols-3 gap-12 md:gap-16 items-center relative z-10">
+                            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 md:gap-16 items-center relative z-10">
                                 {/* Left Feature */}
                                 <div className="text-center md:text-left space-y-4">
                                     <div className="w-16 h-16 md:w-20 md:h-20 bg-emerald-900/30 rounded-full flex items-center justify-center mb-6 text-emerald-400 mx-auto md:mx-0 shadow-lg shadow-emerald-900/10 border border-white/5">
@@ -431,7 +457,7 @@ export default function KeystoneNiwaPage() {
                                 </div>
 
                                 {/* Center Animation */}
-                                <div className="relative h-[300px] md:h-[400px] flex items-center justify-center">
+                                <div className="relative h-[300px] lg:h-[400px] flex items-center justify-center">
                                     <motion.div
                                         animate={{ rotate: 360 }}
                                         transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
@@ -468,7 +494,7 @@ export default function KeystoneNiwaPage() {
                 <section className="py-16 md:py-32 bg-[#e8e6d9] text-[#0a1811]">
                     <div className="container mx-auto px-6">
                         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
-                            <div className="flex flex-col justify-center order-2 lg:order-1" onMouseEnter={textEnter} onMouseLeave={textLeave}>
+                            <div className="flex flex-col justify-center order-2 lg:order-1">
                                 <span className="text-[#0a1811]/60 uppercase tracking-widest text-sm mb-6 block">The Address</span>
                                 <h2 className="text-4xl md:text-7xl font-serif mb-12 text-[#0a1811] leading-[0.9]">New Alkapuri's<br /> Greenest Corner</h2>
                                 <div className="space-y-10 text-xl font-serif">
@@ -516,7 +542,7 @@ export default function KeystoneNiwaPage() {
                     </div>
                 </section>
 
-                <div onMouseEnter={textEnter} onMouseLeave={textLeave}>
+                <div>
                     <Footer />
                 </div>
             </main>

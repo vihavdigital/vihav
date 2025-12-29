@@ -8,19 +8,12 @@ const SLIDES = [
     {
         id: 1,
         type: "video",
-        src: "/vihav-hero-video.webm", // Luxury Interior
-        title: "",
-        subtitle: ""
-    },
-    {
-        id: 2,
-        type: "video",
-        src: "https://assets.mixkit.co/videos/preview/mixkit-modern-architecture-building-with-glass-windows-4700-large.mp4", // Architecture
+        src: "/niwa-video.mp4", // Keystone Niwa
         title: "Curated <br/> <span class='text-white/80 italic font-light'>Collections</span>",
         subtitle: "Experience a life of uncompromising luxury in our handpicked residential sanctuaries."
     },
     {
-        id: 3,
+        id: 2,
         type: "video",
         src: "https://videos.pexels.com/video-files/7578552/7578552-uhd_2560_1440_30fps.mp4", // Lifestyle/Aerial
         title: "Corporate <br/> <span class='text-white/80 italic font-light'>Excellence</span>",
@@ -76,13 +69,13 @@ export default function Hero() {
             </AnimatePresence>
 
             {/* Content Layer */}
-            <div className="relative z-10 h-full container mx-auto px-6 flex flex-col justify-center items-center text-center">
+            <div className="relative z-10 h-full container mx-auto px-6 flex flex-col justify-end items-end text-right pb-24 md:pb-32">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={currentSlide}
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -30 }}
+                        initial={{ opacity: 0, x: 30 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -30 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
                         className="max-w-4xl"
                     >
@@ -90,7 +83,7 @@ export default function Hero() {
                             className="font-serif text-6xl md:text-8xl lg:text-9xl font-medium text-white mb-8 leading-none tracking-tight"
                             dangerouslySetInnerHTML={{ __html: SLIDES[currentSlide].title }}
                         />
-                        <p className="max-w-xl mx-auto text-gray-200 text-lg md:text-xl font-light mb-12 leading-relaxed tracking-wide">
+                        <p className="max-w-xl ml-auto text-gray-200 text-lg md:text-xl font-light mb-12 leading-relaxed tracking-wide">
                             {SLIDES[currentSlide].subtitle}
                         </p>
                     </motion.div>
