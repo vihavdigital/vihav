@@ -69,13 +69,13 @@ export default function SideMenu({ isOpen, onClose }) {
                         className="w-full md:w-1/2 lg:w-[40%] h-full bg-background/95 backdrop-blur-3xl border-r border-border flex flex-col relative z-20 text-foreground"
                     >
                         {/* Header */}
-                        <div className="flex justify-between items-center p-6 md:p-12">
+                        <div className="flex justify-between items-center p-5 md:p-12">
                             <ThemeToggle />
                             <button onClick={onClose} className="flex items-center gap-3 text-xs font-bold tracking-[0.2em] hover:text-gold-400 transition-colors text-foreground">
                                 <div className="p-2 border border-border rounded-full hover:border-gold-400 transition-colors">
                                     <X size={14} />
                                 </div>
-                                CLOSE
+                                <span className="hidden md:block">CLOSE</span>
                             </button>
                         </div>
 

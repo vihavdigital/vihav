@@ -16,7 +16,7 @@ export default function Home() {
   /* Projects are filtered internally by ProjectSection */
 
   return (
-    <main className="min-h-screen bg-background text-foreground selection:bg-gold-400 selection:text-luxury-black transition-colors duration-500">
+    <main className="min-h-screen bg-background text-foreground selection:bg-gold-400 selection:text-luxury-black transition-colors duration-500 overflow-x-hidden">
       <Header />
       <Hero />
 
@@ -86,7 +86,7 @@ export default function Home() {
       </section>
 
       {/* Featured Award Section */}
-      <section className="py-24 px-6 container mx-auto">
+      <section className="py-24 px-6 container mx-auto overflow-hidden">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Image Content (Replaced Video) */}
           {/* Image Content with Premium Frame */}

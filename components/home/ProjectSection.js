@@ -89,7 +89,7 @@ export default function ProjectSection({ projects }) {
     };
 
     return (
-        <section className="py-24 md:py-32 border-b border-border bg-background min-h-[80vh] transition-colors duration-500">
+        <section className="py-24 md:py-32 border-b border-border bg-background min-h-[80vh] transition-colors duration-500 overflow-hidden">
             <div className="container mx-auto px-6">
 
                 {/* Header & Controls Container */}
