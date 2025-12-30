@@ -85,7 +85,7 @@ export default function ProjectsPage() {
                         </div>
 
                         {/* Filters Container (Collapsible on Mobile) */}
-                        <div className={`${showFilters ? 'flex' : 'hidden'} md:flex flex-col md:flex-row flex-wrap gap-4 w-full md:w-auto border-t md:border-0 border-border pt-4 md:pt-0`}>
+                        <div className={`${showFilters ? 'flex' : 'hidden'} md:flex flex-row flex-wrap gap-2 w-full md:w-auto border-t md:border-0 border-border pt-4 md:pt-0`}>
                             {/* Type Dropdown */}
                             {(activeCategory === "Residential" || activeCategory === "All") && (
                                 <FilterDropdown
@@ -93,7 +93,7 @@ export default function ProjectsPage() {
                                     value={activeType}
                                     options={FILTER_TYPES}
                                     onChange={setActiveType}
-                                    className="w-full md:min-w-[160px]"
+                                    className="flex-1 min-w-[130px] md:min-w-[160px] md:w-auto"
                                 />
                             )}
                             {activeCategory === "Commercial" && (
@@ -102,7 +102,7 @@ export default function ProjectsPage() {
                                     value={activeType}
                                     options={FILTER_COMMERCIAL_TYPES}
                                     onChange={setActiveType}
-                                    className="w-full md:min-w-[160px]"
+                                    className="flex-1 min-w-[130px] md:min-w-[160px] md:w-auto"
                                 />
                             )}
                             <FilterDropdown
@@ -110,7 +110,7 @@ export default function ProjectsPage() {
                                 value={activePossession}
                                 options={FILTER_POSSESSION}
                                 onChange={setActivePossession}
-                                className="w-full md:min-w-[160px]"
+                                className="flex-1 min-w-[130px] md:min-w-[160px] md:w-auto"
                             />
                         </div>
 
