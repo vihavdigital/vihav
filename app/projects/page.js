@@ -11,6 +11,7 @@ import { PROJECTS } from "@/data/projects";
 import { motion, AnimatePresence } from "framer-motion";
 import FilterDropdown from "@/components/ui/FilterDropdown";
 import { useProjectFilters, FILTER_TYPES, FILTER_POSSESSION, FILTER_COMMERCIAL_TYPES } from "@/hooks/useProjectFilters";
+import { Filter, X } from "lucide-react";
 
 export default function ProjectsPage() {
     const {
@@ -24,6 +25,8 @@ export default function ProjectsPage() {
         FILTER_TYPES,
         FILTER_POSSESSION
     } = useProjectFilters(PROJECTS, "All");
+
+    const [showFilters, setShowFilters] = useState(false);
 
     return (
         <main className="min-h-screen bg-background text-foreground selection:bg-gold-500 selection:text-black transition-colors duration-500">
@@ -43,60 +46,74 @@ export default function ProjectsPage() {
             </section>
 
             {/* Sticky Filter Bar */}
-            <div className="sticky top-[50px] md:top-[64px] z-40 bg-background/90 backdrop-blur-xl border-y border-border py-4 mb-8 transition-all duration-300">
-                <div className="container mx-auto px-6 flex flex-col-reverse md:flex-row items-center gap-4 justify-between">
+            <div className="sticky top-[70px] z-40 bg-background/95 backdrop-blur-xl border-y border-border py-4 mb-12 transition-all duration-300">
+                <div className="container mx-auto px-6">
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
 
-                    {/* Filters (Left on Desktop) */}
-                    <div className="flex flex-wrap gap-4 w-full md:w-auto">
-                        {/* Type Dropdown */}
-                        {(activeCategory === "Residential" || activeCategory === "All") && (
-                            <FilterDropdown
-                                label="Unit Type"
-                                value={activeType}
-                                options={FILTER_TYPES}
-                                onChange={setActiveType}
-                                className="min-w-[180px]"
-                            />
-                        )}
-                        {activeCategory === "Commercial" && (
-                            <FilterDropdown
-                                label="Usage"
-                                value={activeType}
-                                options={FILTER_COMMERCIAL_TYPES}
-                                onChange={setActiveType}
-                                className="min-w-[180px]"
-                            />
-                        )}
-                        <FilterDropdown
-                            label="Possession"
-                            value={activePossession}
-                            options={FILTER_POSSESSION}
-                            onChange={setActivePossession}
-                            className="min-w-[180px]"
-                        />
-                    </div>
+                        {/* Mobile Top Row: Tabs (+ Toggle) */}
+                        <div className="flex items-center justify-between gap-4 w-full md:w-auto">
+                            {/* Category Tabs */}
+                            <div className="flex bg-secondary p-1 rounded-full border border-border relative overflow-x-auto scrollbar-hide w-full md:w-auto">
+                                {["All", "Residential", "Commercial"].map(type => (
+                                    <button
+                                        key={type}
+                                        onClick={() => { setActiveCategory(type); setActiveType("All"); setActivePossession("All"); }}
+                                        className="relative flex-1 md:flex-none px-4 md:px-6 py-2 rounded-full text-[10px] md:text-sm uppercase tracking-widest transition-all outline-none whitespace-nowrap min-w-fit"
+                                    >
+                                        {activeCategory === type && (
+                                            <motion.div
+                                                layoutId="activeCategoryProjects"
+                                                className="absolute inset-0 bg-gold-400 rounded-full shadow-lg"
+                                                transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                                            />
+                                        )}
+                                        <span className={`relative z-10 transition-colors duration-200 ${activeCategory === type ? "text-luxury-black font-bold" : "text-muted-foreground hover:text-foreground"
+                                            }`}>
+                                            {type}
+                                        </span>
+                                    </button>
+                                ))}
+                            </div>
 
-                    {/* Category Tabs (Right on Desktop) */}
-                    <div className="flex bg-secondary p-1 rounded-full border border-border relative overflow-x-auto max-w-full">
-                        {["All", "Residential", "Commercial"].map(type => (
+                            {/* Mobile Filter Toggle Button */}
                             <button
-                                key={type}
-                                onClick={() => { setActiveCategory(type); setActiveType("All"); setActivePossession("All"); }}
-                                className="relative px-6 py-2 rounded-full text-xs md:text-sm uppercase tracking-widest transition-all outline-none whitespace-nowrap"
+                                onClick={() => setShowFilters(!showFilters)}
+                                className={`md:hidden p-2.5 rounded-full border transition-colors ${showFilters ? 'bg-gold-400 border-gold-400 text-luxury-black' : 'bg-secondary border-border text-muted-foreground'}`}
                             >
-                                {activeCategory === type && (
-                                    <motion.div
-                                        layoutId="activeCategoryProjects"
-                                        className="absolute inset-0 bg-gold-400 rounded-full shadow-lg"
-                                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                                    />
-                                )}
-                                <span className={`relative z-10 transition-colors duration-200 ${activeCategory === type ? "text-luxury-black font-bold" : "text-muted-foreground hover:text-foreground"
-                                    }`}>
-                                    {type}
-                                </span>
+                                {showFilters ? <X size={20} /> : <Filter size={20} />}
                             </button>
-                        ))}
+                        </div>
+
+                        {/* Filters Container (Collapsible on Mobile) */}
+                        <div className={`${showFilters ? 'flex' : 'hidden'} md:flex flex-col md:flex-row flex-wrap gap-4 w-full md:w-auto border-t md:border-0 border-border pt-4 md:pt-0`}>
+                            {/* Type Dropdown */}
+                            {(activeCategory === "Residential" || activeCategory === "All") && (
+                                <FilterDropdown
+                                    label="Unit Type"
+                                    value={activeType}
+                                    options={FILTER_TYPES}
+                                    onChange={setActiveType}
+                                    className="w-full md:min-w-[160px]"
+                                />
+                            )}
+                            {activeCategory === "Commercial" && (
+                                <FilterDropdown
+                                    label="Usage"
+                                    value={activeType}
+                                    options={FILTER_COMMERCIAL_TYPES}
+                                    onChange={setActiveType}
+                                    className="w-full md:min-w-[160px]"
+                                />
+                            )}
+                            <FilterDropdown
+                                label="Possession"
+                                value={activePossession}
+                                options={FILTER_POSSESSION}
+                                onChange={setActivePossession}
+                                className="w-full md:min-w-[160px]"
+                            />
+                        </div>
+
                     </div>
                 </div>
             </div>
