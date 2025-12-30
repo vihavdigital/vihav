@@ -23,14 +23,14 @@ export default function EnquiryModal({ isOpen, onClose }) {
                         initial={{ opacity: 0, scale: 0.95, y: 20 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                        className="fixed inset-0 m-auto w-full max-w-lg h-fit max-h-[90vh] bg-luxury-black border border-white/10 rounded-2xl shadow-2xl z-[70] overflow-hidden flex flex-col"
+                        className="fixed inset-0 m-auto w-full max-w-lg h-fit max-h-[90vh] bg-background border border-border rounded-2xl shadow-2xl z-[70] overflow-hidden flex flex-col"
                     >
                         {/* Header */}
-                        <div className="flex justify-between items-center p-6 border-b border-white/5">
-                            <h3 className="font-serif text-2xl text-white">Enquire Now</h3>
+                        <div className="flex justify-between items-center p-6 border-b border-border">
+                            <h3 className="font-serif text-2xl text-foreground">Enquire Now</h3>
                             <button
                                 onClick={onClose}
-                                className="w-10 h-10 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-colors"
+                                className="w-10 h-10 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
                             >
                                 <X size={20} />
                             </button>

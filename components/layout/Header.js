@@ -27,8 +27,8 @@ export default function Header() {
                 className={cn(
                     "fixed top-0 left-0 right-0 z-50 transition-all duration-700",
                     isScrolled
-                        ? "bg-luxury-black/95 backdrop-blur-xl py-4 shadow-2xl"
-                        : "bg-gradient-to-b from-black/60 to-transparent py-6"
+                        ? "bg-background/95 backdrop-blur-xl py-6 shadow-2xl"
+                        : "bg-gradient-to-b from-black/60 to-transparent py-12"
                 )}
             >
                 <div className="container mx-auto px-6 flex items-center justify-between">
@@ -38,12 +38,15 @@ export default function Header() {
                         <MagneticWrapper>
                             <button
                                 onClick={() => setIsMenuOpen(true)}
-                                className="flex items-center gap-4 text-white hover:text-gold-400 transition-all duration-500 group"
+                                className={cn(
+                                    "flex items-center gap-4 hover:text-gold-400 transition-all duration-500 group",
+                                    isScrolled ? "text-foreground" : "text-white"
+                                )}
                             >
                                 <div className="flex flex-col gap-1.5 items-start">
-                                    <div className="w-6 h-[2px] bg-white group-hover:bg-gold-400 transition-all duration-300 origin-left group-hover:scale-x-75" />
-                                    <div className="w-6 h-[2px] bg-white group-hover:bg-gold-400 transition-all duration-300 origin-left" />
-                                    <div className="w-6 h-[2px] bg-white group-hover:bg-gold-400 transition-all duration-300 origin-left group-hover:scale-x-75" />
+                                    <div className="w-6 h-[2px] bg-current group-hover:bg-gold-400 transition-all duration-300 origin-left group-hover:scale-x-75" />
+                                    <div className="w-6 h-[2px] bg-current group-hover:bg-gold-400 transition-all duration-300 origin-left" />
+                                    <div className="w-6 h-[2px] bg-current group-hover:bg-gold-400 transition-all duration-300 origin-left group-hover:scale-x-75" />
                                 </div>
                                 <span className="text-[10px] font-bold tracking-[0.3em] hidden md:block opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 delay-75">MENU</span>
                             </button>
@@ -59,21 +62,24 @@ export default function Header() {
                                 alt="Vihav Group"
                                 className={cn(
                                     "w-auto object-contain transition-all duration-500",
-                                    isScrolled ? "h-16 md:h-16" : "h-20 md:h-24"
+                                    isScrolled ? "h-20 md:h-20 invert dark:invert-0" : "h-24 md:h-32"
                                 )}
                             />
                         </div>
                     </Link>
 
                     {/* Right Actions (Enquire) */}
-                    <div className="hidden md:flex items-center space-x-6 text-[10px] font-bold tracking-[0.3em] text-white">
+                    <div className={cn(
+                        "hidden md:flex items-center space-x-6 text-[10px] font-bold tracking-[0.3em]",
+                        isScrolled ? "text-foreground" : "text-white"
+                    )}>
                         <MagneticWrapper>
                             <button
                                 onClick={() => setIsEnquireModalOpen(true)}
                                 className="flex items-center gap-3 hover:text-gold-400 transition-colors group"
                             >
                                 <span className="group-hover:mr-2 transition-all duration-300">ENQUIRE</span>
-                                <div className="w-8 h-8 rounded-full border border-white/30 flex items-center justify-center group-hover:border-gold-400 group-hover:bg-gold-400 group-hover:text-black transition-all duration-300">
+                                <div className="w-8 h-8 rounded-full border border-current/30 flex items-center justify-center group-hover:border-gold-400 group-hover:bg-gold-400 group-hover:text-black transition-all duration-300">
                                     <ArrowRight size={12} className="-rotate-45 group-hover:rotate-0 transition-transform duration-500" />
                                 </div>
                             </button>

@@ -9,19 +9,18 @@ import EnquiryForm from "@/components/ui/EnquiryForm";
 
 export default function Footer() {
     return (
-        <footer className="bg-luxury-black text-white pt-32 pb-8 overflow-hidden relative">
+        <footer className="bg-background text-foreground pt-32 pb-8 overflow-hidden relative transition-colors duration-500">
             <div className="container mx-auto px-6 relative z-10">
 
-                {/* 1. Giant CTA Section */}
                 {/* 1. Giant CTA & Form Section */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 mb-32 border-b border-white/10 pb-24 items-end">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 mb-32 border-b border-border pb-24 items-end">
                     <div>
                         <span className="text-gold-400 uppercase tracking-[0.25em] text-xs font-bold mb-6 block">Start Your Journey</span>
-                        <h2 className="text-5xl md:text-7xl lg:text-8xl font-serif leading-[0.9] text-white mb-8">
+                        <h2 className="text-5xl md:text-7xl lg:text-8xl font-serif leading-[0.9] text-foreground mb-8">
                             Let&apos;s build<br />
-                            <span className="text-gray-500">your legacy.</span>
+                            <span className="text-muted-foreground">your legacy.</span>
                         </h2>
-                        <p className="text-gray-400 max-w-md text-lg font-light leading-relaxed">
+                        <p className="text-muted-foreground max-w-md text-lg font-light leading-relaxed">
                             Discover a lifestyle that reflects your achievements. Get in touch with our private client team today.
                         </p>
                     </div>
@@ -40,17 +39,17 @@ export default function Footer() {
                             <img
                                 src="/vihav-logo-main.png"
                                 alt="Vihav Group"
-                                className="h-24 w-auto object-contain opacity-100 invert-0"
+                                className="h-48 w-auto object-contain opacity-100 dark:invert-0 invert"
                             />
                         </Link>
-                        <div className="space-y-6 text-gray-400 font-light text-sm leading-relaxed max-w-xs">
+                        <div className="space-y-6 text-muted-foreground font-light text-sm leading-relaxed max-w-xs">
                             <p>
-                                <strong className="block text-white mb-2 uppercase tracking-widest text-xs">Corporate Office</strong>
+                                <strong className="block text-foreground mb-2 uppercase tracking-widest text-xs">Corporate Office</strong>
                                 Vihav Supremus, Near Iscon Heights,<br />
                                 Gotri, Vadodara, Gujarat 390021
                             </p>
                             <p>
-                                <strong className="block text-white mb-2 uppercase tracking-widest text-xs mt-6">Registered Office</strong>
+                                <strong className="block text-foreground mb-2 uppercase tracking-widest text-xs mt-6">Registered Office</strong>
                                 22, Greenwood, Sevasi-Ankodia Road,<br />
                                 Vadodara, Gujarat 390021
                             </p>
@@ -74,7 +73,7 @@ export default function Footer() {
                                 { name: "Contact", link: "/contact" }
                             ].map(item => (
                                 <li key={item.name}>
-                                    <Link href={item.link} className="text-gray-400 hover:text-white transition-colors text-sm uppercase tracking-wider block hover:translate-x-1 duration-300">
+                                    <Link href={item.link} className="text-muted-foreground hover:text-foreground transition-colors text-sm uppercase tracking-wider block hover:translate-x-1 duration-300">
                                         {item.name}
                                     </Link>
                                 </li>
@@ -94,7 +93,7 @@ export default function Footer() {
                                 "Vihav CBD"
                             ].map(item => (
                                 <li key={item}>
-                                    <Link href={`/projects/${item.toLowerCase().replace(/ /g, "-")}`} className="text-gray-400 hover:text-white transition-colors text-sm uppercase tracking-wider block hover:translate-x-1 duration-300">
+                                    <Link href={`/projects/${item.toLowerCase().replace(/ /g, "-")}`} className="text-muted-foreground hover:text-foreground transition-colors text-sm uppercase tracking-wider block hover:translate-x-1 duration-300">
                                         {item}
                                     </Link>
                                 </li>
@@ -114,7 +113,7 @@ export default function Footer() {
                                 { icon: Youtube, href: "#" }
                             ].map((social, idx) => (
                                 <MagneticWrapper key={idx}>
-                                    <a href={social.href} className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-gold-400 hover:border-gold-400 hover:text-black transition-all duration-300">
+                                    <a href={social.href} className="w-12 h-12 rounded-full border border-border flex items-center justify-center text-foreground hover:bg-gold-400 hover:border-gold-400 hover:text-black transition-all duration-300">
                                         <social.icon size={20} />
                                     </a>
                                 </MagneticWrapper>
@@ -124,12 +123,12 @@ export default function Footer() {
                 </div>
 
                 {/* 3. Bottom Bar */}
-                <div className="flex flex-col md:flex-row justify-between items-center text-white/30 text-xs uppercase tracking-widest border-t border-white/5 pt-8">
+                <div className="flex flex-col md:flex-row justify-between items-center text-muted-foreground text-xs uppercase tracking-widest border-t border-border pt-8">
                     <p>&copy; {new Date().getFullYear()} Vihav Group.</p>
                     <div className="flex space-x-8 mt-4 md:mt-0">
-                        <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>
-                        <Link href="#" className="hover:text-white transition-colors">Terms of Use</Link>
-                        <Link href="#" className="hover:text-white transition-colors">Cookie Policy</Link>
+                        <Link href="#" className="hover:text-foreground transition-colors">Privacy Policy</Link>
+                        <Link href="#" className="hover:text-foreground transition-colors">Terms of Use</Link>
+                        <Link href="#" className="hover:text-foreground transition-colors">Cookie Policy</Link>
                     </div>
                 </div>
 
@@ -144,7 +143,7 @@ export default function Footer() {
                     variants={{
                         visible: { transition: { staggerChildren: 0.1 } }
                     }}
-                    className="flex text-[15rem] md:text-[28rem] font-bold leading-none text-white tracking-tighter translate-y-[30%]"
+                    className="flex text-[15rem] md:text-[28rem] font-bold leading-none text-foreground tracking-tighter translate-y-[30%]"
                 >
                     {["V", "I", "H", "A", "V"].map((letter, i) => (
                         <motion.span

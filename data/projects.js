@@ -63,7 +63,7 @@ export const PROJECTS = [
         ],
         filterData: {
             category: "Residential",
-            type: ["4BHK", "5BHK", "Apartments"],
+            type: ["4BHK", "5BHK", "Penthouse"],
             possession: "More than 1 Year"
         }
     },
@@ -117,7 +117,7 @@ export const PROJECTS = [
         mapEmbed: "https://maps.google.com/maps?q=Keystone+Skyvillas+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
             category: "Residential",
-            type: ["4BHK", "Apartments"],
+            type: ["4BHK", "Penthouse"],
             possession: "Ready Possession"
         }
     },
@@ -158,7 +158,7 @@ export const PROJECTS = [
         mapEmbed: "https://maps.google.com/maps?q=Keystone+Skyvillas+XL+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
             category: "Residential",
-            type: ["4BHK", "5BHK", "Apartments"],
+            type: ["4BHK", "5BHK", "Penthouse"],
             possession: "Ready Possession"
         }
     },
@@ -204,7 +204,7 @@ export const PROJECTS = [
         mapEmbed: "https://maps.google.com/maps?q=Keystone+Clermont+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
             category: "Residential",
-            type: ["4BHK", "5BHK", "Apartments"],
+            type: ["4BHK", "5BHK", "Penthouse"],
             possession: "Less than 1 Year"
         }
     },
@@ -231,7 +231,7 @@ export const PROJECTS = [
         mapEmbed: "https://maps.google.com/maps?q=Keystone+Niwa+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
             category: "Residential",
-            type: ["4BHK", "Apartments"],
+            type: ["4BHK", "Penthouse"],
             possession: "More than 1 Year"
         }
     },
@@ -272,7 +272,7 @@ export const PROJECTS = [
         mapEmbed: "https://maps.google.com/maps?q=Keystone+51+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
             category: "Residential",
-            type: ["3BHK", "Apartments"],
+            type: ["3BHK", "Penthouse"],
             possession: "More than 1 Year"
         }
     },
@@ -313,7 +313,7 @@ export const PROJECTS = [
         mapEmbed: "https://maps.google.com/maps?q=Keystone+30+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
             category: "Residential",
-            type: ["5BHK", "Apartments"],
+            type: ["5BHK", "Penthouse"],
             possession: "Less than 1 Year"
         }
     },
@@ -354,7 +354,7 @@ export const PROJECTS = [
         mapEmbed: "https://maps.google.com/maps?q=Vihav+Elinor+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
             category: "Residential",
-            type: ["4BHK", "5BHK", "Apartments"],
+            type: ["4BHK", "5BHK", "Penthouse"],
             possession: "More than 1 Year"
         }
     },
@@ -395,7 +395,7 @@ export const PROJECTS = [
         mapEmbed: "https://maps.google.com/maps?q=Vihav+Parvarish+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
             category: "Residential",
-            type: ["3BHK", "4BHK", "Apartments"],
+            type: ["3BHK", "4BHK", "Penthouse"],
             possession: "Ready Possession"
         }
     },
@@ -436,7 +436,7 @@ export const PROJECTS = [
         mapEmbed: "https://maps.google.com/maps?q=Vihav+Spring+Woods+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
             category: "Residential",
-            type: ["4BHK", "5BHK", "Apartments"],
+            type: ["4BHK", "5BHK", "Penthouse"],
             possession: "Ready Possession"
         }
     },
@@ -908,7 +908,7 @@ export const PROJECTS = [
         mapEmbed: "https://maps.google.com/maps?q=Keystone+72+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
             category: "Residential",
-            type: ["4BHK", "5BHK", "Apartments"],
+            type: ["4BHK", "5BHK", "Penthouse"],
             possession: "Under Construction"
         }
     },

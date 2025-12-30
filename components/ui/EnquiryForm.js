@@ -40,14 +40,14 @@ export default function EnquiryForm({ className, onSuccess, variant = "minimal",
     // Styles based on variant
     const styles = {
         minimal: {
-            input: "w-full bg-transparent border-b border-white/20 py-4 text-xl text-white placeholder:text-white/20 focus:border-gold-400 focus:outline-none transition-all font-light",
-            select: "w-full bg-transparent border-b border-white/20 py-4 text-xl text-white focus:border-gold-400 focus:outline-none transition-all font-light appearance-none cursor-pointer",
-            button: "bg-white text-black hover:bg-gold-400 hover:text-black rounded-none py-6 tracking-[0.2em]"
+            input: "w-full bg-transparent border-b border-border py-4 text-xl text-foreground placeholder:text-muted-foreground/50 focus:border-gold-400 focus:outline-none transition-all font-light",
+            select: "w-full bg-transparent border-b border-border py-4 text-xl text-foreground focus:border-gold-400 focus:outline-none transition-all font-light appearance-none cursor-pointer",
+            button: "bg-foreground text-background hover:bg-gold-400 hover:text-black rounded-none py-6 tracking-[0.2em]"
         },
         standard: {
-            input: "w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder:text-gray-500 focus:border-gold-400 focus:outline-none transition-colors",
-            select: "w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:border-gold-400 focus:outline-none transition-colors appearance-none cursor-pointer",
-            button: "bg-gold-400 text-black hover:bg-white hover:text-black rounded-lg py-4 tracking-widest"
+            input: "w-full bg-secondary border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:border-gold-400 focus:outline-none transition-colors",
+            select: "w-full bg-secondary border border-border rounded-lg px-4 py-3 text-foreground focus:border-gold-400 focus:outline-none transition-colors appearance-none cursor-pointer",
+            button: "bg-gold-400 text-black hover:bg-foreground hover:text-background rounded-lg py-4 tracking-widest"
         }
     };
 
@@ -59,8 +59,8 @@ export default function EnquiryForm({ className, onSuccess, variant = "minimal",
                 <div className="w-16 h-16 rounded-full bg-green-500/20 text-green-500 flex items-center justify-center mb-6">
                     <ArrowRight size={32} />
                 </div>
-                <h4 className="text-xl text-white font-serif mb-2">Thank You!</h4>
-                <p className="text-gray-400">Our team will get in touch with you shortly.</p>
+                <h4 className="text-xl text-foreground font-serif mb-2">Thank You!</h4>
+                <p className="text-muted-foreground">Our team will get in touch with you shortly.</p>
             </div>
         );
     }
@@ -69,7 +69,7 @@ export default function EnquiryForm({ className, onSuccess, variant = "minimal",
         <form onSubmit={handleSubmit} className={`space-y-8 ${className}`}>
             <div className={`space-y-6 ${variant === 'minimal' ? 'space-y-8' : ''}`}>
                 <div className="group">
-                    {variant === 'standard' && <label className="block text-xs uppercase tracking-widest text-gray-500 mb-2">Full Name</label>}
+                    {variant === 'standard' && <label className="block text-xs uppercase tracking-widest text-muted-foreground mb-2">Full Name</label>}
                     <input
                         type="text"
                         required
@@ -80,10 +80,10 @@ export default function EnquiryForm({ className, onSuccess, variant = "minimal",
                     />
                 </div>
 
-                <div className={`grid grid-cols-1 md:grid-cols-2 ${variant === 'minimal' ? 'gap-8' : 'gap-6'}`}>
+                <div className="space-y-6">
                     {/* Phone Input with Country Code */}
                     <div className="group">
-                        {variant === 'standard' && <label className="block text-xs uppercase tracking-widest text-gray-500 mb-2">Phone Number</label>}
+                        {variant === 'standard' && <label className="block text-xs uppercase tracking-widest text-muted-foreground mb-2">Phone Number</label>}
                         <div className="flex gap-4">
                             <div className="w-28 flex-shrink-0 relative">
                                 <select
@@ -92,7 +92,7 @@ export default function EnquiryForm({ className, onSuccess, variant = "minimal",
                                     className={currentStyle.select}
                                 >
                                     {sortedCountries.map((item, index) => (
-                                        <option key={index} value={item.code} className="bg-neutral-900 text-white">
+                                        <option key={index} value={item.code} className="bg-popover text-foreground">
                                             {item.flag} {item.code}
                                         </option>
                                     ))}
@@ -110,7 +110,7 @@ export default function EnquiryForm({ className, onSuccess, variant = "minimal",
                     </div>
 
                     <div className="group">
-                        {variant === 'standard' && <label className="block text-xs uppercase tracking-widest text-gray-500 mb-2">Email Address</label>}
+                        {variant === 'standard' && <label className="block text-xs uppercase tracking-widest text-muted-foreground mb-2">Email Address</label>}
                         <input
                             type="email"
                             required

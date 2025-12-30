@@ -6,6 +6,8 @@ import { X, ChevronRight, ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 
+import ThemeToggle from "@/components/theme/ThemeToggle";
+
 const MENU_ITEMS = [
     {
         id: "home",
@@ -58,19 +60,19 @@ export default function SideMenu({ isOpen, onClose }) {
         <AnimatePresence>
             {isOpen && (
                 <div className="fixed inset-0 z-[200] flex text-white overflow-hidden">
-
                     {/* Desktop: Left Pane (Navigation) */}
                     <motion.div
                         initial={{ x: "-100%" }}
                         animate={{ x: 0 }}
                         exit={{ x: "-100%" }}
                         transition={{ type: "tween", duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
-                        className="w-full md:w-1/2 lg:w-[40%] h-full bg-luxury-black/95 backdrop-blur-3xl border-r border-white/10 flex flex-col relative z-20"
+                        className="w-full md:w-1/2 lg:w-[40%] h-full bg-background/95 backdrop-blur-3xl border-r border-border flex flex-col relative z-20 text-foreground"
                     >
                         {/* Header */}
                         <div className="flex justify-between items-center p-6 md:p-12">
-                            <button onClick={onClose} className="flex items-center gap-3 text-xs font-bold tracking-[0.2em] hover:text-gold-400 transition-colors">
-                                <div className="p-2 border border-white/20 rounded-full hover:border-gold-400 transition-colors">
+                            <ThemeToggle />
+                            <button onClick={onClose} className="flex items-center gap-3 text-xs font-bold tracking-[0.2em] hover:text-gold-400 transition-colors text-foreground">
+                                <div className="p-2 border border-border rounded-full hover:border-gold-400 transition-colors">
                                     <X size={14} />
                                 </div>
                                 CLOSE
@@ -78,7 +80,7 @@ export default function SideMenu({ isOpen, onClose }) {
                         </div>
 
                         {/* Nav List - Mobile & Desktop */}
-                        <div className="flex-1 px-8 md:px-24 flex flex-col justify-center space-y-4 md:space-y-6">
+                        <div className="flex-1 px-8 md:px-24 flex flex-col justify-center space-y-6 md:space-y-8">
                             <motion.div
                                 initial="hidden"
                                 animate="show"
@@ -107,7 +109,7 @@ export default function SideMenu({ isOpen, onClose }) {
                                         <Link
                                             href={item.href}
                                             onClick={onClose}
-                                            className={`group block text-3xl md:text-5xl font-serif tracking-tight transition-all duration-500 ease-out ${hoveredItem.id === item.id ? "text-gold-400 translate-x-4 md:translate-x-6" : "text-white/40 hover:text-white"}`}
+                                            className={`group block text-4xl md:text-6xl font-serif tracking-tight transition-all duration-500 ease-out ${hoveredItem.id === item.id ? "text-gold-400 translate-x-4 md:translate-x-6" : "text-muted-foreground hover:text-foreground"}`}
                                         >
                                             <span className="flex items-center gap-4">
                                                 {item.label}
@@ -122,10 +124,10 @@ export default function SideMenu({ isOpen, onClose }) {
                         </div>
 
                         {/* Footer */}
-                        <div className="p-8 md:p-12 text-[10px] md:text-xs text-white/40 uppercase tracking-widest flex flex-wrap gap-6 md:gap-8">
-                            <Link href="#" className="hover:text-white transition-colors">Legal</Link>
-                            <Link href="#" className="hover:text-white transition-colors">Privacy</Link>
-                            <Link href="#" className="hover:text-white transition-colors">Enquire Dealer</Link>
+                        <div className="p-8 md:p-12 text-[10px] md:text-xs text-muted-foreground uppercase tracking-widest flex flex-wrap gap-6 md:gap-8">
+                            <Link href="#" className="hover:text-foreground transition-colors">Legal</Link>
+                            <Link href="#" className="hover:text-foreground transition-colors">Privacy</Link>
+                            <Link href="#" className="hover:text-foreground transition-colors">Enquire Dealer</Link>
                         </div>
                     </motion.div>
 
@@ -135,7 +137,7 @@ export default function SideMenu({ isOpen, onClose }) {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 1 }}
-                        className="hidden md:block flex-1 h-full relative z-10 bg-black"
+                        className="hidden md:block flex-1 h-full relative z-10 bg-muted"
                     >
                         {/* Removing mode='wait' for crossfade overlap */}
                         <AnimatePresence>

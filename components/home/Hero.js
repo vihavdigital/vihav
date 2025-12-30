@@ -64,7 +64,7 @@ export default function Hero() {
                     )}
 
                     {/* Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-luxury-black via-transparent to-black/30" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/30" />
                 </motion.div>
             </AnimatePresence>
 

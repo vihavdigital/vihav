@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 
-export const FILTER_TYPES = ["All", "3BHK", "4BHK", "5BHK", "Bunglows", "Apartments"];
+export const FILTER_TYPES = ["All", "3BHK", "4BHK", "5BHK", "Bunglows", "Penthouse"];
 export const FILTER_COMMERCIAL_TYPES = ["All", "Invest", "End Use", "Pre-lease"];
 export const FILTER_POSSESSION = ["All", "Ready Possession", "Less than 1 Year", "More than 1 Year"];
 

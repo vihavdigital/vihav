@@ -64,22 +64,22 @@ export default function ProjectSection({ projects }) {
     };
 
     return (
-        <section className="py-24 md:py-32 border-b border-white/5 bg-luxury-black min-h-[80vh]">
+        <section className="py-24 md:py-32 border-b border-border bg-background min-h-[80vh] transition-colors duration-500">
             <div className="container mx-auto px-6">
 
                 {/* Header & Controls Container */}
-                <div className="flex flex-col xl:flex-row justify-between items-end mb-12 gap-8 relative z-40">
+                <div className="flex flex-col xl:flex-row justify-between items-center xl:items-end mb-12 gap-8 relative z-40">
                     {/* Left: Title */}
-                    <div className="w-full xl:w-auto">
+                    <div className="w-full xl:w-auto text-center xl:text-left">
                         <span className="text-gold-400 uppercase tracking-[0.25em] text-xs font-bold mb-4 block">Discover</span>
-                        <h2 className="font-serif text-4xl md:text-5xl text-white mb-2">Our Collections</h2>
+                        <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-2">Our Collections</h2>
                     </div>
 
                     {/* Right: Controls (Filters + Tabs) */}
-                    <div className="flex flex-col-reverse md:flex-row items-end gap-4 w-full xl:w-auto">
+                    <div className="flex flex-col-reverse md:flex-row items-center xl:items-end gap-4 w-full xl:w-auto">
 
                         {/* Dropdowns */}
-                        <div className="flex gap-4">
+                        <div className="flex flex-row flex-wrap justify-center gap-4 w-full md:w-auto">
                             {/* Type Dropdown (Residential Only) */}
                             {activeCategory === "Residential" && (
                                 <FilterDropdown
@@ -87,6 +87,7 @@ export default function ProjectSection({ projects }) {
                                     value={activeType}
                                     options={FILTER_TYPES}
                                     onChange={setActiveType}
+                                    className="flex-1 min-w-[140px] md:w-48 md:flex-none md:min-w-0"
                                 />
                             )}
                             {activeCategory === "Commercial" && (
@@ -95,6 +96,7 @@ export default function ProjectSection({ projects }) {
                                     value={activeType}
                                     options={FILTER_COMMERCIAL_TYPES}
                                     onChange={setActiveType}
+                                    className="flex-1 min-w-[140px] md:w-48 md:flex-none md:min-w-0"
                                 />
                             )}
 
@@ -104,23 +106,31 @@ export default function ProjectSection({ projects }) {
                                 value={activePossession}
                                 options={FILTER_POSSESSION}
                                 onChange={setActivePossession}
+                                className="flex-1 min-w-[140px] md:w-48 md:flex-none md:min-w-0"
                             />
                         </div>
 
                         {/* Category Tabs - Wrapped with Label for Alignment */}
                         <div>
-                            <span className="text-[10px] uppercase tracking-widest text-gray-500 mb-2 block">Category</span>
-                            <div className="flex bg-white/5 p-1 rounded-full border border-white/10">
+                            <span className="text-[10px] uppercase tracking-widest text-muted-foreground mb-2 block">Category</span>
+                            <div className="flex bg-secondary p-1 rounded-full border border-border relative">
                                 {["Residential", "Commercial"].map((cat) => (
                                     <button
                                         key={cat}
                                         onClick={() => { setActiveCategory(cat); setActiveType("All"); setActivePossession("All"); }}
-                                        className={`px-8 py-3 rounded-full text-sm uppercase tracking-widest transition-all ${activeCategory === cat
-                                            ? "bg-gold-400 text-black font-bold shadow-lg"
-                                            : "text-gray-400 hover:text-white"
-                                            }`}
+                                        className="relative px-8 py-2 rounded-full text-sm uppercase tracking-widest transition-all outline-none"
                                     >
-                                        {cat}
+                                        {activeCategory === cat && (
+                                            <motion.div
+                                                layoutId="activeCategory"
+                                                className="absolute inset-0 bg-gold-400 rounded-full shadow-lg"
+                                                transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                                            />
+                                        )}
+                                        <span className={`relative z-10 transition-colors duration-200 ${activeCategory === cat ? "text-luxury-black font-bold" : "text-muted-foreground hover:text-foreground"
+                                            }`}>
+                                            {cat}
+                                        </span>
                                     </button>
                                 ))}
                             </div>
@@ -132,15 +142,15 @@ export default function ProjectSection({ projects }) {
                 <div className="relative">
                     {/* Controls */}
                     <div className="flex justify-end gap-2 mb-6">
-                        <div className="text-gray-500 text-xs uppercase tracking-widest py-3 mr-auto flex items-center gap-4">
+                        <div className="text-muted-foreground text-xs uppercase tracking-widest py-3 mr-auto flex items-center gap-4">
                             <span>Showing {filteredProjects.length} Projects</span>
 
                             {/* Pagination Indicators */}
                             <div className="hidden md:flex gap-2">
-                                {Array.from({ length: Math.min(totalSlides, 10) }).map((_, idx) => ( // Cap dots if too many? No, slider logic usually shows all.
+                                {Array.from({ length: Math.min(totalSlides, 10) }).map((_, idx) => (
                                     <div
                                         key={idx}
-                                        className={`h-1 rounded-full transition-all duration-300 ${idx === currentIndex ? "w-8 bg-gold-400" : "w-1 bg-white/20"
+                                        className={`h-1 rounded-full transition-all duration-300 ${idx === currentIndex ? "w-8 bg-gold-400" : "w-1 bg-border"
                                             }`}
                                     />
                                 ))}
@@ -152,13 +162,13 @@ export default function ProjectSection({ projects }) {
                         </div>
                         <button
                             onClick={() => scroll("left")}
-                            className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-gold-400 hover:text-black hover:border-gold-400 transition-all"
+                            className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-foreground hover:bg-gold-400 hover:text-luxury-black hover:border-gold-400 transition-all"
                         >
                             <ChevronLeft size={20} />
                         </button>
                         <button
                             onClick={() => scroll("right")}
-                            className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-gold-400 hover:text-black hover:border-gold-400 transition-all"
+                            className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-foreground hover:bg-gold-400 hover:text-luxury-black hover:border-gold-400 transition-all"
                         >
                             <ChevronRight size={20} />
                         </button>
@@ -194,12 +204,12 @@ export default function ProjectSection({ projects }) {
                                             animate={{ opacity: 1, scale: 1 }}
                                             className="flex-shrink-0 w-[85vw] md:w-[40vw] lg:w-[30vw] snap-center flex"
                                         >
-                                            <Link href="/projects" className="w-full flex flex-col items-center justify-center bg-white/5 border border-white/10 rounded-xl hover:border-gold-400 group transition-all">
-                                                <div className="w-20 h-20 rounded-full border border-gold-400/30 flex items-center justify-center mb-6 group-hover:bg-gold-400 group-hover:text-black transition-all">
-                                                    <ArrowRight size={32} className="text-gold-400 group-hover:text-black" />
+                                            <Link href="/projects" className="w-full flex flex-col items-center justify-center bg-secondary border border-border rounded-xl hover:border-gold-400 group transition-all">
+                                                <div className="w-20 h-20 rounded-full border border-gold-400/30 flex items-center justify-center mb-6 group-hover:bg-gold-400 group-hover:text-luxury-black transition-all">
+                                                    <ArrowRight size={32} className="text-gold-400 group-hover:text-luxury-black" />
                                                 </div>
-                                                <h3 className="text-2xl font-serif text-white mb-2">View All Projects</h3>
-                                                <p className="text-gray-400 text-sm uppercase tracking-widest">Explore our full portfolio</p>
+                                                <h3 className="text-2xl font-serif text-foreground mb-2">View All Projects</h3>
+                                                <p className="text-muted-foreground text-sm uppercase tracking-widest">Explore our full portfolio</p>
                                             </Link>
                                         </motion.div>
                                     )}
@@ -208,14 +218,14 @@ export default function ProjectSection({ projects }) {
                                 <motion.div
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
-                                    className="w-full h-[300px] flex flex-col items-center justify-center text-center border border-white/10 rounded-2xl bg-white/5"
+                                    className="w-full h-[300px] flex flex-col items-center justify-center text-center border border-border rounded-2xl bg-secondary/20"
                                 >
-                                    <Filter className="w-12 h-12 text-gray-600 mb-4" />
-                                    <h3 className="text-xl text-white font-serif mb-2">No Projects Found</h3>
-                                    <p className="text-gray-400">Try adjusting your filters to see more results.</p>
+                                    <Filter className="w-12 h-12 text-muted-foreground mb-4" />
+                                    <h3 className="text-xl text-foreground font-serif mb-2">No Projects Found</h3>
+                                    <p className="text-muted-foreground">Try adjusting your filters to see more results.</p>
                                     <button
                                         onClick={() => { setActiveType("All"); setActivePossession("All"); }}
-                                        className="mt-6 text-gold-400 hover:text-white underline underline-offset-4"
+                                        className="mt-6 text-gold-400 hover:text-foreground underline underline-offset-4"
                                     >
                                         Clear Filters
                                     </button>

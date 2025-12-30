@@ -13,9 +13,69 @@ const lato = Lato({
   subsets: ["latin"],
 });
 
+import { ThemeProvider } from "@/components/theme/ThemeProvider";
+
 export const metadata = {
-  title: "Vihav | The Art of Luxury Living",
-  description: "Vihav Group - Redefining luxury real estate with masterfully crafted homes and sustainable communities.",
+  title: {
+    default: "Vihav Group | Premium Real Estate Developer in Vadodara",
+    template: "%s | Vihav Group"
+  },
+  description: "Discover luxury 3BHK, 4BHK flats, penthouses, and commercial properties in Vadodara by Vihav Group. Award-winning real estate developer crafting sustainable and premium living spaces.",
+  keywords: [
+    "Vihav Group",
+    "Real Estate Vadodara",
+    "Luxury Homes Vadodara",
+    "3BHK Flats in Vadodara",
+    "4BHK Flats in Vadodara",
+    "Penthouse Vadodara",
+    "Commercial Properties Vadodara",
+    "Premium Apartments Vadodara",
+    "Top Builders in Vadodara",
+    "New Projects in Vadodara",
+    "Properties in Bhayli",
+    "Flats in Gotri",
+    "New Alkapuri Real Estate",
+    "Vasna Bhayli Road Projects",
+    "Luxurious Sky Villas",
+    "Duplex Apartments Vadodara",
+    "Commercial Showrooms in Vadodara",
+    "Office Spaces Vadodara",
+    "Buy Flat in Vadodara",
+    "Best Real Estate Developer Gujarat",
+    "Gated Community Vadodara",
+    "Ready to Move Flats Vadodara",
+    "Under Construction Projects Vadodara"
+  ],
+  authors: [{ name: "Vihav Group" }],
+  creator: "Vihav Group",
+  publisher: "Vihav Group",
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://www.vihavgroup.com",
+    title: "Vihav Group | Premium Real Estate Developer in Vadodara",
+    description: "Discover luxury 3BHK, 4BHK flats, penthouses, and commercial properties in Vadodara by Vihav Group.",
+    siteName: "Vihav Group",
+    images: [
+      {
+        url: "/og-image.jpg", // Assuming we might add one later, or it falls back
+        width: 1200,
+        height: 630,
+        alt: "Vihav Group Luxury Real Estate",
+      },
+    ],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -23,10 +83,12 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body
         suppressHydrationWarning
-        className={`${playfair.variable} ${lato.variable} antialiased bg-white text-gray-900`}
+        className={`${playfair.variable} ${lato.variable} antialiased transition-colors duration-300`}
       >
-        <Preloader />
-        {children}
+        <ThemeProvider>
+          <Preloader />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

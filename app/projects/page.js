@@ -26,28 +26,28 @@ export default function ProjectsPage() {
     } = useProjectFilters(PROJECTS, "All");
 
     return (
-        <main className="min-h-screen bg-luxury-black text-white selection:bg-gold-500 selection:text-black">
+        <main className="min-h-screen bg-background text-foreground selection:bg-gold-500 selection:text-black transition-colors duration-500">
             <Header />
 
             {/* Header Spacer */}
-            <div className="h-24 bg-luxury-black" />
+            <div className="h-24 bg-background" />
 
             {/* Mobile: Compact Title Section */}
             <section className="pt-10 pb-6 px-6 container mx-auto md:py-20">
                 <div className="flex flex-col md:flex-row justify-between items-end">
                     <div className="mb-6 md:mb-0">
                         <span className="text-gold-400 text-xs md:text-sm uppercase tracking-widest block mb-2">Our Portfolio</span>
-                        <h1 className="font-serif text-4xl md:text-6xl text-white leading-tight">Exclusive <br /> Collections</h1>
+                        <h1 className="font-serif text-4xl md:text-6xl text-foreground leading-tight">Exclusive <br /> Collections</h1>
                     </div>
                 </div>
             </section>
 
             {/* Sticky Filter Bar */}
-            <div className="sticky top-[50px] md:top-[64px] z-40 bg-luxury-black/90 backdrop-blur-xl border-y border-white/5 py-4 mb-8 transition-all duration-300">
+            <div className="sticky top-[50px] md:top-[64px] z-40 bg-background/90 backdrop-blur-xl border-y border-border py-4 mb-8 transition-all duration-300">
                 <div className="container mx-auto px-6 flex flex-col-reverse md:flex-row items-center gap-4 justify-between">
 
                     {/* Filters (Left on Desktop) */}
-                    <div className="flex gap-4 w-full md:w-auto overflow-x-auto scrollbar-hide pb-2 md:pb-0">
+                    <div className="flex flex-wrap gap-4 w-full md:w-auto">
                         {/* Type Dropdown */}
                         {(activeCategory === "Residential" || activeCategory === "All") && (
                             <FilterDropdown
@@ -77,17 +77,24 @@ export default function ProjectsPage() {
                     </div>
 
                     {/* Category Tabs (Right on Desktop) */}
-                    <div className="flex bg-white/5 p-1 rounded-full border border-white/10 overflow-x-auto max-w-full">
+                    <div className="flex bg-secondary p-1 rounded-full border border-border relative overflow-x-auto max-w-full">
                         {["All", "Residential", "Commercial"].map(type => (
                             <button
                                 key={type}
                                 onClick={() => { setActiveCategory(type); setActiveType("All"); setActivePossession("All"); }}
-                                className={`px-6 py-3 rounded-full text-xs md:text-sm uppercase tracking-widest transition-all duration-300 whitespace-nowrap border ${activeCategory === type
-                                    ? "bg-gold-500 border-gold-500 text-black font-bold shadow-lg shadow-gold-500/20"
-                                    : "border-transparent text-gray-400 hover:text-white"
-                                    }`}
+                                className="relative px-6 py-2 rounded-full text-xs md:text-sm uppercase tracking-widest transition-all outline-none whitespace-nowrap"
                             >
-                                {type}
+                                {activeCategory === type && (
+                                    <motion.div
+                                        layoutId="activeCategoryProjects"
+                                        className="absolute inset-0 bg-gold-400 rounded-full shadow-lg"
+                                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                                    />
+                                )}
+                                <span className={`relative z-10 transition-colors duration-200 ${activeCategory === type ? "text-luxury-black font-bold" : "text-muted-foreground hover:text-foreground"
+                                    }`}>
+                                    {type}
+                                </span>
                             </button>
                         ))}
                     </div>
@@ -114,13 +121,13 @@ export default function ProjectsPage() {
                             <motion.div
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
-                                className="col-span-full py-20 text-center border rounded-2xl border-white/10 bg-white/5"
+                                className="col-span-full py-20 text-center border rounded-2xl border-border bg-secondary"
                             >
-                                <h3 className="text-2xl text-white font-serif mb-2">No Projects Match</h3>
-                                <p className="text-gray-400">Try adjusting your filters.</p>
+                                <h3 className="text-2xl text-foreground font-serif mb-2">No Projects Match</h3>
+                                <p className="text-muted-foreground">Try adjusting your filters.</p>
                                 <button
                                     onClick={() => { setActiveCategory("All"); setActiveType("All"); setActivePossession("All"); }}
-                                    className="mt-6 text-gold-400 hover:text-white underline underline-offset-4"
+                                    className="mt-6 text-gold-400 hover:text-foreground underline underline-offset-4"
                                 >
                                     Clear All Filters
                                 </button>
