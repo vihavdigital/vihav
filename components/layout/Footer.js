@@ -39,7 +39,7 @@ export default function Footer() {
                             <img
                                 src="/vihav-logo-main.png"
                                 alt="Vihav Group"
-                                className="h-48 w-auto object-contain opacity-100 dark:invert-0 invert"
+                                className="h-24 md:h-48 w-auto object-contain opacity-100 dark:invert-0 invert"
                             />
                         </Link>
                         <div className="space-y-6 text-muted-foreground font-light text-sm leading-relaxed max-w-xs">
@@ -143,7 +143,7 @@ export default function Footer() {
                     variants={{
                         visible: { transition: { staggerChildren: 0.1 } }
                     }}
-                    className="flex text-[15rem] md:text-[28rem] font-bold leading-none text-foreground tracking-tighter translate-y-[30%]"
+                    className="flex text-[25vw] md:text-[28rem] font-bold leading-none text-foreground tracking-tighter translate-y-[30%]"
                 >
                     {["V", "I", "H", "A", "V"].map((letter, i) => (
                         <motion.span

@@ -9,6 +9,7 @@ import ProjectGallery from "@/components/projects/ProjectGallery";
 import ConstructionGallery from "@/components/projects/ConstructionGallery";
 import { motion } from "framer-motion";
 import LuxuryMapWrapper from "@/components/projects/LuxuryMapWrapper";
+import CollapsibleSection from "@/components/ui/CollapsibleSection";
 
 // Icon Mapping
 const ICON_MAP = {
@@ -127,8 +128,7 @@ async function ProjectPageContent({ params }) {
 
                         {/* Amenities Section */}
                         {project.amenitiesList && (
-                            <div className="mb-16">
-                                <h3 className="font-serif text-2xl mb-8 border-b border-border pb-4 text-foreground">Premium Amenities</h3>
+                            <CollapsibleSection title="Premium Amenities" defaultOpen={true} className="mb-8">
                                 <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
                                     {project.amenitiesList.map((amenity, idx) => {
                                         const Icon = ICON_MAP[amenity.icon] || CircleCheck;
@@ -142,13 +142,12 @@ async function ProjectPageContent({ params }) {
                                         );
                                     })}
                                 </div>
-                            </div>
+                            </CollapsibleSection>
                         )}
 
                         {/* Specifications Section */}
                         {project.specifications && (
-                            <div className="mb-12">
-                                <h3 className="font-serif text-2xl mb-8 border-b border-border pb-4 text-foreground">Specifications</h3>
+                            <CollapsibleSection title="Specifications" defaultOpen={false} className="mb-12">
                                 <div className="space-y-6">
                                     {project.specifications.map((spec, idx) => (
                                         <div key={idx} className={`bg-secondary/50 p-6 border-l-2 border-border ${theme.hoverBorder} transition-colors group`}>
@@ -164,7 +163,7 @@ async function ProjectPageContent({ params }) {
                                         </div>
                                     ))}
                                 </div>
-                            </div>
+                            </CollapsibleSection>
                         )}
                     </div>
 
