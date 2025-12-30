@@ -70,7 +70,7 @@ export default function Header() {
 
                     {/* Right Actions (Enquire) */}
                     <div className={cn(
-                        "hidden md:flex items-center space-x-6 text-[10px] font-bold tracking-[0.3em]",
+                        "flex items-center space-x-6 text-[10px] font-bold tracking-[0.3em]",
                         isScrolled ? "text-foreground" : "text-white"
                     )}>
                         <MagneticWrapper>
@@ -78,7 +78,7 @@ export default function Header() {
                                 onClick={() => setIsEnquireModalOpen(true)}
                                 className="flex items-center gap-3 hover:text-gold-400 transition-colors group"
                             >
-                                <span className="group-hover:mr-2 transition-all duration-300">ENQUIRE</span>
+                                <span className="hidden md:block group-hover:mr-2 transition-all duration-300">ENQUIRE</span>
                                 <div className="w-8 h-8 rounded-full border border-current/30 flex items-center justify-center group-hover:border-gold-400 group-hover:bg-gold-400 group-hover:text-black transition-all duration-300">
                                     <ArrowRight size={12} className="-rotate-45 group-hover:rotate-0 transition-transform duration-500" />
                                 </div>

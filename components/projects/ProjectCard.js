@@ -22,26 +22,30 @@ export default function ProjectCard({ project }) {
             </Link>
 
             {/* Content */}
-            <div className="p-6 md:p-8">
-                <div className="flex flex-col md:flex-row justify-between items-start mb-6 md:mb-4 gap-4 md:gap-0">
-                    <div>
-                        <span className="text-gold-400 text-xs uppercase tracking-widest block mb-1.5">{project.location}</span>
-                        <h3 className="text-2xl md:text-xl font-serif text-foreground leading-tight">{project.title}</h3>
+            <div className="p-5 md:p-8 flex flex-col h-full justify-between">
+                <div>
+                    <div className="flex justify-between items-start gap-4 mb-4">
+                        <div>
+                            <span className="text-gold-400 text-[10px] md:text-xs uppercase tracking-widest block mb-2 font-bold">{project.location}</span>
+                            <h3 className="text-xl md:text-2xl font-serif text-foreground leading-tight">{project.title}</h3>
+                        </div>
+                        <span className="text-muted-foreground text-[10px] md:text-xs text-right hidden md:block">{project.type}</span>
                     </div>
-                    <span className="text-muted-foreground text-sm bg-secondary md:bg-transparent px-3 py-1 md:p-0 rounded-full md:rounded-none">{project.type}</span>
                 </div>
 
-                <div className="h-px bg-border w-full my-6 md:my-4" />
+                <div>
+                    <div className="h-px bg-border w-full my-4 opacity-50" />
 
-                <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 md:gap-0">
-                    <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-2">
-                        <span className="text-muted-foreground text-xs uppercase tracking-wider">Starting from</span>
-                        <span className="text-foreground font-medium text-lg md:text-base">{project.price}</span>
+                    <div className="flex flex-row justify-between items-center">
+                        <div className="flex flex-col">
+                            <span className="text-muted-foreground text-[10px] uppercase tracking-wider mb-1">Starting from</span>
+                            <span className="text-foreground font-medium text-sm md:text-base">{project.price}</span>
+                        </div>
+
+                        <Link href={`/projects/${project.slug}`} className="text-[10px] md:text-xs uppercase tracking-widest text-foreground hover:text-gold-400 transition-colors border-b border-transparent hover:border-gold-400 pb-0.5">
+                            View Details
+                        </Link>
                     </div>
-
-                    <Link href={`/projects/${project.slug}`} className="w-full md:w-auto text-center border border-border md:border-0 rounded md:rounded-none py-3 md:py-0 text-xs uppercase tracking-widest text-foreground hover:text-gold-400 transition-colors">
-                        View Details
-                    </Link>
                 </div>
             </div>
         </div>

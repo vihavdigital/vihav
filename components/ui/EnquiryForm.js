@@ -10,10 +10,18 @@ export default function EnquiryForm({ className, onSuccess, variant = "minimal",
         name: "",
         phone: "",
         email: "",
-        countryCode: "+91"
+        countryCode: "+91",
+        category: "",
+        interest: ""
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
+
+    // Interest Options Mapping
+    const INTEREST_OPTIONS = {
+        "Residential": ["3 BHK", "4 BHK", "5 BHK", "Bungalows", "Penthouses"],
+        "Commercial": ["Shops", "Showrooms", "Offices"]
+    };
 
     // Prioritize common countries
     const PRIORITY_CODES = ["+91", "+971", "+1", "+44", "+61", "+65"];
@@ -31,7 +39,7 @@ export default function EnquiryForm({ className, onSuccess, variant = "minimal",
             setIsSuccess(true);
             setTimeout(() => {
                 setIsSuccess(false);
-                setFormState({ name: "", phone: "", email: "", countryCode: "+91" });
+                setFormState({ name: "", phone: "", email: "", countryCode: "+91", category: "", interest: "" });
                 if (onSuccess) onSuccess();
             }, 2000);
         }, 1500);
@@ -68,6 +76,7 @@ export default function EnquiryForm({ className, onSuccess, variant = "minimal",
     return (
         <form onSubmit={handleSubmit} className={`space-y-8 ${className}`}>
             <div className={`space-y-6 ${variant === 'minimal' ? 'space-y-8' : ''}`}>
+
                 <div className="group">
                     {variant === 'standard' && <label className="block text-xs uppercase tracking-widest text-muted-foreground mb-2">Full Name</label>}
                     <input
@@ -121,6 +130,37 @@ export default function EnquiryForm({ className, onSuccess, variant = "minimal",
                         />
                     </div>
                 </div>
+
+                {/* 1. Category Selection (Optional) */}
+                <div className="group">
+                    {variant === 'standard' && <label className="block text-xs uppercase tracking-widest text-muted-foreground mb-2">Interested In</label>}
+                    <select
+                        value={formState.category}
+                        onChange={(e) => setFormState({ ...formState, category: e.target.value, interest: "" })}
+                        className={`${currentStyle.select} ${!formState.category ? 'text-muted-foreground/50' : ''}`}
+                    >
+                        <option value="" disabled className="bg-popover text-muted-foreground">Select Category (Optional)</option>
+                        <option value="Residential" className="bg-popover text-foreground">Residential</option>
+                        <option value="Commercial" className="bg-popover text-foreground">Commercial</option>
+                    </select>
+                </div>
+
+                {/* 2. Type Selection (Conditional & Optional) */}
+                {formState.category && (
+                    <div className="group animate-in fade-in slide-in-from-top-4 duration-500">
+                        {variant === 'standard' && <label className="block text-xs uppercase tracking-widest text-muted-foreground mb-2">Property Type</label>}
+                        <select
+                            value={formState.interest}
+                            onChange={(e) => setFormState({ ...formState, interest: e.target.value })}
+                            className={`${currentStyle.select} ${!formState.interest ? 'text-muted-foreground/50' : ''}`}
+                        >
+                            <option value="" disabled className="bg-popover text-muted-foreground">Select Specific Requirement (Optional)</option>
+                            {INTEREST_OPTIONS[formState.category].map((option) => (
+                                <option key={option} value={option} className="bg-popover text-foreground">{option}</option>
+                            ))}
+                        </select>
+                    </div>
+                )}
             </div>
 
             <Button

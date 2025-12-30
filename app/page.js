@@ -47,7 +47,7 @@ export default function Home() {
             transition={{ delay: 0.2, duration: 0.8 }}
             className="text-muted-foreground text-lg md:text-xl font-light leading-relaxed max-w-2xl mx-auto"
           >
-            For over three decades, Vihav Group has been the silent architect behind some of the world's most desired addresses. We don't just build structures; we curate lifestyles defined by privacy, exclusivity, and uncompromising craft.
+            For over three decades, <strong>Vihav Group</strong> has established itself as a premier <strong>real estate developer in Vadodara</strong>. We don't just build structures; we curate lifestyles defined by privacy, exclusivity, and uncompromising craft. From <strong>ultra-luxury penthouses</strong> to <strong>premium commercial spaces</strong>, our legacy is built on trust and a commitment to transforming the city's skyline.
           </motion.p>
         </div>
       </section>
@@ -176,7 +176,7 @@ export default function Home() {
       {/* Immersive Philosophy Section */}
       <section className="relative py-32 bg-background border-t border-border">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
             {/* Sticky Left Content */}
             <div className="lg:sticky lg:top-32 h-fit">
               <h2 className="text-gold-400 uppercase tracking-[0.25em] text-xs font-bold mb-6 block">Our Philosophy</h2>
@@ -205,13 +205,13 @@ export default function Home() {
             </div>
 
             {/* Right Image Grid - Enhanced Layout */}
-            <div className="grid grid-cols-2 gap-4 h-fit">
+            <div className="flex flex-col gap-8 h-fit">
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="col-span-2 aspect-video bg-neutral-900 relative overflow-hidden rounded-sm"
+                className="w-full aspect-video bg-neutral-900 relative overflow-hidden rounded-sm"
               >
                 <img
                   src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1000&auto=format&fit=crop"
@@ -228,7 +228,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="aspect-square bg-neutral-800 relative overflow-hidden rounded-sm"
+                className="w-full aspect-video bg-neutral-800 relative overflow-hidden rounded-sm"
               >
                 <img
                   src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000&auto=format&fit=crop"
@@ -242,7 +242,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="aspect-square bg-neutral-800 relative overflow-hidden rounded-sm"
+                className="w-full aspect-video bg-neutral-800 relative overflow-hidden rounded-sm"
               >
                 <img
                   src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000&auto=format&fit=crop"
@@ -284,36 +284,39 @@ export default function Home() {
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-300 via-gold-500 to-gold-300">Vadodara</span>
             </h2>
 
-            <p className="text-gray-400 text-lg md:text-xl font-light leading-relaxed mb-16 max-w-3xl mx-auto">
+            <p className="text-gray-400 text-lg md:text-xl font-light leading-relaxed mb-4 max-w-3xl mx-auto">
               From the architectural marvel of <strong>Keystone Skyvillas</strong> to the commercial dominance of <strong>Vihav Trade Centre</strong>, we define the standard for <strong>luxury living in Vadodara</strong>.
             </p>
+            <p className="text-gray-400 text-lg md:text-xl font-light leading-relaxed mb-16 max-w-3xl mx-auto">
+              Our portfolio encompasses <strong>premium 3 & 4 BHK flats</strong>, <strong>corporate showrooms</strong>, and <strong>ultra-luxury sky villas</strong>, ensuring that whether you seek a dream home or a landmark business address, Vihav Group delivers excellence across every dimension.
+            </p>
 
-            {/* Feature Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {[
-                { title: "Residential", desc: "Premium 3 & 4 BHK Flats", icon: "Home" },
-                { title: "Commercial", desc: "Corporate Showrooms & Offices", icon: "Building2" },
-                { title: "Sky Villas", desc: "Ultra-Luxury Penthouses", icon: "Crown" }
-              ].map((item, idx) => (
-                <div key={idx} className="p-8 border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] transition-colors group rounded-sm">
-                  <h3 className="text-xl font-serif text-white mb-2 group-hover:text-gold-400 transition-colors">{item.title}</h3>
-                  <p className="text-sm text-gray-500 uppercase tracking-wider">{item.desc}</p>
-                </div>
-              ))}
-            </div>
+            {/* Close max-w-5xl, keep inside container */}
+          </div>
 
-            <div className="mt-16 pt-16 border-t border-white/10 flex flex-col md:flex-row justify-center gap-8 text-sm text-gray-500 font-light">
-              <span>• New Alkapuri</span>
-              <span>• Bhayli</span>
-              <span>• Vasna-Bhayli Road</span>
-              <span>• Gotri</span>
-            </div>
+          {/* Skyline Image - Spanning Container Width */}
+          <div className="relative h-[80px] md:h-[250px] w-full mt-10 opacity-60">
+            <Image
+              src="/images/new_white_skyline.png"
+              alt="Vadodara Skyline"
+              fill
+              className="object-contain object-bottom"
+            />
+          </div>
 
+          <div className="pt-8 border-t border-white/10 flex flex-wrap justify-center items-center gap-x-8 gap-y-3 w-full">
+            {["New Alkapuri", "Bhayli", "Vasna-Bhayli Road", "Gotri"].map((location, index) => (
+              <div key={index} className="flex items-center gap-3 group">
+                {/* Decorative Dot: pulsing slightly */}
+                <span className="w-1.5 h-1.5 rounded-full bg-gold-500/50 group-hover:bg-gold-400 transition-colors duration-300"></span>
+                <span className="text-sm md:text-base text-gray-400 font-light tracking-wide uppercase group-hover:text-gold-200 transition-colors duration-300">{location}</span>
+              </div>
+            ))}
           </div>
         </div>
-      </section>
+      </section >
 
       <Footer />
-    </main>
+    </main >
   );
 }

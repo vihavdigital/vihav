@@ -26,7 +26,7 @@ export function useProjectFilters(projects, initialCategory = "Residential") {
             if (activeType !== "All") {
                 // Commercial might have empty types, so this safely handles it by excluding them if they don't match.
                 // If Residential, we check includes.
-                if (!project.filterData.type?.includes(activeType)) return false;
+                if (!project.filterData.type || !Array.isArray(project.filterData.type) || !project.filterData.type.includes(activeType)) return false;
             }
 
             // 3. Possession Filter

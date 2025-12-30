@@ -156,17 +156,17 @@ export default function ProjectDetailsClient({ project, theme }) {
                                         <span className={`block ${theme.text} font-mono break-all text-sm md:text-base`}>{project.reraId || "PR/GJ/VADODARA/RAA00000/000000"}</span>
                                     </div>
 
-                                    <div className="pt-6 flex gap-3">
+                                    <div className="pt-6 flex flex-col md:flex-row gap-3">
                                         <Button
                                             onClick={() => openModal("Enquire Now")}
-                                            className={`flex-1 ${theme.bg} ${theme.hoverBg} text-black font-bold uppercase tracking-widest py-6 border-none text-[10px] md:text-xs`}
+                                            className={`w-full md:flex-1 ${theme.bg} ${theme.hoverBg} text-black font-bold uppercase tracking-widest py-6 border-none text-[10px] md:text-xs`}
                                         >
                                             Enquire Now
                                         </Button>
                                         <Button
                                             variant="outline"
                                             onClick={() => openModal("Download Brochure")}
-                                            className={`flex-1 bg-transparent border border-border ${theme.hoverText} hover:border-foreground hover:bg-background font-bold uppercase tracking-widest py-6 text-[10px] md:text-xs`}
+                                            className={`w-full md:flex-1 bg-transparent border border-border ${theme.hoverText} hover:border-foreground hover:bg-background font-bold uppercase tracking-widest py-6 text-[10px] md:text-xs`}
                                         >
                                             <FileText className="mr-2" size={14} /> Brochure
                                         </Button>
