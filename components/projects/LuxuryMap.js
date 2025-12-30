@@ -50,19 +50,62 @@ function MapController({ center }) {
     return null;
 }
 
-// Disable scroll zoom initially
-function ScrollHandler() {
+// Handle Gesture (2-finger pan on mobile, 1-finger scroll page)
+function GestureHandler() {
     const map = useMap();
+    const [showOverlay, setShowOverlay] = useState(false);
+
     useEffect(() => {
         map.scrollWheelZoom.disable();
-        return () => map.scrollWheelZoom.enable();
+
+        // Check if mobile (using Leaflet's browser detection or screen width)
+        const isMobile = L.Browser.mobile || window.innerWidth < 768;
+
+        if (isMobile) {
+            map.dragging.disable();
+            map.tap && map.tap.disable();
+
+            const container = map.getContainer();
+
+            const handleTouchStart = (e) => {
+                if (e.touches.length > 1) {
+                    map.dragging.enable();
+                    setShowOverlay(false);
+                } else {
+                    map.dragging.disable();
+                }
+            };
+
+            const handleTouchMove = (e) => {
+                if (e.touches.length === 1) {
+                    // Triggers when user tries to pan with 1 finger
+                    // We only show overlay, page scrolling happens natively because dragging is disabled
+                    setShowOverlay(true);
+                    // Hide after 1.5s
+                    setTimeout(() => setShowOverlay(false), 1500);
+                }
+            };
+
+            // Use passive listeners to ensure page scroll isn't blocked
+            container.addEventListener('touchstart', handleTouchStart, { passive: true });
+            container.addEventListener('touchmove', handleTouchMove, { passive: true });
+
+            return () => {
+                container.removeEventListener('touchstart', handleTouchStart);
+                container.removeEventListener('touchmove', handleTouchMove);
+            };
+        } else {
+            map.dragging.enable();
+        }
     }, [map]);
 
-    // Enable on click
-    useMapEvent('click', () => {
-        map.scrollWheelZoom.enable();
-    });
-    return null;
+    return (
+        <div className={`absolute inset-0 z-[1000] flex items-center justify-center bg-black/60 transition-opacity duration-300 pointer-events-none ${showOverlay ? 'opacity-100' : 'opacity-0'}`}>
+            <span className="text-white font-serif text-lg tracking-widest px-6 py-3 border border-white/20 bg-black/40 backdrop-blur-md rounded-full">
+                Use Two Fingers to Move
+            </span>
+        </div>
+    );
 }
 
 export default function LuxuryMap({ activeProject }) {
@@ -119,6 +162,7 @@ export default function LuxuryMap({ activeProject }) {
                 />
 
                 <MapController center={center} />
+                <GestureHandler />
 
                 {/* Landmarks */}
                 {/* Landmarks - Now Visible Labels */}

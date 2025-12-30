@@ -16,7 +16,7 @@ export default function Home() {
   /* Projects are filtered internally by ProjectSection */
 
   return (
-    <main className="min-h-screen bg-background text-foreground selection:bg-gold-400 selection:text-luxury-black transition-colors duration-500 overflow-x-hidden">
+    <main className="min-h-screen bg-background text-foreground selection:bg-gold-400 selection:text-luxury-black transition-colors duration-500">
       <Header />
       <Hero />
 
@@ -52,19 +52,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SEO Content Block - Subtle & Contextual */}
-      <section className="pb-24 container mx-auto px-6">
-        <div className="max-w-4xl mx-auto border-l-2 border-gold-400 pl-6 md:pl-10 py-2">
-          <h2 className="text-xl md:text-2xl font-serif text-foreground mb-4">Leading Real Estate Developer in Vadodara</h2>
-          <p className="text-muted-foreground leading-relaxed text-sm md:text-base mb-4">
-            Discover the finest selection of premium <strong>3BHK and 4BHK flats in Vadodara</strong> with Vihav Group.
-            Renowned for crafting <strong>luxury homes</strong>, <strong>sky villas</strong>, and iconic <strong>commercial properties</strong>, we are committed to transforming the city's skyline with <strong>quality construction</strong> and <strong>innovative design</strong>.
-          </p>
-          <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
-            Our portfolio includes prime developments in the city's most sought-after locations. Whether you seek a <strong>luxurious apartment in New Alkapuri</strong>, a <strong>spacious home in Bhayli</strong>, or a <strong>strategic commercial space on Vasna-Bhayli Road</strong> or <strong>Gotri</strong>, Vihav Group delivers unmatched value and lifestyle. Explore our range of <strong>ready-to-move</strong> and <strong>under-construction projects</strong> today.
-          </p>
-        </div>
-      </section>
+
 
       {/* Separate Enquiry Section */}
       <section className="py-24 bg-secondary/30 border-y border-border">
@@ -97,8 +85,31 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="relative group"
           >
-            {/* Background Glow Effect */}
-            <div className="absolute -inset-20 bg-gradient-to-r from-gold-400/20 to-transparent blur-3xl opacity-40 group-hover:opacity-60 transition-opacity" />
+            {/* Background Glow & Stardust Effect */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180%] h-[180%] bg-[radial-gradient(circle,rgba(212,175,55,0.15)_0%,transparent_70%)] blur-3xl -z-10 pointer-events-none" />
+
+            {/* Stardust Particles (Decorative Stars) */}
+            <motion.div
+              animate={{ opacity: [0.4, 0.8, 0.4], scale: [0.8, 1, 0.8] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute top-0 right-0 text-gold-400/30 -z-10"
+            >
+              <Star size={24} fill="currentColor" />
+            </motion.div>
+            <motion.div
+              animate={{ opacity: [0.3, 0.7, 0.3], scale: [1, 1.2, 1] }}
+              transition={{ duration: 4, repeat: Infinity, delay: 1, ease: "easeInOut" }}
+              className="absolute bottom-10 left-10 text-gold-400/20 -z-10"
+            >
+              <Star size={32} fill="currentColor" />
+            </motion.div>
+            <motion.div
+              animate={{ opacity: [0, 0.5, 0], y: [0, -10, 0] }}
+              transition={{ duration: 5, repeat: Infinity, delay: 2 }}
+              className="absolute -top-10 left-1/2 text-gold-400/20 -z-10"
+            >
+              <Star size={16} fill="currentColor" />
+            </motion.div>
 
             {/* The Framed Container */}
             {/* We use border-neutral-900 for the thick inner "mat" and ring-gold-400 for the outer frame edge */}
@@ -193,38 +204,111 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right Image Grid */}
-            <div className="grid gap-8">
+            {/* Right Image Grid - Enhanced Layout */}
+            <div className="grid grid-cols-2 gap-4 h-fit">
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="aspect-[4/5] bg-neutral-900 relative overflow-hidden"
+                className="col-span-2 aspect-video bg-neutral-900 relative overflow-hidden rounded-sm"
               >
                 <img
                   src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1000&auto=format&fit=crop"
-                  className="w-full h-full object-cover opacity-80"
-                  alt="Philosophy"
+                  className="w-full h-full object-cover opacity-80 hover:scale-105 transition-transform duration-700"
+                  alt="Craftsmanship"
                 />
-                <div className="absolute bottom-8 left-8 text-white">
-                  <p className="uppercase tracking-[0.2em] text-xs">Craftsmanship</p>
+                <div className="absolute bottom-6 left-6 text-white/90">
+                  <p className="uppercase tracking-[0.2em] text-[10px] font-bold">The Art of Building</p>
                 </div>
               </motion.div>
+
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="aspect-square bg-neutral-800 relative overflow-hidden"
+                className="aspect-square bg-neutral-800 relative overflow-hidden rounded-sm"
               >
                 <img
                   src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000&auto=format&fit=crop"
-                  className="w-full h-full object-cover opacity-80"
+                  className="w-full h-full object-cover opacity-80 hover:scale-105 transition-transform duration-700"
                   alt="Detail"
                 />
               </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="aspect-square bg-neutral-800 relative overflow-hidden rounded-sm"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000&auto=format&fit=crop"
+                  className="w-full h-full object-cover opacity-80 hover:scale-105 transition-transform duration-700"
+                  alt="Lifestyle"
+                />
+                <div className="absolute bottom-6 left-6 text-white/90">
+                  <p className="uppercase tracking-[0.2em] text-[10px] font-bold">Lifestyle</p>
+                </div>
+              </motion.div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SEO Content Block - Luxury Dark Edition */}
+      <section className="relative py-32 bg-[#050505] text-white overflow-hidden border-t border-white/5">
+        {/* Abstract Background Elements */}
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gold-600/5 blur-[120px] rounded-full pointer-events-none" />
+
+        {/* Giant Watermark */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center pointer-events-none select-none overflow-hidden">
+          <span className="text-[12vw] md:text-[15vw] font-bold text-white/[0.02] leading-none tracking-tighter whitespace-nowrap">
+            VADODARA
+          </span>
+        </div>
+
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="max-w-5xl mx-auto text-center">
+
+            <div className="inline-flex items-center gap-2 border border-gold-500/30 bg-gold-500/5 px-6 py-2 rounded-full mb-10 backdrop-blur-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-gold-400 animate-pulse"></span>
+              <span className="text-gold-400 text-xs font-bold uppercase tracking-[0.2em]">The Authority in Luxury</span>
+            </div>
+
+            <h2 className="text-4xl md:text-6xl font-serif text-white mb-8 leading-tight">
+              Designing the Skyline of <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-300 via-gold-500 to-gold-300">Vadodara</span>
+            </h2>
+
+            <p className="text-gray-400 text-lg md:text-xl font-light leading-relaxed mb-16 max-w-3xl mx-auto">
+              From the architectural marvel of <strong>Keystone Skyvillas</strong> to the commercial dominance of <strong>Vihav Trade Centre</strong>, we define the standard for <strong>luxury living in Vadodara</strong>.
+            </p>
+
+            {/* Feature Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[
+                { title: "Residential", desc: "Premium 3 & 4 BHK Flats", icon: "Home" },
+                { title: "Commercial", desc: "Corporate Showrooms & Offices", icon: "Building2" },
+                { title: "Sky Villas", desc: "Ultra-Luxury Penthouses", icon: "Crown" }
+              ].map((item, idx) => (
+                <div key={idx} className="p-8 border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] transition-colors group rounded-sm">
+                  <h3 className="text-xl font-serif text-white mb-2 group-hover:text-gold-400 transition-colors">{item.title}</h3>
+                  <p className="text-sm text-gray-500 uppercase tracking-wider">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-16 pt-16 border-t border-white/10 flex flex-col md:flex-row justify-center gap-8 text-sm text-gray-500 font-light">
+              <span>• New Alkapuri</span>
+              <span>• Bhayli</span>
+              <span>• Vasna-Bhayli Road</span>
+              <span>• Gotri</span>
+            </div>
+
           </div>
         </div>
       </section>

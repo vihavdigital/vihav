@@ -15,7 +15,7 @@ const SLIDES = [
     {
         id: 2,
         type: "video",
-        src: "https://videos.pexels.com/video-files/7578552/7578552-uhd_2560_1440_30fps.mp4", // Lifestyle/Aerial
+        src: "/videos/sup-wt.webm", // Lifestyle/Aerial
         title: "Corporate <br/> <span class='text-white/80 italic font-light'>Excellence</span>",
         subtitle: "State-of-the-art panoramic workspaces designed to inspire ambition and success."
     }
