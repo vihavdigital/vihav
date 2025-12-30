@@ -63,6 +63,31 @@ export default function ProjectSection({ projects }) {
         }
     };
 
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        show: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1,
+                delayChildren: 0.2
+            }
+        }
+    };
+
+    const itemVariants = {
+        hidden: { opacity: 0, y: 50, scale: 0.95 },
+        show: {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            transition: {
+                type: "spring",
+                bounce: 0.3,
+                duration: 0.8
+            }
+        }
+    };
+
     return (
         <section className="py-24 md:py-32 border-b border-border bg-background min-h-[80vh] transition-colors duration-500">
             <div className="container mx-auto px-6">
@@ -70,13 +95,25 @@ export default function ProjectSection({ projects }) {
                 {/* Header & Controls Container */}
                 <div className="flex flex-col xl:flex-row justify-between items-center xl:items-end mb-12 gap-8 relative z-40">
                     {/* Left: Title */}
-                    <div className="w-full xl:w-auto text-center xl:text-left">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        className="w-full xl:w-auto text-center xl:text-left"
+                    >
                         <span className="text-gold-400 uppercase tracking-[0.25em] text-xs font-bold mb-4 block">Discover</span>
                         <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-2">Our Collections</h2>
-                    </div>
+                    </motion.div>
 
                     {/* Right: Controls (Filters + Tabs) */}
-                    <div className="flex flex-col-reverse md:flex-row items-center xl:items-end gap-4 w-full xl:w-auto">
+                    <motion.div
+                        initial={{ opacity: 0, x: 20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                        className="flex flex-col-reverse md:flex-row items-center xl:items-end gap-4 w-full xl:w-auto"
+                    >
 
                         {/* Dropdowns */}
                         <div className="flex flex-row flex-wrap justify-center gap-4 w-full md:w-auto">
@@ -135,7 +172,7 @@ export default function ProjectSection({ projects }) {
                                 ))}
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
 
                 {/* Wrapper for Slider + Controls */}
@@ -162,22 +199,26 @@ export default function ProjectSection({ projects }) {
                         </div>
                         <button
                             onClick={() => scroll("left")}
-                            className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-foreground hover:bg-gold-400 hover:text-luxury-black hover:border-gold-400 transition-all"
+                            className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-foreground hover:bg-gold-400 hover:text-luxury-black hover:border-gold-400 transition-all hover:scale-110 active:scale-95"
                         >
                             <ChevronLeft size={20} />
                         </button>
                         <button
                             onClick={() => scroll("right")}
-                            className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-foreground hover:bg-gold-400 hover:text-luxury-black hover:border-gold-400 transition-all"
+                            className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-foreground hover:bg-gold-400 hover:text-luxury-black hover:border-gold-400 transition-all hover:scale-110 active:scale-95"
                         >
                             <ChevronRight size={20} />
                         </button>
                     </div>
 
                     {/* Horizontal Scroll Layout */}
-                    <div
+                    <motion.div
                         ref={sliderRef}
                         onScroll={handleScroll}
+                        variants={containerVariants}
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: true, margin: "-50px" }}
                         className="flex overflow-x-auto gap-8 pb-12 -mx-6 px-6 md:px-0 md:mx-0 snap-x snap-mandatory scrollbar-hide min-h-[400px]"
                     >
                         <AnimatePresence mode="popLayout">
@@ -187,10 +228,7 @@ export default function ProjectSection({ projects }) {
                                         <motion.div
                                             key={project.id}
                                             layout
-                                            initial={{ opacity: 0, scale: 0.9 }}
-                                            animate={{ opacity: 1, scale: 1 }}
-                                            exit={{ opacity: 0, scale: 0.9 }}
-                                            transition={{ duration: 0.4 }}
+                                            variants={itemVariants}
                                             className="flex-shrink-0 w-[85vw] md:w-[40vw] lg:w-[30vw] snap-center"
                                         >
                                             <ProjectCard project={project} />
@@ -200,13 +238,12 @@ export default function ProjectSection({ projects }) {
                                     {/* View All Card */}
                                     {showViewAll && (
                                         <motion.div
-                                            initial={{ opacity: 0, scale: 0.9 }}
-                                            animate={{ opacity: 1, scale: 1 }}
+                                            variants={itemVariants}
                                             className="flex-shrink-0 w-[85vw] md:w-[40vw] lg:w-[30vw] snap-center flex"
                                         >
-                                            <Link href="/projects" className="w-full flex flex-col items-center justify-center bg-secondary border border-border rounded-xl hover:border-gold-400 group transition-all">
-                                                <div className="w-20 h-20 rounded-full border border-gold-400/30 flex items-center justify-center mb-6 group-hover:bg-gold-400 group-hover:text-luxury-black transition-all">
-                                                    <ArrowRight size={32} className="text-gold-400 group-hover:text-luxury-black" />
+                                            <Link href="/projects" className="w-full flex flex-col items-center justify-center bg-secondary border border-border rounded-xl hover:border-gold-400 group transition-all duration-300 hover:shadow-2xl hover:shadow-gold-400/10 hover:-translate-y-2">
+                                                <div className="w-20 h-20 rounded-full border border-gold-400/30 flex items-center justify-center mb-6 group-hover:bg-gold-400 group-hover:text-luxury-black transition-all duration-300 group-hover:scale-110">
+                                                    <ArrowRight size={32} className="text-gold-400 group-hover:text-luxury-black transition-colors" />
                                                 </div>
                                                 <h3 className="text-2xl font-serif text-foreground mb-2">View All Projects</h3>
                                                 <p className="text-muted-foreground text-sm uppercase tracking-widest">Explore our full portfolio</p>
@@ -232,7 +269,7 @@ export default function ProjectSection({ projects }) {
                                 </motion.div>
                             )}
                         </AnimatePresence>
-                    </div>
+                    </motion.div>
                 </div>
 
             </div>
