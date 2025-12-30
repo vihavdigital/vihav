@@ -52,13 +52,13 @@ export default function Hero() {
                             loop
                             muted
                             playsInline
-                            className="w-full h-full object-cover brightness-50 transform scale-105"
+                            className="w-full h-full object-cover brightness-[0.85] transform scale-105"
                         >
                             <source src={SLIDES[currentSlide].src} type={SLIDES[currentSlide].src.endsWith('.webm') ? "video/webm" : "video/mp4"} />
                         </video>
                     ) : (
                         <div
-                            className="w-full h-full bg-cover bg-center brightness-50 transform scale-105"
+                            className="w-full h-full bg-cover bg-center brightness-[0.85] transform scale-105"
                             style={{ backgroundImage: `url(${SLIDES[currentSlide].src})` }}
                         />
                     )}
@@ -69,7 +69,7 @@ export default function Hero() {
             </AnimatePresence>
 
             {/* Content Layer */}
-            <div className="relative z-10 h-full container mx-auto px-6 flex flex-col justify-end items-end text-right pb-24 md:pb-32">
+            <div className="relative z-10 h-full container mx-auto px-6 flex flex-col justify-end items-end text-right pb-24 md:pb-20">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={currentSlide}
@@ -80,10 +80,10 @@ export default function Hero() {
                         className="max-w-4xl"
                     >
                         <h1
-                            className="font-serif text-5xl md:text-8xl lg:text-9xl font-medium text-white mb-8 leading-none tracking-tight"
+                            className="font-serif text-5xl md:text-8xl lg:text-9xl font-medium text-white mb-4 md:mb-8 leading-none tracking-tight"
                             dangerouslySetInnerHTML={{ __html: SLIDES[currentSlide].title }}
                         />
-                        <p className="max-w-xl ml-auto text-gray-200 text-lg md:text-xl font-light mb-12 leading-relaxed tracking-wide">
+                        <p className="max-w-xl ml-auto text-gray-200 text-sm md:text-xl font-light mb-8 md:mb-12 leading-relaxed tracking-wide">
                             {SLIDES[currentSlide].subtitle}
                         </p>
                     </motion.div>

@@ -58,7 +58,7 @@ export default function Header() {
                         <div className="flex flex-col items-center">
                             {/* Logo with improved sizing for elegance */}
                             <img
-                                src="/vihav-logo-main.png"
+                                src="/vihav-logo-new.png"
                                 alt="Vihav Group"
                                 className={cn(
                                     "w-auto object-contain transition-all duration-500",

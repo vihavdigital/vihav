@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import EnquiryForm from "@/components/ui/EnquiryForm";
 
-export default function EnquiryModal({ isOpen, onClose }) {
+export default function EnquiryModal({ isOpen, onClose, title = "Enquire Now" }) {
     return (
         <AnimatePresence>
             {isOpen && (
@@ -27,7 +27,7 @@ export default function EnquiryModal({ isOpen, onClose }) {
                     >
                         {/* Header */}
                         <div className="flex justify-between items-center p-6 border-b border-border">
-                            <h3 className="font-serif text-2xl text-foreground">Enquire Now</h3>
+                            <h3 className="font-serif text-2xl text-foreground">{title}</h3>
                             <button
                                 onClick={onClose}
                                 className="w-10 h-10 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"

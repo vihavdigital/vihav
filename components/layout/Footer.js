@@ -37,7 +37,7 @@ export default function Footer() {
                     <div className="col-span-1 md:col-span-4 space-y-8">
                         <Link href="/" className="block">
                             <img
-                                src="/vihav-logo-main.png"
+                                src="/vihav-logo-new.png"
                                 alt="Vihav Group"
                                 className="h-24 md:h-48 w-auto object-contain opacity-100 dark:invert-0 invert"
                             />

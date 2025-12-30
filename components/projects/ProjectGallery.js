@@ -4,35 +4,24 @@ import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { X, ArrowRight, Expand } from "lucide-react";
 
-export default function ProjectGallery({ images }) {
+export default function ProjectGallery({ images, className = "" }) {
     const scrollRef = useRef(null);
     const [selectedImage, setSelectedImage] = useState(null);
-
-    // Horizontal Scroll Logic
-    // We want a container that scrolls horizontally with mouse wheel or drag.
-    // However, for simplicity and smoothness in this Next.js setup, we'll use a flex container 
-    // with overflow-x-auto but styled heavily to hide scrollbars and allow drag.
-
-    // Note: A true "ScrollTrigger" pin effect requires heavier libs like GSAP or extensive Framer Motion setup.
-    // Here we will use a "Cinematic Reel" feel.
+    const { scrollXProgress } = useScroll({ container: scrollRef });
+    const scaleX = useSpring(scrollXProgress, {
+        stiffness: 100,
+        damping: 30,
+        restDelta: 0.001
+    });
 
     if (!images || images.length === 0) return null;
 
     return (
-        <section className="bg-luxury-black text-white py-24 border-t border-white/5 overflow-hidden">
-            <div className="container mx-auto px-6 mb-12 flex justify-between items-end">
-                <div>
-                    <span className="text-gold-400 uppercase tracking-[0.25em] text-xs font-bold mb-4 block">Immersive Views</span>
-                    <h2 className="font-serif text-4xl md:text-5xl">Visual Tour</h2>
-                </div>
-                <div className="hidden md:flex items-center gap-2 text-white/50 text-sm uppercase tracking-widest">
-                    <ArrowRight size={16} className="animate-pulse" /> Scroll to explore
-                </div>
-            </div>
+        <section className={`bg-luxury-black text-white relative group ${className}`}>
 
             {/* Horizontal Slider Container */}
             <div
-                className="flex gap-8 px-6 md:px-[10vw] overflow-x-auto pb-12 scrollbar-none snap-x snap-mandatory"
+                className="flex gap-8 px-6 md:px-[10vw] overflow-x-auto pb-12 scrollbar-none snap-x snap-mandatory pt-10"
                 ref={scrollRef}
                 style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
@@ -42,8 +31,8 @@ export default function ProjectGallery({ images }) {
                     return (
                         <motion.div
                             key={idx}
-                            className="relative flex-none w-[85vw] md:w-[60vw] lg:w-[45vw] aspect-[16/9] md:aspect-[21/9] snap-center group cursor-pointer bg-neutral-900 overflow-hidden"
-                            initial={{ opacity: 0, x: 100 }}
+                            className="relative flex-none w-[85vw] md:w-[60vw] lg:w-[45vw] aspect-[16/9] md:aspect-[21/9] snap-center group/card cursor-pointer bg-neutral-900 overflow-hidden"
+                            initial={{ opacity: 0, x: 50 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.8, delay: idx * 0.1 }}
@@ -52,7 +41,7 @@ export default function ProjectGallery({ images }) {
                             {isVideo ? (
                                 <video
                                     src={media}
-                                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-1000"
+                                    className="w-full h-full object-cover opacity-80 group-hover/card:opacity-100 transition-opacity duration-1000"
                                     autoPlay
                                     muted
                                     loop
@@ -62,13 +51,13 @@ export default function ProjectGallery({ images }) {
                                 <img
                                     src={media}
                                     alt={`Gallery ${idx}`}
-                                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-80 group-hover:opacity-100"
+                                    className="w-full h-full object-cover transition-transform duration-1000 group-hover/card:scale-105 opacity-80 group-hover/card:opacity-100"
                                 />
                             )}
 
-                            <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors" />
+                            <div className="absolute inset-0 bg-black/20 group-hover/card:bg-transparent transition-colors" />
 
-                            <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div className="absolute bottom-6 right-6 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300">
                                 <div className="w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center rounded-full text-white">
                                     <Expand size={20} />
                                 </div>
@@ -77,16 +66,16 @@ export default function ProjectGallery({ images }) {
                     );
                 })}
 
-                {/* Spacer at end */}
+                {/* Spacer at end for snap feel */}
                 <div className="flex-none w-[10vw]" />
             </div>
 
-            {/* Custom Scrollbar Indicator (Optional visual cue) */}
-            <div className="container mx-auto px-6 mt-4">
-                <div className="w-full h-px bg-white/10 relative">
-                    <div className="absolute top-0 left-0 h-full w-1/4 bg-gold-400" />
-                    {/* Static visual cue only since we can't easily track native scroll without more state */}
-                </div>
+            {/* Dynamic Scroll Progress Bar */}
+            <div className="container mx-auto px-6 mt-4 relative h-0.5 bg-white/10 rounded-full overflow-hidden">
+                <motion.div
+                    style={{ scaleX }}
+                    className="absolute top-0 left-0 h-full w-full bg-gold-400 origin-left"
+                />
             </div>
 
             {/* Lightbox */}

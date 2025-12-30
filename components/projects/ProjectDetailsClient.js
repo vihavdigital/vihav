@@ -1,0 +1,395 @@
+"use client";
+
+import { useState, useEffect, useRef } from "react";
+import { motion, useScroll, useTransform, AnimatePresence, useInView } from "framer-motion";
+
+import { ArrowLeft, MapPin, Check, FileText, Phone, Mail, ExternalLink, Shield, Trees, Dumbbell, Users, Gamepad2, Car, Waves, Coffee, ArrowUpFromLine, Video, HardHat, CircleCheck, Play, Image as ImageIcon } from "lucide-react";
+import Link from "next/link";
+import { Button } from "@/components/ui/Button";
+import ProjectGallery from "@/components/projects/ProjectGallery";
+import ConstructionGallery from "@/components/projects/ConstructionGallery";
+import CollapsibleSection from "@/components/ui/CollapsibleSection";
+import LuxuryMapWrapper from "@/components/projects/LuxuryMapWrapper";
+import EnquiryModal from "@/components/ui/EnquiryModal";
+
+// Icon Mapping
+const ICON_MAP = {
+    Shield, Trees, Dumbbell, Users, Gamepad2, Car, Waves, Coffee, ArrowUpFromLine, Video, HardHat, CircleCheck
+};
+
+export default function ProjectDetailsClient({ project, theme }) {
+    const [activeSection, setActiveSection] = useState("overview");
+    const [galleryTab, setGalleryTab] = useState("images"); // 'images' | 'videos'
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [modalTitle, setModalTitle] = useState("Enquire Now");
+
+    const openModal = (title) => {
+        setModalTitle(title);
+        setIsModalOpen(true);
+    };
+
+    // filter gallery media
+    const allGalleryMedia = project.galleryImages || [];
+    const imagesOnly = allGalleryMedia.filter(m => !m.endsWith('.mp4') && !m.endsWith('.webm'));
+    const videosOnly = allGalleryMedia.filter(m => m.endsWith('.mp4') || m.endsWith('.webm'));
+
+    // If no videos, but we want to show the tab feature, maybe we can assume some dummy or just hide tab?
+    // User asked for "images and videos tab". Let's show tabs if we have videos, or just show "No videos" empty state if clicked.
+
+    // Scroll Spy Logic
+    useEffect(() => {
+        const handleScroll = () => {
+            const sections = ["overview", "amenities", "gallery", "location", "construction"];
+            for (const section of sections) {
+                const el = document.getElementById(section);
+                if (el) {
+                    const rect = el.getBoundingClientRect();
+                    if (rect.top >= 0 && rect.top < 300) {
+                        setActiveSection(section);
+                        break;
+                    }
+                }
+            }
+        };
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    const scrollToSection = (id) => {
+        const el = document.getElementById(id);
+        if (el) {
+            const offset = 100; // Header height
+            const bodyRect = document.body.getBoundingClientRect().top;
+            const elementRect = el.getBoundingClientRect().top;
+            const elementPosition = elementRect - bodyRect;
+            const offsetPosition = elementPosition - offset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: "smooth"
+            });
+            setActiveSection(id);
+        }
+    };
+
+    return (
+        <div className="relative">
+            {/* Sticky Navigation Bar */}
+            <div className={`sticky top-[80px] z-40 bg-background/80 backdrop-blur-md border-b border-border transition-all duration-300`}>
+                <div className="container mx-auto px-6 overflow-x-auto scrollbar-hide">
+                    <div className="flex items-center gap-8 min-w-max h-16">
+                        {[
+                            { id: "overview", label: "Overview" },
+                            { id: "amenities", label: "Amenities & Specs" },
+                            { id: "gallery", label: "Gallery" },
+                            { id: "location", label: "Location" },
+                            { id: "construction", label: "Status" }
+                        ].map((item) => (
+                            <button
+                                key={item.id}
+                                onClick={() => scrollToSection(item.id)}
+                                className={`text-sm uppercase tracking-widest py-2 border-b-2 transition-colors ${activeSection === item.id
+                                    ? `${theme.text} ${theme.border}`
+                                    : "text-muted-foreground border-transparent hover:text-foreground"
+                                    }`}
+                            >
+                                {item.label}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            {/* 1. Overview Section */}
+            <section id="overview" className="pt-8 pb-16 md:pb-24 container mx-auto px-6 scroll-mt-24">
+                <div className="flex flex-col-reverse lg:flex-row gap-16">
+                    {/* Main Content (Left) */}
+                    <div className="lg:w-2/3">
+                        <span className={`${theme.text} uppercase tracking-[0.25em] text-xs font-bold mb-6 block`}>The Vision</span>
+                        <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-8 leading-tight">
+                            {project.title.includes(" ") ? `Redefining ${project.title.split(" ").slice(-1)[0]}` : "A New Benchmark"}
+                        </h2>
+                        <p className="text-muted-foreground text-lg leading-relaxed mb-8 font-light">
+                            {project.vision || project.description}
+                        </p>
+
+                        {/* Highlights Grid (Moved inside Overview for flow) */}
+                        {project.highlights && (
+                            <div className="grid md:grid-cols-2 gap-6 mt-12 mb-12">
+                                {project.highlights.slice(0, 4).map((h, i) => {
+                                    const Icon = ICON_MAP[h.icon] || CircleCheck;
+                                    return (
+                                        <div key={i} className="flex gap-4 p-4 rounded-lg bg-secondary/50 border border-border">
+                                            <div className={`${theme.text} mt-1`}><Icon size={24} /></div>
+                                            <div>
+                                                <h4 className="font-serif text-lg text-foreground mb-1">{h.title}</h4>
+                                                <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1">{h.label}</p>
+                                                <p className="text-sm text-muted-foreground/80">{h.description}</p>
+                                            </div>
+                                        </div>
+                                    )
+                                })}
+                            </div>
+                        )}
+
+                    </div>
+
+                    {/* Sidebar Enquire Section (Right) */}
+                    <div className="lg:w-1/3 relative">
+                        <div className="sticky top-32">
+                            <div className="bg-card border border-border p-8 shadow-2xl rounded-sm">
+                                <h3 className="font-serif text-2xl text-foreground mb-6">Project Details</h3>
+
+                                <div className="space-y-6 text-sm">
+                                    <div>
+                                        <span className="block text-muted-foreground uppercase tracking-widest text-xs mb-1">Price</span>
+                                        <span className="block text-xl text-foreground font-medium">{project.price}</span>
+                                    </div>
+                                    <div className="h-px bg-border" />
+                                    <div>
+                                        <span className="block text-muted-foreground uppercase tracking-widest text-xs mb-1">Configuration</span>
+                                        <span className="block text-foreground">{project.type}</span>
+                                    </div>
+                                    <div className="h-px bg-border" />
+                                    <div>
+                                        <span className="block text-muted-foreground uppercase tracking-widest text-xs mb-1">RERA Number</span>
+                                        <span className={`block ${theme.text} font-mono break-all text-sm md:text-base`}>{project.reraId || "PR/GJ/VADODARA/RAA00000/000000"}</span>
+                                    </div>
+
+                                    <div className="pt-6 flex gap-3">
+                                        <Button
+                                            onClick={() => openModal("Enquire Now")}
+                                            className={`flex-1 ${theme.bg} ${theme.hoverBg} text-black font-bold uppercase tracking-widest py-6 border-none text-[10px] md:text-xs`}
+                                        >
+                                            Enquire Now
+                                        </Button>
+                                        <Button
+                                            variant="outline"
+                                            onClick={() => openModal("Download Brochure")}
+                                            className={`flex-1 bg-transparent border border-border ${theme.hoverText} hover:border-foreground hover:bg-background font-bold uppercase tracking-widest py-6 text-[10px] md:text-xs`}
+                                        >
+                                            <FileText className="mr-2" size={14} /> Brochure
+                                        </Button>
+                                    </div>
+
+                                    <div className="pt-2 flex flex-col gap-3">
+                                        <p className="text-xs text-muted-foreground text-center">
+                                            Call us directly: <a href={`tel:${project.phone}`} className="underline hover:text-foreground">{project.phone}</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* 2. Amenities & Specs */}
+            <section id="amenities" className="py-24 bg-secondary/30 border-y border-border scroll-mt-24">
+                <div className="container mx-auto px-6">
+                    <span className={`${theme.text} uppercase tracking-[0.25em] text-xs font-bold mb-6 block`}>Lifestyle</span>
+                    <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-16">Amenities & Specifications</h2>
+
+                    <div className="max-w-5xl space-y-8">
+                        {project.amenitiesList && (
+                            <CollapsibleSection title="Premium Amenities" defaultOpen={true}>
+                                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                                    {project.amenitiesList.map((amenity, idx) => {
+                                        const Icon = ICON_MAP[amenity.icon] || CircleCheck;
+                                        return (
+                                            <div key={idx} className="flex flex-col items-start text-left p-6 border border-border bg-background hover:border-gold-400/50 transition-colors rounded-lg group">
+                                                <div className={`mb-4 ${theme.text} opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-transform`}>
+                                                    <Icon size={32} strokeWidth={1} />
+                                                </div>
+                                                <span className="text-muted-foreground text-sm tracking-wide group-hover:text-foreground transition-colors">{amenity.label}</span>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            </CollapsibleSection>
+                        )}
+
+                        {project.specifications && (
+                            <CollapsibleSection title="Specifications" defaultOpen={false}>
+                                <div className="grid md:grid-cols-2 gap-8">
+                                    {project.specifications.map((spec, idx) => (
+                                        <div key={idx} className={`bg-background/50 p-6 border-l-2 border-border ${theme.hoverBorder} transition-colors group`}>
+                                            <h4 className={`text-lg font-bold text-foreground mb-3 ${theme.text}`}>{spec.category}</h4>
+                                            <ul className="space-y-2">
+                                                {spec.items.map((item, i) => (
+                                                    <li key={i} className="flex items-start text-muted-foreground text-sm">
+                                                        <span className={`mr-2 mt-1.5 w-1 h-1 rounded-full ${theme.bg}`}></span>
+                                                        {item}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    ))}
+                                </div>
+                            </CollapsibleSection>
+                        )}
+                    </div>
+                </div>
+            </section>
+
+            {/* 3. Gallery Section (Enhanced with Tabs) */}
+            <section id="gallery" className="py-0 scroll-mt-24">
+                {/* Custom Tab Header above ProjectGallery */}
+                <div className="container mx-auto px-6 pt-24 pb-8 flex flex-col items-start md:grid md:grid-cols-3 md:items-end md:gap-0 gap-6">
+                    <div className="md:col-span-1">
+                        <span className={`${theme.text} uppercase tracking-[0.25em] text-xs font-bold mb-4 block`}>Visual Tour</span>
+                        <h2 className="font-serif text-4xl md:text-5xl text-foreground">Gallery & Walkthroughs</h2>
+                    </div>
+                    {/* Tabs */}
+                    <div className="md:col-span-1 flex justify-start md:justify-center w-full">
+                        <div className="flex bg-secondary/50 p-1 rounded-lg border border-border">
+                            <button
+                                onClick={() => setGalleryTab("images")}
+                                className={`px-6 py-2 rounded-md text-sm font-medium transition-all ${galleryTab === 'images' ? 'bg-background shadow-sm text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
+                            >
+                                <div className="flex items-center gap-2"><ImageIcon size={16} /> Images</div>
+                            </button>
+                            <button
+                                onClick={() => setGalleryTab("videos")}
+                                className={`px-6 py-2 rounded-md text-sm font-medium transition-all ${galleryTab === 'videos' ? 'bg-background shadow-sm text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
+                            >
+                                <div className="flex items-center gap-2"><Play size={16} /> Videos</div>
+                            </button>
+                        </div>
+                    </div>
+                    {/* Empty col for balance if needed, or just let it be */}
+                    <div className="hidden md:block md:col-span-1"></div>
+                </div>
+
+                <div className="min-h-[400px]">
+                    <AnimatePresence mode="wait">
+                        {galleryTab === 'images' ? (
+                            <motion.div
+                                key="images"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                            >
+                                <ProjectGallery images={imagesOnly} />
+                            </motion.div>
+                        ) : (
+                            <motion.div
+                                key="videos"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                className="container mx-auto px-6 py-12"
+                            >
+                                {videosOnly.length > 0 ? (
+                                    <div className="grid md:grid-cols-2 gap-8">
+                                        {videosOnly.map((vid, i) => (
+                                            <div key={i} className="aspect-video bg-black rounded-lg overflow-hidden border border-white/10 shadow-2xl relative group">
+                                                <video src={vid} controls className="w-full h-full object-cover" />
+                                            </div>
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <div className="bg-secondary/30 rounded-lg p-24 text-center border border-dashed border-border">
+                                        <Video size={48} className="mx-auto mb-4 text-muted-foreground opacity-50" />
+                                        <p className="text-muted-foreground">Video walkthroughs coming soon.</p>
+                                    </div>
+                                )}
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </div>
+            </section>
+
+            {/* 4. Location Section */}
+            <section id="location" className="py-24 container mx-auto px-6 scroll-mt-24 border-t border-border">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                    <div className="lg:col-span-1">
+                        <span className={`${theme.text} uppercase tracking-[0.25em] text-xs font-bold mb-6 block`}>Location</span>
+                        <h2 className="font-serif text-4xl text-foreground mb-8">Connected <br /> to Everything</h2>
+                        <p className="text-muted-foreground mb-10 leading-relaxed">
+                            Strategically located at <strong>{project.location}</strong>. {project.address}
+                        </p>
+
+                        <div className="space-y-6">
+                            {project.connectivity && project.connectivity.map((item, idx) => (
+                                <div key={idx} className={`flex justify-between items-center border-b border-border pb-4 group ${theme.hoverBorder} transition-colors border-transparent`}>
+                                    <span className={`text-foreground ${theme.hoverText} transition-colors`}>{item.label}</span>
+                                    <span className="text-muted-foreground font-bold">{item.time}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="lg:col-span-2 bg-secondary min-h-[400px] relative overflow-hidden group rounded-lg border border-border z-0">
+                        {/* Custom Luxury Map */}
+                        <LuxuryMapWrapper activeProject={project} />
+                    </div>
+                </div>
+            </section>
+
+            {/* 5. Construction Status (Animated) */}
+            <section id="construction" className="py-24 bg-secondary relative border-t border-border scroll-mt-24">
+                <ConstructionStatus project={project} theme={theme} />
+            </section>
+
+            <EnquiryModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                title={modalTitle}
+            />
+        </div>
+    );
+}
+
+// Sub-component for Animated Construction Status
+function ConstructionStatus({ project, theme }) {
+    const progress = project.progress || 0;
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, margin: "-100px" });
+    // Count up animation
+    const [count, setCount] = useState(0);
+
+    useEffect(() => {
+        if (isInView) {
+            let start = 0;
+            const end = parseInt(progress);
+            if (start === end) return;
+
+            let timer = setInterval(() => {
+                start += 1;
+                setCount(start);
+                if (start === end) clearInterval(timer);
+            }, 20); // Speed of count
+            return () => clearInterval(timer);
+        }
+    }, [isInView, progress]);
+
+    return (
+        <div ref={ref} className="container mx-auto px-6">
+            <div className="flex flex-col md:flex-row justify-between items-end mb-16">
+                <div>
+                    <span className={`${theme.text} uppercase tracking-[0.25em] text-xs font-bold mb-4 block`}>Real-Time Updates</span>
+                    <h2 className="font-serif text-4xl text-foreground">Construction Status</h2>
+                </div>
+                <div className="text-right mt-8 md:mt-0">
+                    <div className="text-muted-foreground text-sm uppercase tracking-widest mb-2">Completion Progress</div>
+                    <div className="text-5xl font-serif text-foreground">{count}%</div>
+                </div>
+            </div>
+
+            {/* Progress Bar */}
+            <div className="w-full bg-border h-2 rounded-full overflow-hidden mb-16">
+                <motion.div
+                    initial={{ width: 0 }}
+                    animate={isInView ? { width: `${progress}%` } : { width: 0 }}
+                    transition={{ duration: 1.5, ease: "easeOut" }}
+                    className={`h-full ${theme.bg}`}
+                />
+            </div>
+
+            {/* Interactive Construction Gallery */}
+            <div className="min-h-[300px]">
+                <ConstructionGallery images={project.constructionImages} theme={theme} />
+            </div>
+        </div>
+    );
+}
