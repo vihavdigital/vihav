@@ -62,7 +62,7 @@ export default function Header() {
                                 alt="Vihav Group"
                                 className={cn(
                                     "w-auto object-contain transition-all duration-500",
-                                    isScrolled ? "h-12 md:h-20 invert dark:invert-0" : "h-16 md:h-32"
+                                    isScrolled ? "h-12 md:h-20" : "h-16 md:h-32"
                                 )}
                             />
                         </div>

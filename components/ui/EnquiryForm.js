@@ -30,19 +30,36 @@ export default function EnquiryForm({ className, onSuccess, variant = "minimal",
         ...COUNTRY_CODES.filter(c => !PRIORITY_CODES.includes(c.code))
     ];
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
-        // Simulate API call
-        setTimeout(() => {
-            setIsSubmitting(false);
-            setIsSuccess(true);
-            setTimeout(() => {
-                setIsSuccess(false);
-                setFormState({ name: "", phone: "", email: "", countryCode: "+91", category: "", interest: "" });
+
+        try {
+            const response = await fetch('/api/leads', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formState)
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                setIsSuccess(true);
                 if (onSuccess) onSuccess();
-            }, 2000);
-        }, 1500);
+                // Reset form after delay
+                setTimeout(() => {
+                    setIsSuccess(false);
+                    setFormState({ name: "", phone: "", email: "", countryCode: "+91", category: "", interest: "" });
+                }, 3000);
+            } else {
+                console.error("Submission failed:", data);
+                // Optional: Handle error UI
+            }
+        } catch (error) {
+            console.error("Error submitting form:", error);
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     // Styles based on variant
