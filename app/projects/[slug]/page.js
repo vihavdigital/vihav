@@ -3,6 +3,7 @@ import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/Button";
 import { ArrowLeft, MapPin, Check, FileText, Phone, Mail, ExternalLink, Shield, Trees, Dumbbell, Users, Gamepad2, Car, Waves, Coffee, ArrowUpFromLine, Video, HardHat, CircleCheck } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getProjectBySlug } from "@/data/projects";
 import ProjectDetailsClient from "@/components/projects/ProjectDetailsClient"; // New Client Component
@@ -28,49 +29,10 @@ const THEME = {
         hoverBorder: 'hover:border-gold-400',
         shadow: 'shadow-gold-900/50'
     },
-    niwa: {
-        text: 'text-emerald-400',
-        bg: 'bg-emerald-600',
-        bgLight: 'bg-emerald-400',
-        selection: 'selection:bg-emerald-400',
-        border: 'border-emerald-400',
-        hoverText: 'hover:text-emerald-400',
-        hoverBg: 'hover:bg-emerald-500',
-        hoverBorder: 'hover:border-emerald-400',
-        shadow: 'shadow-emerald-900/50'
-    }
+
 };
 
-export default function ProjectPage({ params }) {
-    // Unwrap params for Next.js 15+ 
-    // Note: params is a promise in newer versions, but if this is an older version it might be object.
-    // The previous code had `const { slug } = await params;` suggesting async component.
-    // Since I'm making this "use client" for Framer Motion (optional but good for Polish), I need to handle data fetching differently or keep it server component.
-    // However, the user wants "hover transparency" and "text color" fixed.
-    // Let's stick to Server Component as before to avoid refactoring data fetching if possible, 
-    // BUT the previous file was `export default async function`.
-    // If I switch to `use client`, I can't use `async/await` on params directly in the same way or access `fs`.
-    // But `data/projects.js` seems to be static data, so `use client` is fine if I don't use `fs`.
-    // Wait, let's keep it Server Component for SEO and simplicity, and just use standard CSS/Tailwind for hover.
-    // I will NOT use "use client" unless I need state. I don't really need state status.
-    // So I will revert "use client" and keep it async.
-
-    return <ProjectPageContent params={params} />;
-}
-
-export async function generateMetadata({ params }) {
-    const { slug } = await params;
-    const project = getProjectBySlug(slug);
-
-    if (!project) return { title: 'Project Not Found' };
-
-    return {
-        title: `${project.title} | Vihav Group`,
-        description: project.description,
-    }
-}
-
-async function ProjectPageContent({ params }) {
+export default async function ProjectPage({ params }) {
     const { slug } = await params;
     const project = getProjectBySlug(slug);
 
@@ -78,8 +40,7 @@ async function ProjectPageContent({ params }) {
         notFound();
     }
 
-    const isNiwa = project.slug === 'keystone-niwa';
-    const theme = isNiwa ? THEME.niwa : THEME.standard;
+    const theme = THEME.standard;
 
     // Status Logic
     const progress = project.progress || 50;
@@ -89,9 +50,27 @@ async function ProjectPageContent({ params }) {
             <Header />
 
             {/* Hero Section */}
-            <div className="relative h-[80vh]">
+            <div className="relative h-screen">
                 <div className="absolute inset-0">
-                    <img src={project.heroImage} className="w-full h-full object-cover brightness-90" alt={project.title} />
+                    {project.heroImage?.endsWith('.mp4') ? (
+                        <video
+                            src={project.heroImage}
+                            className="w-full h-full object-cover brightness-90"
+                            autoPlay
+                            muted
+                            loop
+                            playsInline
+                        />
+                    ) : (
+                        <Image
+                            src={project.heroImage}
+                            alt={project.title}
+                            fill
+                            priority
+                            className="object-cover brightness-90"
+                            sizes="(max-width: 768px) 100vw, 100vw"
+                        />
+                    )}
                     <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/20" />
                 </div>
                 <div className="relative z-10 h-full container mx-auto px-6 flex flex-col justify-end pb-8 md:pb-12">

@@ -8,10 +8,15 @@ import SideMenu from "@/components/layout/SideMenu";
 import MagneticWrapper from "@/components/ui/MagneticWrapper";
 import EnquiryModal from "@/components/ui/EnquiryModal";
 
+import { usePathname } from "next/navigation";
+
 export default function Header() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isEnquireModalOpen, setIsEnquireModalOpen] = useState(false);
+    const pathname = usePathname();
+
+    const isNiwa = pathname?.includes('keystone-niwa');
 
     useEffect(() => {
         const handleScroll = () => {
@@ -27,8 +32,8 @@ export default function Header() {
                 className={cn(
                     "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
                     isScrolled
-                        ? "bg-background/95 backdrop-blur-xl py-6 shadow-2xl"
-                        : "bg-gradient-to-b from-black/40 to-transparent py-12"
+                        ? "bg-background/80 backdrop-blur-md py-6 shadow-xl border-b border-white/10 support-[backdrop-filter]:bg-background/60"
+                        : "bg-gradient-to-b from-black/60 to-transparent py-12"
                 )}
             >
                 <div className="container mx-auto px-6 flex items-center justify-between">
@@ -58,11 +63,11 @@ export default function Header() {
                         <div className="flex flex-col items-center">
                             {/* Logo with improved sizing for elegance */}
                             <img
-                                src="/vihav-logo-new.png"
-                                alt="Vihav Group"
+                                src={isNiwa ? "/images/project-images/project-logos/keystone-niwa-logo.svg" : "/images/project-images/project-logos/vihav-group-logo.svg"}
+                                alt={isNiwa ? "Keystone Niwa" : "Vihav Group"}
                                 className={cn(
                                     "w-auto object-contain transition-all duration-500",
-                                    isScrolled ? "h-12 md:h-20" : "h-16 md:h-32"
+                                    isScrolled ? "h-8 md:h-12" : "h-12 md:h-20"
                                 )}
                             />
                         </div>

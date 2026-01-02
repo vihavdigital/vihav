@@ -6,11 +6,21 @@ import { motion, useScroll, useTransform, AnimatePresence, useInView } from "fra
 import { ArrowLeft, MapPin, Check, FileText, Phone, Mail, ExternalLink, Shield, Trees, Dumbbell, Users, Gamepad2, Car, Waves, Coffee, ArrowUpFromLine, Video, HardHat, CircleCheck, Play, Image as ImageIcon } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
-import ProjectGallery from "@/components/projects/ProjectGallery";
-import ConstructionGallery from "@/components/projects/ConstructionGallery";
+import dynamic from "next/dynamic";
 import CollapsibleSection from "@/components/ui/CollapsibleSection";
-import LuxuryMapWrapper from "@/components/projects/LuxuryMapWrapper";
 import EnquiryModal from "@/components/ui/EnquiryModal";
+
+// Dynamic Imports for Performance
+const ProjectGallery = dynamic(() => import("@/components/projects/ProjectGallery"), {
+    loading: () => <div className="h-[400px] bg-neutral-900 animate-pulse rounded-lg" />
+});
+const ConstructionGallery = dynamic(() => import("@/components/projects/ConstructionGallery"), {
+    loading: () => <div className="h-[300px] bg-neutral-100 animate-pulse rounded-lg" />
+});
+const LuxuryMapWrapper = dynamic(() => import("@/components/projects/LuxuryMapWrapper"), {
+    ssr: false,
+    loading: () => <div className="h-[400px] bg-neutral-200 animate-pulse rounded-lg" />
+});
 
 // Icon Mapping
 const ICON_MAP = {
@@ -75,8 +85,8 @@ export default function ProjectDetailsClient({ project, theme }) {
     return (
         <div className="relative">
             {/* Sticky Navigation Bar */}
-            <div className={`sticky top-[80px] z-40 bg-background/80 backdrop-blur-md border-b border-border transition-all duration-300`}>
-                <div className="container mx-auto px-6 overflow-x-auto scrollbar-hide">
+            <div className={`sticky top-[96px] z-40 bg-background/95 backdrop-blur-sm border-b border-border transition-all duration-300`}>
+                <div className="container mx-auto px-6 overflow-x-auto scrollbar-hide flex items-center justify-center">
                     <div className="flex items-center gap-8 min-w-max h-16">
                         {[
                             { id: "overview", label: "Overview" },
@@ -204,50 +214,48 @@ export default function ProjectDetailsClient({ project, theme }) {
 
             {/* 2. Amenities & Specs */}
             {/* 2. Amenities & Specs */}
-            <section id="amenities" className="py-32 bg-luxury-black text-white scroll-mt-24 border-t border-white/10">
+            <section id="amenities" className="py-24 bg-background text-foreground scroll-mt-24 border-t border-border">
                 <div className="container mx-auto px-6">
                     <span className={`${theme.text} uppercase tracking-[0.25em] text-xs font-bold mb-6 block`}>Lifestyle</span>
-                    <h2 className="font-serif text-4xl md:text-5xl text-white mb-20">Amenities & Specifications</h2>
+                    <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-12">Amenities & Specifications</h2>
 
-                    <div className="space-y-20">
-                        {/* Amenities Grid - Always Visible & Spacious */}
+                    <div className="space-y-0">
+                        {/* Amenities Grid - Collapsible */}
                         {project.amenitiesList && (
-                            <div>
-                                <h3 className="text-2xl font-serif mb-10 text-white/90">Premium Amenities</h3>
+                            <CollapsibleSection title="Premium Amenities" defaultOpen={true}>
                                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                                     {project.amenitiesList.map((amenity, idx) => {
                                         const Icon = ICON_MAP[amenity.icon] || CircleCheck;
                                         return (
-                                            <div key={idx} className="flex flex-col items-start text-left p-8 border border-white/10 bg-white/5 hover:bg-white/10 hover:border-gold-400 transition-all duration-300 rounded-xl group min-h-[180px] justify-between">
+                                            <div key={idx} className="flex flex-col items-start text-left p-8 border border-border bg-secondary/20 hover:bg-secondary hover:border-gold-400 transition-all duration-300 rounded-xl group min-h-[180px] justify-between">
                                                 <div className={`mb-6 ${theme.text} group-hover:scale-110 transition-transform duration-300`}>
                                                     <Icon size={40} strokeWidth={1} />
                                                 </div>
                                                 <div>
-                                                    <span className="text-white font-medium text-lg tracking-wide block mb-1 group-hover:text-gold-400 transition-colors">{amenity.label}</span>
-                                                    {amenity.note && <span className="text-xs text-white/50 uppercase tracking-wider">{amenity.note}</span>}
+                                                    <span className="text-foreground font-medium text-lg tracking-wide block mb-1 group-hover:text-gold-400 transition-colors">{amenity.label}</span>
+                                                    {amenity.note && <span className="text-xs text-muted-foreground uppercase tracking-wider">{amenity.note}</span>}
                                                 </div>
                                             </div>
                                         );
                                     })}
                                 </div>
-                            </div>
+                            </CollapsibleSection>
                         )}
 
-                        {/* Specifications - Refined Grid */}
+                        {/* Specifications - Collapsible */}
                         {project.specifications && (
-                            <div>
-                                <h3 className="text-2xl font-serif mb-10 text-white/90">Specifications</h3>
+                            <CollapsibleSection title="Specifications" defaultOpen={false}>
                                 <div className="grid md:grid-cols-2 gap-x-12 gap-y-12">
                                     {project.specifications.map((spec, idx) => (
                                         <div key={idx} className="group">
-                                            <div className={`flex items-center gap-4 mb-6 pb-4 border-b border-white/10 group-hover:border-gold-400/50 transition-colors`}>
+                                            <div className={`flex items-center gap-4 mb-6 pb-4 border-b border-border group-hover:border-gold-400/50 transition-colors`}>
                                                 <div className={`w-1 h-8 ${theme.bg}`}></div>
-                                                <h4 className={`text-xl font-bold text-gold-400`}>{spec.category}</h4>
+                                                <h4 className={`text-xl font-bold text-foreground`}>{spec.category}</h4>
                                             </div>
                                             <ul className="space-y-4 pl-5">
                                                 {spec.items.map((item, i) => (
-                                                    <li key={i} className="text-white/70 text-base font-light leading-relaxed flex items-start">
-                                                        <span className="w-1.5 h-1.5 rounded-full bg-white/30 mt-2.5 mr-3 flex-shrink-0"></span>
+                                                    <li key={i} className="text-muted-foreground text-base font-light leading-relaxed flex items-start">
+                                                        <span className={`w-1.5 h-1.5 rounded-full ${theme.bgLight} mt-2.5 mr-3 flex-shrink-0 opacity-50`}></span>
                                                         {item}
                                                     </li>
                                                 ))}
@@ -255,7 +263,7 @@ export default function ProjectDetailsClient({ project, theme }) {
                                         </div>
                                     ))}
                                 </div>
-                            </div>
+                            </CollapsibleSection>
                         )}
                     </div>
                 </div>
@@ -335,11 +343,11 @@ export default function ProjectDetailsClient({ project, theme }) {
                     <div className="lg:col-span-1">
                         <span className={`${theme.text} uppercase tracking-[0.25em] text-xs font-bold mb-6 block`}>Location</span>
                         <h2 className="font-serif text-4xl text-foreground mb-8">Connected <br /> to Everything</h2>
-                        <p className="text-muted-foreground mb-10 leading-relaxed">
+                        <p className="text-muted-foreground mb-16 leading-relaxed">
                             Strategically located at <strong>{project.location}</strong>. {project.address}
                         </p>
 
-                        <div className="space-y-6">
+                        <div className="space-y-8">
                             {project.connectivity && project.connectivity.map((item, idx) => (
                                 <div key={idx} className={`flex justify-between items-center border-b border-border pb-4 group ${theme.hoverBorder} transition-colors border-transparent`}>
                                     <span className={`text-foreground ${theme.hoverText} transition-colors`}>{item.label}</span>

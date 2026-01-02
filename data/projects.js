@@ -212,27 +212,55 @@ export const PROJECTS = [
         id: "keystone-niwa",
         slug: "keystone-niwa",
         title: "Keystone Niwa",
+        logo: "/images/project-images/project-logos/keystone-niwa-logo.svg",
         category: "Residential",
         location: "Opp. Skyvillas, New Alkapuri",
         type: "4B2HK Ultra-Exclusive Garden Apartments",
         price: "Price on Request",
-        reraId: "PR/GJ/VADODARA/VADODARA/Others/RAA00001/010121",
+        status: "Ongoing",
+        progress: 40,
+        reraId: "RAA16029/181025/311230",
         reraLink: "https://gujrera.gujarat.gov.in/",
         phone: "+91 7201 950 950",
         email: "keystoneniwa@vihav.com",
-        description: "A sanctuary where 35% of the land is nurtured, not built. Keystone Niwa offers ultra-exclusive 5,000 sq. ft. residences with a 'One Floor, One Apartment' concept, ensuring absolute privacy and immersion in greenery.",
-        vision: "Nurtured Living.",
-        heroImage: "https://www.vihav.com/wp-content/uploads/un_ma_tpa_02-web-1-e1757591454710.jpg",
-        galleryImages: ["https://www.vihav.com/wp-content/uploads/un_ma_tpa_02-web-1-e1757591454710.jpg"],
-        features: ["5000 sq ft Carpet", "One Floor One Unit", "Dual Kitchens", "35% Green Area"],
-        connectivity: [{ label: "New Alkapuri", time: "0 Mins" }],
-        address: "Opp. Keystone Skyvillas, New Alkapuri, Vadodara",
+        description: "Niwa, meaning garden in Japanese, reflects our belief that a home should feel like nature never left us. At Keystone Niwa, we’ve reimagined luxury to grow not just above ground, but within it. Here, greenery isn’t a view from your window, it’s part of your everyday living. From private garden balconies to lush common spaces, Niwa is where you don’t just come home, you arrive in nature.",
+        vision: "Walk into Vadodara’s Greenest Lifestyle.",
+        heroImage: "https://www.vihav.com/wp-content/uploads/niwa-banner.mp4",
+        galleryImages: [
+            "https://www.vihav.com/wp-content/uploads/Hurun-KEYSTONE-NIWA-Desktop-Slider-2048-×-778-px-01.webp",
+            "https://www.vihav.com/wp-content/uploads/home-gray-bordered-extra-width.png",
+            "https://www.vihav.com/wp-content/uploads/tree-bird-space.png",
+            "https://www.vihav.com/wp-content/uploads/customized-leaf-bg-scaled.png",
+            "https://www.vihav.com/wp-content/uploads/line-element-scaled.png",
+            "https://www.vihav.com/wp-content/uploads/Hurun-KEYSTONE-NIWA-Mobile-Slider-1080-×-1080-px-01.webp"
+        ],
+        features: ["5000 sq ft Carpet Area", "One Floor One Unit", "1250 sq ft Garden Balcony", "35% Green Area", "Dual Kitchens"],
+        highlights: [
+            { icon: "Shield", title: "Absolute Privacy", label: "One Floor One Unit", description: "The rarest luxury of having no neighbors on your floor, ensuring total seclusion." },
+            { icon: "Trees", title: "Nurtured Greenery", label: "35% Green Plot", description: "Over one-third of the land is dedicated to lush gardens and verdant views." },
+            { icon: "Check", title: "Ultra-Exclusive", label: "26 Families", description: "45,000 sq. ft. of space shared by just 26 exclusive families." }
+        ],
+        amenitiesList: [
+            { icon: "Waves", label: "Private Pool & Gazebo" },
+            { icon: "Utensils", label: "Dual Kitchens (Gourmet & Utility)" },
+            { icon: "Coffee", label: "Resort-style Leisure Areas" },
+            { icon: "Shield", label: "Staycation Lifestyle" },
+            { icon: "Trees", label: "1250 sq ft Garden Balconies" },
+            { icon: "Building", label: "Signature Penthouse" }
+        ],
+        specifications: [
+            { category: "Space & Layout", items: ["One Residence per Floor", "5000 sq. ft. Carpet Area", "1250 sq. ft. Private Garden Balcony", "Dual Kitchen Concept"] },
+            { category: "Green Features", items: ["35% Non-built Area (Nurtured Greens)", "25% of Home Opens to Greens", "Verdant Views from every room"] },
+            { category: "Exclusive Living", items: ["Signature Penthouse options", "Private Pool and Gazebo for select units", "Ultra-low Density Living"] }
+        ],
+        connectivity: [{ label: "New Alkapuri", time: "0 Mins" }, { label: "Skyvillas", time: "Opposite" }],
+        address: "Keystone Niwa, Opp. Keystone Skyvillas, New Alkapuri, Vadodara",
         coordinates: { lat: 22.3065, lng: 73.1485 },
         mapEmbed: "https://maps.google.com/maps?q=Keystone+Niwa+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
             category: "Residential",
             type: ["4BHK", "Penthouse"],
-            possession: "More than 1 Year"
+            possession: "Ongoing"
         }
     },
     {

@@ -147,7 +147,7 @@ export default function LuxuryMap({ activeProject }) {
     ];
 
     return (
-        <div className="w-full h-full relative z-0">
+        <div className="w-full h-full relative z-0" key={activeProject?.id || "default-map"}>
             <MapContainer
                 center={center}
                 zoom={14}

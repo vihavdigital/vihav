@@ -14,6 +14,7 @@ const lato = Lato({
 });
 
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
+import ChatWidget from "@/components/chat/ChatWidget";
 
 export const metadata = {
   title: {
@@ -52,7 +53,7 @@ export const metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://www.vihavgroup.com",
+    url: "https://www.vihav.com",
     title: "Vihav Group | Premium Real Estate Developer in Vadodara",
     description: "Discover luxury 3BHK, 4BHK flats, penthouses, and commercial properties in Vadodara by Vihav Group.",
     siteName: "Vihav Group",
@@ -76,6 +77,10 @@ export const metadata = {
       'max-snippet': -1,
     },
   },
+  verification: {
+    google: 'google-site-verification=YOUR_VERIFICATION_CODE', // User to replace
+    // yandex: 'yandex-verification-code',
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -87,6 +92,7 @@ export default function RootLayout({ children }) {
       >
         <ThemeProvider>
           <Preloader />
+          <ChatWidget />
           {children}
         </ThemeProvider>
       </body>
