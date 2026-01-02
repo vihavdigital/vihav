@@ -14,7 +14,7 @@ import EnquiryModal from "@/components/ui/EnquiryModal";
 
 // Icon Mapping
 const ICON_MAP = {
-    Shield, Trees, Dumbbell, Users, Gamepad2, Car, Waves, Coffee, ArrowUpFromLine, Video, HardHat, CircleCheck
+    Shield, Trees, Dumbbell, Users, Gamepad2, Car, Waves, Coffee, ArrowUpFromLine, Video, HardHat, CircleCheck, MapPin
 };
 
 export default function ProjectDetailsClient({ project, theme }) {
@@ -156,26 +156,44 @@ export default function ProjectDetailsClient({ project, theme }) {
                                         <span className={`block ${theme.text} font-mono break-all text-sm md:text-base`}>{project.reraId || "PR/GJ/VADODARA/RAA00000/000000"}</span>
                                     </div>
 
-                                    <div className="pt-6 flex flex-col md:flex-row gap-3">
-                                        <Button
-                                            onClick={() => openModal("Enquire Now")}
-                                            className={`w-full md:flex-1 ${theme.bg} ${theme.hoverBg} text-black font-bold uppercase tracking-widest py-6 border-none text-[10px] md:text-xs`}
-                                        >
-                                            Enquire Now
-                                        </Button>
-                                        <Button
-                                            variant="outline"
-                                            onClick={() => openModal("Download Brochure")}
-                                            className={`w-full md:flex-1 bg-transparent border border-border ${theme.hoverText} hover:border-foreground hover:bg-background font-bold uppercase tracking-widest py-6 text-[10px] md:text-xs`}
-                                        >
-                                            <FileText className="mr-2" size={14} /> Brochure
-                                        </Button>
-                                    </div>
+                                    <div className="pt-6 flex flex-col gap-3">
+                                        <div className="flex flex-col md:flex-row gap-3">
+                                            <Button
+                                                onClick={() => openModal("Enquire Now")}
+                                                className={`w-full md:flex-1 ${theme.bg} ${theme.hoverBg} text-black font-bold uppercase tracking-widest py-6 border-none text-[10px] md:text-xs`}
+                                            >
+                                                Enquire Now
+                                            </Button>
+                                            <Button
+                                                variant="outline"
+                                                onClick={() => openModal("Download Brochure")}
+                                                className={`w-full md:flex-1 bg-transparent border border-border text-foreground hover:bg-secondary font-bold uppercase tracking-widest py-6 text-[10px] md:text-xs`}
+                                            >
+                                                <FileText className="mr-2" size={14} /> Brochure
+                                            </Button>
+                                        </div>
 
-                                    <div className="pt-2 flex flex-col gap-3">
-                                        <p className="text-xs text-muted-foreground text-center">
-                                            Call us directly: <a href={`tel:${project.phone}`} className="underline hover:text-foreground">{project.phone}</a>
-                                        </p>
+                                        <div className="bg-secondary/30 rounded-lg p-4 space-y-3 mt-2 border border-border/50">
+                                            <a href={`tel:${project.phone}`} className="flex items-center gap-4 group cursor-pointer">
+                                                <div className={`w-10 h-10 rounded-full ${theme.bgLight} flex items-center justify-center text-luxury-black group-hover:scale-110 transition-transform`}>
+                                                    <Phone size={16} />
+                                                </div>
+                                                <div>
+                                                    <span className="block text-[10px] uppercase tracking-widest text-muted-foreground">Call Us</span>
+                                                    <span className="font-serif text-foreground group-hover:underline decoration-gold-400 underline-offset-4">{project.phone}</span>
+                                                </div>
+                                            </a>
+                                            <div className="h-px bg-border/50" />
+                                            <a href={`mailto:${project.email}`} className="flex items-center gap-4 group cursor-pointer">
+                                                <div className={`w-10 h-10 rounded-full bg-white border border-border flex items-center justify-center text-muted-foreground group-hover:border-gold-400 group-hover:text-gold-400 transition-colors`}>
+                                                    <Mail size={16} />
+                                                </div>
+                                                <div>
+                                                    <span className="block text-[10px] uppercase tracking-widest text-muted-foreground">Email Us</span>
+                                                    <span className="font-serif text-foreground text-sm group-hover:underline decoration-gold-400 underline-offset-4">{project.email}</span>
+                                                </div>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -185,40 +203,51 @@ export default function ProjectDetailsClient({ project, theme }) {
             </section>
 
             {/* 2. Amenities & Specs */}
-            <section id="amenities" className="py-24 bg-secondary/30 border-y border-border scroll-mt-24">
+            {/* 2. Amenities & Specs */}
+            <section id="amenities" className="py-32 bg-luxury-black text-white scroll-mt-24 border-t border-white/10">
                 <div className="container mx-auto px-6">
                     <span className={`${theme.text} uppercase tracking-[0.25em] text-xs font-bold mb-6 block`}>Lifestyle</span>
-                    <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-16">Amenities & Specifications</h2>
+                    <h2 className="font-serif text-4xl md:text-5xl text-white mb-20">Amenities & Specifications</h2>
 
-                    <div className="max-w-5xl space-y-8">
+                    <div className="space-y-20">
+                        {/* Amenities Grid - Always Visible & Spacious */}
                         {project.amenitiesList && (
-                            <CollapsibleSection title="Premium Amenities" defaultOpen={true}>
-                                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                            <div>
+                                <h3 className="text-2xl font-serif mb-10 text-white/90">Premium Amenities</h3>
+                                <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                                     {project.amenitiesList.map((amenity, idx) => {
                                         const Icon = ICON_MAP[amenity.icon] || CircleCheck;
                                         return (
-                                            <div key={idx} className="flex flex-col items-start text-left p-6 border border-border bg-background hover:border-gold-400/50 transition-colors rounded-lg group">
-                                                <div className={`mb-4 ${theme.text} opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-transform`}>
-                                                    <Icon size={32} strokeWidth={1} />
+                                            <div key={idx} className="flex flex-col items-start text-left p-8 border border-white/10 bg-white/5 hover:bg-white/10 hover:border-gold-400 transition-all duration-300 rounded-xl group min-h-[180px] justify-between">
+                                                <div className={`mb-6 ${theme.text} group-hover:scale-110 transition-transform duration-300`}>
+                                                    <Icon size={40} strokeWidth={1} />
                                                 </div>
-                                                <span className="text-muted-foreground text-sm tracking-wide group-hover:text-foreground transition-colors">{amenity.label}</span>
+                                                <div>
+                                                    <span className="text-white font-medium text-lg tracking-wide block mb-1 group-hover:text-gold-400 transition-colors">{amenity.label}</span>
+                                                    {amenity.note && <span className="text-xs text-white/50 uppercase tracking-wider">{amenity.note}</span>}
+                                                </div>
                                             </div>
                                         );
                                     })}
                                 </div>
-                            </CollapsibleSection>
+                            </div>
                         )}
 
+                        {/* Specifications - Refined Grid */}
                         {project.specifications && (
-                            <CollapsibleSection title="Specifications" defaultOpen={false}>
-                                <div className="grid md:grid-cols-2 gap-8">
+                            <div>
+                                <h3 className="text-2xl font-serif mb-10 text-white/90">Specifications</h3>
+                                <div className="grid md:grid-cols-2 gap-x-12 gap-y-12">
                                     {project.specifications.map((spec, idx) => (
-                                        <div key={idx} className={`bg-background/50 p-6 border-l-2 border-border ${theme.hoverBorder} transition-colors group`}>
-                                            <h4 className={`text-lg font-bold text-foreground mb-3 ${theme.text}`}>{spec.category}</h4>
-                                            <ul className="space-y-2">
+                                        <div key={idx} className="group">
+                                            <div className={`flex items-center gap-4 mb-6 pb-4 border-b border-white/10 group-hover:border-gold-400/50 transition-colors`}>
+                                                <div className={`w-1 h-8 ${theme.bg}`}></div>
+                                                <h4 className={`text-xl font-bold text-gold-400`}>{spec.category}</h4>
+                                            </div>
+                                            <ul className="space-y-4 pl-5">
                                                 {spec.items.map((item, i) => (
-                                                    <li key={i} className="flex items-start text-muted-foreground text-sm">
-                                                        <span className={`mr-2 mt-1.5 w-1 h-1 rounded-full ${theme.bg}`}></span>
+                                                    <li key={i} className="text-white/70 text-base font-light leading-relaxed flex items-start">
+                                                        <span className="w-1.5 h-1.5 rounded-full bg-white/30 mt-2.5 mr-3 flex-shrink-0"></span>
                                                         {item}
                                                     </li>
                                                 ))}
@@ -226,32 +255,32 @@ export default function ProjectDetailsClient({ project, theme }) {
                                         </div>
                                     ))}
                                 </div>
-                            </CollapsibleSection>
+                            </div>
                         )}
                     </div>
                 </div>
             </section>
 
             {/* 3. Gallery Section (Enhanced with Tabs) */}
-            <section id="gallery" className="py-0 scroll-mt-24">
+            <section id="gallery" className="py-0 scroll-mt-24 bg-luxury-black text-white">
                 {/* Custom Tab Header above ProjectGallery */}
                 <div className="container mx-auto px-6 pt-24 pb-8 flex flex-col items-start md:grid md:grid-cols-3 md:items-end md:gap-0 gap-6">
                     <div className="md:col-span-1">
                         <span className={`${theme.text} uppercase tracking-[0.25em] text-xs font-bold mb-4 block`}>Visual Tour</span>
-                        <h2 className="font-serif text-4xl md:text-5xl text-foreground">Gallery & Walkthroughs</h2>
+                        <h2 className="font-serif text-4xl md:text-5xl text-white">Gallery & Walkthroughs</h2>
                     </div>
                     {/* Tabs */}
                     <div className="md:col-span-1 flex justify-start md:justify-center w-full">
-                        <div className="flex bg-secondary/50 p-1 rounded-lg border border-border">
+                        <div className="flex bg-white/10 p-1 rounded-lg border border-white/10 backdrop-blur-sm">
                             <button
                                 onClick={() => setGalleryTab("images")}
-                                className={`px-6 py-2 rounded-md text-sm font-medium transition-all ${galleryTab === 'images' ? 'bg-background shadow-sm text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
+                                className={`px-6 py-2 rounded-md text-sm font-medium transition-all ${galleryTab === 'images' ? 'bg-white shadow-sm text-black' : 'text-white/60 hover:text-white'}`}
                             >
                                 <div className="flex items-center gap-2"><ImageIcon size={16} /> Images</div>
                             </button>
                             <button
                                 onClick={() => setGalleryTab("videos")}
-                                className={`px-6 py-2 rounded-md text-sm font-medium transition-all ${galleryTab === 'videos' ? 'bg-background shadow-sm text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
+                                className={`px-6 py-2 rounded-md text-sm font-medium transition-all ${galleryTab === 'videos' ? 'bg-white shadow-sm text-black' : 'text-white/60 hover:text-white'}`}
                             >
                                 <div className="flex items-center gap-2"><Play size={16} /> Videos</div>
                             </button>

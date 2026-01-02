@@ -8,19 +8,17 @@ const ThemeContext = createContext({
 });
 
 export function ThemeProvider({ children }) {
-    // Default to dark
-    const [theme, setTheme] = useState("dark");
+    // Default to light
+    const [theme, setTheme] = useState("light");
 
     useEffect(() => {
         // Check localStorage or system preference on mount
         const savedTheme = localStorage.getItem("theme");
         if (savedTheme) {
             setTheme(savedTheme);
-        } else if (window.matchMedia("(prefers-color-scheme: light)").matches) {
-            // Optional: Auto-detect. But we default to dark for luxury feel unless user overrides.
-            // Actually, let's stick to 'dark' as default as per request "keep this black theme throughout".
-            // Only if they explicitly switch, we save it.
-            setTheme("dark");
+        } else {
+            // Default to light as per new requirement
+            setTheme("light");
         }
     }, []);
 

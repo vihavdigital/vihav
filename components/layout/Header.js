@@ -28,7 +28,7 @@ export default function Header() {
                     "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
                     isScrolled
                         ? "bg-background/95 backdrop-blur-xl py-6 shadow-2xl"
-                        : "bg-gradient-to-b from-black/60 to-transparent py-12"
+                        : "bg-gradient-to-b from-black/40 to-transparent py-12"
                 )}
             >
                 <div className="container mx-auto px-6 flex items-center justify-between">
@@ -40,7 +40,7 @@ export default function Header() {
                                 onClick={() => setIsMenuOpen(true)}
                                 className={cn(
                                     "flex items-center gap-4 hover:text-gold-400 transition-all duration-500 group",
-                                    isScrolled ? "text-foreground" : "text-white"
+                                    isScrolled ? "text-foreground" : "text-white drop-shadow-md"
                                 )}
                             >
                                 <div className="flex flex-col gap-1.5 items-start">
@@ -71,7 +71,7 @@ export default function Header() {
                     {/* Right Actions (Enquire) */}
                     <div className={cn(
                         "flex items-center space-x-6 text-[10px] font-bold tracking-[0.3em]",
-                        isScrolled ? "text-foreground" : "text-white"
+                        isScrolled ? "text-foreground" : "text-white drop-shadow-md"
                     )}>
                         <MagneticWrapper>
                             <button

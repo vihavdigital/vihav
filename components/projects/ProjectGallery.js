@@ -71,7 +71,7 @@ export default function ProjectGallery({ images, className = "" }) {
             </div>
 
             {/* Dynamic Scroll Progress Bar */}
-            <div className="container mx-auto px-6 mt-4 relative h-0.5 bg-white/10 rounded-full overflow-hidden">
+            <div className="container mx-auto px-6 mt-4 relative h-1 bg-white/20 rounded-full overflow-hidden">
                 <motion.div
                     style={{ scaleX }}
                     className="absolute top-0 left-0 h-full w-full bg-gold-400 origin-left"

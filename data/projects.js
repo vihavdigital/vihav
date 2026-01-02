@@ -240,40 +240,51 @@ export const PROJECTS = [
         slug: "keystone-51",
         title: "Keystone 51",
         category: "Residential",
-        location: "Off. 75 mtr Main road Bhayli",
-        type: "A Signature Address",
+        location: "Off 75m Ring Road, Bhayli",
+        type: "4BHK Triplex Bungalows",
         price: "Price on Request",
-        reraId: "PR/GJ/VADODARA/VADODARA/Others/RAA00001/010121",
+        reraId: "PAA15293/020625/311227",
         reraLink: "https://gujrera.gujarat.gov.in/",
-        phone: "+91 88663 41272",
-        email: "sales@vihav.com",
-        description: "A select lifestyle address with spacious planning.",
-        vision: "A Signature Address.",
-        heroImage: "https://www.vihav.com/wp-content/uploads/KS51-Elevation-1-e1761809057612.jpg",
-        galleryImages: ["https://www.vihav.com/wp-content/uploads/KS51-Elevation-1-e1761809057612.jpg"],
-        features: ["Exclusive Community", "Modern Architecture"],
+        phone: "+91 87916 49164",
+        email: "keystone51@vihav.com",
+        description: "Only a select few will experience life at Keystone 51, making it one of the most exclusive residential addresses in Vadodara. 1,00,000 sq.ft for just 51 families. Designed with modern families in mind, each home features expansive living areas, high-end finishes, and is four-side open with 2500 sq.ft Built-up Area.",
+        vision: "Elite Community of 51 Families.",
+        heroImage: "https://www.vihav.com/wp-content/uploads/Hurun-Keystone-51-Desktop-Slider-2048-×-778-px-01.webp",
+        galleryImages: [
+            "https://www.vihav.com/wp-content/uploads/Vihav-51-Cam-03-a-scaled.webp",
+            "https://www.vihav.com/wp-content/uploads/Vihav-51-Living-room-cam-03-a-scaled.webp",
+            "https://www.vihav.com/wp-content/uploads/Vihav-51-Cam-01-a-scaled.webp",
+            "https://www.vihav.com/wp-content/uploads/Vihav-51-Cam-09-a-scaled.webp",
+            "https://www.vihav.com/wp-content/uploads/2nd-floor-bedroom-cam-02-a-scaled.webp"
+        ],
+        features: ["1,00,000 Sq.Ft Land", "Only 51 Families", "4-Side Open", "Triplex Layout"],
+        highlights: [
+            { icon: "Users", title: "Elite Community", label: "51 Families", description: "A low-density sanctuary of just 51 exclusive families on 1,00,000 sq.ft of land." },
+            { icon: "Shield", title: "Secure Living", label: "24/7 Security", description: "Gated community with round-the-clock surveillance and security personnel." },
+            { icon: "Trees", title: "Green Living", label: "Spacious Gardens", description: "Abundant green spaces and landscaped gardens for a serene lifestyle." }
+        ],
         amenitiesList: [
+            { icon: "Waves", label: "Swimming Pool" },
+            { icon: "Dumbbell", label: "Fitness Center" },
+            { icon: "Trees", label: "Green Spaces" },
             { icon: "Shield", label: "24/7 Security" },
-            { icon: "Trees", label: "Garden" },
-            { icon: "Dumbbell", label: "Gym" },
-            { icon: "Users", label: "Banquet" },
-            { icon: "Gamepad2", label: "Play Area" },
-            { icon: "Car", label: "Parking" }
+            { icon: "Users", label: "Community", note: "Only 51 Families" },
+            { icon: "MapPin", label: "Prime Location" }
         ],
         specifications: [
-            { category: "Flooring", items: ["Vitrified Tiles"] },
-            { category: "Kitchen", items: ["Granite Platform", "SS Sink"] },
-            { category: "Doors", items: ["Decorative Main Door"] },
-            { category: "Electric", items: ["Concealed Wiring", "Standard Points"] }
+            { category: "Structure", items: ["Triplex Bungalow Design", "4-Side Open Layout"] },
+            { category: "Area", items: ["2500 Sq.Ft Built-up Area"] },
+            { category: "Finish", items: ["High-end Finishes", "Modern Architecture"] },
+            { category: "Connectivity", items: ["Off 75m Ring Road", "Near Navrachana University"] }
         ],
-        connectivity: [{ label: "Bhayli", time: "0 Mins" }],
-        address: "Nr Navrachana University, Bhayli, Vadodara",
+        connectivity: [{ label: "Navrachana Uni", time: "2 Mins" }, { label: "75m Ring Road", time: "0 Mins" }],
+        address: "Near Navrachana University, Off. 75 Mtr. Ring Road, Bhayli – Vadodara",
         coordinates: { lat: 22.2960, lng: 73.1420 },
         mapEmbed: "https://maps.google.com/maps?q=Keystone+51+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
             category: "Residential",
-            type: ["3BHK", "Penthouse"],
-            possession: "More than 1 Year"
+            type: ["4BHK", "Bungalow", "Villa"],
+            possession: "Under Construction"
         }
     },
     {

@@ -55,11 +55,9 @@
   Dark Mode: Luxury Black
 */
 :root {
-  /* Light Theme (Warm Luxury) */
-  --background: #FAFAF9;
-  /* stone-50 */
+  /* Light Theme (Clean Luxury) */
+  --background: #ffffff;
   --foreground: #0a0a0a;
-  /* luxury-black */
 
   --card: #ffffff;
   --card-foreground: #0a0a0a;
@@ -70,24 +68,23 @@
   --primary: #0a0a0a;
   --primary-foreground: #ffffff;
 
-  --secondary: #f5f5f4;
-  /* stone-100 */
+  --secondary: #f4f4f5;
+  /* zinc-100 */
   --secondary-foreground: #0a0a0a;
 
-  --muted: #f5f5f4;
-  --muted-foreground: #78716c;
-  /* stone-500 */
+  --muted: #f4f4f5;
+  --muted-foreground: #71717a;
+  /* zinc-500 */
 
-  --accent: #f5f5f4;
+  --accent: #f4f4f5;
   --accent-foreground: #0a0a0a;
 
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
 
-  --border: #d4d4d4;
-  /* darker for visibility against light grey */
-  /* stone-200 */
-  --input: #d4d4d4;
+  --border: #e4e4e7;
+  /* zinc-200 */
+  --input: #e4e4e7;
   --ring: #d4af37;
   /* gold-400 */
 

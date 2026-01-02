@@ -16,31 +16,31 @@ export default function Preloader() {
         }
 
         // Prevent scrolling
-        if (isLoading) document.body.style.overflow = 'hidden';
+        document.body.style.overflow = 'hidden';
 
-        // Counter Animation
+        // Counter Animation with improved easing
+        let current = 0;
         const interval = setInterval(() => {
-            setCounter(prev => {
-                const nav = prev + Math.floor(Math.random() * 10) + 2;
-                return nav > 100 ? 100 : nav;
-            });
-        }, 30);
+            current += Math.floor(Math.random() * 8) + 1; // Slower, smoother increment
+            if (current > 100) current = 100;
+            setCounter(current);
 
-        // Exit Trigger
-        const timer = setTimeout(() => {
-            setIsLoading(false);
-            sessionStorage.setItem("hasSeenPreloader", "true");
-            document.body.style.overflow = 'unset';
-            // Ensure counter hits 100 if it hasn't
-            setCounter(100);
-        }, 1500);
+            if (current === 100) {
+                clearInterval(interval);
+                // Exit trigger after completion
+                setTimeout(() => {
+                    setIsLoading(false);
+                    sessionStorage.setItem("hasSeenPreloader", "true");
+                    document.body.style.overflow = 'unset';
+                }, 1000);
+            }
+        }, 40);
 
         return () => {
             clearInterval(interval);
-            clearTimeout(timer);
             document.body.style.overflow = 'unset';
         };
-    }, [isLoading]);
+    }, []);
 
     // Split background into 5 columns
     const columns = [0, 1, 2, 3, 4];
@@ -48,105 +48,88 @@ export default function Preloader() {
     return (
         <AnimatePresence mode="wait">
             {isLoading && (
-                <div className="fixed inset-0 z-[9999] pointer-events-none flex">
+                <div className="fixed inset-0 z-[9999] flex items-center justify-center">
                     {/* 1. Shutter Columns (Background) */}
-                    {columns.map((col) => (
-                        <motion.div
-                            key={col}
-                            initial={{ y: 0 }}
-                            exit={{
-                                y: "-100%",
-                                transition: {
-                                    duration: 0.8,
-                                    ease: [0.76, 0, 0.24, 1],
-                                    delay: col * 0.1 // Staggered delay (0, 0.1, 0.2...)
-                                }
-                            }}
-                            className="h-full w-full bg-[#050505] relative border-r border-white/5 last:border-none"
-                        />
-                    ))}
+                    <div className="absolute inset-0 flex pointer-events-none">
+                        {columns.map((col) => (
+                            <motion.div
+                                key={col}
+                                initial={{ y: 0 }}
+                                exit={{
+                                    y: "-100%",
+                                    transition: {
+                                        duration: 0.8,
+                                        ease: [0.76, 0, 0.24, 1],
+                                        delay: col * 0.1
+                                    }
+                                }}
+                                className="h-full w-full bg-[#ffffff] relative border-r border-black/5 last:border-none"
+                            />
+                        ))}
+                    </div>
 
                     {/* 2. Content Overlay */}
                     <motion.div
-                        className="absolute inset-0 z-10 flex flex-col items-center justify-center text-white"
+                        className="relative z-10 flex flex-col items-center justify-center pointer-events-none"
                         exit={{
-                            scale: 0.9,
                             opacity: 0,
-                            transition: { duration: 0.8, ease: "easeInOut" }
+                            scale: 0.95,
+                            transition: { duration: 0.5, ease: "easeInOut", delay: 0.2 }
                         }}
                     >
-                        {/* Massive Typography - Filled on Load */}
-                        <div className="relative overflow-hidden w-full flex justify-center items-center">
+                        {/* Logo Construction Effect */}
+                        <div className="relative w-48 md:w-64 h-auto aspect-[3/2] flex items-center justify-center overflow-hidden">
+                            {/* Base Faded Logo */}
+                            <img
+                                src="/vihav-logo-new.png"
+                                alt="Vihav Group"
+                                className="absolute inset-0 w-full h-full object-contain opacity-20 filter grayscale"
+                            />
+
+                            {/* Revealing Logo (Building Effect) */}
                             <motion.div
-                                initial="hidden"
-                                animate="visible"
-                                variants={{
-                                    visible: { transition: { staggerChildren: 0.05, delayChildren: 0.2 } }
-                                }}
-                                className="flex text-[8vw] md:text-[10vw] font-serif leading-none tracking-tighter"
+                                className="absolute inset-0 overflow-hidden"
+                                initial={{ height: "0%" }}
+                                animate={{ height: `${counter}%` }}
+                                transition={{ type: "tween", ease: "linear", duration: 0.1 }} // Immediate response to counter
                             >
-                                {["V", "I", "H", "A", "V", "\u00A0"].map((char, i) => (
-                                    <motion.span
-                                        key={i}
-                                        variants={{
-                                            hidden: { y: 100, opacity: 0 },
-                                            visible: { y: 0, opacity: 1, transition: { duration: 1, ease: [0.22, 1, 0.36, 1] } }
-                                        }}
-                                        style={{
-                                            WebkitTextStroke: "1px rgba(255,255,255,0.2)",
-                                            color: counter === 100 ? "white" : "transparent",
-                                            transition: "color 0.5s ease"
-                                        }}
-                                    >
-                                        {char}
-                                    </motion.span>
-                                ))}
-                                <span className="w-[1vw] md:w-[2vw]"></span> {/* Spacer */}
-                                {["G", "R", "O", "U", "P"].map((char, i) => (
-                                    <motion.span
-                                        key={`group-${i}`}
-                                        variants={{
-                                            hidden: { y: 100, opacity: 0 },
-                                            visible: { y: 0, opacity: 1, transition: { duration: 1, ease: [0.22, 1, 0.36, 1] } }
-                                        }}
-                                        style={{
-                                            WebkitTextStroke: "1px rgba(255,255,255,0.2)",
-                                            color: counter === 100 ? "white" : "transparent",
-                                            transition: "color 0.5s ease"
-                                        }}
-                                    >
-                                        {char}
-                                    </motion.span>
-                                ))}
+                                <img
+                                    src="/vihav-logo-new.png"
+                                    alt="Vihav Group"
+                                    className="w-full h-full object-contain object-bottom absolute bottom-0"
+                                />
+                                {/* Shimmer Line */}
+                                <div className="absolute top-0 left-0 w-full h-[2px] bg-gold-400 shadow-[0_0_15px_rgba(212,175,55,0.8)]"></div>
                             </motion.div>
                         </div>
 
-                        {/* Secondary Text */}
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 0.5 }}
-                            className="absolute bottom-28 md:bottom-10 left-6 md:left-20 text-[10px] md:text-xs uppercase tracking-[0.3em] text-gold-400 text-center md:text-left w-full md:w-auto"
-                        >
-                            Redefining Luxury Real Estate
-                        </motion.div>
+                        {/* Text Below */}
+                        <div className="mt-8 text-center space-y-2 overflow-hidden">
+                            <motion.div
+                                initial={{ y: 20, opacity: 0 }}
+                                animate={{ y: 0, opacity: 1 }}
+                                transition={{ delay: 0.2 }}
+                                className="text-luxury-charcoal text-xs md:text-sm tracking-[0.4em] uppercase font-light"
+                            >
+                                Building Excellence
+                            </motion.div>
 
-                        {/* Giant Counter - Bottom Right */}
+                            {/* Progress Bar Line */}
+                            <div className="w-32 h-[1px] bg-black/10 mx-auto mt-4 relative overflow-hidden">
+                                <motion.div
+                                    className="absolute left-0 top-0 h-full bg-gold-400"
+                                    style={{ width: `${counter}%` }}
+                                />
+                            </div>
+                        </div>
+
+                        {/* Percentage */}
                         <motion.div
-                            className="absolute bottom-6 right-6 md:bottom-10 md:right-20 text-[5rem] md:text-[12rem] font-serif leading-none opacity-20 tabular-nums"
+                            className="absolute -bottom-24 right-0 text-7xl md:text-9xl font-serif font-bold text-black/5 tabular-nums leading-none select-none"
                         >
                             {counter}%
                         </motion.div>
 
-                        {/* Branding Top Center */}
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 0.8 }}
-                            className="absolute top-10 text-[10px] uppercase tracking-[0.5em] text-white/40"
-                        >
-                            Est. 2025
-                        </motion.div>
                     </motion.div>
                 </div>
             )}
