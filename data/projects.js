@@ -64,7 +64,7 @@ export const PROJECTS = [
         filterData: {
             category: "Residential",
             type: ["4BHK", "5BHK", "Penthouse"],
-            possession: "More than 1 Year"
+            possession: "Upcoming"
         }
     },
     {
@@ -79,8 +79,8 @@ export const PROJECTS = [
         progress: 100,
         reraId: "PR/GJ/VADODARA/VADODARA/Others/RAA00001/010121",
         reraLink: "https://gujrera.gujarat.gov.in/",
-        phone: "+91 88663 41272",
-        email: "sales@vihav.com",
+        phone: "+91 72019 50950",
+        email: "skyvillas@vihav.com",
         description: "An exquisite collection of sky-rise villas defined by vertical luxury. Keystone Skyvillas brings the grandeur of independent living to the skies, offering panoramic views and unmatched privacy.",
         vision: "Sanctuary in the sky.",
         heroImage: "https://www.vihav.com/wp-content/uploads/ongoing_thum.jpg",
@@ -118,7 +118,7 @@ export const PROJECTS = [
         filterData: {
             category: "Residential",
             type: ["4BHK", "Penthouse"],
-            possession: "Ready Possession"
+            possession: "Completed"
         }
     },
     {
@@ -131,8 +131,8 @@ export const PROJECTS = [
         price: "Price on Request",
         reraId: "PR/GJ/VADODARA/VADODARA/Others/RAA00001/010121",
         reraLink: "https://gujrera.gujarat.gov.in/",
-        phone: "+91 88663 41272",
-        email: "sales@vihav.com",
+        phone: "+91 84900 77611",
+        email: "keystoneskyvillasxl@vihav.com",
         description: "Expansive living spaces designed for those who desire more. XL offers larger layouts and premium finishes.",
         vision: "Luxury scaled up.",
         heroImage: "https://www.vihav.com/wp-content/uploads/ongoing_thum.jpg",
@@ -159,7 +159,7 @@ export const PROJECTS = [
         filterData: {
             category: "Residential",
             type: ["4BHK", "5BHK", "Penthouse"],
-            possession: "Ready Possession"
+            possession: "Completed"
         }
     },
     {
@@ -172,8 +172,8 @@ export const PROJECTS = [
         price: "Price on Request",
         reraId: "PR/GJ/VADODARA/VADODARA/Others/RAA00869/160321",
         reraLink: "https://gujrera.gujarat.gov.in/",
-        phone: "+91 88663 41272",
-        email: "sales@vihav.com",
+        phone: "+91 7434 840 840",
+        email: "clermont@vihav.com",
         description: "Garden Apartments where every floor is a single unit. Privacy and luxury redefined.",
         vision: "One Floor, One Unit. Absolute Privacy.",
         heroImage: "https://www.vihav.com/wp-content/uploads/vihav-clmnt-new-images-21-scaled-1-e1757592539176.webp",
@@ -205,7 +205,7 @@ export const PROJECTS = [
         filterData: {
             category: "Residential",
             type: ["4BHK", "5BHK", "Penthouse"],
-            possession: "Less than 1 Year"
+            possession: "Ongoing"
         }
     },
     {
@@ -312,7 +312,7 @@ export const PROJECTS = [
         filterData: {
             category: "Residential",
             type: ["4BHK", "Bungalow", "Villa"],
-            possession: "Under Construction"
+            possession: "Ongoing"
         }
     },
     {
@@ -353,7 +353,7 @@ export const PROJECTS = [
         filterData: {
             category: "Residential",
             type: ["5BHK", "Penthouse"],
-            possession: "Less than 1 Year"
+            possession: "Ongoing"
         }
     },
     {
@@ -366,8 +366,8 @@ export const PROJECTS = [
         price: "Price on Request",
         reraId: "PR/GJ/VADODARA/VADODARA/Others/RAA00002/010121",
         reraLink: "https://gujrera.gujarat.gov.in/",
-        phone: "+91 88663 41272",
-        email: "sales@vihav.com",
+        phone: "+91 95046 36636",
+        email: "elinor@vihav.com",
         description: "Contemporary homes on the main road, offering connectivity and style.",
         vision: "Modern Connected Living.",
         heroImage: "https://www.vihav.com/wp-content/uploads/vihav_elinor_thum.webp",
@@ -394,7 +394,7 @@ export const PROJECTS = [
         filterData: {
             category: "Residential",
             type: ["4BHK", "5BHK", "Penthouse"],
-            possession: "More than 1 Year"
+            possession: "Upcoming"
         }
     },
     {
@@ -407,8 +407,8 @@ export const PROJECTS = [
         price: "Price on Request",
         reraId: "PR/GJ/VADODARA/VADODARA/Others/RAA00001/010121",
         reraLink: "https://gujrera.gujarat.gov.in/",
-        phone: "+91 88663 41272",
-        email: "sales@vihav.com",
+        phone: "+91 95046 35635",
+        email: "parvarish@vihav.com",
         description: "Family-centric homes designed for holistic living.",
         vision: "Nurturing Families.",
         heroImage: "https://www.vihav.com/wp-content/uploads/vihav_parvarish_thum.webp",
@@ -435,7 +435,7 @@ export const PROJECTS = [
         filterData: {
             category: "Residential",
             type: ["3BHK", "4BHK", "Penthouse"],
-            possession: "Ready Possession"
+            possession: "Completed"
         }
     },
     {
@@ -448,8 +448,8 @@ export const PROJECTS = [
         price: "Price on Request",
         reraId: "PR/GJ/VADODARA/VADODARA/Others/RAA00003/010121",
         reraLink: "https://gujrera.gujarat.gov.in/",
-        phone: "+91 88663 41272",
-        email: "sales@vihav.com",
+        phone: "+91 81402 03377",
+        email: "springwoods@vihav.com",
         description: "Premium duplexes and flats offering a blend of space and community.",
         vision: "Spacious Living.",
         heroImage: "https://www.vihav.com/wp-content/uploads/spring_woods_thum.webp",
@@ -476,7 +476,7 @@ export const PROJECTS = [
         filterData: {
             category: "Residential",
             type: ["4BHK", "5BHK", "Penthouse"],
-            possession: "Ready Possession"
+            possession: "Completed"
         }
     },
 
@@ -491,8 +491,8 @@ export const PROJECTS = [
         price: "Price on Request",
         reraId: "PR/GJ/VADODARA/VADODARA/Others/CAA00003/010121",
         reraLink: "https://gujrera.gujarat.gov.in/",
-        phone: "+91 88663 41272",
-        email: "sales@vihav.com",
+        phone: "+91 879 174 9174",
+        email: "supremus3@vihav.com",
         description: "Premium commercial spaces near D-Mart.",
         vision: "Strategic Business Address.",
         heroImage: "https://www.vihav.com/wp-content/uploads/supremus3-new-banner-for-homepage-1.webp",
@@ -519,7 +519,7 @@ export const PROJECTS = [
         filterData: {
             category: "Commercial",
             type: [],
-            possession: "More than 1 Year"
+            possession: "Upcoming"
         }
     },
     {
@@ -532,8 +532,8 @@ export const PROJECTS = [
         price: "Price on Request",
         reraId: "PR/GJ/VADODARA/VADODARA/Others/CAA00001/010121",
         reraLink: "https://gujrera.gujarat.gov.in/",
-        phone: "+91 88663 41272",
-        email: "sales@vihav.com",
+        phone: "+91 72018 54854",
+        email: "vbs@vihav.com",
         description: "Budget-friendly to premium commercial spaces in Gotri.",
         vision: "Business for Everyone.",
         heroImage: "https://www.vihav.com/wp-content/uploads/6_vbs_thum.webp",
@@ -559,7 +559,7 @@ export const PROJECTS = [
         filterData: {
             category: "Commercial",
             type: [],
-            possession: "Ready Possession"
+            possession: "Completed"
         }
     },
     {
@@ -572,8 +572,8 @@ export const PROJECTS = [
         price: "Price on Request",
         reraId: "PR/GJ/VADODARA/VADODARA/Others/CAA00001/010121",
         reraLink: "https://gujrera.gujarat.gov.in/",
-        phone: "+91 88663 41272",
-        email: "sales@vihav.com",
+        phone: "+91 63567 77877",
+        email: "wealthsquare@vihav.com",
         description: "Dedicated showroom spaces for retail brands.",
         vision: "Retail Excellence.",
         heroImage: "https://www.vihav.com/wp-content/uploads/4_wealth_square_thum.webp",
@@ -597,7 +597,7 @@ export const PROJECTS = [
         filterData: {
             category: "Commercial",
             type: [],
-            possession: "Ready Possession"
+            possession: "Completed"
         }
     },
     {
@@ -610,8 +610,8 @@ export const PROJECTS = [
         price: "Price on Request",
         reraId: "PR/GJ/VADODARA/VADODARA/Others/CAA00001/010121",
         reraLink: "https://gujrera.gujarat.gov.in/",
-        phone: "+91 88663 41272",
-        email: "sales@vihav.com",
+        phone: "+91 72018 51851",
+        email: "supremus@vihav.com",
         description: "The first of the Supremus series, establishing a legacy of corporate excellence.",
         vision: "Corporate Legacy.",
         heroImage: "https://www.vihav.com/wp-content/uploads/3_supremus_thum.webp",
@@ -636,7 +636,7 @@ export const PROJECTS = [
         filterData: {
             category: "Commercial",
             type: [],
-            possession: "Ready Possession"
+            possession: "Completed"
         }
     },
     {
@@ -649,7 +649,7 @@ export const PROJECTS = [
         price: "Price on Request",
         reraId: "PR/GJ/VADODARA/VADODARA/Others/CAA00002/010121",
         reraLink: "https://gujrera.gujarat.gov.in/",
-        phone: "+91 88663 41272",
+        phone: "+91 91206 45645",
         email: "sales@vihav.com",
         description: "A monolithic structure dominance in the Bhayli skyline.",
         vision: "Monumental Business.",
@@ -675,7 +675,7 @@ export const PROJECTS = [
         filterData: {
             category: "Commercial",
             type: [],
-            possession: "More than 1 Year"
+            possession: "Upcoming"
         }
     },
     {
@@ -688,8 +688,8 @@ export const PROJECTS = [
         price: "Price on Request",
         reraId: "PR/GJ/VADODARA/VADODARA/Others/CAA00001/010121",
         reraLink: "https://gujrera.gujarat.gov.in/",
-        phone: "+91 88663 41272",
-        email: "sales@vihav.com",
+        phone: "+91 72019 85985",
+        email: "supremus2@vihav.com",
         description: "Continuing the success of Supremus on the Atladra-Padra growth corridor.",
         vision: "Growth Corridor.",
         heroImage: "https://www.vihav.com/wp-content/uploads/vhv_supremus2.webp",
@@ -712,7 +712,7 @@ export const PROJECTS = [
         filterData: {
             category: "Commercial",
             type: [],
-            possession: "Less than 1 Year"
+            possession: "Ongoing"
         }
     },
     {
@@ -725,8 +725,8 @@ export const PROJECTS = [
         price: "Price on Request",
         reraId: "PR/GJ/VADODARA/VADODARA/Others/CAA00001/010121",
         reraLink: "https://gujrera.gujarat.gov.in/",
-        phone: "+91 88663 41272",
-        email: "sales@vihav.com",
+        phone: "+91 72018 54854",
+        email: "vtc@vihav.com",
         description: "Hub for trade and retail near Priya Cinema.",
         vision: "Trade Hub.",
         heroImage: "https://www.vihav.com/wp-content/uploads/5_vtc_thum.webp",
@@ -748,7 +748,7 @@ export const PROJECTS = [
         filterData: {
             category: "Commercial",
             type: [],
-            possession: "Ready Possession"
+            possession: "Completed"
         }
     },
     {
@@ -761,8 +761,8 @@ export const PROJECTS = [
         price: "Price on Request",
         reraId: "PR/GJ/VADODARA/VADODARA/Others/CAA00001/010121",
         reraLink: "https://gujrera.gujarat.gov.in/",
-        phone: "+91 88663 41272",
-        email: "sales@vihav.com",
+        phone: "+91 72018 54854",
+        email: "skyone@vihav.com",
         description: "Strategic commercial shops on the bustling 30 Mtr Main Road in Bhayli.",
         vision: "Sky High Commerce.",
         heroImage: "https://www.vihav.com/wp-content/uploads/1_skyone_thum.webp",
@@ -784,7 +784,7 @@ export const PROJECTS = [
         filterData: {
             category: "Commercial",
             type: [],
-            possession: "Less than 1 Year"
+            possession: "Ongoing"
         }
     },
     {
@@ -820,7 +820,7 @@ export const PROJECTS = [
         filterData: {
             category: "Commercial",
             type: [],
-            possession: "Less than 1 Year"
+            possession: "Ongoing"
         }
     },
     {
@@ -856,7 +856,7 @@ export const PROJECTS = [
         filterData: {
             category: "Commercial",
             type: ["Invest", "End Use"],
-            possession: "Ready Possession"
+            possession: "Completed"
         }
     },
     // --- NEW ADDITIONS ---
@@ -868,8 +868,8 @@ export const PROJECTS = [
         location: "Bhayli Cross Road, Vadodara",
         type: "Shops • Showrooms • Offices",
         price: "Price on Request",
-        phone: "+91 88663 41272",
-        email: "sales@vihav.com",
+        phone: "+91 7435 894 894",
+        email: "cbd@vihav.com",
         description: "Central Business District of Bhayli. A landmark mixed-use development.",
         vision: "Central Hub.",
         heroImage: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000&auto=format&fit=crop", // Placeholder
@@ -888,7 +888,7 @@ export const PROJECTS = [
         filterData: {
             category: "Commercial",
             type: ["Invest", "End Use", "Pre-lease"],
-            possession: "More than 1 Year"
+            possession: "Upcoming"
         }
     },
     {
@@ -899,8 +899,8 @@ export const PROJECTS = [
         location: "Khanpur, Sevasi",
         type: "5B2HK Luxurious Villas",
         price: "Price on Request",
-        phone: "+91 88663 41272",
-        email: "sales@vihav.com",
+        phone: "+91 87916 49164",
+        email: "ksm3@vihav.com",
         description: "Expansive villas designed for royalty. The ultimate status symbol in Sevasi.",
         vision: "Royal Living.",
         heroImage: "https://images.unsplash.com/photo-1613977257363-707ba9348227?q=80&w=1000&auto=format&fit=crop", // Villa Placeholder
@@ -918,7 +918,7 @@ export const PROJECTS = [
         filterData: {
             category: "Residential",
             type: ["5BHK", "Bunglows"],
-            possession: "Less than 1 Year"
+            possession: "Ongoing"
         }
     },
     {
@@ -929,8 +929,8 @@ export const PROJECTS = [
         location: "New Alkapuri, Vadodara",
         type: "4 & 5 BHK Premium Apartments",
         price: "Price on Request",
-        phone: "+91 88663 41272",
-        email: "sales@vihav.com",
+        phone: "+91 74348 40840",
+        email: "keystone72@vihav.com",
         description: "A community of 72 exclusive families.",
         vision: "Exclusive Community.",
         heroImage: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=1000&auto=format&fit=crop", // Apartment Placeholder
@@ -948,7 +948,7 @@ export const PROJECTS = [
         filterData: {
             category: "Residential",
             type: ["4BHK", "5BHK", "Penthouse"],
-            possession: "Under Construction"
+            possession: "Ongoing"
         }
     },
     {
@@ -959,8 +959,8 @@ export const PROJECTS = [
         location: "Sevasi, Vadodara",
         type: "4 BHK Bungalows",
         price: "Price on Request",
-        phone: "+91 88663 41272",
-        email: "sales@vihav.com",
+        phone: "+91 74349 62962",
+        email: "keystone48@vihav.com",
         description: "Seamless bungalows for a grounded lifestyle.",
         vision: "Grounded Luxury.",
         heroImage: "https://images.unsplash.com/photo-1592595896551-12b371d546d5?q=80&w=1000&auto=format&fit=crop", // Bungalow Placeholder
@@ -983,8 +983,8 @@ export const PROJECTS = [
         location: "New Alkapuri, Vadodara",
         type: "Premium High Rise",
         price: "Price on Request",
-        phone: "+91 88663 41272",
-        email: "sales@vihav.com",
+        phone: "+91 91206 45645",
+        email: "skymont@vihav.com",
         description: "Touching the sky with elegance.",
         vision: "Sky High Living.",
         heroImage: "https://images.unsplash.com/photo-1460317442991-0ec209397118?q=80&w=1000&auto=format&fit=crop", // Highrise Placeholder

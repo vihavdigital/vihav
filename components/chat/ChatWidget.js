@@ -8,26 +8,69 @@ import { cn } from "@/lib/utils";
 import { COMPANY_INFO, FAQ_DATA } from "@/data/companyInfo";
 import { PROJECTS } from "@/data/projects";
 
+// Helper to get unique keywords from a project title
+const getProjectKeywords = (title) => {
+    const commonWords = ['keystone', 'vihav', 'group', 'the', 'project', 'residences', 'apartments', 'flats', 'villas'];
+    return title.toLowerCase().split(' ').filter(w => !commonWords.includes(w) && w.length > 2);
+};
+
 // Simple Keyword Matcher function
 const findResponse = (input) => {
     const lowerInput = input.toLowerCase();
 
-    // 1. Check Specific Projects
+    // 0. Greetings
+    if (['hi', 'hello', 'hey', 'good morning', 'good afternoon', 'help'].some(w => lowerInput.includes(w)) && lowerInput.length < 20) {
+        return "Hello! I am the Vihav AI Assistant. Ask me about our **Projects** (like Niwa, Clermont, or 51), **Locations**, or **Prices**!";
+    }
+
+    // 1. Check for "List Projects" / "What projects" intents
+    if (lowerInput.includes('project') && (lowerInput.includes('show') || lowerInput.includes('list') || lowerInput.includes('what') || lowerInput.includes('all'))) {
+        const uniqueTitles = PROJECTS.slice(0, 5).map(p => `**${p.title}**`).join(', ');
+        return `We have several premium projects including ${uniqueTitles}, and more. Which one would you like details for?`;
+    }
+
+    // 2. Check Specific Projects (Smart Keyword Matching)
     for (const project of PROJECTS) {
-        if (lowerInput.includes(project.title.toLowerCase()) || lowerInput.includes(project.slug.replace('-', ' '))) {
-            return `**${project.title}** is a premium ${project.category} project located at ${project.location}. status: ${project.status || 'Ongoing'}. Would you like to enquire details?`;
+        const uniqueKeywords = getProjectKeywords(project.title);
+        // Match if full title exists OR if any unique specific keyword (like "niwa", "clermont", "51") is found
+        const isMatch = lowerInput.includes(project.title.toLowerCase()) ||
+            uniqueKeywords.some(k => lowerInput.includes(k)) ||
+            lowerInput.includes(project.slug.replace('-', ' '));
+
+        if (isMatch) {
+            // Intent Matching within Project Context
+            if (lowerInput.includes('price') || lowerInput.includes('cost') || lowerInput.includes('rate')) {
+                return `Prices for **${project.title}** depend on the specific unit and floor. Please click the **Enquire** button to get a detailed cost sheet from our sales team.`;
+            }
+            if (lowerInput.includes('location') || lowerInput.includes('where') || lowerInput.includes('address')) {
+                return `**${project.title}** is strategically located at **${project.location}**. It offers excellent connectivity.`;
+            }
+            if (lowerInput.includes('status') || lowerInput.includes('completion') || lowerInput.includes('ready')) {
+                return `**${project.title}** is currently **${project.status || 'Under Construction'}**. Possession is expected soon.`;
+            }
+            if (lowerInput.includes('amenit')) { // amenities
+                return `**${project.title}** features premium amenities like ${project.features ? project.features.slice(0, 3).join(', ') : 'Gym, Garden, and Security'}.`;
+            }
+
+            // Default Project Info
+            return `**${project.title}** is a premium ${project.category} project located at ${project.location}. status: ${project.status || 'Ongoing'}. Would you like to know about its price, location, or amenities?`;
         }
     }
 
-    // 2. Check FAQ Knowledge Base
+    // 3. Ambiguous "Keystone" or "Vihav" query
+    if (lowerInput === 'keystone' || lowerInput === 'vihav') {
+        return "We have several projects under this brand. Did you mean **Keystone Niwa**, **Keystone 51**, **Keystone Clermont**, or **Vihav Supremus**?";
+    }
+
+    // 4. Check FAQ Knowledge Base
     for (const faq of FAQ_DATA) {
         if (faq.keywords.some(k => lowerInput.includes(k))) {
             return faq.answer;
         }
     }
 
-    // 3. Fallback
-    return "I can help with project details, locations, or contact info. For specific sales inquiries, please use the Enquiry form at the top right!";
+    // 5. Fallback
+    return "I'm not sure about that. You can ask about **Clermont**, **Niwa**, **51**, or general questions like 'Where is your office?'. Use the **Enquire** form for detailed assistance.";
 };
 
 export default function ChatWidget() {

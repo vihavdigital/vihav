@@ -4,12 +4,30 @@ import { useState, useMemo } from "react";
 
 export const FILTER_TYPES = ["All", "3BHK", "4BHK", "5BHK", "Bunglows", "Penthouse"];
 export const FILTER_COMMERCIAL_TYPES = ["All", "Invest", "End Use", "Pre-lease"];
-export const FILTER_POSSESSION = ["All", "Ready Possession", "Less than 1 Year", "More than 1 Year"];
+export const FILTER_POSSESSION = ["All", "Completed", "Ongoing", "Upcoming"];
+
+import { useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 
 export function useProjectFilters(projects, initialCategory = "Residential") {
+    const searchParams = useSearchParams();
     const [activeCategory, setActiveCategory] = useState(initialCategory);
     const [activeType, setActiveType] = useState("All");
     const [activePossession, setActivePossession] = useState("All");
+
+    // Initialize from URL params
+    useEffect(() => {
+        const categoryParam = searchParams.get("category");
+        const statusParam = searchParams.get("status");
+
+        if (categoryParam && ["Residential", "Commercial"].includes(categoryParam)) {
+            setActiveCategory(categoryParam);
+        }
+
+        if (statusParam && FILTER_POSSESSION.includes(statusParam)) {
+            setActivePossession(statusParam);
+        }
+    }, [searchParams]);
 
     const filteredProjects = useMemo(() => {
         return projects.filter(project => {

@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { X, ChevronRight, ArrowRight } from "lucide-react";
+import { X, ChevronRight, ArrowRight, ChevronLeft } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 
@@ -38,6 +38,13 @@ const MENU_ITEMS = [
         desc: "Recognition of excellence."
     },
     {
+        id: "onevihav",
+        label: "ONE VIHAV",
+        href: "/onevihav",
+        image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2000&auto=format&fit=crop",
+        desc: "Exclusive privilege program for our family."
+    },
+    {
         id: "career",
         label: "CAREERS",
         href: "#",
@@ -55,6 +62,7 @@ const MENU_ITEMS = [
 
 export default function SideMenu({ isOpen, onClose }) {
     const [hoveredItem, setHoveredItem] = useState(MENU_ITEMS[0]);
+    const [view, setView] = useState('main');
 
     return (
         <AnimatePresence>
@@ -71,56 +79,152 @@ export default function SideMenu({ isOpen, onClose }) {
                         {/* Header */}
                         <div className="flex justify-between items-center p-5 md:p-12">
                             <ThemeToggle />
-                            <button onClick={onClose} className="flex items-center gap-3 text-xs font-bold tracking-[0.2em] hover:text-gold-400 transition-colors text-foreground">
-                                <div className="p-2 border border-border rounded-full hover:border-gold-400 transition-colors">
-                                    <X size={14} />
-                                </div>
-                                <span className="hidden md:block">CLOSE</span>
-                            </button>
+                            <div className="flex items-center gap-6">
+                                <AnimatePresence>
+                                    {view === 'projects' && (
+                                        <motion.button
+                                            initial={{ opacity: 0, x: 20 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            exit={{ opacity: 0, x: 20 }}
+                                            onClick={() => setView('main')}
+                                            className="flex items-center gap-2 text-xs font-bold tracking-[0.2em] hover:text-gold-400 transition-colors text-foreground uppercase"
+                                        >
+                                            <ChevronLeft size={16} />
+                                            <span className="hidden md:block">BACK</span>
+                                        </motion.button>
+                                    )}
+                                </AnimatePresence>
+                                <button onClick={onClose} className="flex items-center gap-3 text-xs font-bold tracking-[0.2em] hover:text-gold-400 transition-colors text-foreground">
+                                    <div className="p-2 border border-border rounded-full hover:border-gold-400 transition-colors">
+                                        <X size={14} />
+                                    </div>
+                                    <span className="hidden md:block">CLOSE</span>
+                                </button>
+                            </div>
                         </div>
 
                         {/* Nav List - Mobile & Desktop */}
-                        <div className="flex-1 px-8 md:px-24 flex flex-col justify-center space-y-6 md:space-y-8">
-                            <motion.div
-                                initial="hidden"
-                                animate="show"
-                                exit="hidden"
-                                variants={{
-                                    hidden: { opacity: 0 },
-                                    show: {
-                                        opacity: 1,
-                                        transition: {
-                                            staggerChildren: 0.1,
-                                            delayChildren: 0.1
-                                        }
-                                    }
-                                }}
-                            >
-                                {MENU_ITEMS.map((item) => (
+                        <div className="flex-1 px-8 md:px-24 flex flex-col justify-center relative overflow-hidden">
+                            <AnimatePresence mode="wait">
+                                {view === 'main' ? (
                                     <motion.div
-                                        key={item.id}
+                                        key="main-menu"
+                                        initial="hidden"
+                                        animate="show"
+                                        exit="hidden"
                                         variants={{
-                                            hidden: { opacity: 0, x: -20 },
-                                            show: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } }
+                                            hidden: { opacity: 0, x: -50 },
+                                            show: {
+                                                opacity: 1,
+                                                x: 0,
+                                                transition: {
+                                                    staggerChildren: 0.1,
+                                                    delayChildren: 0.1,
+                                                    ease: "circOut"
+                                                }
+                                            }
                                         }}
-                                        onMouseEnter={() => setHoveredItem(item)}
-                                        className="mb-4 md:mb-6"
+                                        className="flex flex-col space-y-6 md:space-y-8"
                                     >
-                                        <Link
-                                            href={item.href}
-                                            onClick={onClose}
-                                            className={`group block text-4xl md:text-6xl font-serif tracking-tight transition-all duration-500 ease-out ${hoveredItem.id === item.id ? "text-gold-400 translate-x-4 md:translate-x-6" : "text-muted-foreground hover:text-foreground"}`}
-                                        >
-                                            <span className="flex items-center gap-4">
-                                                {item.label}
-                                                <span className={`opacity-0 -translate-x-4 transition-all duration-500 group-hover:opacity-100 group-hover:translate-x-0`}>
-                                                    <ArrowRight size={24} className="-rotate-45" />
-                                                </span>
-                                            </span>
-                                        </Link>
+                                        {MENU_ITEMS.map((item) => (
+                                            <motion.div
+                                                key={item.id}
+                                                variants={{
+                                                    hidden: { opacity: 0, x: -100 },
+                                                    show: { opacity: 1, x: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+                                                }}
+                                                onMouseEnter={() => setHoveredItem(item)}
+                                                className="block text-right"
+                                            >
+                                                {item.id === "projects" ? (
+                                                    <button
+                                                        onClick={() => setView('projects')}
+                                                        className={`group block text-4xl md:text-6xl font-serif tracking-tight transition-all duration-500 ease-out text-right w-full ${hoveredItem.id === item.id ? "text-gold-400 -translate-x-4 md:-translate-x-10" : "text-muted-foreground hover:text-foreground"}`}
+                                                    >
+                                                        <span className="flex items-center justify-end w-full gap-4 md:gap-6">
+                                                            <ChevronRight size={32} className={`text-gold-400 transition-transform duration-500`} />
+                                                            <span className="flex items-center gap-4">
+                                                                {item.label}
+                                                            </span>
+                                                        </span>
+                                                    </button>
+                                                ) : (
+                                                    <Link
+                                                        href={item.href}
+                                                        onClick={onClose}
+                                                        className={`group block text-4xl md:text-6xl font-serif tracking-tight transition-all duration-500 ease-out text-right w-full ${hoveredItem.id === item.id ? "text-gold-400 -translate-x-4 md:-translate-x-10" : "text-muted-foreground hover:text-foreground"}`}
+                                                    >
+                                                        <span className="flex items-center justify-end gap-4">
+                                                            {item.label}
+                                                            <span className={`opacity-0 translate-x-4 transition-all duration-500 group-hover:opacity-100 group-hover:translate-x-0`}>
+                                                                <ArrowRight size={24} className="-rotate-45" />
+                                                            </span>
+                                                        </span>
+                                                    </Link>
+                                                )}
+                                            </motion.div>
+                                        ))}
                                     </motion.div>
-                                ))}
-                            </motion.div>
+                                ) : (
+                                    <motion.div
+                                        key="projects-menu"
+                                        initial="hidden"
+                                        animate="show"
+                                        exit="hidden"
+                                        variants={{
+                                            hidden: { opacity: 0, x: -50 },
+                                            show: {
+                                                opacity: 1,
+                                                x: 0,
+                                                transition: {
+                                                    staggerChildren: 0.15,
+                                                    delayChildren: 0.2,
+                                                    ease: "circOut"
+                                                }
+                                            }
+                                        }}
+                                        className="flex flex-col h-full justify-center overflow-hidden"
+                                    >
+                                        <div className="flex flex-col gap-4 w-full h-full flex-1 min-h-0 pb-20 md:pb-0 pt-4">
+                                            {[
+                                                { label: "UPCOMING PROJECTS", status: "Upcoming", img: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1000&auto=format&fit=crop", desc: "Future landmarks" },
+                                                { label: "ONGOING PROJECTS", status: "Ongoing", img: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1000&auto=format&fit=crop", desc: "Taking shape" },
+                                                { label: "COMPLETED PROJECTS", status: "Completed", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000&auto=format&fit=crop", desc: "Delivered excellence" },
+                                            ].map((sub, idx) => (
+                                                <Link
+                                                    key={sub.label}
+                                                    href={`/projects?status=${sub.status}`}
+                                                    onClick={onClose}
+                                                    className="w-full flex-1 min-h-0 block"
+                                                >
+                                                    <motion.div
+                                                        variants={{
+                                                            hidden: { opacity: 0, x: -100 },
+                                                            show: { opacity: 1, x: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+                                                        }}
+                                                        whileHover={{ scale: 1.02 }}
+                                                        whileTap={{ scale: 0.98 }}
+                                                        className="group relative w-full h-full overflow-hidden transition-all duration-500 bg-black/20 rounded-lg"
+                                                    >
+                                                        <img src={sub.img} alt={sub.label} className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 brightness-[0.7] group-hover:brightness-90" />
+
+                                                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-500" />
+
+                                                        <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end items-end">
+                                                            <div className="flex flex-col items-end gap-1 md:gap-2">
+                                                                <span className="text-[10px] md:text-xs text-gold-400/80 uppercase tracking-widest">{sub.desc}</span>
+                                                                <h3 className="text-xl md:text-3xl font-sans tracking-[0.1em] text-white group-hover:text-gold-400 transition-colors uppercase font-light text-right">
+                                                                    {sub.label}
+                                                                </h3>
+                                                            </div>
+                                                        </div>
+                                                    </motion.div>
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
                         </div>
 
                         {/* Footer */}

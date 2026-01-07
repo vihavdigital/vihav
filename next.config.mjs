@@ -7,6 +7,11 @@ const nextConfig = {
         hostname: 'www.vihav.com',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        pathname: '/**',
+      },
     ],
   },
 };

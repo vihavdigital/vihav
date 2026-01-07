@@ -68,6 +68,7 @@ export default function Footer() {
                                 { name: "Our Story", link: "/about" },
                                 { name: "Leadership", link: "/about" },
                                 { name: "Awards", link: "/awards" },
+                                { name: "One Vihav Privilege", link: "/onevihav" },
                                 { name: "Sustainability", link: "#" },
                                 { name: "Careers", link: "#" },
                                 { name: "Contact", link: "/contact" }
@@ -124,11 +125,15 @@ export default function Footer() {
 
                 {/* 3. Bottom Bar */}
                 <div className="flex flex-col md:flex-row justify-between items-center text-muted-foreground text-xs uppercase tracking-widest border-t border-border pt-8">
-                    <p>&copy; {new Date().getFullYear()} Vihav Group.</p>
+                    <div className="flex flex-col md:flex-row gap-4 items-center">
+                        <p>&copy; {new Date().getFullYear()} Vihav Group.</p>
+                        <span className="hidden md:block w-1 h-1 bg-muted-foreground rounded-full"></span>
+                        <p className="opacity-70 hover:opacity-100 transition-opacity">Developed by SK Developers</p>
+                    </div>
                     <div className="flex space-x-8 mt-4 md:mt-0">
-                        <Link href="#" className="hover:text-foreground transition-colors">Privacy Policy</Link>
-                        <Link href="#" className="hover:text-foreground transition-colors">Terms of Use</Link>
-                        <Link href="#" className="hover:text-foreground transition-colors">Cookie Policy</Link>
+                        <Link href="/privacy-policy" className="hover:text-foreground transition-colors">Privacy Policy</Link>
+                        <Link href="/terms-and-conditions" className="hover:text-foreground transition-colors">Terms of Use</Link>
+                        {/* <Link href="#" className="hover:text-foreground transition-colors">Cookie Policy</Link> */}
                     </div>
                 </div>
 
