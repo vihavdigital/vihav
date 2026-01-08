@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { X, ChevronRight, ArrowRight, ChevronLeft, Instagram, Facebook, Linkedin, Twitter, Youtube } from "lucide-react";
@@ -110,13 +111,18 @@ export default function SideMenu({ isOpen, onClose }) {
                                             exit={{ opacity: 0, x: 20 }}
                                             onClick={() => setView('main')}
                                             className="flex items-center gap-2 text-xs font-bold tracking-[0.2em] hover:text-gold-400 transition-colors text-foreground uppercase"
+                                            aria-label="Back to main menu"
                                         >
                                             <ChevronLeft size={16} />
                                             <span className="hidden md:block">BACK</span>
                                         </motion.button>
                                     )}
                                 </AnimatePresence>
-                                <button onClick={onClose} className="flex items-center gap-3 text-xs font-bold tracking-[0.2em] hover:text-gold-400 transition-colors text-foreground">
+                                <button
+                                    onClick={onClose}
+                                    className="flex items-center gap-3 text-xs font-bold tracking-[0.2em] hover:text-gold-400 transition-colors text-foreground"
+                                    aria-label="Close menu"
+                                >
                                     <div className="p-2 border border-border rounded-full hover:border-gold-400 transition-colors">
                                         <X size={14} />
                                     </div>
@@ -161,7 +167,7 @@ export default function SideMenu({ isOpen, onClose }) {
                                                 {item.id === "projects" ? (
                                                     <button
                                                         onClick={() => setView('projects')}
-                                                        className={`group flex items-center justify-end w-full gap-3 md:gap-4 text-2xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-serif tracking-tight transition-all duration-500 ease-out ${hoveredItem.id === item.id ? "text-gold-400 -translate-x-4 md:-translate-x-10" : "text-muted-foreground hover:text-foreground"}`}
+                                                        className={`group flex items-center justify-end w-full gap-3 md:gap-4 text-3xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-serif tracking-tight transition-all duration-500 ease-out ${hoveredItem.id === item.id ? "text-gold-400 -translate-x-4 md:-translate-x-10" : "text-muted-foreground hover:text-foreground"}`}
                                                     >
                                                         <span className="relative">
                                                             {item.label}
@@ -175,7 +181,7 @@ export default function SideMenu({ isOpen, onClose }) {
                                                     <Link
                                                         href={item.href}
                                                         onClick={onClose}
-                                                        className={`group flex items-center justify-end w-full gap-3 md:gap-4 text-2xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-serif tracking-tight transition-all duration-500 ease-out ${hoveredItem.id === item.id ? "text-gold-400 -translate-x-4 md:-translate-x-10" : "text-muted-foreground hover:text-foreground"}`}
+                                                        className={`group flex items-center justify-end w-full gap-3 md:gap-4 text-3xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-serif tracking-tight transition-all duration-500 ease-out ${hoveredItem.id === item.id ? "text-gold-400 -translate-x-4 md:-translate-x-10" : "text-muted-foreground hover:text-foreground"}`}
                                                     >
                                                         <span className="relative">
                                                             {item.label}
@@ -226,11 +232,13 @@ export default function SideMenu({ isOpen, onClose }) {
                                                         onClick={onClose}
                                                         className="group relative w-full h-full overflow-hidden transition-all duration-500 block bg-secondary rounded-lg border border-border"
                                                     >
-                                                        {/* Background Image */}
-                                                        <img
+                                                        {/* Background Image - Optimized */}
+                                                        <Image
                                                             src={item.image}
                                                             alt={item.label}
-                                                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 brightness-[0.7] group-hover:brightness-90"
+                                                            fill
+                                                            className="object-cover transition-transform duration-1000 group-hover:scale-110 brightness-[0.7] group-hover:brightness-90"
+                                                            sizes="(max-width: 768px) 100vw, 33vw"
                                                         />
 
                                                         {/* Gradient Overlay */}
@@ -260,11 +268,11 @@ export default function SideMenu({ isOpen, onClose }) {
                                 {/* Socials */}
                                 <div className="flex gap-4">
                                     {[
-                                        { icon: Instagram, href: "https://www.instagram.com/vihavgroup" },
-                                        { icon: Facebook, href: "https://www.facebook.com/vihavgroup/" },
-                                        { icon: Linkedin, href: "https://in.linkedin.com/company/vihav-group" },
-                                        { icon: Twitter, href: "https://x.com/vihavgroup" },
-                                        { icon: Youtube, href: "https://www.youtube.com/@vihavgroup" }
+                                        { icon: Instagram, href: "https://www.instagram.com/vihavgroup", label: "Instagram" },
+                                        { icon: Facebook, href: "https://www.facebook.com/vihavgroup/", label: "Facebook" },
+                                        { icon: Linkedin, href: "https://in.linkedin.com/company/vihav-group", label: "LinkedIn" },
+                                        { icon: Twitter, href: "https://x.com/vihavgroup", label: "Twitter" },
+                                        { icon: Youtube, href: "https://www.youtube.com/@vihavgroup", label: "YouTube" }
                                     ].map((social, idx) => (
                                         <a
                                             key={idx}
@@ -272,6 +280,7 @@ export default function SideMenu({ isOpen, onClose }) {
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="text-muted-foreground hover:text-gold-400 transition-colors"
+                                            aria-label={social.label}
                                         >
                                             <social.icon size={18} />
                                         </a>
@@ -304,7 +313,14 @@ export default function SideMenu({ isOpen, onClose }) {
                                 transition={{ duration: 0.8, ease: "easeOut" }}
                                 className="absolute inset-0"
                             >
-                                <img src={hoveredItem.image} alt={hoveredItem.label} className="w-full h-full object-cover brightness-[0.6]" />
+                                <Image
+                                    src={hoveredItem.image}
+                                    alt={hoveredItem.label}
+                                    fill
+                                    className="object-cover brightness-[0.6]"
+                                    sizes="50vw"
+                                    priority
+                                />
                                 <div className="absolute inset-0 bg-gradient-to-t from-luxury-black/80 via-transparent to-transparent" />
 
                                 {/* Label Overlay */}
