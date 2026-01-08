@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Suspense } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import DealUtsavHero from "@/components/home/DealUtsavHero"; // Specialized Hero
@@ -68,34 +69,36 @@ export default function DealUtsavPage() {
 
             {/* Residential Projects - Real Data */}
             <div className="relative z-10">
-                <ProjectSection
-                    title="Participating Residences"
-                    subtitle="Festival Collections"
-                    align="left"
-                    projects={residentialProjects.map(p => ({
-                        title: p.title,
-                        location: p.location,
-                        type: p.type,
-                        price: "Special Festival Pricing", // Overriding price for curiosity
-                        slug: p.slug,
-                        image: p.heroImage
-                    }))}
-                />
+                <Suspense fallback={<div className="h-screen flex items-center justify-center text-gold-400">Loading...</div>}>
+                    <ProjectSection
+                        title="Participating Residences"
+                        subtitle="Festival Collections"
+                        align="left"
+                        projects={residentialProjects.map(p => ({
+                            title: p.title,
+                            location: p.location,
+                            type: p.type,
+                            price: "Special Festival Pricing", // Overriding price for curiosity
+                            slug: p.slug,
+                            image: p.heroImage
+                        }))}
+                    />
 
-                {/* Commercial Projects - Real Data */}
-                <ProjectSection
-                    title="Commercial Opportunities"
-                    subtitle="Business Growth Festival"
-                    align="right"
-                    projects={commercialProjects.map(p => ({
-                        title: p.title,
-                        location: p.location,
-                        type: p.type,
-                        price: "Festival Benefits Apply", // Overriding price
-                        slug: p.slug,
-                        image: p.heroImage
-                    }))}
-                />
+                    {/* Commercial Projects - Real Data */}
+                    <ProjectSection
+                        title="Commercial Opportunities"
+                        subtitle="Business Growth Festival"
+                        align="right"
+                        projects={commercialProjects.map(p => ({
+                            title: p.title,
+                            location: p.location,
+                            type: p.type,
+                            price: "Festival Benefits Apply", // Overriding price
+                            slug: p.slug,
+                            image: p.heroImage
+                        }))}
+                    />
+                </Suspense>
             </div>
 
             {/* Immersive Deal Highlight Section */}
