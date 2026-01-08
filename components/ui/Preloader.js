@@ -18,23 +18,22 @@ export default function Preloader() {
         // Prevent scrolling
         document.body.style.overflow = 'hidden';
 
-        // Counter Animation with improved easing
+        // Counter Animation
         let current = 0;
         const interval = setInterval(() => {
-            current += Math.floor(Math.random() * 8) + 1; // Slower, smoother increment
+            current += Math.floor(Math.random() * 3) + 1; // Smooth increment
             if (current > 100) current = 100;
             setCounter(current);
 
             if (current === 100) {
                 clearInterval(interval);
-                // Exit trigger after completion
                 setTimeout(() => {
                     setIsLoading(false);
                     sessionStorage.setItem("hasSeenPreloader", "true");
                     document.body.style.overflow = 'unset';
-                }, 1000);
+                }, 800);
             }
-        }, 40);
+        }, 20);
 
         return () => {
             clearInterval(interval);
@@ -42,14 +41,14 @@ export default function Preloader() {
         };
     }, []);
 
-    // Split background into 5 columns
+    // Split background into 5 columns for the shutter effect
     const columns = [0, 1, 2, 3, 4];
 
     return (
         <AnimatePresence mode="wait">
             {isLoading && (
                 <div className="fixed inset-0 z-[9999] flex items-center justify-center">
-                    {/* 1. Shutter Columns (Background) */}
+                    {/* 1. Shutter Columns (Background) - White Theme */}
                     <div className="absolute inset-0 flex pointer-events-none">
                         {columns.map((col) => (
                             <motion.div
@@ -64,7 +63,9 @@ export default function Preloader() {
                                     }
                                 }}
                                 className="h-full w-full bg-[#ffffff] relative border-r border-black/5 last:border-none"
-                            />
+                            >
+                                <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-30" />
+                            </motion.div>
                         ))}
                     </div>
 
@@ -77,59 +78,49 @@ export default function Preloader() {
                             transition: { duration: 0.5, ease: "easeInOut", delay: 0.2 }
                         }}
                     >
-                        {/* Logo Construction Effect */}
-                        <div className="relative w-48 md:w-64 h-auto aspect-[3/2] flex items-center justify-center overflow-hidden">
-                            {/* Base Faded Logo */}
-                            <img
-                                src="/vihav-logo-new.png"
+                        {/* Logo Animation */}
+                        <div className="relative mb-12">
+                            <motion.img
+                                src="/images/project-images/project-logos/vihav-group-logo.svg"
                                 alt="Vihav Group"
-                                className="absolute inset-0 w-full h-full object-contain opacity-20 filter grayscale"
+                                className="w-48 md:w-64 h-auto object-contain"
+                                animate={{
+                                    scale: [0.98, 1.02, 0.98]
+                                }}
+                                transition={{
+                                    duration: 3,
+                                    repeat: Infinity,
+                                    ease: "easeInOut"
+                                }}
                             />
-
-                            {/* Revealing Logo (Building Effect) */}
-                            <motion.div
-                                className="absolute inset-0 overflow-hidden"
-                                initial={{ height: "0%" }}
-                                animate={{ height: `${counter}%` }}
-                                transition={{ type: "tween", ease: "linear", duration: 0.1 }} // Immediate response to counter
-                            >
-                                <img
-                                    src="/vihav-logo-new.png"
-                                    alt="Vihav Group"
-                                    className="w-full h-full object-contain object-bottom absolute bottom-0"
-                                />
-                                {/* Shimmer Line */}
-                                <div className="absolute top-0 left-0 w-full h-[2px] bg-gold-400 shadow-[0_0_15px_rgba(212,175,55,0.8)]"></div>
-                            </motion.div>
+                            {/* Gold Glow behind logo (Subtle on white) */}
+                            <div className="absolute inset-0 bg-gold-400/10 blur-[60px] rounded-full -z-10" />
                         </div>
 
-                        {/* Text Below */}
-                        <div className="mt-8 text-center space-y-2 overflow-hidden">
+                        {/* Progress Bar Container */}
+                        <div className="w-64 h-[2px] bg-black/5 rounded-full overflow-hidden relative">
                             <motion.div
-                                initial={{ y: 20, opacity: 0 }}
-                                animate={{ y: 0, opacity: 1 }}
-                                transition={{ delay: 0.2 }}
-                                className="text-luxury-charcoal text-xs md:text-sm tracking-[0.4em] uppercase font-light"
-                            >
-                                Building Excellence
-                            </motion.div>
-
-                            {/* Progress Bar Line */}
-                            <div className="w-32 h-[1px] bg-black/10 mx-auto mt-4 relative overflow-hidden">
-                                <motion.div
-                                    className="absolute left-0 top-0 h-full bg-gold-400"
-                                    style={{ width: `${counter}%` }}
-                                />
-                            </div>
+                                className="absolute left-0 top-0 h-full bg-gradient-to-r from-gold-600 via-gold-300 to-gold-600"
+                                initial={{ width: "0%" }}
+                                animate={{ width: `${counter}%` }}
+                                transition={{ ease: "linear", duration: 0.1 }} // Immediate feedback
+                            />
                         </div>
 
-                        {/* Percentage */}
-                        <motion.div
-                            className="absolute -bottom-24 right-0 text-7xl md:text-9xl font-serif font-bold text-black/5 tabular-nums leading-none select-none"
+                        {/* Percentage Text */}
+                        <div className="mt-4 flex items-center gap-2">
+                            <span className="text-gold-400 font-serif text-lg tracking-widest">{counter}%</span>
+                        </div>
+
+                        {/* Tagline */}
+                        <motion.p
+                            className="mt-8 text-black/40 uppercase tracking-[0.5em] text-[10px]"
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.5 }}
                         >
-                            {counter}%
-                        </motion.div>
-
+                            Defining Luxury
+                        </motion.p>
                     </motion.div>
                 </div>
             )}
