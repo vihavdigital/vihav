@@ -19,25 +19,52 @@ export default function OverseasProjects() {
 
     return (
         <section className="py-24 container mx-auto px-6 min-h-screen">
-            <div className="text-center mb-12">
-                <span className="text-gold-400 uppercase tracking-widest text-xs font-bold mb-2 block">Our Collection</span>
-                <h2 className="text-4xl md:text-5xl font-serif mb-8">A Home for Every Dream</h2>
-            </div>
+            <div className="flex flex-col items-center mb-12 gap-8 relative z-40">
+                <div className="text-center w-full">
+                    <span className="text-gold-400 uppercase tracking-[0.25em] text-xs font-bold mb-4 block">Our Collection</span>
+                    <h2 className="text-4xl md:text-5xl text-foreground font-serif mb-8">A Home for Every Dream</h2>
+                </div>
 
-            {/* Sticky Filter Bar */}
-            <div className="sticky top-[50px] md:top-[64px] z-40 bg-neutral-950/90 backdrop-blur-xl border-y border-white/5 py-4 mb-12 transition-all duration-300">
-                <div className="container mx-auto px-6 flex flex-col-reverse md:flex-row items-center gap-4 justify-between">
+                {/* Filter Bar: Matching ProjectSection Design */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    className="w-full flex flex-col md:flex-row justify-between items-center gap-6"
+                >
+                    {/* Left: Category Tabs (Pill Switcher) */}
+                    <div className="flex bg-secondary p-1 rounded-full border border-border">
+                        {["All", "Residential", "Commercial"].map((cat) => (
+                            <button
+                                key={cat}
+                                onClick={() => { setActiveCategory(cat); setActiveType("All"); setActivePossession("All"); }}
+                                className="relative px-6 md:px-8 py-2 rounded-full text-sm uppercase tracking-widest transition-all outline-none"
+                            >
+                                {activeCategory === cat && (
+                                    <motion.div
+                                        layoutId="activeCategoryOverseas"
+                                        className="absolute inset-0 bg-gold-400 rounded-full shadow-lg"
+                                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                                    />
+                                )}
+                                <span className={`relative z-10 transition-colors duration-200 ${activeCategory === cat ? "text-luxury-black font-bold" : "text-muted-foreground hover:text-foreground"
+                                    }`}>
+                                    {cat}
+                                </span>
+                            </button>
+                        ))}
+                    </div>
 
-                    {/* Filters (Left on Desktop) */}
-                    <div className="flex gap-4 w-full md:w-auto overflow-x-auto scrollbar-hide pb-2 md:pb-0">
-                        {/* Type Dropdown */}
-                        {(activeCategory === "Residential" || activeCategory === "All") && (
+                    {/* Right: Dropdown Filters */}
+                    <div className="flex flex-row flex-wrap justify-center md:justify-end gap-4 w-full md:w-auto">
+                        {activeCategory === "Residential" && (
                             <FilterDropdown
                                 label="Unit Type"
                                 value={activeType}
                                 options={FILTER_TYPES}
                                 onChange={setActiveType}
-                                className="min-w-[180px]"
+                                className="flex-1 min-w-[140px] md:w-48 md:flex-none md:min-w-0"
                             />
                         )}
                         {activeCategory === "Commercial" && (
@@ -46,34 +73,19 @@ export default function OverseasProjects() {
                                 value={activeType}
                                 options={FILTER_COMMERCIAL_TYPES}
                                 onChange={setActiveType}
-                                className="min-w-[180px]"
+                                className="flex-1 min-w-[140px] md:w-48 md:flex-none md:min-w-0"
                             />
                         )}
+
                         <FilterDropdown
-                            label="Possession"
+                            label="Possession Status"
                             value={activePossession}
                             options={FILTER_POSSESSION}
                             onChange={setActivePossession}
-                            className="min-w-[180px]"
+                            className="flex-1 min-w-[140px] md:w-48 md:flex-none md:min-w-0"
                         />
                     </div>
-
-                    {/* Category Tabs (Right on Desktop) */}
-                    <div className="flex bg-white/5 p-1 rounded-full border border-white/10 overflow-x-auto max-w-full">
-                        {["All", "Residential", "Commercial"].map(type => (
-                            <button
-                                key={type}
-                                onClick={() => { setActiveCategory(type); setActiveType("All"); setActivePossession("All"); }}
-                                className={`px-6 py-3 rounded-full text-xs md:text-sm uppercase tracking-widest transition-all duration-300 whitespace-nowrap border ${activeCategory === type
-                                    ? "bg-gold-500 border-gold-500 text-black font-bold shadow-lg shadow-gold-900/40"
-                                    : "border-transparent text-gray-400 hover:text-white"
-                                    }`}
-                            >
-                                {type}
-                            </button>
-                        ))}
-                    </div>
-                </div>
+                </motion.div>
             </div>
 
             <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -95,13 +107,13 @@ export default function OverseasProjects() {
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            className="col-span-full py-20 text-center border rounded-2xl border-white/10 bg-white/5"
+                            className="col-span-full py-20 text-center border rounded-2xl border-border bg-secondary/50"
                         >
-                            <h3 className="text-2xl text-white font-serif mb-2">No Projects Match</h3>
-                            <p className="text-gray-400">Try adjusting your filters.</p>
+                            <h3 className="text-2xl text-foreground font-serif mb-2">No Projects Match</h3>
+                            <p className="text-muted-foreground">Try adjusting your filters.</p>
                             <button
                                 onClick={() => { setActiveCategory("All"); setActiveType("All"); setActivePossession("All"); }}
-                                className="mt-6 text-gold-400 hover:text-white underline underline-offset-4"
+                                className="mt-6 text-gold-400 hover:text-foreground underline underline-offset-4"
                             >
                                 Clear All Filters
                             </button>

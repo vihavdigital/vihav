@@ -107,11 +107,11 @@ export default function Footer() {
                         <h4 className="text-gold-400 font-bold uppercase tracking-[0.2em] text-xs mb-8">Connect</h4>
                         <div className="flex flex-wrap gap-4">
                             {[
-                                { icon: Instagram, href: "#" },
-                                { icon: Facebook, href: "#" },
-                                { icon: Linkedin, href: "#" },
-                                { icon: Twitter, href: "#" },
-                                { icon: Youtube, href: "#" }
+                                { icon: Instagram, href: "https://www.instagram.com/vihavgroup" },
+                                { icon: Facebook, href: "https://www.facebook.com/vihavgroup/" },
+                                { icon: Linkedin, href: "https://in.linkedin.com/company/vihav-group" },
+                                { icon: Twitter, href: "https://x.com/vihavgroup" },
+                                { icon: Youtube, href: "https://www.youtube.com/@vihavgroup" }
                             ].map((social, idx) => (
                                 <MagneticWrapper key={idx}>
                                     <a href={social.href} className="w-12 h-12 rounded-full border border-border flex items-center justify-center text-foreground hover:bg-gold-400 hover:border-gold-400 hover:text-black transition-all duration-300">

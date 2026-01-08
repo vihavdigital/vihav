@@ -8,12 +8,12 @@ export default function Preloader() {
     const [counter, setCounter] = useState(0);
 
     useEffect(() => {
-        // Check session storage
-        const hasSeen = sessionStorage.getItem("hasSeenPreloader");
-        if (hasSeen) {
-            setIsLoading(false);
-            return;
-        }
+        // Check session storage - DISABLED FOR TESTING/VISIBILITY
+        // const hasSeen = sessionStorage.getItem("hasSeenPreloader");
+        // if (hasSeen) {
+        //     setIsLoading(false);
+        //     return;
+        // }
 
         // Prevent scrolling
         document.body.style.overflow = 'hidden';
@@ -33,7 +33,7 @@ export default function Preloader() {
                     document.body.style.overflow = 'unset';
                 }, 800);
             }
-        }, 20);
+        }, 40); // Slower counter (40ms) for longer animation display
 
         return () => {
             clearInterval(interval);
@@ -63,10 +63,27 @@ export default function Preloader() {
                                     }
                                 }}
                                 className="h-full w-full bg-[#ffffff] relative border-r border-black/5 last:border-none"
-                            >
-                                <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-30" />
-                            </motion.div>
+                            />
                         ))}
+                    </div>
+
+                    {/* Skyline Animation - "Slow Vertical Build" */}
+                    <div className="absolute bottom-0 left-0 w-full h-[40vh] md:h-[50vh] flex items-end justify-center pointer-events-none overflow-hidden z-0">
+                        <motion.img
+                            src="/images/new_white_skyline.png"
+                            alt="Skyline"
+                            className="w-full h-full object-contain object-bottom opacity-40 invert"
+                            initial={{ clipPath: "inset(100% 0 0 0)" }}
+                            animate={{
+                                clipPath: "inset(0% 0 0 0)",
+                                transition: {
+                                    duration: 3.5,
+                                    ease: [0.22, 1, 0.36, 1],
+                                    delay: 0.2
+                                }
+                            }}
+                            exit={{ opacity: 0, scale: 1.05, transition: { duration: 0.8 } }}
+                        />
                     </div>
 
                     {/* 2. Content Overlay */}

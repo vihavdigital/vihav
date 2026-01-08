@@ -2,10 +2,8 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { X, ChevronRight, ArrowRight, ChevronLeft } from "lucide-react";
+import { X, ChevronRight, ArrowRight, ChevronLeft, Instagram, Facebook, Linkedin, Twitter, Youtube } from "lucide-react";
 import { useState } from "react";
-import { Button } from "@/components/ui/Button";
-
 import ThemeToggle from "@/components/theme/ThemeToggle";
 
 const MENU_ITEMS = [
@@ -20,7 +18,7 @@ const MENU_ITEMS = [
         id: "projects",
         label: "PROJECTS",
         href: "/projects",
-        image: "https://www.vihav.com/wp-content/uploads/KS51-Elevation-1-e1761809057612.jpg", // Kept real image
+        image: "https://www.vihav.com/wp-content/uploads/KS51-Elevation-1-e1761809057612.jpg",
         desc: "Explore our residential and commercial landmarks."
     },
     {
@@ -57,6 +55,30 @@ const MENU_ITEMS = [
         href: "#",
         image: "https://images.unsplash.com/photo-1486325212027-8081e485255e?q=80&w=2000&auto=format&fit=crop",
         desc: "Get in touch with us."
+    },
+];
+
+const PROJECT_ITEMS = [
+    {
+        id: "upcoming",
+        label: "UPCOMING PROJECTS",
+        href: "/projects?status=Upcoming",
+        image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1000&auto=format&fit=crop",
+        desc: "Future landmarks in the making."
+    },
+    {
+        id: "ongoing",
+        label: "ONGOING PROJECTS",
+        href: "/projects?status=Ongoing",
+        image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1000&auto=format&fit=crop",
+        desc: "Witness our vision taking shape."
+    },
+    {
+        id: "completed",
+        label: "COMPLETED PROJECTS",
+        href: "/projects?status=Completed",
+        image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000&auto=format&fit=crop",
+        desc: "Delivered excellence across the city."
     },
 ];
 
@@ -104,7 +126,7 @@ export default function SideMenu({ isOpen, onClose }) {
                         </div>
 
                         {/* Nav List - Mobile & Desktop */}
-                        <div className="flex-1 px-8 md:px-24 flex flex-col justify-center relative overflow-hidden">
+                        <div className="flex-1 px-6 md:px-12 lg:px-16 xl:px-24 flex flex-col justify-center relative overflow-hidden">
                             <AnimatePresence mode="wait">
                                 {view === 'main' ? (
                                     <motion.div
@@ -124,7 +146,7 @@ export default function SideMenu({ isOpen, onClose }) {
                                                 }
                                             }
                                         }}
-                                        className="flex flex-col space-y-6 md:space-y-8"
+                                        className="flex flex-col space-y-4 md:space-y-6"
                                     >
                                         {MENU_ITEMS.map((item) => (
                                             <motion.div
@@ -139,26 +161,28 @@ export default function SideMenu({ isOpen, onClose }) {
                                                 {item.id === "projects" ? (
                                                     <button
                                                         onClick={() => setView('projects')}
-                                                        className={`group block text-4xl md:text-6xl font-serif tracking-tight transition-all duration-500 ease-out text-right w-full ${hoveredItem.id === item.id ? "text-gold-400 -translate-x-4 md:-translate-x-10" : "text-muted-foreground hover:text-foreground"}`}
+                                                        className={`group flex items-center justify-end w-full gap-3 md:gap-4 text-2xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-serif tracking-tight transition-all duration-500 ease-out ${hoveredItem.id === item.id ? "text-gold-400 -translate-x-4 md:-translate-x-10" : "text-muted-foreground hover:text-foreground"}`}
                                                     >
-                                                        <span className="flex items-center justify-end w-full gap-4 md:gap-6">
-                                                            <ChevronRight size={32} className={`text-gold-400 transition-transform duration-500`} />
-                                                            <span className="flex items-center gap-4">
-                                                                {item.label}
-                                                            </span>
+                                                        <span className="relative">
+                                                            {item.label}
+                                                            <ChevronLeft
+                                                                size={24}
+                                                                className={`absolute right-full mr-4 top-1/2 -translate-y-1/2 transition-colors duration-300 md:w-8 md:h-8 ${hoveredItem.id === item.id ? "text-gold-400" : "text-muted-foreground"}`}
+                                                            />
                                                         </span>
                                                     </button>
                                                 ) : (
                                                     <Link
                                                         href={item.href}
                                                         onClick={onClose}
-                                                        className={`group block text-4xl md:text-6xl font-serif tracking-tight transition-all duration-500 ease-out text-right w-full ${hoveredItem.id === item.id ? "text-gold-400 -translate-x-4 md:-translate-x-10" : "text-muted-foreground hover:text-foreground"}`}
+                                                        className={`group flex items-center justify-end w-full gap-3 md:gap-4 text-2xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-serif tracking-tight transition-all duration-500 ease-out ${hoveredItem.id === item.id ? "text-gold-400 -translate-x-4 md:-translate-x-10" : "text-muted-foreground hover:text-foreground"}`}
                                                     >
-                                                        <span className="flex items-center justify-end gap-4">
+                                                        <span className="relative">
                                                             {item.label}
-                                                            <span className={`opacity-0 translate-x-4 transition-all duration-500 group-hover:opacity-100 group-hover:translate-x-0`}>
-                                                                <ArrowRight size={24} className="-rotate-45" />
-                                                            </span>
+                                                            <ArrowRight
+                                                                size={20}
+                                                                className={`absolute right-full mr-4 top-1/2 -translate-y-1/2 -rotate-45 transition-opacity duration-500 md:w-6 md:h-6 ${hoveredItem.id === item.id ? "opacity-100" : "opacity-0"}`}
+                                                            />
                                                         </span>
                                                     </Link>
                                                 )}
@@ -177,49 +201,52 @@ export default function SideMenu({ isOpen, onClose }) {
                                                 opacity: 1,
                                                 x: 0,
                                                 transition: {
-                                                    staggerChildren: 0.15,
-                                                    delayChildren: 0.2,
+                                                    staggerChildren: 0.1,
+                                                    delayChildren: 0.1,
                                                     ease: "circOut"
                                                 }
                                             }
                                         }}
-                                        className="flex flex-col h-full justify-center overflow-hidden"
+                                        className="flex flex-col h-full overflow-hidden"
                                     >
-                                        <div className="flex flex-col gap-4 w-full h-full flex-1 min-h-0 pb-20 md:pb-0 pt-4">
-                                            {[
-                                                { label: "UPCOMING PROJECTS", status: "Upcoming", img: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1000&auto=format&fit=crop", desc: "Future landmarks" },
-                                                { label: "ONGOING PROJECTS", status: "Ongoing", img: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1000&auto=format&fit=crop", desc: "Taking shape" },
-                                                { label: "COMPLETED PROJECTS", status: "Completed", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000&auto=format&fit=crop", desc: "Delivered excellence" },
-                                            ].map((sub, idx) => (
-                                                <Link
-                                                    key={sub.label}
-                                                    href={`/projects?status=${sub.status}`}
-                                                    onClick={onClose}
-                                                    className="w-full flex-1 min-h-0 block"
+                                        {/* Scrollable Container with explicit padding for safety */}
+                                        <div className="flex flex-col gap-4 w-full h-full flex-1 overflow-y-auto pb-20 pt-4 px-1 scrollbar-hide">
+                                            {PROJECT_ITEMS.map((item) => (
+                                                <motion.div
+                                                    key={item.id}
+                                                    variants={{
+                                                        hidden: { opacity: 0, x: -100 },
+                                                        show: { opacity: 1, x: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+                                                    }}
+                                                    onMouseEnter={() => setHoveredItem(item)}
+                                                    className="w-full flex-1 min-h-[160px] md:min-h-[200px] shrink-0 block"
                                                 >
-                                                    <motion.div
-                                                        variants={{
-                                                            hidden: { opacity: 0, x: -100 },
-                                                            show: { opacity: 1, x: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
-                                                        }}
-                                                        whileHover={{ scale: 1.02 }}
-                                                        whileTap={{ scale: 0.98 }}
-                                                        className="group relative w-full h-full overflow-hidden transition-all duration-500 bg-black/20 rounded-lg"
+                                                    <Link
+                                                        href={item.href}
+                                                        onClick={onClose}
+                                                        className="group relative w-full h-full overflow-hidden transition-all duration-500 block bg-secondary rounded-lg border border-border"
                                                     >
-                                                        <img src={sub.img} alt={sub.label} className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 brightness-[0.7] group-hover:brightness-90" />
+                                                        {/* Background Image */}
+                                                        <img
+                                                            src={item.image}
+                                                            alt={item.label}
+                                                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 brightness-[0.7] group-hover:brightness-90"
+                                                        />
 
+                                                        {/* Gradient Overlay */}
                                                         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-500" />
 
+                                                        {/* Content */}
                                                         <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end items-end">
                                                             <div className="flex flex-col items-end gap-1 md:gap-2">
-                                                                <span className="text-[10px] md:text-xs text-gold-400/80 uppercase tracking-widest">{sub.desc}</span>
-                                                                <h3 className="text-xl md:text-3xl font-sans tracking-[0.1em] text-white group-hover:text-gold-400 transition-colors uppercase font-light text-right">
-                                                                    {sub.label}
+                                                                <span className="text-[10px] md:text-xs text-gold-400/80 uppercase tracking-widest">{item.desc}</span>
+                                                                <h3 className="text-xl md:text-2xl lg:text-3xl font-sans tracking-[0.1em] text-white group-hover:text-gold-400 transition-colors uppercase font-light text-right">
+                                                                    {item.label}
                                                                 </h3>
                                                             </div>
                                                         </div>
-                                                    </motion.div>
-                                                </Link>
+                                                    </Link>
+                                                </motion.div>
                                             ))}
                                         </div>
                                     </motion.div>
@@ -227,11 +254,36 @@ export default function SideMenu({ isOpen, onClose }) {
                             </AnimatePresence>
                         </div>
 
-                        {/* Footer */}
-                        <div className="p-8 md:p-12 text-[10px] md:text-xs text-muted-foreground uppercase tracking-widest flex flex-wrap gap-6 md:gap-8">
-                            <Link href="#" className="hover:text-foreground transition-colors">Legal</Link>
-                            <Link href="#" className="hover:text-foreground transition-colors">Privacy</Link>
-                            <Link href="#" className="hover:text-foreground transition-colors">Enquire Dealer</Link>
+                        {/* Footer & Socials */}
+                        <div className="px-8 pb-8 md:px-12 md:pb-12 mt-auto">
+                            <div className="flex flex-row justify-between items-end">
+                                {/* Socials */}
+                                <div className="flex gap-4">
+                                    {[
+                                        { icon: Instagram, href: "https://www.instagram.com/vihavgroup" },
+                                        { icon: Facebook, href: "https://www.facebook.com/vihavgroup/" },
+                                        { icon: Linkedin, href: "https://in.linkedin.com/company/vihav-group" },
+                                        { icon: Twitter, href: "https://x.com/vihavgroup" },
+                                        { icon: Youtube, href: "https://www.youtube.com/@vihavgroup" }
+                                    ].map((social, idx) => (
+                                        <a
+                                            key={idx}
+                                            href={social.href}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-muted-foreground hover:text-gold-400 transition-colors"
+                                        >
+                                            <social.icon size={18} />
+                                        </a>
+                                    ))}
+                                </div>
+
+                                {/* Legal Links */}
+                                <div className="flex gap-6 text-[10px] md:text-xs text-muted-foreground uppercase tracking-widest">
+                                    <Link href="/privacy-policy" className="hover:text-foreground transition-colors">Privacy</Link>
+                                    <Link href="/terms-and-conditions" className="hover:text-foreground transition-colors">Terms</Link>
+                                </div>
+                            </div>
                         </div>
                     </motion.div>
 
@@ -243,7 +295,6 @@ export default function SideMenu({ isOpen, onClose }) {
                         transition={{ duration: 1 }}
                         className="hidden md:block flex-1 h-full relative z-10 bg-muted"
                     >
-                        {/* Removing mode='wait' for crossfade overlap */}
                         <AnimatePresence>
                             <motion.div
                                 key={hoveredItem.id}

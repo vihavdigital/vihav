@@ -80,7 +80,7 @@ export default function Hero() {
                         className="max-w-4xl"
                     >
                         <h1
-                            className="font-serif text-5xl md:text-8xl lg:text-9xl font-medium text-white mb-4 md:mb-8 leading-none tracking-tight"
+                            className="font-serif text-4xl md:text-5xl lg:text-6xl xl:text-8xl font-medium text-white mb-4 md:mb-8 leading-none tracking-tight"
                             dangerouslySetInnerHTML={{ __html: SLIDES[currentSlide].title }}
                         />
                         <p className="max-w-xl ml-auto text-gray-200 text-sm md:text-xl font-light mb-8 md:mb-12 leading-relaxed tracking-wide">

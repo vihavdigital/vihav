@@ -16,13 +16,15 @@ export default function NRIHero() {
                 <img
                     src="/vdr.webp"
                     alt="Laxmi Vilas Palace Vadodara"
-                    className="w-full h-full object-cover opacity-60"
+                    className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-neutral-950/40 via-neutral-950/20 to-neutral-950" />
+                {/* Maximum Contrast Overlay */}
+                <div className="absolute inset-0 bg-black/60" />
+                <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-background/50" />
             </motion.div>
 
             {/* Content */}
-            <div className="relative z-10 container mx-auto px-6 text-center">
+            <div className="relative z-10 container mx-auto px-6 text-center text-white drop-shadow-2xl">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -31,11 +33,11 @@ export default function NRIHero() {
                     <span className="inline-block py-1 px-3 rounded-full border border-gold-500/50 bg-gold-950/30 backdrop-blur-md text-gold-400 text-xs tracking-[0.2em] uppercase mb-6">
                         Invest in Your Roots
                     </span>
-                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif mb-8 leading-tight">
+                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif mb-8 leading-tight text-white">
                         Welcome Home <br />
                         <span className="italic text-white/80">to Vadodara.</span>
                     </h1>
-                    <p className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto mb-10 leading-relaxed font-light">
+                    <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-10 leading-relaxed font-light">
                         Experience the pride of ownership in your hometown.
                         Premium residences and commercial assets managed with global standards, designed for the global Indian.
                     </p>

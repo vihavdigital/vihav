@@ -15,6 +15,7 @@ const lato = Lato({
 
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import ChatWidget from "@/components/chat/ChatWidget";
+import SmoothScroll from "@/components/layout/SmoothScroll";
 
 export const metadata = {
   title: {
@@ -92,6 +93,7 @@ export default function RootLayout({ children }) {
       >
         <ThemeProvider>
           <Preloader />
+          <SmoothScroll />
           <ChatWidget />
           {children}
         </ThemeProvider>

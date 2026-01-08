@@ -7,7 +7,7 @@ export default function ProjectCard({ project }) {
         <div className="group relative bg-card border border-border overflow-hidden transition-colors duration-300">
             {/* Image Container */}
             <Link href={`/projects/${project.slug}`} className="block relative aspect-[4/3] overflow-hidden cursor-pointer">
-                <div className="absolute inset-0 bg-neutral-800 animate-pulse group-hover:animate-none transition-colors" />
+                <div className="absolute inset-0 bg-secondary animate-pulse group-hover:animate-none transition-colors" />
                 {/* Real implementation would use Next/Image */}
                 <div
                     className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 group-hover:brightness-[0.8] transition-all"

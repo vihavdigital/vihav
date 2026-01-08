@@ -32,7 +32,7 @@ const stats = [
 
 export default function InvestmentStats() {
     return (
-        <section className="py-24 bg-neutral-900 relative">
+        <section className="py-24 bg-secondary border-y border-border relative">
             <div className="container mx-auto px-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {stats.map((stat, idx) => (
@@ -42,14 +42,14 @@ export default function InvestmentStats() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: idx * 0.1 }}
-                            className="bg-neutral-800/50 border border-white/5 p-8 rounded-2xl hover:bg-neutral-800 transition-colors group"
+                            className="bg-background border border-border p-8 rounded-2xl hover:shadow-lg transition-all group"
                         >
-                            <div className="w-12 h-12 bg-gold-900/30 rounded-xl flex items-center justify-center mb-6 group-hover:bg-gold-500 group-hover:text-black transition-all text-gold-500">
+                            <div className="w-12 h-12 bg-gold-400/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-gold-400 group-hover:text-luxury-black transition-all text-gold-400">
                                 <stat.icon size={24} />
                             </div>
-                            <h3 className="text-3xl font-serif text-white mb-2">{stat.value}</h3>
-                            <p className="text-white/60 font-medium mb-3 uppercase tracking-wider text-xs">{stat.label}</p>
-                            <p className="text-white/40 text-sm leading-relaxed">{stat.desc}</p>
+                            <h3 className="text-3xl font-serif text-foreground mb-2">{stat.value}</h3>
+                            <p className="text-muted-foreground font-medium mb-3 uppercase tracking-wider text-xs">{stat.label}</p>
+                            <p className="text-muted-foreground/80 text-sm leading-relaxed">{stat.desc}</p>
                         </motion.div>
                     ))}
                 </div>
