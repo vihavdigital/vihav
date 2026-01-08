@@ -5,11 +5,12 @@ import ProjectCard from "@/components/projects/ProjectCard";
 import { Button } from "@/components/ui/Button";
 import { ArrowRight, ChevronLeft, ChevronRight, Filter, ChevronDown } from "lucide-react";
 import Link from "next/link";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, Suspense } from "react";
 import FilterDropdown from "@/components/ui/FilterDropdown";
 import { useProjectFilters, FILTER_COMMERCIAL_TYPES } from "@/hooks/useProjectFilters";
 
-export default function ProjectSection({ projects }) {
+// Internal Component with Filter Logic
+function ProjectSectionContent({ projects }) {
     const sliderRef = useRef(null);
     const [currentIndex, setCurrentIndex] = useState(0);
     const {
@@ -66,6 +67,7 @@ export default function ProjectSection({ projects }) {
     const containerVariants = {
         hidden: { opacity: 0 },
         show: {
+            opacity: 1,
             opacity: 1,
             transition: {
                 staggerChildren: 0.1,
@@ -269,5 +271,14 @@ export default function ProjectSection({ projects }) {
 
             </div>
         </section>
+    );
+}
+
+// Exported Suspense Wrapper
+export default function ProjectSection(props) {
+    return (
+        <Suspense fallback={<div className="py-24 text-center text-gold-400">Loading Collections...</div>}>
+            <ProjectSectionContent {...props} />
+        </Suspense>
     );
 }
