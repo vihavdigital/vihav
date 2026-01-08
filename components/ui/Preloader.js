@@ -57,9 +57,9 @@ export default function Preloader() {
                                 exit={{
                                     y: "-100%",
                                     transition: {
-                                        duration: 0.8,
-                                        ease: [0.76, 0, 0.24, 1],
-                                        delay: col * 0.1
+                                        duration: 1.2,
+                                        ease: [0.83, 0, 0.17, 1], // Even smoother custom bezier
+                                        delay: col * 0.08
                                     }
                                 }}
                                 className="h-full w-full bg-[#ffffff] relative border-r border-black/5 last:border-none"
@@ -75,7 +75,7 @@ export default function Preloader() {
                         exit={{
                             opacity: 0,
                             scale: 0.95,
-                            transition: { duration: 0.5, ease: "easeInOut", delay: 0.2 }
+                            transition: { duration: 0.8, ease: "easeInOut", delay: 0.1 }
                         }}
                     >
                         {/* Logo Animation */}
@@ -88,7 +88,7 @@ export default function Preloader() {
                                     scale: [0.98, 1.02, 0.98]
                                 }}
                                 transition={{
-                                    duration: 3,
+                                    duration: 4, // Slower breathing
                                     repeat: Infinity,
                                     ease: "easeInOut"
                                 }}
@@ -103,13 +103,8 @@ export default function Preloader() {
                                 className="absolute left-0 top-0 h-full bg-gradient-to-r from-gold-600 via-gold-300 to-gold-600"
                                 initial={{ width: "0%" }}
                                 animate={{ width: `${counter}%` }}
-                                transition={{ ease: "linear", duration: 0.1 }} // Immediate feedback
+                                transition={{ ease: "linear", duration: 0.1 }}
                             />
-                        </div>
-
-                        {/* Percentage Text */}
-                        <div className="mt-4 flex items-center gap-2">
-                            <span className="text-gold-400 font-serif text-lg tracking-widest">{counter}%</span>
                         </div>
 
                         {/* Tagline */}
@@ -121,6 +116,16 @@ export default function Preloader() {
                         >
                             Defining Luxury
                         </motion.p>
+                    </motion.div>
+
+                    {/* 3. Percentage Indicator (Bottom Right) */}
+                    <motion.div
+                        className="fixed bottom-8 right-8 z-20 pointer-events-none"
+                        exit={{ opacity: 0, x: 50, transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } }}
+                    >
+                        <span className="text-8xl md:text-[10rem] font-serif font-bold text-black/5 tracking-tighter tabular-nums leading-none block">
+                            {counter}%
+                        </span>
                     </motion.div>
                 </div>
             )}
