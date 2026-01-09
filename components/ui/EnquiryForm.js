@@ -103,6 +103,7 @@ export default function EnquiryForm({ className, onSuccess, variant = "minimal",
                         onChange={(e) => setFormState({ ...formState, name: e.target.value })}
                         className={currentStyle.input}
                         placeholder={variant === 'minimal' ? "Your Name" : "Enter your name"}
+                        aria-label="Full Name"
                     />
                 </div>
 
@@ -116,6 +117,7 @@ export default function EnquiryForm({ className, onSuccess, variant = "minimal",
                                     value={formState.countryCode}
                                     onChange={(e) => setFormState({ ...formState, countryCode: e.target.value })}
                                     className={currentStyle.select}
+                                    aria-label="Select Country Code"
                                 >
                                     {sortedCountries.map((item, index) => (
                                         <option key={index} value={item.code} className="bg-popover text-foreground">
@@ -131,6 +133,7 @@ export default function EnquiryForm({ className, onSuccess, variant = "minimal",
                                 onChange={(e) => setFormState({ ...formState, phone: e.target.value })}
                                 className={currentStyle.input}
                                 placeholder={variant === 'minimal' ? "Phone Number" : "XXXXX XXXXX"}
+                                aria-label="Phone Number"
                             />
                         </div>
                     </div>
@@ -144,6 +147,7 @@ export default function EnquiryForm({ className, onSuccess, variant = "minimal",
                             onChange={(e) => setFormState({ ...formState, email: e.target.value })}
                             className={currentStyle.input}
                             placeholder={variant === 'minimal' ? "Email Address" : "name@example.com"}
+                            aria-label="Email Address"
                         />
                     </div>
                 </div>
@@ -155,6 +159,7 @@ export default function EnquiryForm({ className, onSuccess, variant = "minimal",
                         value={formState.category}
                         onChange={(e) => setFormState({ ...formState, category: e.target.value, interest: "" })}
                         className={`${currentStyle.select} ${!formState.category ? 'text-muted-foreground/50' : ''}`}
+                        aria-label="Select Property Category"
                     >
                         <option value="" disabled className="bg-popover text-muted-foreground">Select Category (Optional)</option>
                         <option value="Residential" className="bg-popover text-foreground">Residential</option>
@@ -170,6 +175,7 @@ export default function EnquiryForm({ className, onSuccess, variant = "minimal",
                             value={formState.interest}
                             onChange={(e) => setFormState({ ...formState, interest: e.target.value })}
                             className={`${currentStyle.select} ${!formState.interest ? 'text-muted-foreground/50' : ''}`}
+                            aria-label="Select Property Type"
                         >
                             <option value="" disabled className="bg-popover text-muted-foreground">Select Specific Requirement (Optional)</option>
                             {INTEREST_OPTIONS[formState.category].map((option) => (

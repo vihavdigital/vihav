@@ -42,6 +42,7 @@ export default function Header() {
                     <div className="flex items-center space-x-8">
                         <MagneticWrapper>
                             <button
+                                aria-label="Toggle menu"
                                 onClick={() => setIsMenuOpen(true)}
                                 className={cn(
                                     "flex items-center gap-4 hover:text-gold-400 transition-all duration-500 group",
@@ -80,6 +81,7 @@ export default function Header() {
                     )}>
                         <MagneticWrapper>
                             <button
+                                aria-label="Open enquiry form"
                                 onClick={() => setIsEnquireModalOpen(true)}
                                 className="flex items-center gap-3 hover:text-gold-400 transition-colors group"
                             >

@@ -213,10 +213,12 @@ export default function Home() {
                 transition={{ duration: 0.8 }}
                 className="w-full aspect-video bg-neutral-900 relative overflow-hidden rounded-sm"
               >
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1000&auto=format&fit=crop"
-                  className="w-full h-full object-cover opacity-80 hover:scale-105 transition-transform duration-700"
+                  className="object-cover opacity-80 hover:scale-105 transition-transform duration-700"
                   alt="Craftsmanship"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
                 <div className="absolute bottom-6 left-6 text-white/90">
                   <p className="uppercase tracking-[0.2em] text-[10px] font-bold">The Art of Building</p>
@@ -230,10 +232,12 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="w-full aspect-video bg-neutral-800 relative overflow-hidden rounded-sm"
               >
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000&auto=format&fit=crop"
-                  className="w-full h-full object-cover opacity-80 hover:scale-105 transition-transform duration-700"
+                  className="object-cover opacity-80 hover:scale-105 transition-transform duration-700"
                   alt="Detail"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </motion.div>
 
@@ -244,10 +248,12 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.4 }}
                 className="w-full aspect-video bg-neutral-800 relative overflow-hidden rounded-sm"
               >
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000&auto=format&fit=crop"
-                  className="w-full h-full object-cover opacity-80 hover:scale-105 transition-transform duration-700"
+                  className="object-cover opacity-80 hover:scale-105 transition-transform duration-700"
                   alt="Lifestyle"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
                 <div className="absolute bottom-6 left-6 text-white/90">
                   <p className="uppercase tracking-[0.2em] text-[10px] font-bold">Lifestyle</p>

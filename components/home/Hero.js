@@ -109,10 +109,10 @@ export default function Hero() {
 
                 {/* Arrows */}
                 <div className="flex gap-4 text-white">
-                    <button onClick={prevSlide} className="p-2 border border-white/20 hover:bg-white hover:text-black transition-all rounded-full">
+                    <button onClick={prevSlide} className="p-2 border border-white/20 hover:bg-white hover:text-black transition-all rounded-full" aria-label="Previous slide">
                         <ChevronLeft size={24} />
                     </button>
-                    <button onClick={nextSlide} className="p-2 border border-white/20 hover:bg-white hover:text-black transition-all rounded-full">
+                    <button onClick={nextSlide} className="p-2 border border-white/20 hover:bg-white hover:text-black transition-all rounded-full" aria-label="Next slide">
                         <ChevronRight size={24} />
                     </button>
                 </div>
