@@ -52,14 +52,18 @@ export default function Hero() {
                             loop
                             muted
                             playsInline
+                            preload="auto"
                             className="w-full h-full object-cover transform scale-105"
                         >
                             <source src={SLIDES[currentSlide].src} type={SLIDES[currentSlide].src.endsWith('.webm') ? "video/webm" : "video/mp4"} />
                         </video>
                     ) : (
-                        <div
-                            className="w-full h-full bg-cover bg-center transform scale-105"
-                            style={{ backgroundImage: `url(${SLIDES[currentSlide].src})` }}
+                        <img
+                            src={SLIDES[currentSlide].src}
+                            alt="Hero Background"
+                            className="w-full h-full object-cover transform scale-105"
+                            fetchPriority="high"
+                            decoding="async"
                         />
                     )}
 
