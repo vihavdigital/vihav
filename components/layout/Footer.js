@@ -15,7 +15,7 @@ export default function Footer() {
                 {/* 1. Giant CTA & Form Section */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 mb-32 border-b border-border pb-24 items-end">
                     <div>
-                        <span className="text-gold-400 uppercase tracking-[0.25em] text-xs font-bold mb-6 block">Start Your Journey</span>
+                        <span className="text-amber-500 uppercase tracking-[0.25em] text-xs font-bold mb-6 block">Start Your Journey</span>
                         <h2 className="text-5xl md:text-7xl lg:text-8xl font-serif leading-[0.9] text-foreground mb-8">
                             Let&apos;s build<br />
                             <span className="text-muted-foreground">your legacy.</span>
@@ -26,7 +26,7 @@ export default function Footer() {
                     </div>
 
                     <div className="w-full md:pl-12 lg:pl-24">
-                        <h3 className="text-gold-400 uppercase tracking-[0.2em] text-xs font-bold mb-8">Request a Callback</h3>
+                        <h3 className="text-amber-500 uppercase tracking-[0.2em] text-xs font-bold mb-8">Request a Callback</h3>
                         <EnquiryForm variant="minimal" />
                     </div>
                 </div>
@@ -62,7 +62,7 @@ export default function Footer() {
 
                     {/* Company Links */}
                     <div className="col-span-1 md:col-span-2">
-                        <h4 className="text-gold-400 font-bold uppercase tracking-[0.2em] text-xs mb-8">Company</h4>
+                        <h4 className="text-amber-500 font-bold uppercase tracking-[0.2em] text-xs mb-8">Company</h4>
                         <ul className="space-y-4">
                             {[
                                 { name: "Our Story", link: "/about" },
@@ -84,7 +84,7 @@ export default function Footer() {
 
                     {/* Project Links */}
                     <div className="col-span-1 md:col-span-3">
-                        <h4 className="text-gold-400 font-bold uppercase tracking-[0.2em] text-xs mb-8">Selected Projects</h4>
+                        <h4 className="text-amber-500 font-bold uppercase tracking-[0.2em] text-xs mb-8">Selected Projects</h4>
                         <ul className="space-y-4">
                             {[
                                 "Keystone Skyvillas",
@@ -104,7 +104,7 @@ export default function Footer() {
 
                     {/* Socials */}
                     <div className="col-span-1 md:col-span-3">
-                        <h4 className="text-gold-400 font-bold uppercase tracking-[0.2em] text-xs mb-8">Connect</h4>
+                        <h4 className="text-amber-500 font-bold uppercase tracking-[0.2em] text-xs mb-8">Connect</h4>
                         <div className="flex flex-wrap gap-4">
                             {[
                                 { icon: Instagram, href: "https://www.instagram.com/vihavgroup" },

@@ -6,7 +6,7 @@ export default function ProjectCard({ project }) {
     return (
         <div className="group relative bg-card border border-border overflow-hidden transition-colors duration-300">
             {/* Image Container */}
-            <Link href={`/projects/${project.slug}`} className="block relative aspect-[4/3] overflow-hidden cursor-pointer">
+            <Link href={`/projects/${project.slug}`} className="block relative aspect-[4/3] overflow-hidden cursor-pointer" aria-label={`View details for ${project.title}`}>
                 <div className="absolute inset-0 bg-secondary animate-pulse group-hover:animate-none transition-colors" />
                 {/* Real implementation would use Next/Image */}
                 <div
@@ -26,7 +26,7 @@ export default function ProjectCard({ project }) {
                 <div>
                     <div className="flex justify-between items-start gap-4 mb-4">
                         <div>
-                            <span className="text-gold-400 text-[10px] md:text-xs uppercase tracking-widest block mb-2 font-bold">{project.location}</span>
+                            <span className="text-amber-500 text-[10px] md:text-xs uppercase tracking-widest block mb-2 font-bold">{project.location}</span>
                             <h3 className="text-xl md:text-2xl font-serif text-foreground leading-tight">{project.title}</h3>
                         </div>
                         <span className="text-muted-foreground text-[10px] md:text-xs text-right hidden md:block">{project.type}</span>

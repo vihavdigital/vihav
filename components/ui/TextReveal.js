@@ -2,9 +2,11 @@
 
 import { motion } from "framer-motion";
 
-export const TextReveal = ({ text, className = "", delay = 0 }) => {
+export const TextReveal = ({ text, className = "", delay = 0, as = "div" }) => {
     // Split text into words
     const words = text.split(" ");
+
+    const MotionTag = motion[as] || motion.div;
 
     const container = {
         hidden: { opacity: 0 },
@@ -36,7 +38,7 @@ export const TextReveal = ({ text, className = "", delay = 0 }) => {
     };
 
     return (
-        <motion.div
+        <MotionTag
             style={{ overflow: "hidden", display: "flex", flexWrap: "wrap" }}
             variants={container}
             initial="hidden"
@@ -49,7 +51,7 @@ export const TextReveal = ({ text, className = "", delay = 0 }) => {
                     {word}
                 </motion.span>
             ))}
-        </motion.div>
+        </MotionTag>
     );
 };
 

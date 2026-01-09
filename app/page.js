@@ -35,6 +35,7 @@ export default function Home() {
 
           <div className="mb-10 min-h-[120px]">
             <TextReveal
+              as="h2"
               text="Designing spaces that transcend time."
               className="justify-center font-serif text-4xl md:text-6xl lg:text-7xl leading-tight text-foreground"
             />
@@ -179,8 +180,9 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
             {/* Sticky Left Content */}
             <div className="lg:sticky lg:top-32 h-fit">
-              <h2 className="text-gold-400 uppercase tracking-[0.25em] text-xs font-bold mb-6 block">Our Philosophy</h2>
+              <span className="text-gold-400 uppercase tracking-[0.25em] text-xs font-bold mb-6 block">Our Philosophy</span>
               <TextReveal
+                as="h2"
                 text="Perfection is not an act, but a habit."
                 className="font-serif text-5xl md:text-7xl text-foreground mb-12 leading-none"
               />
