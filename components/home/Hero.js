@@ -56,7 +56,7 @@ export default function Hero() {
                             className="w-full h-full object-cover transform scale-105"
                         >
                             <source src={SLIDES[currentSlide].src} type={SLIDES[currentSlide].src.endsWith('.webm') ? "video/webm" : "video/mp4"} />
-                            <track kind="captions" src="/captions/en.vtt" srcLang="en" label="English" default />
+                            <track kind="captions" src="/captions/en.vtt" srcLang="en" label="English" />
                         </video>
                     ) : (
                         <img

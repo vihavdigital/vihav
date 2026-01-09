@@ -2,15 +2,16 @@
 
 import { motion } from "framer-motion";
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import Hero from "@/components/home/Hero";
 import ProjectSection from "@/components/home/ProjectSection";
 import TextReveal from "@/components/ui/TextReveal";
 import { PROJECTS } from "@/data/projects";
 import EnquiryForm from "@/components/ui/EnquiryForm";
-// import { motion } from "framer-motion";
 import { Trophy, Award, Star } from "lucide-react";
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
+
+const Footer = dynamic(() => import('@/components/layout/Footer'));
 
 export default function Home() {
   /* Projects are filtered internally by ProjectSection */

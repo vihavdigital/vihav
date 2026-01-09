@@ -6,7 +6,9 @@ import { Search, MapPin, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import SideMenu from "@/components/layout/SideMenu";
 import MagneticWrapper from "@/components/ui/MagneticWrapper";
-import EnquiryModal from "@/components/ui/EnquiryModal";
+import dynamic from "next/dynamic";
+
+const EnquiryModal = dynamic(() => import("@/components/ui/EnquiryModal"));
 
 import { usePathname } from "next/navigation";
 

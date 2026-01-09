@@ -14,8 +14,10 @@ const lato = Lato({
 });
 
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
-import ChatWidget from "@/components/chat/ChatWidget";
 import SmoothScroll from "@/components/layout/SmoothScroll";
+import dynamic from 'next/dynamic';
+
+const ChatWidget = dynamic(() => import('@/components/chat/ChatWidget'), { ssr: false });
 
 export const metadata = {
   title: {
