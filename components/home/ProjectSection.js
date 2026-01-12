@@ -48,12 +48,12 @@ function ProjectSectionContent({ projects }) {
                 <div className="container mx-auto px-6">
                     <div className="w-full flex flex-col md:flex-row justify-between items-center gap-4 md:gap-6">
                         {/* Left: Category Tabs (Pill Switcher) */}
-                        <div className="flex bg-secondary p-1 rounded-full border border-border">
+                        <div className="flex bg-secondary p-1 rounded-full border border-border overflow-x-auto max-w-full">
                             {["All", "Residential", "Commercial"].map((cat) => (
                                 <button
                                     key={cat}
                                     onClick={() => { setActiveCategory(cat); setActiveType("All"); setActivePossession("All"); }}
-                                    className="relative px-6 md:px-8 py-2 rounded-full text-sm uppercase tracking-widest transition-all outline-none"
+                                    className="relative px-4 sm:px-6 md:px-8 py-2 rounded-full text-xs md:text-sm uppercase tracking-widest transition-all outline-none whitespace-nowrap"
                                 >
                                     {activeCategory === cat && (
                                         <motion.div

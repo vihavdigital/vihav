@@ -21,7 +21,7 @@ export default function Preloader() {
         // Counter Animation
         let current = 0;
         const interval = setInterval(() => {
-            current += Math.floor(Math.random() * 3) + 1; // Smooth increment
+            current += Math.floor(Math.random() * 10) + 5; // Much faster increment
             if (current > 100) current = 100;
             setCounter(current);
 
