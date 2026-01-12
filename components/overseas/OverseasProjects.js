@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import ProjectCard from "@/components/projects/ProjectCard";
 import FilterDropdown from "@/components/ui/FilterDropdown";
-import { useProjectFilters, FILTER_TYPES, FILTER_POSSESSION, FILTER_COMMERCIAL_TYPES } from "@/hooks/useProjectFilters";
+import { useProjectFilters, FILTER_RESIDENTIAL_TYPES, FILTER_POSSESSION, FILTER_COMMERCIAL_TYPES } from "@/hooks/useProjectFilters";
 import { PROJECTS } from "@/data/projects";
 
 export default function OverseasProjects() {
@@ -62,7 +62,7 @@ export default function OverseasProjects() {
                             <FilterDropdown
                                 label="Unit Type"
                                 value={activeType}
-                                options={FILTER_TYPES}
+                                options={FILTER_RESIDENTIAL_TYPES}
                                 onChange={setActiveType}
                                 className="flex-1 min-w-[140px] md:w-48 md:flex-none md:min-w-0"
                             />
