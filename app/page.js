@@ -56,24 +56,7 @@ export default function Home() {
 
 
 
-      {/* Separate Enquiry Section */}
-      <section className="py-24 bg-secondary/30 border-y border-border">
-        <div className="container mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="max-w-3xl mx-auto"
-          >
 
-            <h3 className="text-xl md:text-2xl font-serif text-foreground mb-12 uppercase tracking-widest text-center">Begin Your Conversation</h3>
-            <div className="bg-background/50 p-8 md:p-12 rounded-none border border-border hover:border-gold-400/30 transition-colors duration-500">
-              <EnquiryForm className="text-left" variant="minimal" />
-            </div>
-          </motion.div>
-        </div>
-      </section>
 
       {/* Featured Award Section */}
       <section className="py-24 px-6 container mx-auto overflow-hidden">

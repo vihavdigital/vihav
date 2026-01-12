@@ -32,7 +32,13 @@ export default function Hero() {
         setCurrentSlide((prev) => (prev - 1 + SLIDES.length) % SLIDES.length);
     };
 
-    // Auto-advance removed as per request
+    // Auto-advance slideshow
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentSlide((prev) => (prev + 1) % SLIDES.length);
+        }, 5000);
+        return () => clearInterval(timer);
+    }, []);
 
     return (
         <section className="relative h-screen w-full overflow-hidden bg-luxury-black text-white">

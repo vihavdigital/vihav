@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/Button";
 
 export default function ProjectCard({ project }) {
     return (
-        <div className="group relative bg-card border border-border overflow-hidden transition-colors duration-300">
+        <div className="group relative bg-card border border-border overflow-hidden transition-colors duration-300 h-full flex flex-col">
             {/* Image Container */}
             <Link href={`/projects/${project.slug}`} className="block relative aspect-[4/3] overflow-hidden cursor-pointer" aria-label={`View details for ${project.title}`}>
                 <div className="absolute inset-0 bg-secondary animate-pulse group-hover:animate-none transition-colors" />
@@ -22,7 +22,7 @@ export default function ProjectCard({ project }) {
             </Link>
 
             {/* Content */}
-            <div className="p-5 md:p-8 flex flex-col h-full justify-between">
+            <div className="p-5 md:p-8 flex flex-col flex-1 justify-between">
                 <div>
                     <div className="flex justify-between items-start gap-4 mb-4">
                         <div>
