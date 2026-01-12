@@ -4,7 +4,7 @@ import ProjectCard from "@/components/projects/ProjectCard";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import FilterDropdown from "@/components/ui/FilterDropdown";
-import { useProjectFilters, FILTER_TYPES, FILTER_POSSESSION, FILTER_COMMERCIAL_TYPES } from "@/hooks/useProjectFilters";
+import { useProjectFilters, FILTER_ALL_TYPES, FILTER_RESIDENTIAL_TYPES, FILTER_COMMERCIAL_TYPES, FILTER_POSSESSION } from "@/hooks/useProjectFilters";
 import { Filter, X } from "lucide-react";
 import { PROJECTS } from "@/data/projects";
 
@@ -65,24 +65,17 @@ export default function ProjectsFeed() {
                         {/* Filters Container (Collapsible on Mobile) */}
                         <div className={`${showFilters ? 'flex' : 'hidden'} md:flex flex-row flex-wrap gap-2 w-full md:w-auto border-t md:border-0 border-border pt-4 md:pt-0`}>
                             {/* Type Dropdown */}
-                            {(activeCategory === "Residential" || activeCategory === "All") && (
-                                <FilterDropdown
-                                    label="Unit Type"
-                                    value={activeType}
-                                    options={FILTER_TYPES}
-                                    onChange={setActiveType}
-                                    className="flex-1 min-w-[130px] md:min-w-[160px] md:w-auto"
-                                />
-                            )}
-                            {activeCategory === "Commercial" && (
-                                <FilterDropdown
-                                    label="Usage"
-                                    value={activeType}
-                                    options={FILTER_COMMERCIAL_TYPES}
-                                    onChange={setActiveType}
-                                    className="flex-1 min-w-[130px] md:min-w-[160px] md:w-auto"
-                                />
-                            )}
+                            <FilterDropdown
+                                label="Property Type"
+                                value={activeType}
+                                options={
+                                    activeCategory === "Residential" ? FILTER_RESIDENTIAL_TYPES :
+                                        activeCategory === "Commercial" ? FILTER_COMMERCIAL_TYPES :
+                                            FILTER_ALL_TYPES
+                                }
+                                onChange={setActiveType}
+                                className="flex-1 min-w-[130px] md:min-w-[160px] md:w-auto"
+                            />
                             <FilterDropdown
                                 label="Possession"
                                 value={activePossession}

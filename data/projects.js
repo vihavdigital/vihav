@@ -63,8 +63,8 @@ export const PROJECTS = [
         ],
         filterData: {
             category: "Residential",
-            type: ["4BHK", "5BHK", "Penthouse"],
-            possession: "Upcoming"
+            type: ["4bhk", "5bhk", "penthouse", "Apartments"],
+            possession: "Newly Launched"
         }
     },
     {
@@ -117,8 +117,8 @@ export const PROJECTS = [
         mapEmbed: "https://maps.google.com/maps?q=Keystone+Skyvillas+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
             category: "Residential",
-            type: ["4BHK", "Penthouse"],
-            possession: "Completed"
+            type: ["4bhk", "penthouse", "Apartments"],
+            possession: "Ready to Move"
         }
     },
     {
@@ -158,8 +158,8 @@ export const PROJECTS = [
         mapEmbed: "https://maps.google.com/maps?q=Keystone+Skyvillas+XL+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
             category: "Residential",
-            type: ["4BHK", "5BHK", "Penthouse"],
-            possession: "Completed"
+            type: ["4bhk", "5bhk", "penthouse", "Apartments"],
+            possession: "Ready to Move"
         }
     },
     {
@@ -204,8 +204,8 @@ export const PROJECTS = [
         mapEmbed: "https://maps.google.com/maps?q=Keystone+Clermont+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
             category: "Residential",
-            type: ["4BHK", "5BHK", "Penthouse"],
-            possession: "Ongoing"
+            type: ["4bhk", "5bhk", "penthouse", "Apartments"],
+            possession: "Under construction"
         }
     },
     {
@@ -259,8 +259,8 @@ export const PROJECTS = [
         mapEmbed: "https://maps.google.com/maps?q=Keystone+Niwa+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
             category: "Residential",
-            type: ["4BHK", "Penthouse"],
-            possession: "Ongoing"
+            type: ["4bhk", "penthouse", "Apartments"],
+            possession: "Under construction"
         }
     },
     {
@@ -311,8 +311,8 @@ export const PROJECTS = [
         mapEmbed: "https://maps.google.com/maps?q=Keystone+51+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
             category: "Residential",
-            type: ["4BHK", "Bungalow", "Villa"],
-            possession: "Ongoing"
+            type: ["4bhk", "Bunglow", "Bunglow"],
+            possession: "Under construction"
         }
     },
     {
@@ -352,8 +352,8 @@ export const PROJECTS = [
         mapEmbed: "https://maps.google.com/maps?q=Keystone+30+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
             category: "Residential",
-            type: ["5BHK", "Penthouse"],
-            possession: "Ongoing"
+            type: ["5bhk", "penthouse", "Apartments"],
+            possession: "Under construction"
         }
     },
     {
@@ -393,8 +393,8 @@ export const PROJECTS = [
         mapEmbed: "https://maps.google.com/maps?q=Vihav+Elinor+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
             category: "Residential",
-            type: ["4BHK", "5BHK", "Penthouse"],
-            possession: "Upcoming"
+            type: ["4bhk", "5bhk", "penthouse", "Apartments"],
+            possession: "Newly Launched"
         }
     },
     {
@@ -434,8 +434,8 @@ export const PROJECTS = [
         mapEmbed: "https://maps.google.com/maps?q=Vihav+Parvarish+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
             category: "Residential",
-            type: ["3BHK", "4BHK", "Penthouse"],
-            possession: "Completed"
+            type: ["3bhk", "4bhk", "penthouse", "Apartments"],
+            possession: "Ready to Move"
         }
     },
     {
@@ -475,8 +475,8 @@ export const PROJECTS = [
         mapEmbed: "https://maps.google.com/maps?q=Vihav+Spring+Woods+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
             category: "Residential",
-            type: ["4BHK", "5BHK", "Penthouse"],
-            possession: "Completed"
+            type: ["4bhk", "5bhk", "penthouse", "Apartments"],
+            possession: "Ready to Move"
         }
     },
 
@@ -518,8 +518,9 @@ export const PROJECTS = [
         mapEmbed: "https://maps.google.com/maps?q=Supremus+III+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
             category: "Commercial",
-            type: [],
-            possession: "Upcoming"
+            transactionType: ["Buy", "Lease", "Rent"],
+            type: ["offices", "showrooms"],
+            possession: "Newly Launched"
         }
     },
     {
@@ -558,8 +559,9 @@ export const PROJECTS = [
         mapEmbed: "https://maps.google.com/maps?q=Vihav+Business+Square+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
             category: "Commercial",
-            type: [],
-            possession: "Completed"
+            transactionType: ["Buy", "Lease", "Rent"],
+            type: ["showrooms", "shops", "offices"],
+            possession: "Ready to Move"
         }
     },
     {
@@ -596,8 +598,9 @@ export const PROJECTS = [
         mapEmbed: "https://maps.google.com/maps?q=Wealth+Square+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
             category: "Commercial",
-            type: [],
-            possession: "Completed"
+            transactionType: ["Buy", "Lease", "Rent"],
+            type: ["showrooms"],
+            possession: "Ready to Move"
         }
     },
     {
@@ -635,8 +638,9 @@ export const PROJECTS = [
         mapEmbed: "https://maps.google.com/maps?q=Vihav+Supremus+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
             category: "Commercial",
-            type: [],
-            possession: "Completed"
+            transactionType: ["Buy", "Lease", "Rent"],
+            type: ["showrooms", "shops", "offices"],
+            possession: "Ready to Move"
         }
     },
     {
@@ -674,8 +678,9 @@ export const PROJECTS = [
         mapEmbed: "https://maps.google.com/maps?q=VS+Monolith+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
             category: "Commercial",
-            type: [],
-            possession: "Upcoming"
+            transactionType: ["Buy", "Lease", "Rent"],
+            type: ["offices", "shops", "showrooms"],
+            possession: "Newly Launched"
         }
     },
     {
@@ -711,8 +716,9 @@ export const PROJECTS = [
         mapEmbed: "https://maps.google.com/maps?q=Vihav+Supremus+II+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
             category: "Commercial",
-            type: [],
-            possession: "Ongoing"
+            transactionType: ["Buy", "Lease", "Rent"],
+            type: ["shops", "showrooms", "offices"],
+            possession: "Under construction"
         }
     },
     {
@@ -747,8 +753,9 @@ export const PROJECTS = [
         mapEmbed: "https://maps.google.com/maps?q=Vihav+Trade+Centre+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
             category: "Commercial",
-            type: [],
-            possession: "Completed"
+            transactionType: ["Buy", "Lease", "Rent"],
+            type: ["shops"],
+            possession: "Ready to Move"
         }
     },
     {
@@ -783,8 +790,9 @@ export const PROJECTS = [
         mapEmbed: "https://maps.google.com/maps?q=Vihav+Skyone+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
             category: "Commercial",
-            type: [],
-            possession: "Ongoing"
+            transactionType: ["Buy", "Lease", "Rent"],
+            type: ["shops"],
+            possession: "Under construction"
         }
     },
     {
@@ -819,8 +827,9 @@ export const PROJECTS = [
         mapEmbed: "https://maps.google.com/maps?q=Elite+Square+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
             category: "Commercial",
-            type: [],
-            possession: "Ongoing"
+            transactionType: ["Buy", "Lease", "Rent"],
+            type: ["shops", "showrooms"],
+            possession: "Under construction"
         }
     },
     {
@@ -855,8 +864,9 @@ export const PROJECTS = [
         mapEmbed: "https://maps.google.com/maps?q=Vihav+Parvarish+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
             category: "Commercial",
+            transactionType: ["Buy", "Lease", "Rent"],
             type: ["Invest", "End Use"],
-            possession: "Completed"
+            possession: "Ready to Move"
         }
     },
     // --- NEW ADDITIONS ---
@@ -887,8 +897,9 @@ export const PROJECTS = [
         mapEmbed: "https://maps.google.com/maps?q=Vihav+CBD+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
             category: "Commercial",
+            transactionType: ["Buy", "Lease", "Rent"],
             type: ["Invest", "End Use", "Pre-lease"],
-            possession: "Upcoming"
+            possession: "Newly Launched"
         }
     },
     {
@@ -917,8 +928,8 @@ export const PROJECTS = [
         mapEmbed: "https://maps.google.com/maps?q=Keystone+Mansions+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
             category: "Residential",
-            type: ["5BHK", "Bunglows"],
-            possession: "Ongoing"
+            type: ["5bhk", "Bunglows"],
+            possession: "Under construction"
         }
     },
     {
@@ -947,8 +958,8 @@ export const PROJECTS = [
         mapEmbed: "https://maps.google.com/maps?q=Keystone+72+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
             category: "Residential",
-            type: ["4BHK", "5BHK", "Penthouse"],
-            possession: "Ongoing"
+            type: ["4bhk", "5bhk", "penthouse", "Apartments"],
+            possession: "Under construction"
         }
     },
     {

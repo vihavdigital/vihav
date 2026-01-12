@@ -13,23 +13,7 @@ export default function Footer() {
             <div className="container mx-auto px-6 relative z-10">
 
                 {/* 1. Giant CTA & Form Section */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 mb-32 border-b border-border pb-24 items-end">
-                    <div>
-                        <span className="text-amber-500 uppercase tracking-[0.25em] text-xs font-bold mb-6 block">Start Your Journey</span>
-                        <h2 className="text-5xl md:text-7xl lg:text-8xl font-serif leading-[0.9] text-foreground mb-8">
-                            Let&apos;s build<br />
-                            <span className="text-muted-foreground">your legacy.</span>
-                        </h2>
-                        <p className="text-muted-foreground max-w-md text-lg font-light leading-relaxed">
-                            Discover a lifestyle that reflects your achievements. Get in touch with our private client team today.
-                        </p>
-                    </div>
 
-                    <div className="w-full md:pl-12 lg:pl-24">
-                        <h3 className="text-amber-500 uppercase tracking-[0.2em] text-xs font-bold mb-8">Request a Callback</h3>
-                        <EnquiryForm variant="minimal" />
-                    </div>
-                </div>
 
                 {/* 2. Info Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-12 mb-32">

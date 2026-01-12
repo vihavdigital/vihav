@@ -19,40 +19,34 @@ function ProjectSectionContent({ projects }) {
         activePossession,
         setActivePossession,
         filteredProjects,
-        FILTER_TYPES,
-        FILTER_POSSESSION
+        FILTER_ALL_TYPES,
+        FILTER_RESIDENTIAL_TYPES,
+        FILTER_COMMERCIAL_TYPES,
+        FILTER_POSSESSION,
+        activeTransaction,
+        setActiveTransaction,
+        FILTER_TRANSACTION_OPTIONS
     } = useProjectFilters(projects);
 
-    // Limit projects to 9 for a nice grid (3x3)
-    const visibleProjects = filteredProjects.slice(0, 9);
-    const showViewAll = true; // Always show View All button on homepage
+    // Show ALL projects as requested
+    const visibleProjects = filteredProjects;
 
     return (
-        <section className="py-24 md:py-32 border-b border-border bg-background min-h-[80vh] transition-colors duration-500 overflow-hidden">
+        <section className="py-24 md:py-32 border-b border-border bg-background min-h-[80vh] transition-colors duration-500">
+            {/* 1. Header Title Block (Inside Container) */}
             <div className="container mx-auto px-6">
-
-                {/* Header & Controls Container */}
-                <div className="flex flex-col items-center mb-16 gap-8 relative z-40">
-                    {/* Centered Title */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="w-full text-center"
-                    >
+                <div className="flex flex-col items-center mb-10 relative z-40">
+                    <div className="w-full text-center">
                         <span className="text-gold-400 uppercase tracking-[0.25em] text-xs font-bold mb-4 block">Discover</span>
                         <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-2">Our Collections</h2>
-                    </motion.div>
+                    </div>
+                </div>
+            </div>
 
-                    {/* Filter Bar: Left=Tabs, Right=Dropdowns */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
-                        className="w-full flex flex-col md:flex-row justify-between items-center gap-6"
-                    >
+            {/* 2. Sticky Filter Bar (Full Width, Outside Container) */}
+            <div className="sticky top-[75px] md:top-[72px] z-40 bg-background/60 backdrop-blur-3xl py-4 mb-16 transition-all duration-500 w-full">
+                <div className="container mx-auto px-6">
+                    <div className="w-full flex flex-col md:flex-row justify-between items-center gap-4 md:gap-6">
                         {/* Left: Category Tabs (Pill Switcher) */}
                         <div className="flex bg-secondary p-1 rounded-full border border-border">
                             {["All", "Residential", "Commercial"].map((cat) => (
@@ -78,24 +72,29 @@ function ProjectSectionContent({ projects }) {
 
                         {/* Right: Dropdown Filters */}
                         <div className="flex flex-row flex-wrap justify-center md:justify-end gap-4 w-full md:w-auto">
-                            {activeCategory === "Residential" && (
-                                <FilterDropdown
-                                    label="Unit Type"
-                                    value={activeType}
-                                    options={FILTER_TYPES}
-                                    onChange={setActiveType}
-                                    className="flex-1 min-w-[140px] md:w-48 md:flex-none md:min-w-0"
-                                />
-                            )}
+
+                            {/* Transaction Type Filter (Commercial Only) */}
                             {activeCategory === "Commercial" && (
                                 <FilterDropdown
-                                    label="Usage"
-                                    value={activeType}
-                                    options={FILTER_COMMERCIAL_TYPES}
-                                    onChange={setActiveType}
+                                    label="Transaction"
+                                    value={activeTransaction}
+                                    options={FILTER_TRANSACTION_OPTIONS}
+                                    onChange={setActiveTransaction}
                                     className="flex-1 min-w-[140px] md:w-48 md:flex-none md:min-w-0"
                                 />
                             )}
+
+                            <FilterDropdown
+                                label="Property Type"
+                                value={activeType}
+                                options={
+                                    activeCategory === "Residential" ? FILTER_RESIDENTIAL_TYPES :
+                                        activeCategory === "Commercial" ? FILTER_COMMERCIAL_TYPES :
+                                            FILTER_ALL_TYPES
+                                }
+                                onChange={setActiveType}
+                                className="flex-1 min-w-[140px] md:w-48 md:flex-none md:min-w-0"
+                            />
 
                             <FilterDropdown
                                 label="Possession Status"
@@ -105,10 +104,12 @@ function ProjectSectionContent({ projects }) {
                                 className="flex-1 min-w-[140px] md:w-48 md:flex-none md:min-w-0"
                             />
                         </div>
-                    </motion.div>
+                    </div>
                 </div>
+            </div>
 
-                {/* Projects Grid */}
+            {/* 3. Projects Grid (Re-open Container) */}
+            <div className="container mx-auto px-6">
                 <div className="min-h-[400px]">
                     {visibleProjects.length > 0 ? (
                         <motion.div
@@ -132,11 +133,7 @@ function ProjectSectionContent({ projects }) {
                             </AnimatePresence>
                         </motion.div>
                     ) : (
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            className="w-full h-[300px] flex flex-col items-center justify-center text-center border border-border rounded-2xl bg-secondary/20"
-                        >
+                        <div className="w-full h-[300px] flex flex-col items-center justify-center text-center border border-border rounded-2xl bg-secondary/20">
                             <Filter className="w-12 h-12 text-muted-foreground mb-4" />
                             <h3 className="text-xl text-foreground font-serif mb-2">No Projects Found</h3>
                             <p className="text-muted-foreground">Try adjusting your filters to see more results.</p>
@@ -146,20 +143,9 @@ function ProjectSectionContent({ projects }) {
                             >
                                 Clear Filters
                             </button>
-                        </motion.div>
+                        </div>
                     )}
                 </div>
-
-                {/* View All Button */}
-                {showViewAll && (
-                    <div className="flex justify-center mt-16">
-                        <Link href="/projects">
-                            <Button variant="outline" className="border-gold-400 text-gold-400 hover:bg-gold-400 hover:text-black px-12 py-6 text-base tracking-widest">
-                                VIEW ALL PROJECTS
-                            </Button>
-                        </Link>
-                    </div>
-                )}
             </div>
         </section>
     );

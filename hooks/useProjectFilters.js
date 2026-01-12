@@ -2,9 +2,11 @@
 
 import { useState, useMemo } from "react";
 
-export const FILTER_TYPES = ["All", "3BHK", "4BHK", "5BHK", "Bunglows", "Penthouse"];
-export const FILTER_COMMERCIAL_TYPES = ["All", "Invest", "End Use", "Pre-lease"];
-export const FILTER_POSSESSION = ["All", "Completed", "Ongoing", "Upcoming"];
+export const FILTER_RESIDENTIAL_TYPES = ["All", "Bunglow", "Apartments", "3bhk", "4bhk", "5bhk"];
+export const FILTER_COMMERCIAL_TYPES = ["All", "shops", "showrooms", "offices"];
+export const FILTER_ALL_TYPES = ["All", "Bunglow", "Apartments", "3bhk", "4bhk", "penthouse", "shops", "showrooms", "offices"];
+export const FILTER_POSSESSION = ["All", "Newly Launched", "Ready to Move", "Under construction"];
+export const FILTER_TRANSACTION_OPTIONS = ["Buy", "Rent", "Lease"];
 
 import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
@@ -14,6 +16,7 @@ export function useProjectFilters(projects, initialCategory = "Residential") {
     const [activeCategory, setActiveCategory] = useState(initialCategory);
     const [activeType, setActiveType] = useState("All");
     const [activePossession, setActivePossession] = useState("All");
+    const [activeTransaction, setActiveTransaction] = useState("Buy"); // Default to Buy
 
     // Initialize from URL params
     useEffect(() => {
@@ -38,23 +41,34 @@ export function useProjectFilters(projects, initialCategory = "Residential") {
             // 1. Category Filter
             if (activeCategory !== "All" && project.filterData.category !== activeCategory) return false;
 
-            // 2. Type Filter (Only if not All)
-            // Note: We typically hide Type filter for Commercial, but if user sets it, we enforce it.
-            // Logic: If activeType is set and Project has types, check overlap.
-            if (activeType !== "All") {
-                // Commercial might have empty types, so this safely handles it by excluding them if they don't match.
-                // If Residential, we check includes.
-                if (!project.filterData.type || !Array.isArray(project.filterData.type) || !project.filterData.type.includes(activeType)) return false;
+            // 2. Transaction Filter (Commercial Only) - NEW
+            if (activeCategory === "Commercial") {
+                // If data doesn't specify transactionType, assume it's "Buy"
+                const pTransactions = project.filterData.transactionType || ["Buy"];
+                const normalizedPTransactions = pTransactions.map(t => t.toLowerCase());
+                if (!normalizedPTransactions.includes(activeTransaction.toLowerCase())) return false;
             }
 
-            // 3. Possession Filter
+            // 3. Type Filter (Only if not All)
+            // Note: We typically hide Type filter for Commercial, but if user sets it, we enforce it.
+            // Logic: If activeType is set and Project has types, check overlap.
+            // 4. Type Filter (Only if not All)
+            if (activeType !== "All") {
+                if (!project.filterData.type || !Array.isArray(project.filterData.type)) return false;
+                // Case-insensitive check
+                const projectTypes = project.filterData.type.map(t => t.toLowerCase());
+                if (!projectTypes.includes(activeType.toLowerCase())) return false;
+            }
+
+            // 5. Possession Filter
             if (activePossession !== "All") {
-                if (project.filterData.possession !== activePossession) return false;
+                if (!project.filterData.possession) return false;
+                if (project.filterData.possession.toLowerCase() !== activePossession.toLowerCase()) return false;
             }
 
             return true;
         });
-    }, [projects, activeCategory, activeType, activePossession]);
+    }, [projects, activeCategory, activeType, activePossession, activeTransaction]);
 
     return {
         activeCategory,
@@ -63,9 +77,13 @@ export function useProjectFilters(projects, initialCategory = "Residential") {
         setActiveType,
         activePossession,
         setActivePossession,
+        activeTransaction,
+        setActiveTransaction,
         filteredProjects,
-        FILTER_TYPES,
+        FILTER_RESIDENTIAL_TYPES,
         FILTER_COMMERCIAL_TYPES,
-        FILTER_POSSESSION
+        FILTER_ALL_TYPES,
+        FILTER_POSSESSION,
+        FILTER_TRANSACTION_OPTIONS
     };
 }
