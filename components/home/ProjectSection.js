@@ -38,7 +38,7 @@ function ProjectSectionContent({ projects }) {
                 <div className="flex flex-col items-center mb-10 relative z-40">
                     <div className="w-full text-center">
                         <span className="text-gold-400 uppercase tracking-[0.25em] text-xs font-bold mb-4 block">Discover</span>
-                        <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-2">Our Collections</h2>
+                        <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-2">Our Projects</h2>
                     </div>
                 </div>
             </div>
