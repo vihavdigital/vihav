@@ -23,12 +23,18 @@ export function useProjectFilters(projects, initialCategory = "Residential") {
         const categoryParam = searchParams.get("category");
         const statusParam = searchParams.get("status");
 
-        if (categoryParam && ["Residential", "Commercial"].includes(categoryParam)) {
-            setActiveCategory(categoryParam);
+        if (categoryParam) {
+            // Case insensitive check for category
+            const match = ["Residential", "Commercial"].find(c => c.toLowerCase() === categoryParam.toLowerCase());
+            if (match) setActiveCategory(match);
         }
 
-        if (statusParam && FILTER_POSSESSION.includes(statusParam)) {
-            setActivePossession(statusParam);
+        if (statusParam) {
+            // Case insensitive check for possession status
+            const match = FILTER_POSSESSION.find(p => p.toLowerCase() === statusParam.toLowerCase());
+            if (match) {
+                setActivePossession(match);
+            }
         }
     }, [searchParams]);
 

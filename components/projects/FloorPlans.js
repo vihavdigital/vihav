@@ -1,0 +1,138 @@
+"use client";
+
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Download, Maximize2, X, ZoomIn } from "lucide-react";
+import Image from "next/image";
+
+export default function FloorPlans({ plans }) {
+    const [activeTab, setActiveTab] = useState(0);
+    const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+
+    if (!plans || plans.length === 0) return null;
+
+    const activePlan = plans[activeTab];
+
+    return (
+        <section className="py-24 bg-white" id="floor-plans">
+            <div className="container mx-auto px-6">
+                <div className="flex flex-col items-center mb-16">
+                    <span className="text-gold-400 uppercase tracking-[0.25em] text-xs font-bold mb-4 block">Layouts</span>
+                    <h2 className="text-4xl md:text-5xl text-luxury-black font-serif mb-6 text-center">Floor Plans</h2>
+                    <div className="w-24 h-1 bg-gold-400/30 rounded-full" />
+                </div>
+
+                <div className="flex flex-col lg:flex-row gap-12 items-start">
+                    {/* Left: Navigation Tabs */}
+                    <div className="w-full lg:w-1/3 space-y-4">
+                        <div className="bg-secondary/30 p-8 rounded-2xl border border-border/50">
+                            <h3 className="text-xl font-serif text-luxury-black mb-6">Select Unit Type</h3>
+                            <div className="space-y-3">
+                                {plans.map((plan, index) => (
+                                    <button
+                                        key={plan.id}
+                                        onClick={() => setActiveTab(index)}
+                                        className={`w-full text-left p-4 rounded-xl transition-all duration-300 flex justify-between items-center group ${activeTab === index
+                                            ? "bg-gold-400 text-white shadow-lg shadow-gold-400/20"
+                                            : "bg-white hover:bg-white/80 text-muted-foreground hover:text-luxury-black border border-transparent hover:border-gold-400/30"
+                                            }`}
+                                    >
+                                        <div>
+                                            <span className={`block text-xs uppercase tracking-wider mb-1 ${activeTab === index ? "text-white/80" : "text-muted-foreground/70 group-hover:text-gold-400"}`}>
+                                                {plan.type}
+                                            </span>
+                                            <span className="font-serif text-lg">{plan.title}</span>
+                                        </div>
+                                        {activeTab === index && (
+                                            <motion.div layoutId="active-dot" className="w-2 h-2 bg-white rounded-full" />
+                                        )}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Plan Details Card */}
+                        <div className="bg-luxury-black text-white p-8 rounded-2xl relative overflow-hidden">
+                            <div className="relative z-10">
+                                <h4 className="text-gold-400 text-sm uppercase tracking-widest mb-2">Dimensions</h4>
+                                <p className="text-3xl font-serif mb-6">{activePlan.dimensions}</p>
+
+                                <button
+                                    className="flex items-center gap-3 text-sm uppercase tracking-widest hover:text-gold-400 transition-colors group"
+                                    onClick={() => window.open(activePlan.image, '_blank')}
+                                >
+                                    <Download size={18} className="group-hover:-translate-y-1 transition-transform" />
+                                    Download Layout
+                                </button>
+                            </div>
+                            {/* Decorative Background */}
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-gold-400/10 rounded-full blur-[40px] -translate-y-1/2 translate-x-1/2" />
+                        </div>
+                    </div>
+
+                    {/* Right: Plan Display */}
+                    <div className="w-full lg:w-2/3">
+                        <motion.div
+                            key={activePlan.id}
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.5 }}
+                            className="bg-white border border-border p-4 md:p-8 rounded-2xl relative group cursor-zoom-in shadow-sm hover:shadow-xl transition-shadow duration-500"
+                            onClick={() => setIsLightboxOpen(true)}
+                        >
+                            <div className="relative aspect-[4/3] w-full bg-secondary/10 rounded-lg overflow-hidden">
+                                <Image
+                                    src={activePlan.image}
+                                    alt={activePlan.title}
+                                    fill
+                                    className="object-contain p-4 group-hover:scale-105 transition-transform duration-700"
+                                />
+                                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300 flex items-center justify-center">
+                                    <div className="bg-white/90 backdrop-blur-sm p-4 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 shadow-lg">
+                                        <Maximize2 className="text-luxury-black w-6 h-6" />
+                                    </div>
+                                </div>
+                            </div>
+                            <p className="text-center text-xs text-muted-foreground uppercase tracking-widest mt-6">Click to Expand</p>
+                        </motion.div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Lightbox Overlay */}
+            <AnimatePresence>
+                {isLightboxOpen && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-xl flex items-center justify-center p-4 md:p-8"
+                        onClick={() => setIsLightboxOpen(false)}
+                    >
+                        <button
+                            className="absolute top-6 right-6 text-white/50 hover:text-white transition-colors"
+                            onClick={() => setIsLightboxOpen(false)}
+                        >
+                            <X size={32} />
+                        </button>
+
+                        <motion.div
+                            initial={{ scale: 0.9 }}
+                            animate={{ scale: 1 }}
+                            exit={{ scale: 0.9 }}
+                            className="relative w-full h-full max-w-6xl max-h-[90vh] flex items-center justify-center"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <Image
+                                src={activePlan.image}
+                                alt={activePlan.title}
+                                fill
+                                className="object-contain"
+                            />
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </section>
+    );
+}

@@ -15,7 +15,10 @@ export default function ProjectGallery({ images, className = "" }) {
         restDelta: 0.001
     });
 
-    if (!images || images.length === 0) return null;
+    if (!images || images.length === 0) {
+        // Return a hidden div with the ref to satisfy useScroll
+        return <div ref={scrollRef} className="hidden" />;
+    }
 
     return (
         <section className={`bg-luxury-black text-white relative group ${className}`}>

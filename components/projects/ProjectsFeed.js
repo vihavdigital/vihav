@@ -24,7 +24,7 @@ export default function ProjectsFeed() {
     return (
         <>
             {/* Sticky Filter Bar */}
-            <div className="sticky top-[70px] z-40 bg-background/95 backdrop-blur-xl border-y border-border py-4 mb-12 transition-all duration-300">
+            <div className="sticky top-[48px] md:top-[60px] z-40 bg-background/95 backdrop-blur-xl border-y border-border py-4 mb-12 transition-all duration-300">
                 <div className="container mx-auto px-6">
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
 

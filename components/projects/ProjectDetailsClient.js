@@ -1,5 +1,7 @@
 "use client";
 
+import FloorPlans from "@/components/projects/FloorPlans";
+
 import { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, AnimatePresence, useInView } from "framer-motion";
 
@@ -49,7 +51,7 @@ export default function ProjectDetailsClient({ project, theme }) {
     // Scroll Spy Logic
     useEffect(() => {
         const handleScroll = () => {
-            const sections = ["overview", "amenities", "gallery", "location", "construction"];
+            const sections = ["overview", "amenities", "floor-plans", "gallery", "location", "construction"];
             for (const section of sections) {
                 const el = document.getElementById(section);
                 if (el) {
@@ -85,12 +87,13 @@ export default function ProjectDetailsClient({ project, theme }) {
     return (
         <div className="relative">
             {/* Sticky Navigation Bar */}
-            <div className={`sticky top-[96px] z-40 bg-background/95 backdrop-blur-sm border-b border-border transition-all duration-300`}>
+            <div className={`sticky top-[48px] md:top-[60px] z-40 bg-background/95 backdrop-blur-sm border-b border-border transition-all duration-300`}>
                 <div className="container mx-auto px-6 overflow-x-auto scrollbar-hide flex items-center justify-center">
                     <div className="flex items-center gap-8 min-w-max h-16">
                         {[
                             { id: "overview", label: "Overview" },
                             { id: "amenities", label: "Amenities & Specs" },
+                            ...(project.floorPlans?.length > 0 ? [{ id: "floor-plans", label: "Layouts" }] : []),
                             { id: "gallery", label: "Gallery" },
                             { id: "location", label: "Location" },
                             { id: "construction", label: "Status" }
@@ -268,6 +271,13 @@ export default function ProjectDetailsClient({ project, theme }) {
                     </div>
                 </div>
             </section>
+
+            {/* NEW: Floor Plans Section */}
+            {project.floorPlans?.length > 0 && (
+                <div id="floor-plans" className="scroll-mt-24">
+                    <FloorPlans plans={project.floorPlans} />
+                </div>
+            )}
 
             {/* 3. Gallery Section (Enhanced with Tabs) */}
             <section id="gallery" className="py-0 scroll-mt-24 bg-luxury-black text-white">

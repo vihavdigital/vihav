@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Maximize } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
 export default function ProjectCard({ project }) {
@@ -28,6 +28,12 @@ export default function ProjectCard({ project }) {
                         <div>
                             <span className="text-amber-500 text-[10px] md:text-xs uppercase tracking-widest block mb-2 font-bold">{project.location}</span>
                             <h3 className="text-xl md:text-2xl font-serif text-foreground leading-tight">{project.title}</h3>
+                            {project.carpetArea && (
+                                <div className="inline-flex items-center gap-2 mt-4 px-3 py-1.5 bg-gold-400/10 border border-gold-400/20 rounded md:rounded-lg">
+                                    <Maximize size={14} className="text-gold-500" />
+                                    <span className="text-[10px] md:text-xs font-bold text-foreground tracking-widest uppercase">{project.carpetArea}</span>
+                                </div>
+                            )}
                         </div>
                         <span className="text-muted-foreground text-[10px] md:text-xs text-right hidden md:block">{project.type}</span>
                     </div>
