@@ -20,12 +20,7 @@ const MENU_ITEMS = [
         label: "PROJECTS",
         href: "/projects",
         image: "https://www.vihav.com/wp-content/uploads/KS51-Elevation-1-e1761809057612.jpg",
-        desc: "Explore our residential and commercial landmarks.",
-        subItems: [
-            { label: "Newly Launched", href: "/projects?status=Newly+Launched" },
-            { label: "Ready to Move", href: "/projects?status=Ready+to+Move" },
-            { label: "Under Construction", href: "/projects?status=Under+construction" }
-        ]
+        desc: "Explore our residential and commercial landmarks."
     },
     {
         id: "about",
@@ -127,41 +122,19 @@ export default function SideMenu({ isOpen, onClose }) {
                                         onMouseEnter={() => setHoveredItem(item)}
                                         className="block text-right"
                                     >
-                                        <div className="flex flex-col items-end group">
-                                            <Link
-                                                href={item.href}
-                                                onClick={onClose}
-                                                className={`flex items-center justify-end w-full gap-3 md:gap-4 text-3xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-serif tracking-tight transition-all duration-500 ease-out ${hoveredItem.id === item.id ? "text-gold-400 -translate-x-4 md:-translate-x-10" : "text-muted-foreground hover:text-foreground"}`}
-                                            >
-                                                <span className="relative">
-                                                    {item.label}
-                                                    <ArrowRight
-                                                        size={20}
-                                                        className={`absolute right-full mr-4 top-1/2 -translate-y-1/2 -rotate-45 transition-opacity duration-500 md:w-6 md:h-6 ${hoveredItem.id === item.id ? "opacity-100" : "opacity-0"}`}
-                                                    />
-                                                </span>
-                                            </Link>
-
-                                            {/* Sub-items */}
-                                            {item.subItems && hoveredItem.id === item.id && (
-                                                <motion.div
-                                                    initial={{ opacity: 0, height: 0 }}
-                                                    animate={{ opacity: 1, height: "auto" }}
-                                                    className="flex flex-col gap-2 mt-2 mr-1"
-                                                >
-                                                    {item.subItems.map((sub, idx) => (
-                                                        <Link
-                                                            key={idx}
-                                                            href={sub.href}
-                                                            onClick={onClose}
-                                                            className="text-sm md:text-base text-muted-foreground hover:text-gold-400 font-sans tracking-wide transition-colors py-1 block"
-                                                        >
-                                                            {sub.label}
-                                                        </Link>
-                                                    ))}
-                                                </motion.div>
-                                            )}
-                                        </div>
+                                        <Link
+                                            href={item.href}
+                                            onClick={onClose}
+                                            className={`group flex items-center justify-end w-full gap-3 md:gap-4 text-3xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-serif tracking-tight transition-all duration-500 ease-out ${hoveredItem.id === item.id ? "text-gold-400 -translate-x-4 md:-translate-x-10" : "text-muted-foreground hover:text-foreground"}`}
+                                        >
+                                            <span className="relative">
+                                                {item.label}
+                                                <ArrowRight
+                                                    size={20}
+                                                    className={`absolute right-full mr-4 top-1/2 -translate-y-1/2 -rotate-45 transition-opacity duration-500 md:w-6 md:h-6 ${hoveredItem.id === item.id ? "opacity-100" : "opacity-0"}`}
+                                                />
+                                            </span>
+                                        </Link>
                                     </motion.div>
                                 ))}
                             </motion.div>
