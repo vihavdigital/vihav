@@ -73,22 +73,7 @@ export default function FloorPlans({ plans }) {
                         </div>
 
                         {/* Plan Details Card */}
-                        <div className="bg-luxury-black text-white p-8 rounded-2xl relative overflow-hidden">
-                            <div className="relative z-10">
-                                <h4 className="text-gold-400 text-sm uppercase tracking-widest mb-2">Dimensions</h4>
-                                <p className="text-3xl font-serif mb-6">{activePlan.dimensions}</p>
 
-                                <button
-                                    className="flex items-center gap-3 text-sm uppercase tracking-widest hover:text-gold-400 transition-colors group"
-                                    onClick={() => window.open(activePlan.image, '_blank')}
-                                >
-                                    <Download size={18} className="group-hover:-translate-y-1 transition-transform" />
-                                    Download Layout
-                                </button>
-                            </div>
-                            {/* Decorative Background */}
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-gold-400/10 rounded-full blur-[40px] -translate-y-1/2 translate-x-1/2" />
-                        </div>
                     </div>
 
                     {/* Right: Plan Display */}
@@ -116,6 +101,21 @@ export default function FloorPlans({ plans }) {
                             </div>
                             <p className="text-center text-xs text-muted-foreground uppercase tracking-widest mt-6">Click to Expand</p>
                         </motion.div>
+
+                        {/* Compact Dimensions & Download Bar (Moved Below Image) */}
+                        <div className="mt-6 flex flex-col md:flex-row items-center justify-between gap-4 bg-secondary/20 p-6 rounded-xl border border-border/50">
+                            <div>
+                                <span className="text-gold-400 text-[10px] uppercase tracking-widest font-bold block mb-1">Dimensions</span>
+                                <p className="text-2xl font-serif text-luxury-black">{activePlan.dimensions}</p>
+                            </div>
+                            <button
+                                className="flex items-center gap-2 px-6 py-3 bg-luxury-black text-white text-xs uppercase tracking-widest rounded-lg hover:bg-gold-400 hover:text-black transition-all duration-300 shadow-md hover:shadow-lg"
+                                onClick={() => window.open(activePlan.image, '_blank')}
+                            >
+                                <Download size={16} />
+                                Download Layout
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

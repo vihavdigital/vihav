@@ -50,7 +50,7 @@ export default async function ProjectPage({ params }) {
             <Header />
 
             {/* Hero Section */}
-            <div className="relative h-screen">
+            <div className="relative h-[100svh]">
                 <div className="absolute inset-0">
                     {project.heroImage?.endsWith('.mp4') ? (
                         <video

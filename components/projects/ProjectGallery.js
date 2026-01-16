@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { X, ArrowRight, ArrowLeft, Expand } from "lucide-react";
+import { X, ArrowRight, ArrowLeft, Expand, ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function ProjectGallery({ images, className = "" }) {
     const scrollRef = useRef(null);
@@ -14,6 +14,28 @@ export default function ProjectGallery({ images, className = "" }) {
         damping: 30,
         restDelta: 0.001
     });
+
+    // Keyboard Navigation for Lightbox
+    useEffect(() => {
+        if (!selectedImage) return;
+
+        const handleKeyDown = (e) => {
+            if (e.key === "Escape") {
+                setSelectedImage(null);
+            } else if (e.key === "ArrowLeft") {
+                const currentIndex = images.indexOf(selectedImage);
+                const prevIndex = (currentIndex - 1 + images.length) % images.length;
+                setSelectedImage(images[prevIndex]);
+            } else if (e.key === "ArrowRight") {
+                const currentIndex = images.indexOf(selectedImage);
+                const nextIndex = (currentIndex + 1) % images.length;
+                setSelectedImage(images[nextIndex]);
+            }
+        };
+
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
+    }, [selectedImage, images]);
 
     if (!images || images.length === 0) {
         // Return a hidden div with the ref to satisfy useScroll
@@ -103,6 +125,7 @@ export default function ProjectGallery({ images, className = "" }) {
             </div>
 
             {/* Lightbox */}
+            {/* Lightbox */}
             {selectedImage && (
                 <motion.div
                     initial={{ opacity: 0 }}
@@ -118,8 +141,38 @@ export default function ProjectGallery({ images, className = "" }) {
                     >
                         <X size={32} />
                     </button>
+
+                    {/* Prev Button */}
+                    <button
+                        className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white hover:bg-white/10 p-2 rounded-full transition-all z-50"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            const currentIndex = images.indexOf(selectedImage);
+                            const prevIndex = (currentIndex - 1 + images.length) % images.length;
+                            setSelectedImage(images[prevIndex]);
+                        }}
+                    >
+                        <ChevronLeft size={48} />
+                    </button>
+
+                    {/* Next Button */}
+                    <button
+                        className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white hover:bg-white/10 p-2 rounded-full transition-all z-50"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            const currentIndex = images.indexOf(selectedImage);
+                            const nextIndex = (currentIndex + 1) % images.length;
+                            setSelectedImage(images[nextIndex]);
+                        }}
+                    >
+                        <ChevronRight size={48} />
+                    </button>
+
                     <motion.div
-                        layoutId={`img-${selectedImage}`}
+                        key={selectedImage} // Key helps anim presence if we added it, but here it just forces re-render
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.3 }}
                         className="relative w-full h-full flex items-center justify-center"
                         onClick={(e) => e.stopPropagation()}
                     >

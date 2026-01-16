@@ -94,7 +94,7 @@ export default function RootLayout({ children }) {
         <ThemeProvider>
           <Preloader />
           <SmoothScroll />
-          <ChatLoader />
+          {/* <ChatLoader /> */}
           {children}
         </ThemeProvider>
       </body>

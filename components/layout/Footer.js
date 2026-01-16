@@ -27,16 +27,7 @@ export default function Footer() {
                             />
                         </Link>
                         <div className="space-y-6 text-muted-foreground font-light text-sm leading-relaxed max-w-xs">
-                            <p>
-                                <strong className="block text-foreground mb-2 uppercase tracking-widest text-xs">Corporate Office</strong>
-                                Vihav Supremus, Near Iscon Heights,<br />
-                                Gotri, Vadodara, Gujarat 390021
-                            </p>
-                            <p>
-                                <strong className="block text-foreground mb-2 uppercase tracking-widest text-xs mt-6">Registered Office</strong>
-                                22, Greenwood, Sevasi-Ankodia Road,<br />
-                                Vadodara, Gujarat 390021
-                            </p>
+
                             <p className="pt-4">
                                 <a href="mailto:info@vihav.com" className="hover:text-gold-400 transition-colors block mb-1">info@vihav.com</a>
                                 <a href="tel:+918866341272" className="hover:text-gold-400 transition-colors">+91 88663 41272</a>
