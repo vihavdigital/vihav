@@ -86,7 +86,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         suppressHydrationWarning
         className={`${playfair.variable} ${lato.variable} antialiased transition-colors duration-300`}

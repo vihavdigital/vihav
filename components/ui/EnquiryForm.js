@@ -65,9 +65,9 @@ export default function EnquiryForm({ className, onSuccess, variant = "minimal",
     // Styles based on variant
     const styles = {
         minimal: {
-            input: "w-full bg-transparent border-b border-border py-4 text-xl text-foreground placeholder:text-muted-foreground/50 focus:border-gold-400 focus:outline-none transition-all font-light",
-            select: "w-full bg-transparent border-b border-border py-4 text-xl text-foreground focus:border-gold-400 focus:outline-none transition-all font-light appearance-none cursor-pointer",
-            button: "bg-foreground text-background hover:bg-gold-400 hover:text-black rounded-none py-6 tracking-[0.2em]"
+            input: "w-full bg-transparent border-b border-border py-2 md:py-4 text-base md:text-xl text-foreground placeholder:text-muted-foreground/50 focus:border-gold-400 focus:outline-none transition-all font-light",
+            select: "w-full bg-transparent border-b border-border py-2 md:py-4 text-base md:text-xl text-foreground focus:border-gold-400 focus:outline-none transition-all font-light appearance-none cursor-pointer",
+            button: "bg-foreground text-background hover:bg-gold-400 hover:text-black rounded-none py-4 md:py-6 tracking-[0.2em] text-sm md:text-base"
         },
         standard: {
             input: "w-full bg-secondary border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:border-gold-400 focus:outline-none transition-colors",

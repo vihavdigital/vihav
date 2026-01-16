@@ -25,9 +25,30 @@ export default function FloorPlans({ plans }) {
                 <div className="flex flex-col lg:flex-row gap-12 items-start">
                     {/* Left: Navigation Tabs */}
                     <div className="w-full lg:w-1/3 space-y-4">
-                        <div className="bg-secondary/30 p-8 rounded-2xl border border-border/50">
-                            <h3 className="text-xl font-serif text-luxury-black mb-6">Select Unit Type</h3>
-                            <div className="space-y-3">
+                        <div className="bg-secondary/30 p-4 md:p-8 rounded-2xl border border-border/50">
+                            <h3 className="text-xl font-serif text-luxury-black mb-4 md:mb-6">Select Unit Type</h3>
+
+                            {/* Mobile: Horizontal Scrollable Tabs */}
+                            <div className="flex lg:hidden overflow-x-auto gap-3 pb-2 scrollbar-hide snap-x">
+                                {plans.map((plan, index) => (
+                                    <button
+                                        key={plan.id}
+                                        onClick={() => setActiveTab(index)}
+                                        className={`min-w-[140px] flex-shrink-0 text-left p-3 rounded-xl transition-all duration-300 border snap-start ${activeTab === index
+                                            ? "bg-gold-400 text-white border-gold-400 shadow-lg"
+                                            : "bg-white text-muted-foreground border-transparent"
+                                            }`}
+                                    >
+                                        <span className={`block text-[10px] uppercase tracking-wider mb-1 ${activeTab === index ? "text-white/80" : "text-muted-foreground/70"}`}>
+                                            {plan.type}
+                                        </span>
+                                        <span className="font-serif text-sm leading-tight block">{plan.title}</span>
+                                    </button>
+                                ))}
+                            </div>
+
+                            {/* Desktop: Vertical List */}
+                            <div className="hidden lg:flex flex-col gap-3">
                                 {plans.map((plan, index) => (
                                     <button
                                         key={plan.id}

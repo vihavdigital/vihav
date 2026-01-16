@@ -88,11 +88,11 @@ export default function ProjectDetailsClient({ project, theme }) {
         <div className="relative">
             {/* Sticky Navigation Bar */}
             <div className={`sticky top-[48px] md:top-[60px] z-40 bg-background/95 backdrop-blur-sm border-b border-border transition-all duration-300`}>
-                <div className="container mx-auto px-6 overflow-x-auto scrollbar-hide flex items-center justify-center">
-                    <div className="flex items-center gap-8 min-w-max h-16">
+                <div className="container mx-auto px-2 md:px-6 overflow-x-auto scrollbar-hide flex items-center justify-between md:justify-center">
+                    <div className="flex items-center gap-3 md:gap-8 w-full md:w-auto min-w-max md:min-w-0 h-16 px-1">
                         {[
                             { id: "overview", label: "Overview" },
-                            { id: "amenities", label: "Amenities & Specs" },
+                            { id: "amenities", label: "Amenities" }, // Shortened for mobile fit
                             ...(project.floorPlans?.length > 0 ? [{ id: "floor-plans", label: "Layouts" }] : []),
                             { id: "gallery", label: "Gallery" },
                             { id: "location", label: "Location" },
@@ -101,7 +101,7 @@ export default function ProjectDetailsClient({ project, theme }) {
                             <button
                                 key={item.id}
                                 onClick={() => scrollToSection(item.id)}
-                                className={`text-sm uppercase tracking-widest py-2 border-b-2 transition-colors ${activeSection === item.id
+                                className={`text-[10px] md:text-sm uppercase tracking-widest py-2 border-b-2 transition-colors whitespace-nowrap ${activeSection === item.id
                                     ? `${theme.text} ${theme.border}`
                                     : "text-muted-foreground border-transparent hover:text-foreground"
                                     }`}
@@ -230,13 +230,13 @@ export default function ProjectDetailsClient({ project, theme }) {
                                     {project.amenitiesList.map((amenity, idx) => {
                                         const Icon = ICON_MAP[amenity.icon] || CircleCheck;
                                         return (
-                                            <div key={idx} className="flex flex-col items-start text-left p-8 border border-border bg-secondary/20 hover:bg-secondary hover:border-gold-400 transition-all duration-300 rounded-xl group min-h-[180px] justify-between">
-                                                <div className={`mb-6 ${theme.text} group-hover:scale-110 transition-transform duration-300`}>
-                                                    <Icon size={40} strokeWidth={1} />
+                                            <div key={idx} className="flex flex-col items-start text-left p-4 md:p-8 border border-border bg-secondary/20 hover:bg-secondary hover:border-gold-400 transition-all duration-300 rounded-xl group min-h-[140px] md:min-h-[180px] justify-between">
+                                                <div className={`mb-4 md:mb-6 ${theme.text} group-hover:scale-110 transition-transform duration-300`}>
+                                                    <Icon size={32} strokeWidth={1} className="md:w-10 md:h-10" />
                                                 </div>
                                                 <div>
-                                                    <span className="text-foreground font-medium text-lg tracking-wide block mb-1 group-hover:text-gold-400 transition-colors">{amenity.label}</span>
-                                                    {amenity.note && <span className="text-xs text-muted-foreground uppercase tracking-wider">{amenity.note}</span>}
+                                                    <span className="text-foreground font-medium text-sm md:text-lg tracking-wide block mb-1 group-hover:text-gold-400 transition-colors">{amenity.label}</span>
+                                                    {amenity.note && <span className="text-[10px] md:text-xs text-muted-foreground uppercase tracking-wider">{amenity.note}</span>}
                                                 </div>
                                             </div>
                                         );
@@ -251,9 +251,9 @@ export default function ProjectDetailsClient({ project, theme }) {
                                 <div className="grid md:grid-cols-2 gap-x-12 gap-y-12">
                                     {project.specifications.map((spec, idx) => (
                                         <div key={idx} className="group">
-                                            <div className={`flex items-center gap-4 mb-6 pb-4 border-b border-border group-hover:border-gold-400/50 transition-colors`}>
-                                                <div className={`w-1 h-8 ${theme.bg}`}></div>
-                                                <h4 className={`text-xl font-bold text-foreground`}>{spec.category}</h4>
+                                            <div className={`flex items-center gap-3 md:gap-4 mb-4 md:mb-6 pb-2 md:pb-4 border-b border-border group-hover:border-gold-400/50 transition-colors`}>
+                                                <div className={`w-1 h-6 md:h-8 ${theme.bg}`}></div>
+                                                <h4 className={`text-lg md:text-xl font-bold text-foreground`}>{spec.category}</h4>
                                             </div>
                                             <ul className="space-y-4 pl-5">
                                                 {spec.items.map((item, i) => (

@@ -23,7 +23,7 @@ export default function Footer() {
                             <img
                                 src="/images/project-images/project-logos/vihav-group-logo.svg"
                                 alt="Vihav Group"
-                                className="h-24 md:h-48 w-auto object-contain opacity-100 dark:invert-0 invert"
+                                className="h-24 md:h-48 w-auto object-contain opacity-100"
                             />
                         </Link>
                         <div className="space-y-6 text-muted-foreground font-light text-sm leading-relaxed max-w-xs">

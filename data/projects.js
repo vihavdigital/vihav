@@ -249,92 +249,6 @@ export const PROJECTS = [
         }
     },
     {
-        id: "vs-monolith",
-        status: "Newly Launched",
-        slug: "vs-monolith",
-        title: "VS Monolith",
-        category: "Commercial",
-        location: "Atladra Padra 40mtr Main Road",
-        carpetArea: "268 - 3057 Sq.Ft.",
-        type: "SHOWROOMS, SHOPS & OFFICES",
-        price: "21.51 Lacs",
-        reraId: "PR/GJ/VADODARA/VADODARA/Others/CAA00002/010121",
-        reraLink: "https://gujrera.gujarat.gov.in/",
-        phone: "+91 91206 45645",
-        email: "sales@vihav.com",
-        description: "A monolithic structure dominance in the Bhayli skyline.",
-        vision: "Main ATLADRA -PADRA 40.MTR Road",
-        heroImage: "https://www.vihav.com/wp-content/uploads/vs-monolith-thumb.webp",
-        galleryImages: ["https://www.vihav.com/wp-content/uploads/vs-monolith-thumb.webp"],
-        features: ["Iconic Design", "Strategic Junction"],
-        amenitiesList: [
-            { icon: "Shield", label: "Security" },
-            { icon: "ArrowUpFromLine", label: "Premium Elevators" },
-            { icon: "Car", label: "Multi-level Parking" },
-            { icon: "Video", label: "Advanced CCTV" },
-            { icon: "Coffee", label: "Cafeteria Space" }
-        ],
-        specifications: [
-            { category: "Structure", items: ["Iconic Glass Facade"] },
-            { category: "Flooring", items: ["Premium Vitrified"] },
-            { category: "Connectivity", items: ["Fiber Ready"] }
-        ],
-        connectivity: [{ label: "Bhayli", time: "0 Mins" }],
-        address: "Bhayli Cross Road, Vadodara",
-        coordinates: { lat: 22.2970, lng: 73.1320 },
-        mapEmbed: "https://maps.google.com/maps?q=VS+Monolith+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
-        filterData: {
-            category: "Commercial",
-            transactionType: ["Buy", "Lease", "Rent"],
-            type: ["offices", "shops", "showrooms"],
-            possession: "Newly Launched"
-        }
-    },
-    {
-        id: "supremus-iii",
-        status: "Newly Launched",
-        slug: "supremus-iii",
-        title: "Supremus III",
-        category: "Commercial",
-        location: "Nr. DMart, Vasna Bhayli Main Rd",
-        carpetArea: "295 Sq.Ft. Onwards",
-        type: "SHOWROOMS, SHOPS & OFFICES",
-        price: "30 Lacs",
-        reraId: "PR/GJ/VADODARA/VADODARA/Others/CAA00003/010121",
-        reraLink: "https://gujrera.gujarat.gov.in/",
-        phone: "+91 879 174 9174",
-        email: "supremus3@vihav.com",
-        description: "Premium commercial spaces near D-Mart.",
-        vision: "A ELEGANT CO-ORPORATE PARK",
-        heroImage: "https://www.vihav.com/wp-content/uploads/supremus3-new-banner-for-homepage-1.webp",
-        galleryImages: ["https://www.vihav.com/wp-content/uploads/supremus3-new-banner-for-homepage-1.webp"],
-        features: ["Main Road Frontage", "Corporate Look"],
-        amenitiesList: [
-            { icon: "Shield", label: "24/7 Security" },
-            { icon: "Video", label: "CCTV" },
-            { icon: "Car", label: "Parking" },
-            { icon: "ArrowUpFromLine", label: "Elevators" },
-            { icon: "CircleCheck", label: "Fire Safety" },
-            { icon: "Users", label: "Common Reception" }
-        ],
-        specifications: [
-            { category: "Structure", items: ["RCC Frame"] },
-            { category: "Flooring", items: ["Vitrified Tiles"] },
-            { category: "Electrification", items: ["Concealed Wiring"] },
-            { category: "Facade", items: ["Glass Facade"] }
-        ],
-        connectivity: [{ label: "D-Mart", time: "1 Min" }],
-        address: "Vasna Bhayli Road, Vadodara",
-        coordinates: { lat: 22.2920, lng: 73.1380 },
-        mapEmbed: "https://maps.google.com/maps?q=Supremus+III+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
-        filterData: {
-            category: "Commercial",
-            transactionType: ["Buy", "Lease", "Rent"],
-            type: ["offices", "showrooms"],
-            possession: "Newly Launched"
-        }
-    },
-    {
         id: "keystone-30",
         status: "Ongoing",
         slug: "keystone-30",
@@ -460,59 +374,52 @@ export const PROJECTS = [
         price: "1.26 Cr",
         phone: "+91 7435 894 894",
         email: "cbd@vihav.com",
-        description: "Central Business District of Bhayli. A landmark mixed-use development.",
+        description: "Vihav CBD (Central Business District) stands as an iconic residential and commercial development in the heart of Bhayli, offering an exclusive collection of 4 BHK luxurious flats and 5B2HK Penthouses. Thoughtfully designed for those who seek elegance, space, and a premium lifestyle.",
         vision: "HEART OF BHAYLI",
-        heroImage: "/images/project-images/project-tiles/vihav-cbd.jpg", // Placeholder
-        features: ["Prime Junction", "Mixed Use"],
-        amenitiesList: [
-            { icon: "Shield", label: "Security" },
-            { icon: "Car", label: "Parking" },
-            { icon: "ArrowUpFromLine", label: "High Speed Lifts" }
+        heroImage: "/images/project-images/project-tiles/vihav-cbd.jpg",
+        galleryImages: [
+            "https://www.vihav.com/wp-content/uploads/vihav-cbd-gallery-image-7.webp",
+            "https://www.vihav.com/wp-content/uploads/vihav-cbd-gallery-image-4.webp",
+            "https://www.vihav.com/wp-content/uploads/DSC_6886-scaled.jpg",
+            "https://www.vihav.com/wp-content/uploads/DSC_6906-scaled.jpg",
+            "https://www.vihav.com/wp-content/uploads/SSP_1376-1-scaled.jpg"
         ],
-        specifications: [{ category: "Flooring", items: ["Vitrified Tiles"] }],
-        connectivity: [{ label: "Bhayli", time: "0 Mins" }],
-        address: "NEAR FOOD CASTLE, BHAYLI, VADODARA, GUJARAT 391410",
-
+        floorPlans: [
+            { id: "fp-1", title: "Ground Floor Plan", image: "https://www.vihav.com/wp-content/uploads/Vihav_CBD_Residential_Ground_Floor_Plan-scaled.webp", type: "Plan" },
+            { id: "fp-2", title: "Typical Unit Plan", image: "https://www.vihav.com/wp-content/uploads/Vihav_CBD_Residential_Typical_Unit_Plan-scaled.webp", type: "Plan" },
+            { id: "fp-3", title: "First Floor Plan", image: "https://www.vihav.com/wp-content/uploads/Vihav_CBD_Residential_First_Floor_Plan-scaled.webp", type: "Plan" },
+            { id: "fp-4", title: "4BHK Typical Unit", image: "https://www.vihav.com/wp-content/uploads/Vihav_CBD_4BHK_Typical_Unit_Plan-scaled.webp", type: "4BHK" },
+            { id: "fp-5", title: "5BHK Penthouse Plan", image: "https://www.vihav.com/wp-content/uploads/Vihav_CBD_5BHK_Penthouse-Upper-Lower-Plan-scaled.webp", type: "Penthouse" }
+        ],
+        features: ["Prime Junction", "Mixed Use", "Extensive Amenities", "Iconic Landmark"],
+        highlights: [
+            { icon: "MapPin", title: "Prime Location", label: "Bhayli Cross Road", description: "Located at the heart of Bhayli with seamless connectivity." },
+            { icon: "Building", title: "Mixed Use", label: "Residential & Commercial", description: "A perfect blend of luxury living and business convenience." },
+            { icon: "Trees", title: "Green Living", label: "Lush Lawns", description: "Dedicated green spaces for relaxation and community." }
+        ],
+        amenitiesList: [
+            { icon: "Trees", label: "Lush Green Lawns" },
+            { icon: "Users", label: "Elegant Banquet Hall" },
+            { icon: "Gamepad2", label: "Indoor Games Room" },
+            { icon: "Dumbbell", label: "State-of-the-art Gym" },
+            { icon: "Coffee", label: "Premium Lounge" },
+            { icon: "Waves", label: "Large Swimming Pool" },
+            { icon: "Gamepad2", label: "Kids Play Area" }
+        ],
+        specifications: [
+            { category: "Structure", items: ["Earthquake Resistant RCC Frame", "Designed by Approved Structural Engineer"] },
+            { category: "Kitchen", items: ["Premium Stone Platform", "Quartz Sink", "Designer Tiles to 2ft"] },
+            { category: "Flooring", items: ["800x800 Vitrified Tiles", "Anti-skid in Balcony/Wash"] },
+            { category: "Doors & Windows", items: ["Veneer Finish Main Door", "Laminated Flush Internal Doors", "Aluminum Sliding Windows"] },
+            { category: "Finishes", items: ["2 Coat Putty Interior", "Texture + Weather Resistant Paint Exterior"] },
+            { category: "Electrical", items: ["Concealed Copper Wiring", "Modular Switches"] }
+        ],
+        connectivity: [{ label: "Bhayli", time: "0 Mins" }, { label: "Bright Day School", time: "Nearby" }],
+        address: "Beside Rajpath, Nr Bright Day School, Vasna Bhayli Road, Vadodara",
         coordinates: { lat: 22.290250, lng: 73.131861 },
         mapEmbed: "https://maps.google.com/maps?q=Vihav+CBD+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
             category: "Residential",
-            transactionType: ["Buy", "Lease", "Rent"],
-            type: ["Invest", "End Use", "Pre-lease"],
-            possession: "Newly Launched"
-        }
-    },
-    {
-        id: "vihav-cbd",
-        launchYear: "2022",
-        brochureLink: "https://drive.google.com/file/d/1YEC52psDRHd111wP970Qvd-YGFFyjUPm/view?usp=drive_link",
-        status: "Ongoing",
-        slug: "vihav-cbd",
-        title: "Vihav CBD",
-        category: "Commercial",
-        location: "Bhayli Cross Road, Vadodara",
-        carpetArea: "262 to 4200 Sq.Ft.",
-        type: "SHOWROOMS, SHOPS & OFFICES",
-        price: "22 Lacs",
-        phone: "+91 7435 894 894",
-        email: "cbd@vihav.com",
-        description: "Central Business District of Bhayli. A landmark mixed-use development.",
-        vision: "HEART OF BHAYLI",
-        heroImage: "/images/project-images/project-tiles/vihav-cbd.jpg", // Placeholder
-        features: ["Prime Junction", "Mixed Use"],
-        amenitiesList: [
-            { icon: "Shield", label: "Security" },
-            { icon: "Car", label: "Parking" },
-            { icon: "ArrowUpFromLine", label: "High Speed Lifts" }
-        ],
-        specifications: [{ category: "Flooring", items: ["Vitrified Tiles"] }],
-        connectivity: [{ label: "Bhayli", time: "0 Mins" }],
-        address: "NEAR FOOD CASTLE, BHAYLI, VADODARA, GUJARAT 391410",
-
-        coordinates: { lat: 22.290250, lng: 73.131861 },
-        mapEmbed: "https://maps.google.com/maps?q=Vihav+CBD+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
-        filterData: {
-            category: "Commercial",
             transactionType: ["Buy", "Lease", "Rent"],
             type: ["Invest", "End Use", "Pre-lease"],
             possession: "Newly Launched"
@@ -648,50 +555,10 @@ export const PROJECTS = [
         }
     },
     {
-        id: "vihav-supremus-2",
-        status: "Ongoing",
-        slug: "vihav-supremus-2",
-        title: "Vihav Supremus II",
-        category: "Commercial",
-        location: "Atladra Padra 40mtr Main Road",
-        carpetArea: "225 Sq.Ft. Onwards",
-        type: "SHOWROOMS, SHOPS & OFFICES",
-        price: "27 Lacs",
-        reraId: "PR/GJ/VADODARA/VADODARA/Others/CAA00001/010121",
-        reraLink: "https://gujrera.gujarat.gov.in/",
-        phone: "+91 72019 85985",
-        email: "supremus2@vihav.com",
-        description: "Continuing the success of Supremus on the Atladra-Padra growth corridor.",
-        vision: "A-COMMERCIAL MARVEL",
-        heroImage: "https://www.vihav.com/wp-content/uploads/vhv_supremus2.webp",
-        galleryImages: ["https://www.vihav.com/wp-content/uploads/vhv_supremus2.webp"],
-        features: ["Main Road", "Growth Area"],
-        amenitiesList: [
-            { icon: "Shield", label: "Security" },
-            { icon: "Car", label: "Parking" },
-            { icon: "ArrowUpFromLine", label: "Lifts" },
-            { icon: "Video", label: "CCTV" }
-        ],
-        specifications: [
-            { category: "Structure", items: ["RCC Frame"] },
-            { category: "Flooring", items: ["Vitrified Tiles"] }
-        ],
-        connectivity: [{ label: "Atladra", time: "0 Mins" }],
-        address: "Atladra Padra Road, Vadodara",
-        coordinates: { lat: 22.2850, lng: 73.1650 },
-        mapEmbed: "https://maps.google.com/maps?q=Vihav+Supremus+II+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
-        filterData: {
-            category: "Commercial",
-            transactionType: ["Buy", "Lease", "Rent"],
-            type: ["shops", "showrooms", "offices"],
-            possession: "Under construction"
-        }
-    },
-    {
         id: "vihav-skymont",
         status: "Completed",
         slug: "vihav-skymont",
-        title: "Vihav Skymont",
+        title: "Keystone Skymont",
         category: "Residential",
         location: "New Alkapuri, Vadodara",
         type: "4B2HK & 5B2HK APPARTMENT",
@@ -800,6 +667,269 @@ export const PROJECTS = [
         }
     },
     {
+        id: "skyone",
+        slug: "skyone",
+        title: "Skyone",
+        category: "RESI-COMM",
+        location: "30 Mtr. Main Road, Bhayli",
+        carpetArea: "245 to 540 Sq.Ft.",
+        type: "3BHK APARTMENT & SHOPS",
+        price: "Price on Request",
+        reraId: "PR/GJ/VADODARA/VADODARA/Others/CAA00001/010121",
+        reraLink: "https://gujrera.gujarat.gov.in/",
+        phone: "+91 72018 54854",
+        email: "skyone@vihav.com",
+        description: "Strategic commercial shops on the bustling 30 Mtr Main Road in Bhayli.",
+        vision: "Sky High Commerce.",
+        heroImage: "https://www.vihav.com/wp-content/uploads/1_skyone_thum.webp",
+        galleryImages: ["https://www.vihav.com/wp-content/uploads/1_skyone_thum.webp"],
+        features: ["Main Road Facing", "High Visibility"],
+        amenitiesList: [
+            { icon: "Shield", label: "Security" },
+            { icon: "Car", label: "Parking" },
+            { icon: "Video", label: "CCTV" }
+        ],
+        specifications: [
+            { category: "Structure", items: ["RCC Frame"] },
+            { category: "Flooring", items: ["Vitrified Tiles"] }
+        ],
+        connectivity: [{ label: "Bhayli", time: "0 Mins" }],
+        address: "30 Mtr Main Road, Bhayli, Vadodara",
+        coordinates: { lat: 22.2861, lng: 73.1319 },
+        mapEmbed: "https://maps.google.com/maps?q=Vihav+Skyone+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
+        filterData: {
+            category: "Commercial",
+            transactionType: ["Buy", "Lease", "Rent"],
+            type: ["shops"],
+            possession: "Ready to Move"
+        }
+    },
+    {
+        id: "keystone-mansion",
+        slug: "keystone-mansion",
+        title: "Keystone Mansion",
+        status: "Completed",
+        category: "Residential",
+        location: "Khanpur, Sevasi",
+        type: "4B2HK BUNGALOW",
+        price: "Price on Request",
+        phone: "+91 87916 49164",
+        email: "ksm3@vihav.com",
+        description: "Expansive villas designed for royalty. The ultimate status symbol in Sevasi.",
+        vision: "Royal Living.",
+        heroImage: "https://images.unsplash.com/photo-1613977257363-707ba9348227?q=80&w=1000&auto=format&fit=crop", // Villa Placeholder
+        features: ["Private Pool", "Gated Community"],
+        amenitiesList: [
+            { icon: "Shield", label: "Security" },
+            { icon: "Trees", label: "Private Garden" },
+            { icon: "Waves", label: "Private Pool" }
+        ],
+        specifications: [{ category: "Flooring", items: ["Italian Marble"] }],
+        connectivity: [{ label: "Sevasi", time: "5 Mins" }],
+        address: "Khanpur, Sevasi, Vadodara",
+        coordinates: { lat: 22.3150, lng: 73.1050 },
+        mapEmbed: "https://maps.google.com/maps?q=Keystone+Mansions+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
+        filterData: {
+            category: "Residential",
+            type: ["5bhk", "Bunglows"],
+            possession: "Ready to Move"
+        }
+    },
+    {
+        id: "keystone-mansion-2",
+        slug: "keystone-mansion-2",
+        title: "Keystone Mansion 2",
+        status: "Completed",
+        category: "Residential",
+        location: "Khanpur, Sevasi",
+        type: "4B2HK BUNGALOW",
+        price: "Price on Request",
+        phone: "+91 87916 49164",
+        email: "ksm3@vihav.com",
+        description: "Expansive villas designed for royalty. The ultimate status symbol in Sevasi.",
+        vision: "Royal Living.",
+        heroImage: "https://images.unsplash.com/photo-1613977257363-707ba9348227?q=80&w=1000&auto=format&fit=crop", // Villa Placeholder
+        features: ["Private Pool", "Gated Community"],
+        amenitiesList: [
+            { icon: "Shield", label: "Security" },
+            { icon: "Trees", label: "Private Garden" },
+            { icon: "Waves", label: "Private Pool" }
+        ],
+        specifications: [{ category: "Flooring", items: ["Italian Marble"] }],
+        connectivity: [{ label: "Sevasi", time: "5 Mins" }],
+        address: "Khanpur, Sevasi, Vadodara",
+        coordinates: { lat: 22.3150, lng: 73.1050 },
+        mapEmbed: "https://maps.google.com/maps?q=Keystone+Mansions+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
+        filterData: {
+            category: "Residential",
+            type: ["5bhk", "Bunglows"],
+            possession: "Ready to Move"
+        }
+    },
+    {
+        id: "vs-monolith",
+        status: "Newly Launched",
+        slug: "vs-monolith",
+        title: "VS Monolith",
+        category: "Commercial",
+        location: "Atladra Padra 40mtr Main Road",
+        carpetArea: "268 - 3057 Sq.Ft.",
+        type: "SHOWROOMS, SHOPS & OFFICES",
+        price: "21.51 Lacs",
+        reraId: "PR/GJ/VADODARA/VADODARA/Others/CAA00002/010121",
+        reraLink: "https://gujrera.gujarat.gov.in/",
+        phone: "+91 91206 45645",
+        email: "sales@vihav.com",
+        description: "A monolithic structure dominance in the Bhayli skyline.",
+        vision: "Main ATLADRA -PADRA 40.MTR Road",
+        heroImage: "https://www.vihav.com/wp-content/uploads/vs-monolith-thumb.webp",
+        galleryImages: ["https://www.vihav.com/wp-content/uploads/vs-monolith-thumb.webp"],
+        features: ["Iconic Design", "Strategic Junction"],
+        amenitiesList: [
+            { icon: "Shield", label: "Security" },
+            { icon: "ArrowUpFromLine", label: "Premium Elevators" },
+            { icon: "Car", label: "Multi-level Parking" },
+            { icon: "Video", label: "Advanced CCTV" },
+            { icon: "Coffee", label: "Cafeteria Space" }
+        ],
+        specifications: [
+            { category: "Structure", items: ["Iconic Glass Facade"] },
+            { category: "Flooring", items: ["Premium Vitrified"] },
+            { category: "Connectivity", items: ["Fiber Ready"] }
+        ],
+        connectivity: [{ label: "Bhayli", time: "0 Mins" }],
+        address: "Bhayli Cross Road, Vadodara",
+        coordinates: { lat: 22.2970, lng: 73.1320 },
+        mapEmbed: "https://maps.google.com/maps?q=VS+Monolith+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
+        filterData: {
+            category: "Commercial",
+            transactionType: ["Buy", "Lease", "Rent"],
+            type: ["offices", "shops", "showrooms"],
+            possession: "Newly Launched"
+        }
+    },
+    {
+        id: "supremus-iii",
+        status: "Newly Launched",
+        slug: "supremus-iii",
+        title: "Supremus III",
+        category: "Commercial",
+        location: "Nr. DMart, Vasna Bhayli Main Rd",
+        carpetArea: "295 Sq.Ft. Onwards",
+        type: "SHOWROOMS, SHOPS & OFFICES",
+        price: "30 Lacs",
+        reraId: "PR/GJ/VADODARA/VADODARA/Others/CAA00003/010121",
+        reraLink: "https://gujrera.gujarat.gov.in/",
+        phone: "+91 879 174 9174",
+        email: "supremus3@vihav.com",
+        description: "Premium commercial spaces near D-Mart.",
+        vision: "A ELEGANT CO-ORPORATE PARK",
+        heroImage: "https://www.vihav.com/wp-content/uploads/supremus3-new-banner-for-homepage-1.webp",
+        galleryImages: ["https://www.vihav.com/wp-content/uploads/supremus3-new-banner-for-homepage-1.webp"],
+        features: ["Main Road Frontage", "Corporate Look"],
+        amenitiesList: [
+            { icon: "Shield", label: "24/7 Security" },
+            { icon: "Video", label: "CCTV" },
+            { icon: "Car", label: "Parking" },
+            { icon: "ArrowUpFromLine", label: "Elevators" },
+            { icon: "CircleCheck", label: "Fire Safety" },
+            { icon: "Users", label: "Common Reception" }
+        ],
+        specifications: [
+            { category: "Structure", items: ["RCC Frame"] },
+            { category: "Flooring", items: ["Vitrified Tiles"] },
+            { category: "Electrification", items: ["Concealed Wiring"] },
+            { category: "Facade", items: ["Glass Facade"] }
+        ],
+        connectivity: [{ label: "D-Mart", time: "1 Min" }],
+        address: "Vasna Bhayli Road, Vadodara",
+        coordinates: { lat: 22.2920, lng: 73.1380 },
+        mapEmbed: "https://maps.google.com/maps?q=Supremus+III+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
+        filterData: {
+            category: "Commercial",
+            transactionType: ["Buy", "Lease", "Rent"],
+            type: ["offices", "showrooms"],
+            possession: "Newly Launched"
+        }
+    },
+    {
+        id: "vihav-cbd",
+        launchYear: "2022",
+        brochureLink: "https://drive.google.com/file/d/1YEC52psDRHd111wP970Qvd-YGFFyjUPm/view?usp=drive_link",
+        status: "Ongoing",
+        slug: "vihav-cbd",
+        title: "Vihav CBD",
+        category: "Commercial",
+        location: "Bhayli Cross Road, Vadodara",
+        carpetArea: "262 to 4200 Sq.Ft.",
+        type: "SHOWROOMS, SHOPS & OFFICES",
+        price: "22 Lacs",
+        phone: "+91 7435 894 894",
+        email: "cbd@vihav.com",
+        description: "Central Business District of Bhayli. A landmark mixed-use development.",
+        vision: "HEART OF BHAYLI",
+        heroImage: "/images/project-images/project-tiles/vihav-cbd.jpg", // Placeholder
+        features: ["Prime Junction", "Mixed Use"],
+        amenitiesList: [
+            { icon: "Shield", label: "Security" },
+            { icon: "Car", label: "Parking" },
+            { icon: "ArrowUpFromLine", label: "High Speed Lifts" }
+        ],
+        specifications: [{ category: "Flooring", items: ["Vitrified Tiles"] }],
+        connectivity: [{ label: "Bhayli", time: "0 Mins" }],
+        address: "NEAR FOOD CASTLE, BHAYLI, VADODARA, GUJARAT 391410",
+
+        coordinates: { lat: 22.290250, lng: 73.131861 },
+        mapEmbed: "https://maps.google.com/maps?q=Vihav+CBD+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
+        filterData: {
+            category: "Commercial",
+            transactionType: ["Buy", "Lease", "Rent"],
+            type: ["Invest", "End Use", "Pre-lease"],
+            possession: "Newly Launched"
+        }
+    },
+    {
+        id: "vihav-supremus-2",
+        status: "Ongoing",
+        slug: "vihav-supremus-2",
+        title: "Vihav Supremus II",
+        category: "Commercial",
+        location: "Atladra Padra 40mtr Main Road",
+        carpetArea: "225 Sq.Ft. Onwards",
+        type: "SHOWROOMS, SHOPS & OFFICES",
+        price: "27 Lacs",
+        reraId: "PR/GJ/VADODARA/VADODARA/Others/CAA00001/010121",
+        reraLink: "https://gujrera.gujarat.gov.in/",
+        phone: "+91 72019 85985",
+        email: "supremus2@vihav.com",
+        description: "Continuing the success of Supremus on the Atladra-Padra growth corridor.",
+        vision: "A-COMMERCIAL MARVEL",
+        heroImage: "https://www.vihav.com/wp-content/uploads/vhv_supremus2.webp",
+        galleryImages: ["https://www.vihav.com/wp-content/uploads/vhv_supremus2.webp"],
+        features: ["Main Road", "Growth Area"],
+        amenitiesList: [
+            { icon: "Shield", label: "Security" },
+            { icon: "Car", label: "Parking" },
+            { icon: "ArrowUpFromLine", label: "Lifts" },
+            { icon: "Video", label: "CCTV" }
+        ],
+        specifications: [
+            { category: "Structure", items: ["RCC Frame"] },
+            { category: "Flooring", items: ["Vitrified Tiles"] }
+        ],
+        connectivity: [{ label: "Atladra", time: "0 Mins" }],
+        address: "Atladra Padra Road, Vadodara",
+        coordinates: { lat: 22.2850, lng: 73.1650 },
+        mapEmbed: "https://maps.google.com/maps?q=Vihav+Supremus+II+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
+        filterData: {
+            category: "Commercial",
+            transactionType: ["Buy", "Lease", "Rent"],
+            type: ["shops", "showrooms", "offices"],
+            possession: "Under construction"
+        }
+    },
+
+    {
         id: "wealth-square",
         slug: "wealth-square",
         title: "Wealth Square",
@@ -836,13 +966,14 @@ export const PROJECTS = [
             category: "Commercial",
             transactionType: ["Buy", "Lease", "Rent"],
             type: ["showrooms"],
+            type: ["showrooms"],
             possession: "Ready to Move"
         }
     },
     {
-        id: "vihav-trade-centre",
-        slug: "vihav-trade-centre",
-        title: "Vihav Trade Centre",
+        id: "vtc",
+        slug: "vtc",
+        title: "VTC",
         category: "Commercial",
         location: "Near Priya Cinema, Sevasi Bhayli",
         carpetArea: "153 to 1255 Sq.Ft.",
@@ -878,9 +1009,9 @@ export const PROJECTS = [
         }
     },
     {
-        id: "vihav-business-square",
-        slug: "vihav-business-square",
-        title: "Vihav Business Square",
+        id: "vbs",
+        slug: "vbs",
+        title: "VBS",
         category: "Commercial",
         location: "Gotri Main Road",
         carpetArea: "937 to 1164 Sq.Ft.",
@@ -920,9 +1051,9 @@ export const PROJECTS = [
         }
     },
     {
-        id: "vihav-supremus",
-        slug: "vihav-supremus",
-        title: "Vihav Supremus",
+        id: "supremus",
+        slug: "supremus",
+        title: "Supremus",
         category: "Commercial",
         location: "New Alkapuri, Gotri",
         carpetArea: "1219 to 1720 Sq.Ft.",
@@ -961,47 +1092,10 @@ export const PROJECTS = [
         }
     },
     {
-        id: "vihav-skyone",
-        slug: "vihav-skyone",
-        title: "Vihav Skyone",
-        category: "RESI-COMM",
-        location: "30 Mtr. Main Road, Bhayli",
-        carpetArea: "245 to 540 Sq.Ft.",
-        type: "3BHK APARTMENT & SHOPS",
-        price: "Price on Request",
-        reraId: "PR/GJ/VADODARA/VADODARA/Others/CAA00001/010121",
-        reraLink: "https://gujrera.gujarat.gov.in/",
-        phone: "+91 72018 54854",
-        email: "skyone@vihav.com",
-        description: "Strategic commercial shops on the bustling 30 Mtr Main Road in Bhayli.",
-        vision: "Sky High Commerce.",
-        heroImage: "https://www.vihav.com/wp-content/uploads/1_skyone_thum.webp",
-        galleryImages: ["https://www.vihav.com/wp-content/uploads/1_skyone_thum.webp"],
-        features: ["Main Road Facing", "High Visibility"],
-        amenitiesList: [
-            { icon: "Shield", label: "Security" },
-            { icon: "Car", label: "Parking" },
-            { icon: "Video", label: "CCTV" }
-        ],
-        specifications: [
-            { category: "Structure", items: ["RCC Frame"] },
-            { category: "Flooring", items: ["Vitrified Tiles"] }
-        ],
-        connectivity: [{ label: "Bhayli", time: "0 Mins" }],
-        address: "30 Mtr Main Road, Bhayli, Vadodara",
-        coordinates: { lat: 22.2861, lng: 73.1319 },
-        mapEmbed: "https://maps.google.com/maps?q=Vihav+Skyone+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
-        filterData: {
-            category: "Commercial",
-            transactionType: ["Buy", "Lease", "Rent"],
-            type: ["shops"],
-            possession: "Under construction"
-        }
-    },
-    {
         id: "elite-square",
         slug: "elite-square",
         title: "Elite Square",
+        status: "Completed",
         category: "Commercial",
         location: "Sun Pharma 30 Mtr. Main Road",
         carpetArea: "296 to 3200 Sq.Ft.",
@@ -1033,43 +1127,14 @@ export const PROJECTS = [
             category: "Commercial",
             transactionType: ["Buy", "Lease", "Rent"],
             type: ["shops", "showrooms"],
-            possession: "Under construction"
+            possession: "Ready to Move"
         }
     },
     {
-        id: "keystone-mansions",
-        slug: "keystone-mansions",
-        title: "Keystone Mansions",
-        category: "Residential",
-        location: "Khanpur, Sevasi",
-        type: "4B2HK BUNGALOW",
-        price: "Price on Request",
-        phone: "+91 87916 49164",
-        email: "ksm3@vihav.com",
-        description: "Expansive villas designed for royalty. The ultimate status symbol in Sevasi.",
-        vision: "Royal Living.",
-        heroImage: "https://images.unsplash.com/photo-1613977257363-707ba9348227?q=80&w=1000&auto=format&fit=crop", // Villa Placeholder
-        features: ["Private Pool", "Gated Community"],
-        amenitiesList: [
-            { icon: "Shield", label: "Security" },
-            { icon: "Trees", label: "Private Garden" },
-            { icon: "Waves", label: "Private Pool" }
-        ],
-        specifications: [{ category: "Flooring", items: ["Italian Marble"] }],
-        connectivity: [{ label: "Sevasi", time: "5 Mins" }],
-        address: "Khanpur, Sevasi, Vadodara",
-        coordinates: { lat: 22.3150, lng: 73.1050 },
-        mapEmbed: "https://maps.google.com/maps?q=Keystone+Mansions+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
-        filterData: {
-            category: "Residential",
-            type: ["5bhk", "Bunglows"],
-            possession: "Under construction"
-        }
-    },
-    {
-        id: "vihav-ensign",
-        slug: "vihav-ensign",
-        title: "Vihav Ensign",
+        id: "ensign",
+        slug: "ensign",
+        title: "Ensign",
+        status: "Completed",
         category: "Commercial",
         location: "Gotri",
         type: "SHOWROOMS, SHOPS & OFFICES",
@@ -1092,9 +1157,10 @@ export const PROJECTS = [
         mapEmbed: "https://maps.google.com/maps?q=Vihav+Ensign+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed"
     },
     {
-        id: "vihav-excelus",
-        slug: "vihav-excelus",
-        title: "Vihav Excelus",
+        id: "excellus",
+        slug: "excellus",
+        title: "Excellus",
+        status: "Completed",
         category: "Commercial",
         location: "Vasna Bhayli Road",
         type: "SHOWROOMS, SHOPS & OFFICES",
@@ -1115,36 +1181,6 @@ export const PROJECTS = [
         address: "Vasna Bhayli Road, Vadodara",
         coordinates: { lat: 22.3020, lng: 73.1390 },
         mapEmbed: "https://maps.google.com/maps?q=Vihav+Excelus+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed"
-    },
-    {
-        id: "keystone-mansions-1",
-        slug: "keystone-mansions-1",
-        title: "Keystone Mansions 1",
-        category: "Residential",
-        location: "Khanpur, Sevasi",
-        type: "4B2HK BUNGALOW",
-        price: "Price on Request",
-        phone: "+91 87916 49164",
-        email: "ksm3@vihav.com",
-        description: "Expansive villas designed for royalty. The ultimate status symbol in Sevasi.",
-        vision: "Royal Living.",
-        heroImage: "https://images.unsplash.com/photo-1613977257363-707ba9348227?q=80&w=1000&auto=format&fit=crop", // Villa Placeholder
-        features: ["Private Pool", "Gated Community"],
-        amenitiesList: [
-            { icon: "Shield", label: "Security" },
-            { icon: "Trees", label: "Private Garden" },
-            { icon: "Waves", label: "Private Pool" }
-        ],
-        specifications: [{ category: "Flooring", items: ["Italian Marble"] }],
-        connectivity: [{ label: "Sevasi", time: "5 Mins" }],
-        address: "Khanpur, Sevasi, Vadodara",
-        coordinates: { lat: 22.3150, lng: 73.1050 },
-        mapEmbed: "https://maps.google.com/maps?q=Keystone+Mansions+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
-        filterData: {
-            category: "Residential",
-            type: ["5bhk", "Bunglows"],
-            possession: "Under construction"
-        }
     },
 ];
 
