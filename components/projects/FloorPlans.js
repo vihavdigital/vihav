@@ -14,15 +14,15 @@ export default function FloorPlans({ plans }) {
     const activePlan = plans[activeTab];
 
     return (
-        <section className="py-24 bg-white" id="floor-plans">
+        <section className="py-6 md:py-24 bg-white" id="floor-plans">
             <div className="container mx-auto px-6">
-                <div className="flex flex-col items-center mb-16">
+                <div className="flex flex-col items-center mb-6 md:mb-16">
                     <span className="text-gold-400 uppercase tracking-[0.25em] text-xs font-bold mb-4 block">Layouts</span>
                     <h2 className="text-4xl md:text-5xl text-luxury-black font-serif mb-6 text-center">Floor Plans</h2>
                     <div className="w-24 h-1 bg-gold-400/30 rounded-full" />
                 </div>
 
-                <div className="flex flex-col lg:flex-row gap-12 items-start">
+                <div className="flex flex-col lg:flex-row gap-4 lg:gap-12 items-start">
                     {/* Left: Navigation Tabs */}
                     <div className="w-full lg:w-1/3 space-y-4">
                         <div className="bg-secondary/30 p-4 md:p-8 rounded-2xl border border-border/50">
@@ -72,8 +72,6 @@ export default function FloorPlans({ plans }) {
                             </div>
                         </div>
 
-                        {/* Plan Details Card */}
-
                     </div>
 
                     {/* Right: Plan Display */}
@@ -83,7 +81,7 @@ export default function FloorPlans({ plans }) {
                             initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.5 }}
-                            className="bg-white border border-border p-4 md:p-8 rounded-2xl relative group cursor-zoom-in shadow-sm hover:shadow-xl transition-shadow duration-500"
+                            className="bg-white border border-border p-2 md:p-8 rounded-2xl relative group cursor-zoom-in shadow-sm hover:shadow-xl transition-shadow duration-500"
                             onClick={() => setIsLightboxOpen(true)}
                         >
                             <div className="relative aspect-[4/3] w-full bg-secondary/10 rounded-lg overflow-hidden">
@@ -103,7 +101,7 @@ export default function FloorPlans({ plans }) {
                         </motion.div>
 
                         {/* Compact Dimensions & Download Bar (Moved Below Image) */}
-                        <div className="mt-6 flex flex-col md:flex-row items-center justify-between gap-4 bg-secondary/20 p-6 rounded-xl border border-border/50">
+                        <div className="mt-2 md:mt-6 flex flex-col md:flex-row-reverse items-center justify-between gap-3 bg-secondary/20 p-3 md:p-6 rounded-xl border border-border/50">
                             <div>
                                 <span className="text-gold-400 text-[10px] uppercase tracking-widest font-bold block mb-1">Dimensions</span>
                                 <p className="text-2xl font-serif text-luxury-black">{activePlan.dimensions}</p>

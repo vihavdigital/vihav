@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useRef, useState, useEffect } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring, AnimatePresence } from "framer-motion";
 import { X, ArrowRight, ArrowLeft, Expand, ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function ProjectGallery({ images, className = "" }) {
@@ -64,7 +64,7 @@ export default function ProjectGallery({ images, className = "" }) {
                 </button>
 
                 <div
-                    className="flex gap-8 px-6 md:px-[10vw] overflow-x-auto pb-12 scrollbar-none snap-x snap-mandatory pt-10"
+                    className="flex gap-4 md:gap-8 px-4 md:px-[10vw] overflow-x-auto pb-6 md:pb-12 scrollbar-none snap-x snap-mandatory pt-6 md:pt-10"
                     ref={scrollRef}
                     style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                 >
@@ -74,17 +74,17 @@ export default function ProjectGallery({ images, className = "" }) {
                         return (
                             <motion.div
                                 key={idx}
-                                className="relative flex-none w-[85vw] md:w-[60vw] lg:w-[45vw] aspect-[16/9] md:aspect-[21/9] snap-center group/card cursor-pointer bg-neutral-900 overflow-hidden rounded-sm"
-                                initial={{ opacity: 0, x: 50 }}
+                                className="relative flex-none w-[85vw] md:w-[60vw] lg:w-[45vw] aspect-[16/9] md:aspect-[21/9] snap-center group/card cursor-pointer bg-neutral-900 overflow-hidden rounded-lg shadow-lg"
+                                initial={{ opacity: 0, x: 20 }}
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ duration: 0.8, delay: idx * 0.1 }}
+                                transition={{ duration: 0.5, delay: idx * 0.05 }}
                                 onClick={() => setSelectedImage(media)}
                             >
                                 {isVideo ? (
                                     <video
                                         src={media}
-                                        className="w-full h-full object-cover opacity-80 group-hover/card:opacity-100 transition-opacity duration-1000"
+                                        className="w-full h-full object-cover opacity-90 group-hover/card:opacity-100"
                                         autoPlay
                                         muted
                                         loop
@@ -95,29 +95,29 @@ export default function ProjectGallery({ images, className = "" }) {
                                         src={media}
                                         alt={`Gallery Image ${idx + 1}`}
                                         fill
-                                        className="object-cover transition-transform duration-1000 group-hover/card:scale-105 opacity-80 group-hover/card:opacity-100"
+                                        className="object-cover transition-transform duration-700 group-hover/card:scale-105 opacity-90 group-hover/card:opacity-100"
                                         sizes="(max-width: 768px) 85vw, (max-width: 1024px) 60vw, 45vw"
                                     />
                                 )}
 
-                                <div className="absolute inset-0 bg-black/20 group-hover/card:bg-transparent transition-colors" />
+                                <div className="absolute inset-0 bg-black/10 group-hover/card:bg-transparent transition-colors" />
 
-                                <div className="absolute bottom-6 right-6 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300">
-                                    <div className="w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center rounded-full text-white">
-                                        <Expand size={20} />
+                                <div className="absolute bottom-4 right-4 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300">
+                                    <div className="bg-black/40 backdrop-blur-md p-2 rounded-full text-white border border-white/20">
+                                        <Expand size={16} />
                                     </div>
                                 </div>
                             </motion.div>
                         );
                     })}
 
-                    {/* Spacer at end for snap feel */}
-                    <div className="flex-none w-[10vw]" />
+                    {/* Spacer */}
+                    <div className="flex-none w-[5vw]" />
                 </div>
             </div>
 
-            {/* Dynamic Scroll Progress Bar */}
-            <div className="container mx-auto px-6 mt-4 relative h-1 bg-white/20 rounded-full overflow-hidden">
+            {/* Dynamic Scroll Progress Bar - Hidden on mobile to save space if needed, or kept minimal */}
+            <div className="container mx-auto px-6 mt-4 relative h-0.5 md:h-1 bg-white/10 rounded-full overflow-hidden">
                 <motion.div
                     style={{ scaleX }}
                     className="absolute top-0 left-0 h-full w-full bg-gold-400 origin-left"
@@ -125,81 +125,131 @@ export default function ProjectGallery({ images, className = "" }) {
             </div>
 
             {/* Lightbox */}
-            {/* Lightbox */}
-            {selectedImage && (
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className="fixed inset-0 z-[200] bg-black/95 backdrop-blur-xl flex items-center justify-center p-0 md:p-12"
-                    onClick={() => setSelectedImage(null)}
-                >
-                    <button
-                        className="absolute top-8 right-8 text-white hover:text-gold-400 z-50 p-2"
-                        onClick={() => setSelectedImage(null)}
-                        aria-label="Close Lightbox"
-                    >
-                        <X size={32} />
-                    </button>
-
-                    {/* Prev Button */}
-                    <button
-                        className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white hover:bg-white/10 p-2 rounded-full transition-all z-50"
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            const currentIndex = images.indexOf(selectedImage);
-                            const prevIndex = (currentIndex - 1 + images.length) % images.length;
-                            setSelectedImage(images[prevIndex]);
-                        }}
-                    >
-                        <ChevronLeft size={48} />
-                    </button>
-
-                    {/* Next Button */}
-                    <button
-                        className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white hover:bg-white/10 p-2 rounded-full transition-all z-50"
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            const currentIndex = images.indexOf(selectedImage);
-                            const nextIndex = (currentIndex + 1) % images.length;
-                            setSelectedImage(images[nextIndex]);
-                        }}
-                    >
-                        <ChevronRight size={48} />
-                    </button>
-
-                    <motion.div
-                        key={selectedImage} // Key helps anim presence if we added it, but here it just forces re-render
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.3 }}
-                        className="relative w-full h-full flex items-center justify-center"
-                        onClick={(e) => e.stopPropagation()}
-                    >
-                        {selectedImage.endsWith('.mp4') || selectedImage.endsWith('.webm') ? (
-                            <video
-                                src={selectedImage}
-                                className="max-w-full max-h-[90vh] object-contain shadow-2xl"
-                                controls
-                                autoPlay
-                            />
-                        ) : (
-                            <div className="relative w-full h-full">
-                                <Image
-                                    src={selectedImage}
-                                    alt="Gallery Preview"
-                                    fill
-                                    className="object-contain shadow-2xl"
-                                    sizes="100vw"
-                                />
-                            </div>
-                        )}
-                        <p className="absolute bottom-4 left-0 w-full text-center text-white/50 text-xs tracking-[0.2em] uppercase">
-                            Vihav Group &copy; Exclusive Imagery
-                        </p>
-                    </motion.div>
-                </motion.div>
-            )}
+            <AnimatePresence>
+                {selectedImage && (
+                    <Lightbox
+                        selectedImage={selectedImage}
+                        setSelectedImage={setSelectedImage}
+                        images={images}
+                    />
+                )}
+            </AnimatePresence>
         </section>
+    );
+}
+
+// Separated Lightbox Component for cleaner state management
+function Lightbox({ selectedImage, setSelectedImage, images }) {
+    const [scale, setScale] = useState(1);
+
+    // Reset scale when image changes
+    useEffect(() => {
+        setScale(1);
+    }, [selectedImage]);
+
+    const handleZoomToggle = (e) => {
+        e.stopPropagation();
+        setScale(prev => prev > 1 ? 1 : 2.5);
+    };
+
+    return (
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[200] bg-black/95 backdrop-blur-xl flex items-center justify-center p-0 md:p-12 overflow-hidden"
+            onClick={() => setSelectedImage(null)}
+        >
+            <button
+                className="absolute top-4 right-4 md:top-8 md:right-8 text-white hover:text-gold-400 z-50 p-2 bg-black/20 rounded-full backdrop-blur-md"
+                onClick={() => setSelectedImage(null)}
+            >
+                <X size={24} />
+            </button>
+
+            {/* Prev/Next Buttons - Hidden when zoomed */}
+            {scale === 1 && (
+                <>
+                    <button
+                        className="absolute left-2 md:left-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white p-2 z-50 transition-all hover:scale-110"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            const idx = images.indexOf(selectedImage);
+                            const prev = (idx - 1 + images.length) % images.length;
+                            setSelectedImage(images[prev]);
+                        }}
+                    >
+                        <ChevronLeft size={40} />
+                    </button>
+                    <button
+                        className="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white p-2 z-50 transition-all hover:scale-110"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            const idx = images.indexOf(selectedImage);
+                            const next = (idx + 1) % images.length;
+                            setSelectedImage(images[next]);
+                        }}
+                    >
+                        <ChevronRight size={40} />
+                    </button>
+                </>
+            )}
+
+            <motion.div
+                key={selectedImage}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.3 }}
+                className="relative w-full h-full flex items-center justify-center"
+                // Drag logic only when not zoomed
+                drag={scale === 1 ? "x" : false}
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.2}
+                onDragEnd={(e, { offset, velocity }) => {
+                    if (scale > 1) return;
+                    if (offset.x < -50) {
+                        const idx = images.indexOf(selectedImage);
+                        setSelectedImage(images[(idx + 1) % images.length]);
+                    } else if (offset.x > 50) {
+                        const idx = images.indexOf(selectedImage);
+                        setSelectedImage(images[(idx - 1 + images.length) % images.length]);
+                    }
+                }}
+                onClick={(e) => e.stopPropagation()}
+            >
+                {selectedImage.endsWith('.mp4') || selectedImage.endsWith('.webm') ? (
+                    <video
+                        src={selectedImage}
+                        className="max-w-full max-h-[100vh] object-contain"
+                        controls
+                        autoPlay
+                        playsInline
+                    />
+                ) : (
+                    <div
+                        className="relative w-full h-full flex items-center justify-center overflow-hidden"
+                        onDoubleClick={handleZoomToggle}
+                    >
+                        <motion.div
+                            animate={{ scale: scale }}
+                            transition={{ type: "spring", stiffness: 200, damping: 30 }}
+                            className="relative w-full h-full"
+                            style={{ cursor: scale > 1 ? 'zoom-out' : 'zoom-in' }}
+                        >
+                            <Image
+                                src={selectedImage}
+                                alt="Fullscreen Preview"
+                                fill
+                                className="object-contain"
+                                sizes="100vw"
+                                draggable={false}
+                                priority
+                            />
+                        </motion.div>
+                    </div>
+                )}
+            </motion.div>
+        </motion.div>
     );
 }

@@ -12,10 +12,14 @@ import dynamic from "next/dynamic";
 import CollapsibleSection from "@/components/ui/CollapsibleSection";
 import EnquiryModal from "@/components/ui/EnquiryModal";
 
+// New Gallery Imports
+import ProjectGallery from "@/components/projects/ProjectGallery";
+import RealPicturesGallery from "@/components/projects/RealPicturesGallery";
+import AmenitiesGallery from "@/components/projects/AmenitiesGallery";
+
+
 // Dynamic Imports for Performance
-const ProjectGallery = dynamic(() => import("@/components/projects/ProjectGallery"), {
-    loading: () => <div className="h-[400px] bg-neutral-900 animate-pulse rounded-lg" />
-});
+// ProjectGallery is now statically imported
 const ConstructionGallery = dynamic(() => import("@/components/projects/ConstructionGallery"), {
     loading: () => <div className="h-[300px] bg-neutral-100 animate-pulse rounded-lg" />
 });
@@ -120,7 +124,7 @@ export default function ProjectDetailsClient({ project, theme }) {
                     <div className="lg:w-2/3">
                         <span className={`${theme.text} uppercase tracking-[0.25em] text-xs font-bold mb-6 block`}>The Vision</span>
                         <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-8 leading-tight">
-                            {project.title.includes(" ") ? `Redefining ${project.title.split(" ").slice(-1)[0]}` : "A New Benchmark"}
+                            {project.tagline || (project.title.includes(" ") ? `Redefining ${project.title.split(" ").slice(-1)[0]}` : "A New Benchmark")}
                         </h2>
                         <p className="text-muted-foreground text-lg leading-relaxed mb-8 font-light">
                             {project.vision || project.description}
@@ -128,7 +132,7 @@ export default function ProjectDetailsClient({ project, theme }) {
 
                         {/* Highlights Grid (Moved inside Overview for flow) */}
                         {project.highlights && (
-                            <div className="grid md:grid-cols-2 gap-6 mt-12 mb-12">
+                            <div className="grid md:grid-cols-2 gap-6 mt-6 md:mt-12 mb-6 md:mb-12">
                                 {project.highlights.slice(0, 4).map((h, i) => {
                                     const Icon = ICON_MAP[h.icon] || CircleCheck;
                                     return (
@@ -216,11 +220,10 @@ export default function ProjectDetailsClient({ project, theme }) {
             </section>
 
             {/* 2. Amenities & Specs */}
-            {/* 2. Amenities & Specs */}
-            <section id="amenities" className="py-24 bg-background text-foreground scroll-mt-24 border-t border-border">
+            <section id="amenities" className="py-16 md:py-24 bg-background text-foreground scroll-mt-24 border-t border-border">
                 <div className="container mx-auto px-6">
-                    <span className={`${theme.text} uppercase tracking-[0.25em] text-xs font-bold mb-6 block`}>Lifestyle</span>
-                    <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-12">Amenities & Specifications</h2>
+                    <span className={`${theme.text} uppercase tracking-[0.25em] text-[10px] md:text-xs font-bold mb-4 md:mb-6 block`}>Lifestyle</span>
+                    <h2 className="font-serif text-3xl md:text-5xl text-foreground mb-8 md:mb-16">Amenities & Specifications</h2>
 
                     <div className="space-y-0">
                         {/* Amenities Grid - Collapsible */}
@@ -279,76 +282,27 @@ export default function ProjectDetailsClient({ project, theme }) {
                 </div>
             )}
 
-            {/* 3. Gallery Section (Enhanced with Tabs) */}
-            <section id="gallery" className="py-0 scroll-mt-24 bg-luxury-black text-white">
-                {/* Custom Tab Header above ProjectGallery */}
-                <div className="container mx-auto px-6 pt-24 pb-8 flex flex-col items-start md:grid md:grid-cols-3 md:items-end md:gap-0 gap-6">
-                    <div className="md:col-span-1">
-                        <span className={`${theme.text} uppercase tracking-[0.25em] text-xs font-bold mb-4 block`}>Visual Tour</span>
-                        <h2 className="font-serif text-4xl md:text-5xl text-white">Gallery & Walkthroughs</h2>
-                    </div>
-                    {/* Tabs */}
-                    <div className="md:col-span-1 flex justify-start md:justify-center w-full">
-                        <div className="flex bg-white/10 p-1 rounded-lg border border-white/10 backdrop-blur-sm">
-                            <button
-                                onClick={() => setGalleryTab("images")}
-                                className={`px-6 py-2 rounded-md text-sm font-medium transition-all ${galleryTab === 'images' ? 'bg-white shadow-sm text-black' : 'text-white/60 hover:text-white'}`}
-                            >
-                                <div className="flex items-center gap-2"><ImageIcon size={16} /> Images</div>
-                            </button>
-                            <button
-                                onClick={() => setGalleryTab("videos")}
-                                className={`px-6 py-2 rounded-md text-sm font-medium transition-all ${galleryTab === 'videos' ? 'bg-white shadow-sm text-black' : 'text-white/60 hover:text-white'}`}
-                            >
-                                <div className="flex items-center gap-2"><Play size={16} /> Videos</div>
-                            </button>
-                        </div>
-                    </div>
-                    {/* Empty col for balance if needed, or just let it be */}
-                    <div className="hidden md:block md:col-span-1"></div>
-                </div>
-
-                <div className="min-h-[400px]">
-                    <AnimatePresence mode="wait">
-                        {galleryTab === 'images' ? (
-                            <motion.div
-                                key="images"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                            >
-                                <ProjectGallery images={imagesOnly} />
-                            </motion.div>
-                        ) : (
-                            <motion.div
-                                key="videos"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                className="container mx-auto px-6 py-12"
-                            >
-                                {videosOnly.length > 0 ? (
-                                    <div className="grid md:grid-cols-2 gap-8">
-                                        {videosOnly.map((vid, i) => (
-                                            <div key={i} className="aspect-video bg-black rounded-lg overflow-hidden border border-white/10 shadow-2xl relative group">
-                                                <video src={vid} controls className="w-full h-full object-cover" />
-                                            </div>
-                                        ))}
-                                    </div>
-                                ) : (
-                                    <div className="bg-secondary/30 rounded-lg p-24 text-center border border-dashed border-border">
-                                        <Video size={48} className="mx-auto mb-4 text-muted-foreground opacity-50" />
-                                        <p className="text-muted-foreground">Video walkthroughs coming soon.</p>
-                                    </div>
-                                )}
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
-                </div>
+            {/* 3. Main Gallery (Visual Tour) */}
+            <section id="gallery" className="py-16 md:py-24 bg-luxury-black text-white scroll-mt-24">
+                <VisualTourSection images={imagesOnly} videos={videosOnly} theme={theme} />
             </section>
 
+
+
+            {/* 3.2 Amenities Gallery Section - Light Theme */}
+            {project.amenitiesImages && project.amenitiesImages.length > 0 && (
+                <section id="amenities-gallery" className="py-16 md:py-24 bg-white text-luxury-black scroll-mt-24 border-t border-black/5">
+                    <div className="container mx-auto px-6 mb-8 md:mb-16 text-center">
+                        <span className={`${theme.text} uppercase tracking-[0.25em] text-[10px] md:text-xs font-bold mb-4 block`}>Lifestyle</span>
+                        <h2 className="font-serif text-3xl md:text-5xl text-luxury-black">Amenities Gallery</h2>
+                    </div>
+                    {/* Pass a lightMode prop if needed, or just let the component adapt */}
+                    <AmenitiesGallery images={project.amenitiesImages} isLightMode={true} />
+                </section>
+            )}
+
             {/* 4. Location Section */}
-            <section id="location" className="py-24 container mx-auto px-6 scroll-mt-24 border-t border-border">
+            <section id="location" className="py-12 md:py-24 container mx-auto px-6 scroll-mt-24 border-t border-border">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
                     <div className="lg:col-span-1">
                         <span className={`${theme.text} uppercase tracking-[0.25em] text-xs font-bold mb-6 block`}>Location</span>
@@ -374,7 +328,7 @@ export default function ProjectDetailsClient({ project, theme }) {
             </section>
 
             {/* 5. Construction Status (Animated) */}
-            <section id="construction" className="py-24 bg-secondary relative border-t border-border scroll-mt-24">
+            <section id="construction" className="py-12 md:py-24 bg-secondary relative border-t border-border scroll-mt-24">
                 <ConstructionStatus project={project} theme={theme} />
             </section>
 
@@ -412,7 +366,7 @@ function ConstructionStatus({ project, theme }) {
 
     return (
         <div ref={ref} className="container mx-auto px-6">
-            <div className="flex flex-col md:flex-row justify-between items-end mb-16">
+            <div className="flex flex-col md:flex-row justify-between items-end mb-8 md:mb-16">
                 <div>
                     <span className={`${theme.text} uppercase tracking-[0.25em] text-xs font-bold mb-4 block`}>Real-Time Updates</span>
                     <h2 className="font-serif text-4xl text-foreground">Construction Status</h2>
@@ -433,10 +387,67 @@ function ConstructionStatus({ project, theme }) {
                 />
             </div>
 
-            {/* Interactive Construction Gallery */}
-            <div className="min-h-[300px]">
+            {/* Construction Gallery (Hidden/Integrated elsewhere now) */}
+            {/* <div className="min-h-[300px]">
                 <ConstructionGallery images={project.constructionImages} theme={theme} />
-            </div>
+            </div> */}
         </div>
+    );
+}
+
+// Helper for Visual Tour (Slider)
+function VisualTourSection({ title = "Visual Tour", heading = "Gallery & Walkthroughs", images, videos, theme }) {
+    const [tab, setTab] = useState("images");
+    const showTabs = videos && videos.length > 0;
+
+    return (
+        <>
+            <div className="container mx-auto px-6 flex flex-col items-start md:grid md:grid-cols-3 md:items-end md:gap-0 gap-6 mb-8 md:mb-12">
+                <div className="md:col-span-1">
+                    <span className={`${theme.text} uppercase tracking-[0.25em] text-[10px] md:text-xs font-bold mb-4 block`}>{title}</span>
+                    <h2 className="font-serif text-3xl md:text-5xl text-white">{heading}</h2>
+                </div>
+
+                <div className="md:col-span-1 flex justify-start md:justify-center w-full">
+                    {showTabs && (
+                        <div className="flex p-1 rounded-lg border border-white/10 backdrop-blur-sm bg-white/10">
+                            <button
+                                onClick={() => setTab("images")}
+                                className={`px-6 py-2 rounded-md text-sm font-medium transition-all ${tab === 'images' ? 'bg-white shadow-sm text-black' : 'text-white/60 hover:text-white'}`}
+                            >
+                                <div className="flex items-center gap-2"><ImageIcon size={16} /> Images</div>
+                            </button>
+                            <button
+                                onClick={() => setTab("videos")}
+                                className={`px-6 py-2 rounded-md text-sm font-medium transition-all ${tab === 'videos' ? 'bg-white shadow-sm text-black' : 'text-white/60 hover:text-white'}`}
+                            >
+                                <div className="flex items-center gap-2"><Play size={16} /> Videos</div>
+                            </button>
+                        </div>
+                    )}
+                </div>
+                <div className="hidden md:block md:col-span-1"></div>
+            </div>
+
+            <div className="">
+                <AnimatePresence mode="wait">
+                    {tab === 'images' ? (
+                        <motion.div key="images" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                            <ProjectGallery images={images} />
+                        </motion.div>
+                    ) : (
+                        <motion.div key="videos" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="container mx-auto px-6">
+                            <div className="grid md:grid-cols-2 gap-8">
+                                {videos.map((vid, i) => (
+                                    <div key={i} className="aspect-video bg-black rounded-lg overflow-hidden border border-white/10 shadow-2xl relative group">
+                                        <video src={vid} controls className="w-full h-full object-cover" />
+                                    </div>
+                                ))}
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+            </div>
+        </>
     );
 }

@@ -365,8 +365,10 @@ export const PROJECTS = [
         launchYear: "2022",
         brochureLink: "https://drive.google.com/file/d/10dM1tq9y9lGhpbkU2zy3DB5afBs_MQP0/view?usp=drive_link",
         status: "Ongoing",
+        progress: 75,
         slug: "vihav-cbd-res",
         title: "Vihav CBD",
+        tagline: "4 BHK APARTMENTS AND 5 B2HK PENTHOUSES IN VADODARA",
         category: "Residential",
         location: "Bhayli Cross Road, Vadodara",
         carpetArea: "262 to 4200 Sq.Ft.",
@@ -383,6 +385,16 @@ export const PROJECTS = [
             "https://www.vihav.com/wp-content/uploads/DSC_6886-scaled.jpg",
             "https://www.vihav.com/wp-content/uploads/DSC_6906-scaled.jpg",
             "https://www.vihav.com/wp-content/uploads/SSP_1376-1-scaled.jpg"
+        ],
+        realImages: [
+            "https://www.vihav.com/wp-content/uploads/vihav-cbd-gallery-image-7.webp", // Placeholder
+            "https://www.vihav.com/wp-content/uploads/vihav-cbd-gallery-image-4.webp", // Placeholder
+            "https://www.vihav.com/wp-content/uploads/DSC_6886-scaled.jpg" // Placeholder
+        ],
+        amenitiesImages: [
+            "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1000", // Gym Placeholder
+            "https://images.unsplash.com/photo-1590486803833-1c5dc8ce84ac?q=80&w=1000", // Pool Placeholder
+            "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1000" // Garden Placeholder
         ],
         floorPlans: [
             { id: "fp-1", title: "Ground Floor Plan", image: "https://www.vihav.com/wp-content/uploads/Vihav_CBD_Residential_Ground_Floor_Plan-scaled.webp", type: "Plan" },

@@ -15,7 +15,12 @@ export default function sitemap() {
         '/about',
         '/contact',
         '/projects',
-        // Add other static routes as needed
+        '/awards',
+        '/completed-projects',
+        '/onevihav',
+        '/overseas',
+        '/privacy-policy',
+        '/terms-and-conditions',
     ].map((route) => ({
         url: `${baseUrl}${route}`,
         lastModified: new Date(),

@@ -56,16 +56,27 @@ function GestureHandler() {
     const [showOverlay, setShowOverlay] = useState(false);
 
     useEffect(() => {
-        map.scrollWheelZoom.disable();
+        if (!map) return;
 
-        // Check if mobile (using Leaflet's browser detection or screen width)
+        // Safer disable
+        try {
+            map.scrollWheelZoom.disable();
+        } catch (e) {
+            console.warn("Could not disable scrollwheel", e);
+        }
+
         const isMobile = L.Browser.mobile || window.innerWidth < 768;
 
         if (isMobile) {
-            map.dragging.disable();
-            map.tap && map.tap.disable();
+            try {
+                map.dragging.disable();
+                if (map.tap) map.tap.disable();
+            } catch (e) {
+                console.warn("Could not disable dragging", e);
+            }
 
             const container = map.getContainer();
+            if (!container) return;
 
             const handleTouchStart = (e) => {
                 if (e.touches.length > 1) {
@@ -78,21 +89,19 @@ function GestureHandler() {
 
             const handleTouchMove = (e) => {
                 if (e.touches.length === 1) {
-                    // Triggers when user tries to pan with 1 finger
-                    // We only show overlay, page scrolling happens natively because dragging is disabled
                     setShowOverlay(true);
-                    // Hide after 1.5s
                     setTimeout(() => setShowOverlay(false), 1500);
                 }
             };
 
-            // Use passive listeners to ensure page scroll isn't blocked
             container.addEventListener('touchstart', handleTouchStart, { passive: true });
             container.addEventListener('touchmove', handleTouchMove, { passive: true });
 
             return () => {
-                container.removeEventListener('touchstart', handleTouchStart);
-                container.removeEventListener('touchmove', handleTouchMove);
+                if (container) {
+                    container.removeEventListener('touchstart', handleTouchStart);
+                    container.removeEventListener('touchmove', handleTouchMove);
+                }
             };
         } else {
             map.dragging.enable();
@@ -113,29 +122,27 @@ export default function LuxuryMap({ activeProject }) {
 
     useEffect(() => {
         setIsClient(true);
-
-        // Custom CSS for marker z-indexing if needed
-        const style = document.createElement('style');
-        style.innerHTML = `
-            .custom-leaflet-icon { background: transparent; border: none; }
-            .leaflet-popup-content-wrapper, .leaflet-popup-tip { background: transparent !important; box-shadow: none !important; }
-            .leaflet-popup-content-wrapper { padding: 0 !important; overflow: hidden; border-radius: 8px; }
-            .leaflet-popup-content { margin: 0 !important; width: 180px !important; }
-        `;
-        document.head.appendChild(style);
-
-        // Fix for default marker icons in Next.js
-        delete L.Icon.Default.prototype._getIconUrl;
-        L.Icon.Default.mergeOptions({
-            iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
-            iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
-            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
-        });
+        // Fix for default marker icons in Next.js - idempotent check
+        if (typeof window !== 'undefined' && !L.Icon.Default.prototype._getIconUrl_done) {
+            // We can just rely on the CSS import for icons usually, or this patch.
+            // But to be safe and simple:
+            delete L.Icon.Default.prototype._getIconUrl;
+            L.Icon.Default.mergeOptions({
+                iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
+                iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+                shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+            });
+            L.Icon.Default.prototype._getIconUrl_done = true;
+        }
     }, []);
 
     if (!isClient) return null;
 
+    // Default center if none provided
     const center = activeProject?.coordinates || { lat: 22.3072, lng: 73.1812 };
+
+    // Force a stable key that only changes when the project changes
+    const mapKey = activeProject?.id ? `map-${activeProject.id}` : "default-map";
 
     const landmarks = [
         { name: "Airport", coordinates: { lat: 22.3361, lng: 73.2263 } },
@@ -147,13 +154,12 @@ export default function LuxuryMap({ activeProject }) {
     ];
 
     return (
-        <div className="w-full h-full relative z-0" key={activeProject?.id || "default-map"}>
+        <div className="w-full h-full relative z-0">
             <MapContainer
                 center={center}
                 zoom={14}
                 style={{ height: "100%", width: "100%", background: "#111" }}
-                zoomControl={true}
-                attributionControl={false}
+            // Removing control props that might cause early DOM access issues
             >
                 {/* CartoDB Dark Matter Tiles for Luxury/Dark Mode Look */}
                 <TileLayer

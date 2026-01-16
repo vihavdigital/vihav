@@ -5,8 +5,9 @@ import { ArrowLeft, MapPin, Check, FileText, Phone, Mail, ExternalLink, Shield, 
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { getProjectBySlug } from "@/data/projects";
+import { PROJECTS, getProjectBySlug } from "@/data/projects";
 import ProjectDetailsClient from "@/components/projects/ProjectDetailsClient"; // New Client Component
+
 // Removed unused imports (ProjectGallery, ConstructionGallery, etc as they are moved to Client)
 import { motion } from "framer-motion";
 import LuxuryMapWrapper from "@/components/projects/LuxuryMapWrapper";
@@ -31,6 +32,12 @@ const THEME = {
     },
 
 };
+
+export async function generateStaticParams() {
+    return PROJECTS.map((project) => ({
+        slug: project.slug,
+    }));
+}
 
 export default async function ProjectPage({ params }) {
     const { slug } = await params;
@@ -94,19 +101,8 @@ export default async function ProjectPage({ params }) {
             {/* Client Interactions (Sticky Nav, Tabs, Animations) */}
             <ProjectDetailsClient project={project} theme={theme} />
 
-            {/* Final CTA */}
-            <section className={`py-32 ${theme.bg} text-luxury-black text-center relative overflow-hidden`}>
-                <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
-                <div className="container mx-auto px-6 relative z-10">
-                    <h2 className="font-serif text-4xl md:text-6xl mb-8">Begin Your Legacy</h2>
-                    <p className="max-w-xl mx-auto text-black/80 text-lg mb-12 font-medium">
-                        Secure your place at {project.title}. Providing an address that speaks for itself.
-                    </p>
-                    <Button className="bg-black text-white px-12 py-6 text-lg tracking-widest hover:bg-gray-900 border border-black hover:border-white/20 transition-all shadow-xl hover:shadow-2xl">
-                        Enquire Interest
-                    </Button>
-                </div>
-            </section>
+            {/* Final CTA Removed as per request */}
+
 
             <Footer />
         </main>
