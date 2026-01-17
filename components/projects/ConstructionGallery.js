@@ -1,26 +1,15 @@
 "use client";
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ChevronLeft, ChevronRight, HardHat } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, HardHat, ZoomIn } from "lucide-react";
 
 export default function ConstructionGallery({ images, theme }) {
     const [selectedImage, setSelectedImage] = useState(null);
 
-    // Filter out invalid images if necessary, or just use as is
+    // Filter out invalid images
     const validImages = images && images.length > 0 ? images : null;
 
-    if (!validImages) {
-        // Fallback View
-        return (
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                {[1, 2, 3, 4].map((item) => (
-                    <div key={item} className="aspect-square relative overflow-hidden rounded-lg bg-neutral-800 border border-white/5 flex items-center justify-center group">
-                        <HardHat className="text-gray-600 group-hover:text-white transition-colors" size={32} />
-                    </div>
-                ))}
-            </div>
-        );
-    }
+    if (!validImages) return null;
 
     const openLightbox = (index) => setSelectedImage(index);
     const closeLightbox = () => setSelectedImage(null);
@@ -34,14 +23,21 @@ export default function ConstructionGallery({ images, theme }) {
     };
 
     return (
-        <>
-            {/* Grid View */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="mt-8">
+            <div className="mb-6 flex items-center justify-between">
+                <h3 className={`font-serif text-2xl ${theme.text}`}>Project Status Gallery</h3>
+            </div>
+
+            {/* Grid View (Uniform Size) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {validImages.map((img, idx) => (
                     <motion.div
                         key={idx}
-                        whileHover={{ scale: 1.02 }}
-                        className="aspect-square relative overflow-hidden rounded-lg group cursor-pointer border border-white/5"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: idx * 0.1 }}
+                        className="relative group cursor-pointer overflow-hidden rounded-xl bg-neutral-900 border border-white/5 aspect-[4/3]"
                         onClick={() => openLightbox(idx)}
                     >
                         <img
@@ -49,10 +45,8 @@ export default function ConstructionGallery({ images, theme }) {
                             alt={`Construction Update ${idx + 1}`}
                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         />
-                        <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                            <span className="text-white text-xs uppercase tracking-widest border border-white/30 px-4 py-2 rounded-full hover:bg-white hover:text-black transition-colors">
-                                Expand
-                            </span>
+                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <ZoomIn className="text-white" size={32} />
                         </div>
                     </motion.div>
                 ))}
@@ -99,25 +93,26 @@ export default function ConstructionGallery({ images, theme }) {
                             initial={{ scale: 0.9, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             key={selectedImage}
-                            className="max-w-5xl max-h-[80vh] w-full relative"
+                            className="max-w-7xl max-h-[85vh] w-full relative"
                             onClick={(e) => e.stopPropagation()}
                         >
-                            <div className="relative aspect-video w-full rounded-lg overflow-hidden border border-white/10 shadow-2xl">
+                            <div className="relative w-full h-full flex items-center justify-center">
                                 <img
                                     src={validImages[selectedImage]}
                                     alt="Construction Full"
-                                    className="w-full h-full object-contain bg-black"
+                                    className="max-w-full max-h-[80vh] object-contain rounded shadow-2xl"
                                 />
                             </div>
+
                             <div className="mt-4 text-center">
-                                <span className="text-white/50 text-sm tracking-widest uppercase">
-                                    Update {selectedImage + 1} / {validImages.length}
+                                <span className="text-white/50 text-sm tracking-widest uppercase font-serif">
+                                    Image {selectedImage + 1} of {validImages.length}
                                 </span>
                             </div>
                         </motion.div>
                     </motion.div>
                 )}
             </AnimatePresence>
-        </>
+        </div>
     );
 }

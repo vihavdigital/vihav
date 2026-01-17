@@ -10,7 +10,7 @@ import EnquiryForm from "@/components/ui/EnquiryForm";
 export default function Footer() {
     return (
         <footer className="bg-background text-foreground pt-32 pb-8 overflow-hidden relative transition-colors duration-500">
-            <div className="container mx-auto px-6 relative z-10">
+            <div className="container mx-auto px-6 md:px-12 relative z-10">
 
                 {/* 1. Giant CTA & Form Section */}
 

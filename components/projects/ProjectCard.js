@@ -6,7 +6,12 @@ export default function ProjectCard({ project }) {
     return (
         <div className="group relative bg-card border border-border overflow-hidden transition-colors duration-300 h-full flex flex-col">
             {/* Image Container */}
-            <Link href={`/projects/${project.slug}`} className="block relative aspect-[4/3] overflow-hidden cursor-pointer" aria-label={`View details for ${project.title}`}>
+            <Link
+                href={project.link || `/projects/${project.slug}`}
+                target={project.link?.startsWith('http') ? '_blank' : undefined}
+                className="block relative aspect-[4/3] overflow-hidden cursor-pointer"
+                aria-label={`View details for ${project.title}`}
+            >
                 <div className="absolute inset-0 bg-secondary animate-pulse group-hover:animate-none transition-colors" />
                 {/* Real implementation would use Next/Image */}
                 <div
@@ -48,7 +53,11 @@ export default function ProjectCard({ project }) {
                             <span className="text-foreground font-medium text-sm md:text-base">{project.price}</span>
                         </div>
 
-                        <Link href={`/projects/${project.slug}`} className="text-[10px] md:text-xs uppercase tracking-widest text-foreground hover:text-gold-400 transition-colors border-b border-transparent hover:border-gold-400 pb-0.5">
+                        <Link
+                            href={project.link || `/projects/${project.slug}`}
+                            target={project.link?.startsWith('http') ? '_blank' : undefined}
+                            className="text-[10px] md:text-xs uppercase tracking-widest text-foreground hover:text-gold-400 transition-colors border-b border-transparent hover:border-gold-400 pb-0.5"
+                        >
                             View Details
                         </Link>
                     </div>

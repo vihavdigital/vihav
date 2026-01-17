@@ -5,7 +5,12 @@ import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring, AnimatePresence } from "framer-motion";
 import { X, ArrowRight, ArrowLeft, Expand, ChevronLeft, ChevronRight } from "lucide-react";
 
-export default function ProjectGallery({ images, className = "" }) {
+const swipeConfidenceThreshold = 10000;
+const swipePower = (offset, velocity) => {
+    return Math.abs(offset) * velocity;
+};
+
+export default function ProjectGallery({ images, className = "", onIndexChange, isLightMode = false, showProgress = true }) {
     const scrollRef = useRef(null);
     const [selectedImage, setSelectedImage] = useState(null);
     const { scrollXProgress } = useScroll({ container: scrollRef });
@@ -14,6 +19,77 @@ export default function ProjectGallery({ images, className = "" }) {
         damping: 30,
         restDelta: 0.001
     });
+
+    // Theme Helpers
+    const baseTheme = isLightMode ? "text-luxury-black" : "bg-luxury-black text-white";
+    const navBtnTheme = isLightMode
+        ? "bg-white/50 border-black/10 text-black hover:bg-gold-400 hover:text-white"
+        : "bg-black/50 border-white/10 text-white hover:bg-gold-400 hover:text-black";
+    const cardBg = isLightMode ? "bg-neutral-100" : "bg-neutral-900";
+    const trackColor = isLightMode ? "bg-black/10" : "bg-white/10";
+
+    // Track active index
+    const [activeIndex, setActiveIndex] = useState(0);
+
+    // Report active index changes to parent
+    useEffect(() => {
+        if (onIndexChange) onIndexChange(activeIndex);
+    }, [activeIndex, onIndexChange]);
+
+    // Drag State
+    const [isDragging, setIsDragging] = useState(false);
+    const [startX, setStartX] = useState(0);
+    const [dragScrollLeft, setDragScrollLeft] = useState(0);
+    const hasMoved = useRef(false);
+
+    const handleMouseDown = (e) => {
+        setIsDragging(true);
+        hasMoved.current = false;
+        setStartX(e.pageX - scrollRef.current.offsetLeft);
+        setDragScrollLeft(scrollRef.current.scrollLeft);
+    };
+
+    const snapToNearest = () => {
+        const container = scrollRef.current;
+        if (!container) return;
+
+        const items = container.querySelectorAll('[data-gallery-item]');
+        if (items.length < 2) return;
+
+        const item0 = items[0];
+        const item1 = items[1];
+        const stride = item1.offsetLeft - item0.offsetLeft;
+
+        const currentScroll = container.scrollLeft;
+        const targetIndex = Math.round(currentScroll / stride);
+        const clampedIndex = Math.min(Math.max(targetIndex, 0), items.length - 1);
+
+        container.scrollTo({
+            left: clampedIndex * stride,
+            behavior: 'smooth'
+        });
+    };
+
+    const handleMouseUp = () => {
+        setIsDragging(false);
+        snapToNearest();
+    };
+
+    const handleMouseLeave = () => {
+        if (isDragging) {
+            setIsDragging(false);
+            snapToNearest();
+        }
+    };
+
+    const handleMouseMove = (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+        const x = e.pageX - scrollRef.current.offsetLeft;
+        const walk = (x - startX) * 1.5;
+        scrollRef.current.scrollLeft = dragScrollLeft - walk;
+        if (Math.abs(x - startX) > 5) hasMoved.current = true;
+    };
 
     // Keyboard Navigation for Lightbox
     useEffect(() => {
@@ -38,35 +114,43 @@ export default function ProjectGallery({ images, className = "" }) {
     }, [selectedImage, images]);
 
     if (!images || images.length === 0) {
-        // Return a hidden div with the ref to satisfy useScroll
         return <div ref={scrollRef} className="hidden" />;
     }
 
     return (
-        <section className={`bg-luxury-black text-white relative group ${className}`}>
+        <section className={`relative group ${baseTheme} ${className}`}>
+            {/* Counter Removed - Moved to Header */}
 
             {/* Horizontal Slider Container */}
             <div className="relative group/gallery">
                 {/* Navigation Buttons (Desktop) */}
                 <button
-                    onClick={() => scrollRef.current.scrollBy({ left: -400, behavior: 'smooth' })}
-                    className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-black/50 backdrop-blur-md border border-white/10 flex items-center justify-center text-white opacity-0 group-hover/gallery:opacity-100 transition-opacity disabled:opacity-0 hover:bg-black/80"
+                    onClick={() => scrollRef.current.scrollBy({ left: -scrollRef.current.offsetWidth / 2, behavior: 'smooth' })}
+                    className={`hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-30 w-14 h-14 rounded-full backdrop-blur-md border items-center justify-center transition-all duration-300 shadow-xl group-hover/gallery:scale-100 scale-90 ${navBtnTheme}`}
                     aria-label="Scroll Left"
                 >
                     <ArrowLeft size={24} />
                 </button>
                 <button
-                    onClick={() => scrollRef.current.scrollBy({ left: 400, behavior: 'smooth' })}
-                    className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-black/50 backdrop-blur-md border border-white/10 flex items-center justify-center text-white opacity-0 group-hover/gallery:opacity-100 transition-opacity hover:bg-black/80"
+                    onClick={() => scrollRef.current.scrollBy({ left: scrollRef.current.offsetWidth / 2, behavior: 'smooth' })}
+                    className={`hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-30 w-14 h-14 rounded-full backdrop-blur-md border items-center justify-center transition-all duration-300 shadow-xl group-hover/gallery:scale-100 scale-90 ${navBtnTheme}`}
                     aria-label="Scroll Right"
                 >
                     <ArrowRight size={24} />
                 </button>
 
                 <div
-                    className="flex gap-4 md:gap-8 px-4 md:px-[10vw] overflow-x-auto pb-6 md:pb-12 scrollbar-none snap-x snap-mandatory pt-6 md:pt-10"
+                    className="flex gap-4 md:gap-8 px-4 md:px-[10vw] overflow-x-auto pb-6 md:pb-12 scrollbar-none pt-6 md:pt-10 select-none cursor-grab active:cursor-grabbing"
                     ref={scrollRef}
-                    style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                    style={{
+                        scrollbarWidth: 'none',
+                        msOverflowStyle: 'none'
+                    }}
+                    onMouseDown={handleMouseDown}
+                    onMouseLeave={handleMouseLeave}
+                    onMouseUp={handleMouseUp}
+                    onMouseMove={handleMouseMove}
+                    onDragStart={(e) => e.preventDefault()}
                 >
                     {images.map((media, idx) => {
                         const isVideo = typeof media === 'string' && (media.endsWith('.mp4') || media.endsWith('.webm'));
@@ -74,12 +158,13 @@ export default function ProjectGallery({ images, className = "" }) {
                         return (
                             <motion.div
                                 key={idx}
-                                className="relative flex-none w-[85vw] md:w-[60vw] lg:w-[45vw] aspect-[16/9] md:aspect-[21/9] snap-center group/card cursor-pointer bg-neutral-900 overflow-hidden rounded-lg shadow-lg"
-                                initial={{ opacity: 0, x: 20 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: idx * 0.05 }}
-                                onClick={() => setSelectedImage(media)}
+                                data-gallery-item="true"
+                                className={`relative flex-none w-[85vw] md:w-[60vw] lg:w-[28vw] aspect-[16/9] md:aspect-[3/2] group/card cursor-pointer ${cardBg} overflow-hidden rounded-lg`}
+                                onViewportEnter={() => setActiveIndex(idx)}
+                                viewport={{ margin: "-40% 0px -40% 0px" }}
+                                onClick={() => {
+                                    if (!hasMoved.current) setSelectedImage(media);
+                                }}
                             >
                                 {isVideo ? (
                                     <video
@@ -116,13 +201,15 @@ export default function ProjectGallery({ images, className = "" }) {
                 </div>
             </div>
 
-            {/* Dynamic Scroll Progress Bar - Hidden on mobile to save space if needed, or kept minimal */}
-            <div className="container mx-auto px-6 mt-4 relative h-0.5 md:h-1 bg-white/10 rounded-full overflow-hidden">
-                <motion.div
-                    style={{ scaleX }}
-                    className="absolute top-0 left-0 h-full w-full bg-gold-400 origin-left"
-                />
-            </div>
+            {/* Dynamic Scroll Progress Bar */}
+            {showProgress && (
+                <div className={`container mx-auto px-6 mt-4 relative h-0.5 md:h-1 rounded-full overflow-hidden ${trackColor}`}>
+                    <motion.div
+                        style={{ scaleX }}
+                        className="absolute top-0 left-0 h-full w-full bg-gold-400 origin-left"
+                    />
+                </div>
+            )}
 
             {/* Lightbox */}
             <AnimatePresence>
@@ -138,9 +225,10 @@ export default function ProjectGallery({ images, className = "" }) {
     );
 }
 
-// Separated Lightbox Component for cleaner state management
+// Separated Lightbox Component
 function Lightbox({ selectedImage, setSelectedImage, images }) {
     const [scale, setScale] = useState(1);
+    const [direction, setDirection] = useState(0);
 
     // Reset scale when image changes
     useEffect(() => {
@@ -152,11 +240,37 @@ function Lightbox({ selectedImage, setSelectedImage, images }) {
         setScale(prev => prev > 1 ? 1 : 2.5);
     };
 
+    const paginate = (newDirection) => {
+        setDirection(newDirection);
+        const currentIndex = images.indexOf(selectedImage);
+        const newIndex = (currentIndex + newDirection + images.length) % images.length;
+        setSelectedImage(images[newIndex]);
+    };
+
+    const variants = {
+        enter: (direction) => ({
+            zIndex: 0,
+            x: direction > 0 ? 1000 : -1000,
+            opacity: 0
+        }),
+        center: {
+            zIndex: 1,
+            x: 0,
+            opacity: 1
+        },
+        exit: (direction) => ({
+            zIndex: 0,
+            x: direction < 0 ? 1000 : -1000,
+            opacity: 0
+        })
+    };
+
     return (
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
             className="fixed inset-0 z-[200] bg-black/95 backdrop-blur-xl flex items-center justify-center p-0 md:p-12 overflow-hidden"
             onClick={() => setSelectedImage(null)}
         >
@@ -174,9 +288,7 @@ function Lightbox({ selectedImage, setSelectedImage, images }) {
                         className="absolute left-2 md:left-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white p-2 z-50 transition-all hover:scale-110"
                         onClick={(e) => {
                             e.stopPropagation();
-                            const idx = images.indexOf(selectedImage);
-                            const prev = (idx - 1 + images.length) % images.length;
-                            setSelectedImage(images[prev]);
+                            paginate(-1);
                         }}
                     >
                         <ChevronLeft size={40} />
@@ -185,9 +297,7 @@ function Lightbox({ selectedImage, setSelectedImage, images }) {
                         className="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white p-2 z-50 transition-all hover:scale-110"
                         onClick={(e) => {
                             e.stopPropagation();
-                            const idx = images.indexOf(selectedImage);
-                            const next = (idx + 1) % images.length;
-                            setSelectedImage(images[next]);
+                            paginate(1);
                         }}
                     >
                         <ChevronRight size={40} />
@@ -195,61 +305,71 @@ function Lightbox({ selectedImage, setSelectedImage, images }) {
                 </>
             )}
 
-            <motion.div
-                key={selectedImage}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.3 }}
-                className="relative w-full h-full flex items-center justify-center"
-                // Drag logic only when not zoomed
-                drag={scale === 1 ? "x" : false}
-                dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={0.2}
-                onDragEnd={(e, { offset, velocity }) => {
-                    if (scale > 1) return;
-                    if (offset.x < -50) {
-                        const idx = images.indexOf(selectedImage);
-                        setSelectedImage(images[(idx + 1) % images.length]);
-                    } else if (offset.x > 50) {
-                        const idx = images.indexOf(selectedImage);
-                        setSelectedImage(images[(idx - 1 + images.length) % images.length]);
-                    }
-                }}
+            <div
+                className="relative w-full h-full flex items-center justify-center p-4"
                 onClick={(e) => e.stopPropagation()}
             >
-                {selectedImage.endsWith('.mp4') || selectedImage.endsWith('.webm') ? (
-                    <video
-                        src={selectedImage}
-                        className="max-w-full max-h-[100vh] object-contain"
-                        controls
-                        autoPlay
-                        playsInline
-                    />
-                ) : (
-                    <div
-                        className="relative w-full h-full flex items-center justify-center overflow-hidden"
-                        onDoubleClick={handleZoomToggle}
+                <AnimatePresence initial={false} custom={direction} mode="popLayout">
+                    <motion.div
+                        key={selectedImage}
+                        custom={direction}
+                        variants={variants}
+                        initial="enter"
+                        animate="center"
+                        exit="exit"
+                        transition={{
+                            x: { type: "spring", stiffness: 300, damping: 30 },
+                            opacity: { duration: 0.2 }
+                        }}
+                        className="absolute w-full h-full flex items-center justify-center"
+                        drag={scale === 1 ? "x" : false}
+                        dragConstraints={{ left: 0, right: 0 }}
+                        dragElastic={1}
+                        onDragEnd={(e, { offset, velocity }) => {
+                            const swipe = swipePower(offset.x, velocity.x);
+                            if (swipe < -swipeConfidenceThreshold) {
+                                paginate(1);
+                            } else if (swipe > swipeConfidenceThreshold) {
+                                paginate(-1);
+                            }
+                        }}
                     >
-                        <motion.div
-                            animate={{ scale: scale }}
-                            transition={{ type: "spring", stiffness: 200, damping: 30 }}
-                            className="relative w-full h-full"
-                            style={{ cursor: scale > 1 ? 'zoom-out' : 'zoom-in' }}
-                        >
-                            <Image
-                                src={selectedImage}
-                                alt="Fullscreen Preview"
-                                fill
-                                className="object-contain"
-                                sizes="100vw"
-                                draggable={false}
-                                priority
-                            />
-                        </motion.div>
-                    </div>
-                )}
-            </motion.div>
+                        {selectedImage.endsWith('.mp4') || selectedImage.endsWith('.webm') ? (
+                            <div className="relative w-full h-full max-w-7xl flex items-center justify-center">
+                                <video
+                                    src={selectedImage}
+                                    className="max-w-full max-h-[100vh] object-contain shadow-2xl rounded-sm"
+                                    controls
+                                    autoPlay
+                                    playsInline
+                                />
+                            </div>
+                        ) : (
+                            <div
+                                className="relative w-full h-full flex items-center justify-center overflow-hidden"
+                                onDoubleClick={handleZoomToggle}
+                            >
+                                <motion.div
+                                    animate={{ scale: scale }}
+                                    transition={{ type: "spring", stiffness: 200, damping: 30 }}
+                                    className="relative w-full h-full"
+                                    style={{ cursor: scale > 1 ? 'zoom-out' : 'zoom-in' }}
+                                >
+                                    <Image
+                                        src={selectedImage}
+                                        alt="Fullscreen Preview"
+                                        fill
+                                        className="object-contain"
+                                        sizes="100vw"
+                                        draggable={false}
+                                        priority
+                                    />
+                                </motion.div>
+                            </div>
+                        )}
+                    </motion.div>
+                </AnimatePresence>
+            </div>
         </motion.div>
     );
 }

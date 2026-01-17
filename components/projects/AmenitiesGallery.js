@@ -1,127 +1,227 @@
 "use client";
 
 import Image from "next/image";
-import { useRef } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { useRef, useState, useEffect } from "react";
+import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion";
+import { X, ChevronLeft, ChevronRight, Expand } from "lucide-react";
+
+// Helper to format image name
+const formatImageName = (path) => {
+    if (!path) return "";
+    const fileName = path.split('/').pop().split('.')[0];
+    return fileName
+        .replace(/[-_]/g, ' ') // Replace hyphens/underscores with spaces
+        .replace(/[0-9]/g, '') // Remove numbers (optional, but requested "optimise it accordingly" often implies cleaning clutter)
+        // actually, keep numbers if they are part of the name like "Wing A", but maybe remove "1", "2"?
+        // Use simple clean up first.
+        .trim();
+};
 
 // Helper for parallax cards
-function GalleryCard({ img, idx, scrollXProgress, totalCards, isLightMode }) {
+function GalleryCard({ img, idx, isLightMode, categoryLabel, itemLabel, onClick, onInView }) {
+    // Extract formatted name
+    const displayName = formatImageName(img);
 
     return (
         <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.8, delay: idx * 0.1, ease: "easeOut" }}
-            className={`relative flex-none w-[80vw] md:w-[400px] aspect-[4/5] md:aspect-[3/4] rounded-none overflow-hidden snap-center group border ${isLightMode ? 'border-black/5 bg-white shadow-xl' : 'border-white/5 bg-neutral-900 shadow-2xl'}`}
+            onViewportEnter={() => onInView(idx)}
+            viewport={{ margin: "-40% 0px -40% 0px" }} // Trigger when card is mostly in view
+            className={`relative flex-none w-[85vw] md:w-[600px] aspect-video md:aspect-[16/10] rounded-lg overflow-hidden snap-center md:snap-start group cursor-pointer border ${isLightMode ? 'border-black/5 bg-white shadow-xl' : 'border-white/5 bg-neutral-900 shadow-2xl'}`}
+            onClick={onClick}
         >
             <div className="absolute inset-0 overflow-hidden">
                 <Image
                     src={img}
-                    alt={`Amenity ${idx + 1}`}
+                    alt={displayName}
                     fill
-                    className="object-cover transition-transform duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-110 opacity-100" // kept opacity 100 for light theme crispness
-                    sizes="(max-width: 768px) 80vw, 400px"
+                    className="object-cover transition-transform duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-105 opacity-100"
+                    sizes="(max-width: 768px) 85vw, 600px"
+                    draggable={false}
                 />
             </div>
 
-            {/* Cinematic Gradient - Always dark gradient for text legibility */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80" />
+            {/* Cinematic Gradient */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
 
-            {/* Content overlay with slide-up effect */}
-            <div className="absolute bottom-0 left-0 p-8 w-full transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                <div className="overflow-hidden mb-2">
-                    <span className="text-gold-400 text-[10px] uppercase tracking-[0.3em] font-bold block transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 delay-75">
-                        Lifestyle
+            {/* Zoom Icon */}
+            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="bg-white/20 backdrop-blur-md p-2 rounded-full text-white border border-white/30">
+                    <Expand size={20} />
+                </div>
+            </div>
+
+            {/* Content overlay */}
+            <div className="absolute bottom-0 left-0 p-6 md:p-8 w-full transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                <div className="overflow-hidden mb-1">
+                    <span className="text-gold-400 text-[10px] md:text-xs uppercase tracking-[0.3em] font-bold block">
+                        {categoryLabel}
                     </span>
                 </div>
                 <div className="overflow-hidden">
-                    <h3 className="text-2xl md:text-3xl font-serif text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 delay-100">
-                        Amenity {idx + 1}
+                    <h3 className="text-xl md:text-2xl font-serif text-white group-hover:text-gold-400 transition-colors duration-300 capitalize">
+                        {displayName || `${itemLabel} ${idx + 1}`}
                     </h3>
                 </div>
-                <div className="w-12 h-[1px] bg-gold-400 mt-4 origin-left transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 delay-200" />
             </div>
         </motion.div>
     );
 }
 
-export default function AmenitiesGallery({ images, isLightMode = false }) {
-    const scrollRef = useRef(null);
-    const { scrollXProgress } = useScroll({ container: scrollRef });
+// Lightbox Component (unchanged)
+// ...
 
-    // Smooth progress bar
-    const scaleX = useSpring(scrollXProgress, {
-        stiffness: 100,
-        damping: 30,
-        restDelta: 0.001
-    });
+export default function AmenitiesGallery({ images, isLightMode = false, categoryLabel = "Lifestyle", itemLabel = "Amenity", onIndexChange }) {
+    const scrollRef = useRef(null);
+    const [selectedImage, setSelectedImage] = useState(null);
+    const [isDragging, setIsDragging] = useState(false);
+    const [startX, setStartX] = useState(0);
+    const [scrollLeft, setScrollLeft] = useState(0);
+    // Internal state can be removed if we trust parent, but lifting strictly is better?
+    // Let's just use the callback.
+
+    // Track actual movement to distinguish click vs drag
+    const hasMoved = useRef(false);
+
+    const { scrollXProgress } = useScroll({ container: scrollRef });
 
     if (!images || images.length === 0) return null;
 
-    const scroll = (offset) => {
-        if (scrollRef.current) {
-            scrollRef.current.scrollBy({ left: offset, behavior: 'smooth' });
+    // Drag to Scroll Logic
+    const handleMouseDown = (e) => {
+        setIsDragging(true);
+        hasMoved.current = false;
+        setStartX(e.pageX - scrollRef.current.offsetLeft);
+        setScrollLeft(scrollRef.current.scrollLeft);
+    };
+
+    const handleMouseLeave = () => {
+        setIsDragging(false);
+    };
+
+    const handleMouseUp = () => {
+        setIsDragging(false);
+    };
+
+    const handleMouseMove = (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+        const x = e.pageX - scrollRef.current.offsetLeft;
+        const walk = (x - startX) * 2.5; // Tuned sensitivity
+        scrollRef.current.scrollLeft = scrollLeft - walk;
+        if (Math.abs(x - startX) > 5) {
+            hasMoved.current = true;
         }
     };
 
-    const textColor = isLightMode ? 'text-black/40' : 'text-white/40';
-    const borderColor = isLightMode ? 'border-black/10' : 'border-white/10';
-    const hoverColor = isLightMode ? 'hover:text-black hover:bg-black/5 hover:border-black/30' : 'hover:text-white hover:bg-white/10 hover:border-white/30';
-    const progressBg = isLightMode ? 'bg-black/5' : 'bg-white/5';
-    const btnTextColor = isLightMode ? 'text-black/70' : 'text-white/70';
-
     return (
-        <div className="relative group py-8">
-            {/* Header / Controls */}
-            <div className="flex justify-between items-end px-6 container mx-auto mb-10">
-                <div className="hidden md:block">
-                    <span className={`${textColor} text-xs tracking-widest uppercase`}>Explore the Lifestyle</span>
-                </div>
-                <div className="flex gap-4">
-                    <button
-                        onClick={() => scroll(-400)}
-                        className={`w-12 h-12 rounded-full border ${borderColor} flex items-center justify-center ${btnTextColor} ${hoverColor} transition-all active:scale-95`}
-                    >
-                        <ArrowLeft size={20} className="stroke-1" />
-                    </button>
-                    <button
-                        onClick={() => scroll(400)}
-                        className={`w-12 h-12 rounded-full border ${borderColor} flex items-center justify-center ${btnTextColor} ${hoverColor} transition-all active:scale-95`}
-                    >
-                        <ArrowRight size={20} className="stroke-1" />
-                    </button>
-                </div>
-            </div>
+        <div className="relative group py-2">
+            {/* Header Removed as requested to reduce space */}
 
-            {/* Cinematic Slider Track */}
+            {/* Slider Track - Updated for Drag & Landscape */}
             <div
                 ref={scrollRef}
-                className="flex gap-6 md:gap-8 overflow-x-auto pb-12 px-6 md:px-[10vw] scrollbar-none snap-x snap-mandatory [&::-webkit-scrollbar]:hidden"
+                className="flex gap-4 md:gap-8 overflow-x-auto pb-4 cursor-grab active:cursor-grabbing -mx-4 px-4 md:mx-0 md:px-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] select-none snap-x snap-proximity"
+                style={{ scrollBehavior: isDragging ? 'auto' : 'smooth' }}
+                onMouseDown={handleMouseDown}
+                onMouseLeave={handleMouseLeave}
+                onMouseUp={handleMouseUp}
+                onMouseMove={handleMouseMove}
+                onDragStart={(e) => e.preventDefault()}
             >
                 {images.map((img, idx) => (
                     <GalleryCard
                         key={idx}
                         img={img}
                         idx={idx}
-                        scrollXProgress={scrollXProgress}
-                        totalCards={images.length}
                         isLightMode={isLightMode}
+                        categoryLabel={categoryLabel}
+                        itemLabel={itemLabel}
+                        onInView={(idx) => {
+                            // Call parent if exists
+                            if (onIndexChange) onIndexChange(idx);
+                        }}
+                        onClick={() => {
+                            if (!hasMoved.current) setSelectedImage(img);
+                        }}
                     />
                 ))}
 
-                {/* Trailing Spacer */}
-                <div className="flex-none w-[10vw]" />
+                <div className="flex-none w-[5vw]" />
             </div>
 
-            {/* Minimalist Progress Line */}
-            <div className={`absolute bottom-0 left-0 w-full h-[1px] ${progressBg}`}>
-                <motion.div
-                    style={{ scaleX }}
-                    className="absolute top-0 left-0 h-full w-full bg-gold-400 origin-left"
-                />
-            </div>
+            <AnimatePresence>
+                {selectedImage && (
+                    <Lightbox selectedImage={selectedImage} setSelectedImage={setSelectedImage} images={images} />
+                )}
+            </AnimatePresence>
         </div>
     );
+}
+
+// Lightbox Component
+function Lightbox({ selectedImage, setSelectedImage, images }) {
+    const [scale, setScale] = useState(1);
+
+    // Zoom toggle
+    const handleZoomToggle = (e) => {
+        e.stopPropagation();
+        setScale(prev => prev > 1 ? 1 : 2.5);
+    };
+
+    return (
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[200] bg-black/95 backdrop-blur-xl flex items-center justify-center p-0 md:p-12"
+            onClick={() => setSelectedImage(null)}
+        >
+            <button className="absolute top-6 right-6 text-white hover:text-gold-400 z-50 p-2 bg-white/10 rounded-full" onClick={() => setSelectedImage(null)}>
+                <X size={24} />
+            </button>
+
+            <div className="relative w-full h-full flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
+                {scale === 1 && (
+                    <>
+                        <button
+                            className="absolute left-4 top-1/2 -translate-y-1/2 text-white/50 hover:text-white z-50 p-4 hover:bg-white/10 rounded-full transition-all"
+                            onClick={() => {
+                                const idx = images.indexOf(selectedImage);
+                                setSelectedImage((images[(idx - 1 + images.length) % images.length]));
+                            }}
+                        >
+                            <ChevronLeft size={32} />
+                        </button>
+                        <button
+                            className="absolute right-4 top-1/2 -translate-y-1/2 text-white/50 hover:text-white z-50 p-4 hover:bg-white/10 rounded-full transition-all"
+                            onClick={() => {
+                                const idx = images.indexOf(selectedImage);
+                                setSelectedImage(images[(idx + 1) % images.length]);
+                            }}
+                        >
+                            <ChevronRight size={32} />
+                        </button>
+                    </>
+                )}
+
+                <div className="relative w-full h-full overflow-hidden flex items-center justify-center" onDoubleClick={handleZoomToggle}>
+                    <motion.div
+                        animate={{ scale }}
+                        transition={{ type: "spring", stiffness: 200, damping: 30 }}
+                        className="relative w-full h-full"
+                        style={{ cursor: scale > 1 ? 'zoom-out' : 'zoom-in' }}
+                    >
+                        <Image
+                            src={selectedImage}
+                            alt="Fullscreen"
+                            fill
+                            className="object-contain"
+                            priority
+                            draggable={false}
+                        />
+                    </motion.div>
+                </div>
+            </div>
+        </motion.div>
+    )
 }

@@ -10,7 +10,7 @@ import FilterDropdown from "@/components/ui/FilterDropdown";
 import { useProjectFilters, FILTER_COMMERCIAL_TYPES } from "@/hooks/useProjectFilters";
 
 // Internal Component with Filter Logic
-function ProjectSectionContent({ projects }) {
+function ProjectSectionContent({ projects, residentialProjects, commercialProjects }) {
     const sectionRef = useRef(null);
     const {
         activeCategory,
@@ -27,7 +27,7 @@ function ProjectSectionContent({ projects }) {
         activeTransaction,
         setActiveTransaction,
         FILTER_TRANSACTION_OPTIONS
-    } = useProjectFilters(projects);
+    } = useProjectFilters(projects, "Residential", residentialProjects, commercialProjects);
 
     const [showFilters, setShowFilters] = useState(false);
 

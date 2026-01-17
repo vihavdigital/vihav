@@ -117,7 +117,7 @@ function GestureHandler() {
     );
 }
 
-export default function LuxuryMap({ activeProject }) {
+function LuxuryMap({ activeProject }) {
     const [isClient, setIsClient] = useState(false);
 
     useEffect(() => {
@@ -224,3 +224,9 @@ export default function LuxuryMap({ activeProject }) {
         </div>
     );
 }
+
+// Memoize the map to prevent ANY re-renders from parent state changes (like scroll spy)
+// Only re-render if the project ID actually changes.
+export default React.memo(LuxuryMap, (prev, next) => {
+    return prev.activeProject?.id === next.activeProject?.id;
+});

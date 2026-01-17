@@ -102,7 +102,7 @@ export default async function ProjectPage({ params }) {
                     )}
                     <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/20" />
                 </div>
-                <div className="relative z-10 h-full container mx-auto px-6 flex flex-col justify-end pb-8 md:pb-12">
+                <div className="relative z-10 h-full container mx-auto px-6 md:px-12 flex flex-col justify-end pb-8 md:pb-12">
                     <span className={`px-4 py-1 text-[10px] md:text-xs font-bold uppercase tracking-widest w-fit mb-3 ${project.slug === 'keystone-select' ? 'bg-white text-black border border-white' : `${theme.bgLight} text-luxury-black shadow-lg ${theme.shadow}`}`}>
                         {project.slug === 'keystone-select' ? 'The Signature Collection' : 'Selling Fast'}
                     </span>

@@ -91,8 +91,8 @@ export default function SideMenu({ isOpen, onClose }) {
                             </div>
                         </div>
 
-                        {/* Nav List - Mobile & Desktop */}
-                        <div className="flex-1 px-6 md:px-12 lg:px-16 xl:px-24 flex flex-col justify-center relative overflow-hidden">
+                        {/* Nav List - Dynamic Height Adaptive */}
+                        <div className="flex-1 min-h-0 overflow-y-auto px-6 md:px-12 lg:px-16 xl:px-24 flex flex-col justify-center relative scrollbar-hide">
                             <motion.div
                                 key="main-menu"
                                 initial="hidden"
@@ -110,7 +110,7 @@ export default function SideMenu({ isOpen, onClose }) {
                                         }
                                     }
                                 }}
-                                className="flex flex-col space-y-4 md:space-y-6"
+                                className="flex flex-col py-4 gap-[2vh]"
                             >
                                 {MENU_ITEMS.map((item) => (
                                     <motion.div
@@ -125,13 +125,14 @@ export default function SideMenu({ isOpen, onClose }) {
                                         <Link
                                             href={item.href}
                                             onClick={onClose}
-                                            className={`group flex items-center justify-end w-full gap-3 md:gap-4 text-3xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-serif tracking-tight transition-all duration-500 ease-out ${hoveredItem.id === item.id ? "text-gold-400 -translate-x-4 md:-translate-x-10" : "text-muted-foreground hover:text-foreground"}`}
+                                            // Using vh units for font size ensures it never overflows vertically regardless of resolution
+                                            className={`group flex items-center justify-end w-full gap-3 md:gap-4 text-[4vh] md:text-[5vh] font-serif tracking-tight transition-all duration-500 ease-out leading-none ${hoveredItem.id === item.id ? "text-gold-400 -translate-x-4 md:-translate-x-10" : "text-muted-foreground hover:text-foreground"}`}
                                         >
                                             <span className="relative">
                                                 {item.label}
                                                 <ArrowRight
-                                                    size={20}
-                                                    className={`absolute right-full mr-4 top-1/2 -translate-y-1/2 -rotate-45 transition-opacity duration-500 md:w-6 md:h-6 ${hoveredItem.id === item.id ? "opacity-100" : "opacity-0"}`}
+                                                    size={24}
+                                                    className={`absolute right-full mr-4 top-1/2 -translate-y-1/2 -rotate-45 transition-opacity duration-500 w-[3vh] h-[3vh] ${hoveredItem.id === item.id ? "opacity-100" : "opacity-0"}`}
                                                 />
                                             </span>
                                         </Link>

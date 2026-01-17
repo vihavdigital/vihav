@@ -14,14 +14,8 @@ export default function FloorPlans({ plans }) {
     const activePlan = plans[activeTab];
 
     return (
-        <section className="py-6 md:py-24 bg-white" id="floor-plans">
-            <div className="container mx-auto px-6">
-                <div className="flex flex-col items-center mb-6 md:mb-16">
-                    <span className="text-gold-400 uppercase tracking-[0.25em] text-xs font-bold mb-4 block">Layouts</span>
-                    <h2 className="text-4xl md:text-5xl text-luxury-black font-serif mb-6 text-center">Floor Plans</h2>
-                    <div className="w-24 h-1 bg-gold-400/30 rounded-full" />
-                </div>
-
+        <section className="bg-white" id="floor-plans">
+            <div className="container mx-auto px-6 md:px-12">
                 <div className="flex flex-col lg:flex-row gap-4 lg:gap-12 items-start">
                     {/* Left: Navigation Tabs */}
                     <div className="w-full lg:w-1/3 space-y-4">
@@ -89,15 +83,15 @@ export default function FloorPlans({ plans }) {
                             initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.5 }}
-                            className="bg-white border border-border p-2 md:p-8 rounded-2xl relative group cursor-zoom-in shadow-sm hover:shadow-xl transition-shadow duration-500"
+                            className="bg-white border border-border p-2 md:p-6 rounded-2xl relative group cursor-zoom-in shadow-sm hover:shadow-xl transition-shadow duration-500"
                             onClick={() => setIsLightboxOpen(true)}
                         >
-                            <div className="relative aspect-[4/3] w-full bg-secondary/10 rounded-lg overflow-hidden">
+                            <div className="relative aspect-[4/3] md:aspect-video w-full bg-secondary/10 rounded-lg overflow-hidden">
                                 <Image
                                     src={activePlan.image}
                                     alt={activePlan.title}
                                     fill
-                                    className="object-contain p-4 group-hover:scale-105 transition-transform duration-700"
+                                    className="object-contain p-2 group-hover:scale-105 transition-transform duration-700"
                                 />
                                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300 flex items-center justify-center">
                                     <div className="bg-white/90 backdrop-blur-sm p-4 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 shadow-lg">
@@ -109,12 +103,7 @@ export default function FloorPlans({ plans }) {
                         </motion.div>
 
                         {/* Compact Dimensions & Download Bar (Moved Below Image) */}
-                        <div className="mt-2 md:mt-6 flex flex-col md:flex-row-reverse items-center justify-between gap-3 bg-secondary/20 p-3 md:p-6 rounded-xl border border-border/50">
-                            <div>
-                                <span className="text-gold-400 text-[10px] uppercase tracking-widest font-bold block mb-1">Dimensions</span>
-                                <p className="text-2xl font-serif text-luxury-black">{activePlan.dimensions}</p>
-                            </div>
-                        </div>
+                        {/* Compact Dimensions & Download Bar Removed as requested */}
                         {/* Download button moved to sidebar */}
                     </div>
                 </div>

@@ -82,6 +82,11 @@ export const metadata = {
     google: 'google-site-verification=YOUR_VERIFICATION_CODE', // User to replace
     // yandex: 'yandex-verification-code',
   },
+  icons: {
+    icon: '/images/project-images/other-images/favicon.webp',
+    shortcut: '/images/project-images/other-images/favicon.webp',
+    apple: '/images/project-images/other-images/favicon.webp',
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -93,7 +98,7 @@ export default function RootLayout({ children }) {
       >
         <ThemeProvider>
           <Preloader />
-          <SmoothScroll />
+          {/* <SmoothScroll /> Removed for native responsiveness */}
           {/* <ChatLoader /> */}
           {children}
         </ThemeProvider>

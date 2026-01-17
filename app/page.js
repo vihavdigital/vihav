@@ -15,8 +15,47 @@ import dynamic from 'next/dynamic';
 
 const Footer = dynamic(() => import('@/components/layout/Footer'));
 
+// Specific Order for Home Page as per User Request
+const HOME_PROJECT_IDS = [
+  "keystone-select",
+  "keystone-niwa",
+  "keystone-51",
+  "keystone-clermont",
+  "vihav-elinor",
+  "vihav-parvarish-res",
+  "vihav-cbd-res",
+  "vihav-spring-woods",
+  "keystone-48",
+  "keystone-skyvillas-xl",
+  "keystone-30"
+];
+
+// Specific Order for Commercial Projects as per User Request
+const HOME_COMMERCIAL_IDS = [
+  "supremus-iii",
+  "vihav-cbd",
+  "vs-monolith",
+  "vihav-supremus-2",
+  "vihav-parvarish-comm",
+  "vtc",
+  "supremus",
+  "wealth-square",
+  "vbs",
+  "skyone",
+  "elite-square"
+];
+
 export default function Home() {
-  /* Projects are filtered internally by ProjectSection */
+  const orderedResidentialProjects = HOME_PROJECT_IDS.map(id => PROJECTS.find(p => p.id === id)).filter(Boolean);
+  const orderedCommercialProjects = HOME_COMMERCIAL_IDS.map(id => PROJECTS.find(p => p.id === id)).filter(Boolean);
+
+  // Combine for "All" view - prevent duplicates (e.g. Parvarish)
+  const allFeatured = [...orderedResidentialProjects];
+  orderedCommercialProjects.forEach(p => {
+    if (!allFeatured.find(existing => existing.id === p.id)) {
+      allFeatured.push(p);
+    }
+  });
 
   return (
     <main className="min-h-screen bg-background text-foreground selection:bg-gold-400 selection:text-luxury-black transition-colors duration-500">
@@ -175,7 +214,11 @@ export default function Home() {
 
 
       {/* Unified Project Discovery Section */}
-      <ProjectSection projects={PROJECTS} />
+      <ProjectSection
+        projects={allFeatured}
+        residentialProjects={orderedResidentialProjects}
+        commercialProjects={orderedCommercialProjects}
+      />
 
       {/* Immersive Philosophy Section */}
       <section className="relative py-32 bg-background border-t border-border">

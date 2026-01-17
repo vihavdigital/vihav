@@ -1,7 +1,7 @@
 import { PROJECTS } from "@/data/projects";
 
 export default function sitemap() {
-    const baseUrl = 'https://www.vihavgroup.com'; // Change this to your actual domain
+    const baseUrl = 'https://www.vihav.com'; // Change this to your actual domain
 
     const projectUrls = PROJECTS.map((project) => ({
         url: `${baseUrl}/projects/${project.slug}`,

@@ -11,7 +11,7 @@ export const FILTER_TRANSACTION_OPTIONS = ["Buy", "Rent", "Lease"];
 import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 
-export function useProjectFilters(projects, initialCategory = "Residential") {
+export function useProjectFilters(projects, initialCategory = "Residential", residentialProjects = null, commercialProjects = null) {
     const searchParams = useSearchParams();
     const [activeCategory, setActiveCategory] = useState(initialCategory);
     const [activeType, setActiveType] = useState("All");
@@ -39,13 +39,27 @@ export function useProjectFilters(projects, initialCategory = "Residential") {
     }, [searchParams]);
 
     const filteredProjects = useMemo(() => {
-        return projects.filter(project => {
+        let sourceProjects = projects;
+        if (activeCategory === "Residential" && residentialProjects) {
+            sourceProjects = residentialProjects;
+        } else if (activeCategory === "Commercial" && commercialProjects) {
+            sourceProjects = commercialProjects;
+        }
+
+        return sourceProjects.filter(project => {
             // If project is missing filterData, filter it based on simple category if available or include if loose, 
             // but strict check is safer. Assuming all have filterData now.
             if (!project.filterData) return false;
 
             // 1. Category Filter
-            if (activeCategory !== "All" && project.filterData.category !== activeCategory) return false;
+            if (activeCategory !== "All") {
+                const pCat = project.filterData.category;
+                if (Array.isArray(pCat)) {
+                    if (!pCat.includes(activeCategory)) return false;
+                } else {
+                    if (pCat !== activeCategory) return false;
+                }
+            }
 
             // 2. Transaction Filter (Commercial Only) - NEW
             if (activeCategory === "Commercial") {

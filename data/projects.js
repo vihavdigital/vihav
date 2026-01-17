@@ -14,6 +14,7 @@
 export const PROJECTS = [
     {
         id: "keystone-select",
+        link: "/projects/keystone-select",
         slug: "keystone-select",
         title: "Keystone Select",
         category: "Residential",
@@ -92,6 +93,7 @@ export const PROJECTS = [
     },
     {
         id: "keystone-51",
+        link: "/projects/keystone-51",
         status: "Upcoming",
         slug: "keystone-51",
         title: "Keystone 51",
@@ -108,7 +110,7 @@ export const PROJECTS = [
         vision: "ONE DOWN, 75MTR MAIN ROAD, VASTU - COMPLIANT HOMES",
         heroImage: "/images/project-images/project-tiles/keystone-51.jpg",
         galleryImages: [
-            "https://www.vihav.com/wp-content/uploads/Vihav-51-Cam-03-a-scaled.webp",
+            "/images/project-images/project-tiles/keystone-51.jpg",
             "https://www.vihav.com/wp-content/uploads/Vihav-51-Living-room-cam-03-a-scaled.webp",
             "https://www.vihav.com/wp-content/uploads/Vihav-51-Cam-01-a-scaled.webp",
             "https://www.vihav.com/wp-content/uploads/Vihav-51-Cam-09-a-scaled.webp",
@@ -146,7 +148,8 @@ export const PROJECTS = [
     },
     {
         id: "keystone-niwa",
-        slug: "keystone-niwa",
+        link: "/projects/keystone-niwa-4b2hk-apartments-in-vadodara/",
+        slug: "keystone-niwa-4b2hk-apartments-in-vadodara",
         title: "Keystone Niwa",
         logo: "/images/project-images/project-logos/keystone-niwa-logo.svg",
         category: "Residential",
@@ -202,8 +205,9 @@ export const PROJECTS = [
     },
     {
         id: "keystone-clermont",
+        link: "/projects/keystone-clermont-4b2hk-apartments-in-vadodara/",
         status: "Newly Launched",
-        slug: "keystone-clermont",
+        slug: "keystone-clermont-4b2hk-apartments-in-vadodara",
         title: "Keystone Clermont",
         category: "Residential",
         location: "75 Mtr Main Road, Bhayli",
@@ -250,6 +254,7 @@ export const PROJECTS = [
     },
     {
         id: "keystone-30",
+        link: "https://keystone30.in/",
         status: "Ongoing",
         slug: "keystone-30",
         title: "Keystone 30",
@@ -265,7 +270,7 @@ export const PROJECTS = [
         description: "Ultra-luxurious 5 & 6 BHK residences for the elite.",
         vision: "BE-SPOKE BUNGALOWS, NR. SP RING ROAD.",
         heroImage: "/images/project-images/project-tiles/keystone-30.jpg",
-        galleryImages: ["https://www.vihav.com/wp-content/uploads/keystone30.webp"],
+        galleryImages: ["/images/project-images/project-tiles/keystone-30.jpg"],
         features: ["Large Floor Plates", "Luxury Specs"],
         amenitiesList: [
             { icon: "Shield", label: "Security" },
@@ -293,6 +298,7 @@ export const PROJECTS = [
     },
     {
         id: "keystone-skyvillas-xl",
+        link: "/projects/keystone-skyvillas-xl/",
         status: "Ongoing",
         slug: "keystone-skyvillas-xl",
         title: "Keystone Skyvillas XL",
@@ -336,6 +342,7 @@ export const PROJECTS = [
     },
     {
         id: "keystone-48",
+        link: "/projects/keystone-48/",
         status: "Ongoing",
         slug: "keystone-48",
         title: "Keystone 48",
@@ -358,16 +365,23 @@ export const PROJECTS = [
         connectivity: [{ label: "Sevasi", time: "2 Mins" }],
         address: "Sevasi, Vadodara",
         coordinates: { lat: 22.3180, lng: 73.1100 },
-        mapEmbed: "https://maps.google.com/maps?q=Keystone+48+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed"
+        mapEmbed: "https://maps.google.com/maps?q=Keystone+48+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
+        filterData: {
+            category: ["Residential", "Commercial"],
+            type: ["4bhk", "5bhk", "Apartments", "showrooms"],
+            possession: "Under construction"
+        }
     },
     {
         id: "vihav-cbd-res",
+        link: "/projects/cbd",
         launchYear: "2022",
         brochureLink: "https://drive.google.com/file/d/10dM1tq9y9lGhpbkU2zy3DB5afBs_MQP0/view?usp=drive_link",
         status: "Ongoing",
         progress: 75,
-        slug: "vihav-cbd-res",
+        slug: "cbd",
         title: "Vihav CBD",
+        logo: "/images/project-images/project-logos/cbd-logo.svg",
         tagline: "4 BHK APARTMENTS AND 5 B2HK PENTHOUSES IN VADODARA",
         category: "Residential",
         location: "Bhayli Cross Road, Vadodara",
@@ -380,21 +394,53 @@ export const PROJECTS = [
         vision: "HEART OF BHAYLI",
         heroImage: "/images/project-images/project-tiles/vihav-cbd.jpg",
         galleryImages: [
-            "https://www.vihav.com/wp-content/uploads/vihav-cbd-gallery-image-7.webp",
-            "https://www.vihav.com/wp-content/uploads/vihav-cbd-gallery-image-4.webp",
-            "https://www.vihav.com/wp-content/uploads/DSC_6886-scaled.jpg",
-            "https://www.vihav.com/wp-content/uploads/DSC_6906-scaled.jpg",
-            "https://www.vihav.com/wp-content/uploads/SSP_1376-1-scaled.jpg"
+            "/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (1).webp",
+            "/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (2).webp",
+            "/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (3).webp",
+            "/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (4).webp",
+            "/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (5).webp",
+            "/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (6).webp",
+            "/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (7).webp",
+            "/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (8).webp",
+            "/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (9).webp",
+            "/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (10).webp",
+            "/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (11).webp"
         ],
-        realImages: [
-            "https://www.vihav.com/wp-content/uploads/vihav-cbd-gallery-image-7.webp", // Placeholder
-            "https://www.vihav.com/wp-content/uploads/vihav-cbd-gallery-image-4.webp", // Placeholder
-            "https://www.vihav.com/wp-content/uploads/DSC_6886-scaled.jpg" // Placeholder
+        realPictureImages: [
+            "/images/project-images/projects/cbd-res/real-pictures/vihav-cbd-real-pictures (1).jpg",
+            "/images/project-images/projects/cbd-res/real-pictures/vihav-cbd-real-pictures (2).jpg",
+            "/images/project-images/projects/cbd-res/real-pictures/vihav-cbd-real-pictures (3).jpg",
+            "/images/project-images/projects/cbd-res/real-pictures/vihav-cbd-real-pictures (4).jpg",
+            "/images/project-images/projects/cbd-res/real-pictures/vihav-cbd-real-pictures (5).jpg",
+            "/images/project-images/projects/cbd-res/real-pictures/vihav-cbd-real-pictures (6).jpg",
+            "/images/project-images/projects/cbd-res/real-pictures/vihav-cbd-real-pictures (7).jpg",
+            "/images/project-images/projects/cbd-res/real-pictures/vihav-cbd-real-pictures (8).jpg",
+            "/images/project-images/projects/cbd-res/real-pictures/vihav-cbd-real-pictures (1).jpg",
+            "/images/project-images/projects/cbd-res/real-pictures/vihav-cbd-real-pictures (2).jpg",
+            "/images/project-images/projects/cbd-res/real-pictures/vihav-cbd-real-pictures (3).jpg"
         ],
         amenitiesImages: [
-            "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1000", // Gym Placeholder
-            "https://images.unsplash.com/photo-1590486803833-1c5dc8ce84ac?q=80&w=1000", // Pool Placeholder
-            "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1000" // Garden Placeholder
+            "/images/project-images/projects/cbd-res/amenities/cbd-amenities-dance-club-3.webp",
+            "/images/project-images/projects/cbd-res/amenities/cbd-amenities-dance-club.webp",
+            "/images/project-images/projects/cbd-res/amenities/cbd-amenities-dance-club2.webp",
+            "/images/project-images/projects/cbd-res/amenities/cbd-amenities-game-zone-2.webp",
+            "/images/project-images/projects/cbd-res/amenities/cbd-amenities-game-zone-3.webp",
+            "/images/project-images/projects/cbd-res/amenities/cbd-amenities-game-zone.webp",
+            "/images/project-images/projects/cbd-res/amenities/cbd-amenities-gym-2.webp",
+            "/images/project-images/projects/cbd-res/amenities/cbd-amenities-gym-3.webp",
+            "/images/project-images/projects/cbd-res/amenities/cbd-amenities-gym-4.webp",
+            "/images/project-images/projects/cbd-res/amenities/cbd-amenities-gym.webp",
+            "/images/project-images/projects/cbd-res/amenities/cbd-amenities-pool-table.webp",
+            "/images/project-images/projects/cbd-res/amenities/cbd-amenities-theatre.webp",
+            "/images/project-images/projects/cbd-res/amenities/cbd-amenities-theatre2.webp",
+            "/images/project-images/projects/cbd-res/amenities/cbd-amenities.webp",
+            "/images/project-images/projects/cbd-res/amenities/cbd-amenities2.webp"
+        ],
+        constructionImages: [
+            "https://www.vihav.com/wp-content/uploads/cbd-project-status-update-images-1.webp",
+            "https://www.vihav.com/wp-content/uploads/cbd-project-status-update-images-2.webp",
+            "https://www.vihav.com/wp-content/uploads/cbd-project-status-update-images-4.webp",
+            "https://www.vihav.com/wp-content/uploads/cbd-project-status-update-images-3.webp"
         ],
         floorPlans: [
             { id: "fp-1", title: "Ground Floor Plan", image: "https://www.vihav.com/wp-content/uploads/Vihav_CBD_Residential_Ground_Floor_Plan-scaled.webp", type: "Plan" },
@@ -439,8 +485,9 @@ export const PROJECTS = [
     },
     {
         id: "vihav-spring-woods",
+        link: "/projects/spring-woods/",
         status: "Ongoing",
-        slug: "vihav-spring-woods",
+        slug: "spring-woods",
         title: "Vihav Spring Woods",
         category: "Residential",
         location: "Tarsali, Vadodara",
@@ -454,7 +501,7 @@ export const PROJECTS = [
         description: "Premium duplexes and flats offering a blend of space and community.",
         vision: "ONLY 36 PREMIUM BUNGALOWS",
         heroImage: "/images/project-images/project-tiles/springwoods.jpg",
-        galleryImages: ["https://www.vihav.com/wp-content/uploads/spring_woods_thum.webp"],
+        galleryImages: ["/images/project-images/project-tiles/springwoods.jpg"],
         features: ["Duplex Layouts", "Clubhouse"],
         amenitiesList: [
             { icon: "Shield", label: "Security" },
@@ -482,8 +529,9 @@ export const PROJECTS = [
     },
     {
         id: "vihav-elinor",
+        link: "/projects/elinor",
         status: "Ongoing",
-        slug: "vihav-elinor",
+        slug: "elinor",
         title: "Vihav Elinor",
         category: "Residential",
         location: "New Alkapuri, Gotri",
@@ -497,7 +545,7 @@ export const PROJECTS = [
         description: "Contemporary homes on the main road, offering connectivity and style.",
         vision: "BETWEEN 2 TOWERS 100FT DISTANCE",
         heroImage: "/images/project-images/project-tiles/vihav-elinor.jpg",
-        galleryImages: ["https://www.vihav.com/wp-content/uploads/vihav_elinor_thum.webp"],
+        galleryImages: ["/images/project-images/project-tiles/vihav-elinor.jpg"],
         features: ["Main Road Access", "Premium Amenities"],
         amenitiesList: [
             { icon: "Shield", label: "Security" },
@@ -524,10 +572,11 @@ export const PROJECTS = [
         }
     },
     {
-        id: "vihav-parvarish",
+        id: "vihav-parvarish-res",
         status: "Ongoing",
-        slug: "vihav-parvarish",
+        slug: "parvarish",
         title: "Vihav Parvarish",
+        link: "/projects/parvarish",
         category: "Residential",
         location: "Nr Priya Cinema, Sevasi, Bhayli",
         carpetArea: "1575 - 1750 Sq.Ft.",
@@ -563,6 +612,41 @@ export const PROJECTS = [
         filterData: {
             category: "Residential",
             type: ["3bhk", "4bhk", "penthouse", "Apartments"],
+            possession: "Ready to Move"
+        }
+    },
+    {
+        id: "vihav-parvarish-comm",
+        slug: "parvarish-commercial",
+        title: "Vihav Parvarish Commercial",
+        link: "/projects/parvarish-commercial/",
+        category: "Commercial",
+        location: "Gotri",
+        carpetArea: "1485 to 2600 Sq.Ft.", // Verify if different for comm
+        type: "SHOPS & SHOWROOMS",
+        price: "Price on Request",
+        phone: "+91 999 895 2299",
+        email: "parvarish@vihav.com",
+        description: "Premium commercial spaces at Vihav Parvarish.",
+        vision: "Commercial Excellence",
+        heroImage: "/images/project-images/project-tiles/parvarish-commercial.webp",
+        galleryImages: ["/images/project-images/project-tiles/parvarish-commercial.webp"],
+        features: ["Main Road Access", "High Visibility"],
+        amenitiesList: [
+            { icon: "Shield", label: "Security" },
+            { icon: "Car", label: "Visitor Parking" }
+        ],
+        specifications: [
+            { category: "Flooring", items: ["Vitrified Tiles"] }
+        ],
+        connectivity: [{ label: "Gotri Road", time: "2 Mins" }],
+        address: "Gotri, Vadodara",
+        coordinates: { lat: 22.3250, lng: 73.1480 },
+        mapEmbed: "https://maps.google.com/maps?q=Vihav+Parvarish+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
+        filterData: {
+            category: "Commercial",
+            transactionType: ["Buy", "Lease", "Rent"],
+            type: ["shops", "showrooms"],
             possession: "Ready to Move"
         }
     },
@@ -676,10 +760,12 @@ export const PROJECTS = [
             category: "Residential",
             type: ["4bhk", "penthouse", "Apartments"],
             possession: "Ready to Move"
-        }
+        },
+        link: "/projects/skyvillas"
     },
     {
         id: "skyone",
+        link: "/projects/skyone/",
         slug: "skyone",
         title: "Skyone",
         category: "RESI-COMM",
@@ -693,8 +779,8 @@ export const PROJECTS = [
         email: "skyone@vihav.com",
         description: "Strategic commercial shops on the bustling 30 Mtr Main Road in Bhayli.",
         vision: "Sky High Commerce.",
-        heroImage: "https://www.vihav.com/wp-content/uploads/1_skyone_thum.webp",
-        galleryImages: ["https://www.vihav.com/wp-content/uploads/1_skyone_thum.webp"],
+        heroImage: "/images/project-images/project-tiles/Skyone.webp",
+        galleryImages: ["/images/project-images/project-tiles/Skyone.webp"],
         features: ["Main Road Facing", "High Visibility"],
         amenitiesList: [
             { icon: "Shield", label: "Security" },
@@ -710,7 +796,7 @@ export const PROJECTS = [
         coordinates: { lat: 22.2861, lng: 73.1319 },
         mapEmbed: "https://maps.google.com/maps?q=Vihav+Skyone+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
-            category: "Commercial",
+            category: ["Residential", "Commercial"],
             transactionType: ["Buy", "Lease", "Rent"],
             type: ["shops"],
             possession: "Ready to Move"
@@ -780,6 +866,7 @@ export const PROJECTS = [
     },
     {
         id: "vs-monolith",
+        link: "/projects/vs-monolith/",
         status: "Newly Launched",
         slug: "vs-monolith",
         title: "VS Monolith",
@@ -794,8 +881,8 @@ export const PROJECTS = [
         email: "sales@vihav.com",
         description: "A monolithic structure dominance in the Bhayli skyline.",
         vision: "Main ATLADRA -PADRA 40.MTR Road",
-        heroImage: "https://www.vihav.com/wp-content/uploads/vs-monolith-thumb.webp",
-        galleryImages: ["https://www.vihav.com/wp-content/uploads/vs-monolith-thumb.webp"],
+        heroImage: "/images/project-images/project-tiles/vs-monolith.webp",
+        galleryImages: ["/images/project-images/project-tiles/vs-monolith.webp"],
         features: ["Iconic Design", "Strategic Junction"],
         amenitiesList: [
             { icon: "Shield", label: "Security" },
@@ -822,8 +909,9 @@ export const PROJECTS = [
     },
     {
         id: "supremus-iii",
+        link: "/projects/supremus-3/",
         status: "Newly Launched",
-        slug: "supremus-iii",
+        slug: "supremus-3",
         title: "Supremus III",
         category: "Commercial",
         location: "Nr. DMart, Vasna Bhayli Main Rd",
@@ -836,8 +924,8 @@ export const PROJECTS = [
         email: "supremus3@vihav.com",
         description: "Premium commercial spaces near D-Mart.",
         vision: "A ELEGANT CO-ORPORATE PARK",
-        heroImage: "https://www.vihav.com/wp-content/uploads/supremus3-new-banner-for-homepage-1.webp",
-        galleryImages: ["https://www.vihav.com/wp-content/uploads/supremus3-new-banner-for-homepage-1.webp"],
+        heroImage: "/images/project-images/project-tiles/supremus-3.webp",
+        galleryImages: ["/images/project-images/project-tiles/supremus-3.webp"],
         features: ["Main Road Frontage", "Corporate Look"],
         amenitiesList: [
             { icon: "Shield", label: "24/7 Security" },
@@ -866,10 +954,11 @@ export const PROJECTS = [
     },
     {
         id: "vihav-cbd",
+        link: "/projects/cbd-commercial/",
         launchYear: "2022",
         brochureLink: "https://drive.google.com/file/d/1YEC52psDRHd111wP970Qvd-YGFFyjUPm/view?usp=drive_link",
         status: "Ongoing",
-        slug: "vihav-cbd",
+        slug: "cbd-commercial",
         title: "Vihav CBD",
         category: "Commercial",
         location: "Bhayli Cross Road, Vadodara",
@@ -880,7 +969,7 @@ export const PROJECTS = [
         email: "cbd@vihav.com",
         description: "Central Business District of Bhayli. A landmark mixed-use development.",
         vision: "HEART OF BHAYLI",
-        heroImage: "/images/project-images/project-tiles/vihav-cbd.jpg", // Placeholder
+        heroImage: "/images/project-images/project-tiles/cbd-commercial.webp", // Updated to commercial specific
         features: ["Prime Junction", "Mixed Use"],
         amenitiesList: [
             { icon: "Shield", label: "Security" },
@@ -902,8 +991,9 @@ export const PROJECTS = [
     },
     {
         id: "vihav-supremus-2",
+        link: "/projects/supremus2/",
         status: "Ongoing",
-        slug: "vihav-supremus-2",
+        slug: "supremus2",
         title: "Vihav Supremus II",
         category: "Commercial",
         location: "Atladra Padra 40mtr Main Road",
@@ -916,8 +1006,8 @@ export const PROJECTS = [
         email: "supremus2@vihav.com",
         description: "Continuing the success of Supremus on the Atladra-Padra growth corridor.",
         vision: "A-COMMERCIAL MARVEL",
-        heroImage: "https://www.vihav.com/wp-content/uploads/vhv_supremus2.webp",
-        galleryImages: ["https://www.vihav.com/wp-content/uploads/vhv_supremus2.webp"],
+        heroImage: "/images/project-images/project-tiles/supremus-2.webp",
+        galleryImages: ["/images/project-images/project-tiles/supremus-2.webp"],
         features: ["Main Road", "Growth Area"],
         amenitiesList: [
             { icon: "Shield", label: "Security" },
@@ -943,6 +1033,7 @@ export const PROJECTS = [
 
     {
         id: "wealth-square",
+        link: "/projects/wealth-square/",
         slug: "wealth-square",
         title: "Wealth Square",
         category: "Commercial",
@@ -956,8 +1047,8 @@ export const PROJECTS = [
         email: "wealthsquare@vihav.com",
         description: "Dedicated showroom spaces for retail brands.",
         vision: "Retail Excellence.",
-        heroImage: "https://www.vihav.com/wp-content/uploads/4_wealth_square_thum.webp",
-        galleryImages: ["https://www.vihav.com/wp-content/uploads/4_wealth_square_thum.webp"],
+        heroImage: "/images/project-images/project-tiles/wealth-square.webp",
+        galleryImages: ["/images/project-images/project-tiles/wealth-square.webp"],
         features: ["Facade Display", "Wide Frontage"],
         amenitiesList: [
             { icon: "Shield", label: "Security" },
@@ -984,6 +1075,7 @@ export const PROJECTS = [
     },
     {
         id: "vtc",
+        link: "/projects/vtc/",
         slug: "vtc",
         title: "VTC",
         category: "Commercial",
@@ -997,8 +1089,8 @@ export const PROJECTS = [
         email: "vtc@vihav.com",
         description: "Hub for trade and retail near Priya Cinema.",
         vision: "Trade Hub.",
-        heroImage: "https://www.vihav.com/wp-content/uploads/5_vtc_thum.webp",
-        galleryImages: ["https://www.vihav.com/wp-content/uploads/5_vtc_thum.webp"],
+        heroImage: "/images/project-images/project-tiles/vtc.webp",
+        galleryImages: ["/images/project-images/project-tiles/vtc.webp"],
         features: ["Entertainment Vicinity", "Retail Focused"],
         amenitiesList: [
             { icon: "Shield", label: "Security" },
@@ -1022,6 +1114,7 @@ export const PROJECTS = [
     },
     {
         id: "vbs",
+        link: "/projects/vbs/",
         slug: "vbs",
         title: "VBS",
         category: "Commercial",
@@ -1035,8 +1128,8 @@ export const PROJECTS = [
         email: "vbs@vihav.com",
         description: "Budget-friendly to premium commercial spaces in Gotri.",
         vision: "Business for Everyone.",
-        heroImage: "https://www.vihav.com/wp-content/uploads/6_vbs_thum.webp",
-        galleryImages: ["https://www.vihav.com/wp-content/uploads/6_vbs_thum.webp"],
+        heroImage: "/images/project-images/project-tiles/vbs.webp",
+        galleryImages: ["/images/project-images/project-tiles/vbs.webp"],
         features: ["High Footfall", "Mix of Sizes"],
         amenitiesList: [
             { icon: "Shield", label: "Security" },
@@ -1064,6 +1157,7 @@ export const PROJECTS = [
     },
     {
         id: "supremus",
+        link: "/projects/supremus/",
         slug: "supremus",
         title: "Supremus",
         category: "Commercial",
@@ -1077,8 +1171,8 @@ export const PROJECTS = [
         email: "supremus@vihav.com",
         description: "The first of the Supremus series, establishing a legacy of corporate excellence.",
         vision: "Corporate Legacy.",
-        heroImage: "https://www.vihav.com/wp-content/uploads/3_supremus_thum.webp",
-        galleryImages: ["https://www.vihav.com/wp-content/uploads/3_supremus_thum.webp"],
+        heroImage: "/images/project-images/project-tiles/supremus-1.webp",
+        galleryImages: ["/images/project-images/project-tiles/supremus-1.webp"],
         features: ["Established Hub", "Modern Amenities"],
         amenitiesList: [
             { icon: "Shield", label: "24/7 Security" },
@@ -1105,6 +1199,7 @@ export const PROJECTS = [
     },
     {
         id: "elite-square",
+        link: "/projects/elite-square/",
         slug: "elite-square",
         title: "Elite Square",
         status: "Completed",
@@ -1119,8 +1214,8 @@ export const PROJECTS = [
         email: "sales@vihav.com",
         description: "Premium shops and showrooms located on the prime Sun Pharma road.",
         vision: "Elite Business Address.",
-        heroImage: "https://www.vihav.com/wp-content/uploads/9_elite_square_thum.webp",
-        galleryImages: ["https://www.vihav.com/wp-content/uploads/9_elite_square_thum.webp"],
+        heroImage: "/images/project-images/project-tiles/elite-square.webp",
+        galleryImages: ["/images/project-images/project-tiles/elite-square.webp"],
         features: ["Prime Location", "Premium Facade"],
         amenitiesList: [
             { icon: "Shield", label: "Security" },
