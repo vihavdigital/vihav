@@ -39,6 +39,28 @@ export async function generateStaticParams() {
     }));
 }
 
+export async function generateMetadata({ params }) {
+    const { slug } = await params;
+    const project = getProjectBySlug(slug);
+
+    if (!project) {
+        return {
+            title: 'Project Not Found | Vihav Group',
+            description: 'The requested project could not be found.',
+        };
+    }
+
+    return {
+        title: `${project.title} - ${project.category} in ${project.location} | Vihav Group`,
+        description: project.description,
+        openGraph: {
+            title: project.title,
+            description: project.description,
+            images: [project.heroImage, ...(project.galleryImages || [])],
+        },
+    };
+}
+
 export default async function ProjectPage({ params }) {
     const { slug } = await params;
     const project = getProjectBySlug(slug);

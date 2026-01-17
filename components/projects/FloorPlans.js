@@ -70,6 +70,14 @@ export default function FloorPlans({ plans }) {
                                     </button>
                                 ))}
                             </div>
+
+                            <button
+                                className="w-full mt-6 flex items-center justify-center gap-2 px-6 py-4 bg-luxury-black text-white text-xs uppercase tracking-widest rounded-xl hover:bg-gold-400 hover:text-black transition-all duration-300 shadow-md hover:shadow-lg group"
+                                onClick={() => window.open(activePlan.image, '_blank')}
+                            >
+                                <Download size={16} className="group-hover:animate-bounce" />
+                                Download Layout
+                            </button>
                         </div>
 
                     </div>
@@ -106,17 +114,12 @@ export default function FloorPlans({ plans }) {
                                 <span className="text-gold-400 text-[10px] uppercase tracking-widest font-bold block mb-1">Dimensions</span>
                                 <p className="text-2xl font-serif text-luxury-black">{activePlan.dimensions}</p>
                             </div>
-                            <button
-                                className="flex items-center gap-2 px-6 py-3 bg-luxury-black text-white text-xs uppercase tracking-widest rounded-lg hover:bg-gold-400 hover:text-black transition-all duration-300 shadow-md hover:shadow-lg"
-                                onClick={() => window.open(activePlan.image, '_blank')}
-                            >
-                                <Download size={16} />
-                                Download Layout
-                            </button>
                         </div>
+                        {/* Download button moved to sidebar */}
                     </div>
                 </div>
             </div>
+
 
             {/* Lightbox Overlay */}
             <AnimatePresence>
@@ -152,6 +155,6 @@ export default function FloorPlans({ plans }) {
                     </motion.div>
                 )}
             </AnimatePresence>
-        </section>
+        </section >
     );
 }
