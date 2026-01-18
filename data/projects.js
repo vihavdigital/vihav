@@ -711,20 +711,27 @@ export const PROJECTS = [
         price: "Price on Request",
         phone: "+91 999 895 2299",
         email: "parvarish@vihav.com",
-        description: "Premium commercial spaces at Vihav Parvarish.",
+        tagline: "Ground Floor Shops in Vadodara",
+        description: "Vihav Parvarish Commercial: A premier commercial property located in Sevasi-Bhayli, Vadodara. Designed to meet modern business needs, these ground floor shops offer excellent visibility and accessibility.",
         vision: "Commercial Excellence",
         heroImage: "/images/project-images/project-tiles/parvarish-commercial.webp",
         galleryImages: ["/images/project-images/project-tiles/parvarish-commercial.webp"],
-        features: ["Main Road Access", "High Visibility"],
+        features: ["Ground Floor Shops", "Main Road Access", "High Visibility"],
+        highlights: [
+            { icon: "MapPin", title: "Prime Location", label: "Sevasi-Bhayli", description: "Located in a high-growth residential area." },
+            { icon: "Eye", title: "High Visibility", label: "Ground Floor", description: "Direct access and visibility for your business." }
+        ],
         amenitiesList: [
             { icon: "Shield", label: "Security" },
-            { icon: "Car", label: "Visitor Parking" }
+            { icon: "Car", label: "Visitor Parking" },
+            { icon: "Video", label: "CCTV Surveillance" }
         ],
         specifications: [
-            { category: "Flooring", items: ["Vitrified Tiles"] }
+            { category: "Flooring", items: ["Vitrified Tiles"] },
+            { category: "Structure", items: ["RCC Frame Structure"] }
         ],
         connectivity: [{ label: "Gotri Road", time: "2 Mins" }],
-        address: "Gotri, Vadodara",
+        address: "Behind Akshar Public School, Near Priya Cinemas, Sevasi-Bhayli, Vadodara, Gujarat, India.",
         coordinates: { lat: 22.3250, lng: 73.1480 },
         mapEmbed: "https://maps.google.com/maps?q=Vihav+Parvarish+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
@@ -861,22 +868,32 @@ export const PROJECTS = [
         reraLink: "https://gujrera.gujarat.gov.in/",
         phone: "+91 72018 54854",
         email: "skyone@vihav.com",
-        description: "Strategic commercial shops on the bustling 30 Mtr Main Road in Bhayli.",
+        tagline: "Commercial Shops at Vasna Bhayli",
+        description: "Vihav Skyone offers the best commercial and residential properties built by the best real estate developer in Vadodara, Vihav Group. Strategic commercial shops on the bustling 30 Mtr Main Road in Bhayli.",
         vision: "Sky High Commerce.",
         heroImage: "/images/project-images/project-tiles/Skyone.webp",
         galleryImages: ["/images/project-images/project-tiles/Skyone.webp"],
-        features: ["Main Road Facing", "High Visibility"],
+        features: ["Main Road Facing", "High Visibility", "Mixed Use"],
         amenitiesList: [
-            { icon: "Shield", label: "Security" },
-            { icon: "Car", label: "Parking" },
-            { icon: "Video", label: "CCTV" }
+            { icon: "Shield", label: "Security Cabin" },
+            { icon: "Video", label: "CCTV Cameras" },
+            { icon: "ArrowUpFromLine", label: "Standard Passenger Elevator" },
+            { icon: "Dumbbell", label: "Gymnasium / Yoga" },
+            { icon: "Waves", label: "Swimming Pool Deck" },
+            { icon: "Gamepad2", label: "Indoor Games" },
+            { icon: "Users", label: "Multipurpose Room" },
+            { icon: "Car", label: "Allotted Parking" },
+            { icon: "Zap", label: "Power Backup (Common)" }
         ],
         specifications: [
-            { category: "Structure", items: ["RCC Frame"] },
-            { category: "Flooring", items: ["Vitrified Tiles"] }
+            { category: "Structure", items: ["Earthquake Resistant RCC Frame"] },
+            { category: "Electrification", items: ["Concealed Premium Wiring", "Modular Switches"] },
+            { category: "Water", items: ["24h Ground Water Supply"] },
+            { category: "Doors & Windows", items: ["Flush Doors", "Rolling Shutter for Shops", "Aluminum Sliding Windows"] },
+            { category: "Flooring", items: ["Premium Vitrified Tiles", "Granite/Decorative Wall Cladding in Lifts"] }
         ],
         connectivity: [{ label: "Bhayli", time: "0 Mins" }],
-        address: "30 Mtr Main Road, Bhayli, Vadodara",
+        address: "Nr. Trade Center, Nr. Waves Club, Opp. Nayara Petrol Pump, 30 mtr. Canal Ring Road, Bhayli, Vadodara, Gujarat, India.",
         coordinates: { lat: 22.2861, lng: 73.1319 },
         mapEmbed: "https://maps.google.com/maps?q=Vihav+Skyone+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
@@ -963,25 +980,37 @@ export const PROJECTS = [
         reraLink: "https://gujrera.gujarat.gov.in/",
         phone: "+91 91206 45645",
         email: "sales@vihav.com",
-        description: "A monolithic structure dominance in the Bhayli skyline.",
+        tagline: "A Commercial Hub In Vadodara",
+        description: "A bold new commercial destination located at the heart of the rapidly developing Atladra-Padra Road corridor in Vadodara. Designed for ambitious businesses and visionary investors, VS Monolith offers premium showrooms, shops, and offices for sale in Atladra, set within a contemporary, high-visibility commercial complex.",
         vision: "Main ATLADRA -PADRA 40.MTR Road",
         heroImage: "/images/project-images/project-tiles/vs-monolith.webp",
         galleryImages: ["/images/project-images/project-tiles/vs-monolith.webp"],
-        features: ["Iconic Design", "Strategic Junction"],
+        features: ["Iconic Design", "Strategic Junction", "High Visibility", "Modern Infrastructure"],
+        highlights: [
+            { icon: "MapPin", title: "Strategic Location", label: "Atladra-Padra Road", description: "Located on a fast-developing corridor in Vadodara." },
+            { icon: "Eye", title: "Excellent Visibility", label: "Main Road", description: "High daily traffic ensuring great exposure." },
+            { icon: "TrendingUp", title: "High Growth", label: "Steady Footfall", description: "Close proximity to residential communities and schools." },
+            { icon: "Building", title: "Modern Infra", label: "State-of-the-art", description: "Ample parking, elevators, and secure premises." }
+        ],
         amenitiesList: [
-            { icon: "Shield", label: "Security" },
-            { icon: "ArrowUpFromLine", label: "Premium Elevators" },
-            { icon: "Car", label: "Multi-level Parking" },
-            { icon: "Video", label: "Advanced CCTV" },
-            { icon: "Coffee", label: "Cafeteria Space" }
+            { icon: "Layout", label: "Conference Room" },
+            { icon: "Dumbbell", label: "Gymnasium" },
+            { icon: "Coffee", label: "Cafeteria" },
+            { icon: "Umbrella", label: "Terrace Seating" },
+            { icon: "Armchair", label: "Waiting Area" },
+            { icon: "Droplets", label: "Fountain Foyer" },
+            { icon: "Trees", label: "Garden" },
+            { icon: "Shield", label: "Security & CCTV" },
+            { icon: "Car", label: "Parking" }
         ],
         specifications: [
-            { category: "Structure", items: ["Iconic Glass Facade"] },
-            { category: "Flooring", items: ["Premium Vitrified"] },
-            { category: "Connectivity", items: ["Fiber Ready"] }
+            { category: "Structure", items: ["RCC Frame Structure", "Iconic Glass Facade"] },
+            { category: "Flooring", items: ["Premium Vitrified Flooring"] },
+            { category: "Infrastructure", items: ["Ample Parking", "High Speed Elevators"] },
+            { category: "Security", items: ["24/7 Security", "CCTV Surveillance"] }
         ],
         connectivity: [{ label: "Bhayli", time: "0 Mins" }],
-        address: "Bhayli Cross Road, Vadodara",
+        address: "Atladra Padra Road, Vadodara",
         coordinates: { lat: 22.2970, lng: 73.1320 },
         mapEmbed: "https://maps.google.com/maps?q=VS+Monolith+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
@@ -996,7 +1025,7 @@ export const PROJECTS = [
         link: "/projects/supremus-3/",
         status: "Newly Launched",
         slug: "supremus-3",
-        title: "Supremus III",
+        title: "Supremus 3",
         category: "Commercial",
         location: "Nr. DMart, Vasna Bhayli Main Rd",
         carpetArea: "295 Sq.Ft. Onwards",
@@ -1006,29 +1035,41 @@ export const PROJECTS = [
         reraLink: "https://gujrera.gujarat.gov.in/",
         phone: "+91 879 174 9174",
         email: "supremus3@vihav.com",
-        description: "Premium commercial spaces near D-Mart.",
+        tagline: "Commercial Units Designed for Success",
+        description: "A landmark commercial development in Vasna, strategically located near Manisha Circle, Vadodara. Whether you’re a retailer, a growing brand, or a professional looking for a premium workspace, Supremus 3 offers thoughtfully designed shops, showrooms, and offices that cater to every business need.",
         vision: "A ELEGANT CO-ORPORATE PARK",
         heroImage: "/images/project-images/project-tiles/supremus-3.webp",
         galleryImages: ["/images/project-images/project-tiles/supremus-3.webp"],
-        features: ["Main Road Frontage", "Corporate Look"],
+        features: ["Main Road Frontage", "Corporate Look", "Near D-Mart"],
+        highlights: [
+            { icon: "MapPin", title: "Strategic Location", label: "Near Manisha Circle", description: "Located in Vasna, a prime business location." },
+            { icon: "Building", title: "Landmark Dev", label: "Premium Spaces", description: "Thoughtfully designed shops, showrooms, and offices." },
+            { icon: "ArrowUpFromLine", title: "Connectivity", label: "High Speed Lifts", description: "4 Nos. of High speed elevators starting from Basement." }
+        ],
         amenitiesList: [
-            { icon: "Shield", label: "24/7 Security" },
-            { icon: "Video", label: "CCTV" },
-            { icon: "Car", label: "Parking" },
-            { icon: "ArrowUpFromLine", label: "Elevators" },
-            { icon: "CircleCheck", label: "Fire Safety" },
-            { icon: "Users", label: "Common Reception" }
+            { icon: "Car", label: "Ample Parking (Ground + Basement)" },
+            { icon: "ArrowUpFromLine", label: "4 High Speed Elevators" },
+            { icon: "Armchair", label: "Double Height Entrance Foyer" },
+            { icon: "Armchair", label: "Waiting Lounge" },
+            { icon: "Zap", label: "DG Power Backup (Common)" },
+            { icon: "Video", label: "CCTV Surveillance" },
+            { icon: "Layout", label: "Triple Height Lounge" },
+            { icon: "Users", label: "Conference Room" },
+            { icon: "Utensils", label: "Cafeteria" },
+            { icon: "Sun", label: "Terrace Seating" }
         ],
         specifications: [
-            { category: "Structure", items: ["RCC Frame"] },
-            { category: "Flooring", items: ["Vitrified Tiles"] },
-            { category: "Electrification", items: ["Concealed Wiring"] },
-            { category: "Facade", items: ["Glass Facade"] }
+            { category: "Structure", items: ["Earthquake Resistant RCC Structure", "Minimum Columns & Beams for Flexibility"] },
+            { category: "Flooring", items: ["Vitrified flooring in Each Unit"] },
+            { category: "Electrification", items: ["Concealed Copper Wiring", "Branded Modular Switches"] },
+            { category: "Plumbing", items: ["Provision of Pantry & Toilet in each unit"] },
+            { category: "Finishing", items: ["Inside: Smooth plaster with Putty/Primer", "Outside: Plaster with Exterior Paints"] },
+            { category: "Other", items: ["Water proofing treatment on terrace", "Ample water supply"] }
         ],
         connectivity: [{ label: "D-Mart", time: "1 Min" }],
-        address: "Vasna Bhayli Road, Vadodara",
+        address: "Beside Indian Oil Petrol Pump, Opp. Taksh Complex, Near D-Mart, Vasna, Vadodara, Gujarat 390015",
         coordinates: { lat: 22.2920, lng: 73.1380 },
-        mapEmbed: "https://maps.google.com/maps?q=Supremus+III+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
+        mapEmbed: "https://maps.google.com/maps?q=Supremus+3+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
             category: "Commercial",
             transactionType: ["Buy", "Lease", "Rent"],
@@ -1051,19 +1092,36 @@ export const PROJECTS = [
         price: "22 Lacs",
         phone: "+91 7435 894 894",
         email: "cbd@vihav.com",
-        description: "Central Business District of Bhayli. A landmark mixed-use development.",
+        tagline: "Premium Commercial Spaces in Bhayli",
+        description: "A premium development offering versatile commercial properties for sale in Bhayli. Whether you’re looking for a showroom, a shop, or an office, Vihav CBD has the perfect space for you. With its strategic location on the bustling Vasna-Bhayli Road, this is an opportunity you won’t want to miss!",
         vision: "HEART OF BHAYLI",
-        heroImage: "/images/project-images/project-tiles/cbd-commercial.webp", // Updated to commercial specific
-        features: ["Prime Junction", "Mixed Use"],
-        amenitiesList: [
-            { icon: "Shield", label: "Security" },
-            { icon: "Car", label: "Parking" },
-            { icon: "ArrowUpFromLine", label: "High Speed Lifts" }
+        heroImage: "/images/project-images/project-tiles/cbd-commercial.webp",
+        features: ["Prime Junction", "Mixed Use", "Self-Contained Offices", "Terrace Garden"],
+        highlights: [
+            { icon: "MapPin", title: "Prime Location", label: "Vasna-Bhayli Road", description: "Excellent connectivity to key commercial areas of Vadodara." },
+            { icon: "Building", title: "Modern Infra", label: "Tech Enabled", description: "Hi-Tech Security, High-speed internet, and Ample Parking." },
+            { icon: "TrendingUp", title: "High Growth", label: "Thriving Market", description: "Bhayli is fast becoming a sought-after commercial hub." },
+            { icon: "Briefcase", title: "Versatile Spaces", label: "Shops & Offices", description: "Ideal for showrooms, retail shops, and corporate offices." }
         ],
-        specifications: [{ category: "Flooring", items: ["Vitrified Tiles"] }],
+        amenitiesList: [
+            { icon: "Shield", label: "Hi-Tech Security" },
+            { icon: "Car", label: "Ample Parking Space" },
+            { icon: "Dumbbell", label: "Gym at Terrace Level" },
+            { icon: "Layout", label: "Conference Room at Terrace" },
+            { icon: "Trees", label: "Terrace Garden" },
+            { icon: "DoorOpen", label: "Private Terrace Offices" },
+            { icon: "Building", label: "Decorative Facade" },
+            { icon: "Coffee", label: "Pantry in Units" },
+            { icon: "Droplets", label: "Washroom in Units" }
+        ],
+        specifications: [
+            { category: "Unit Features", items: ["Built-in Washroom & Pantry in each unit", "Self-Contained Offices", "Expansive floor-to-floor height"] },
+            { category: "Flooring", items: ["Vitrified Tiles"] },
+            { category: "Facilities", items: ["Gym & Conference room", "Ample Parking", "Hi-Tech Security"] },
+            { category: "External", items: ["Decorative Facade", "Terrace Garden"] }
+        ],
         connectivity: [{ label: "Bhayli", time: "0 Mins" }],
         address: "NEAR FOOD CASTLE, BHAYLI, VADODARA, GUJARAT 391410",
-
         coordinates: { lat: 22.290250, lng: 73.131861 },
         mapEmbed: "https://maps.google.com/maps?q=Vihav+CBD+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
@@ -1078,7 +1136,7 @@ export const PROJECTS = [
         link: "/projects/supremus2/",
         status: "Ongoing",
         slug: "supremus2",
-        title: "Vihav Supremus II",
+        title: "Vihav Supremus 2",
         category: "Commercial",
         location: "Atladra Padra 40mtr Main Road",
         carpetArea: "225 Sq.Ft. Onwards",
@@ -1088,23 +1146,27 @@ export const PROJECTS = [
         reraLink: "https://gujrera.gujarat.gov.in/",
         phone: "+91 72019 85985",
         email: "supremus2@vihav.com",
-        description: "Continuing the success of Supremus on the Atladra-Padra growth corridor.",
+        tagline: "Superior Commercial Property in Vadodara",
+        description: "Enquire now for a superior commercial property in Vadodara Vihav Supremus 2. High-quality shops, showrooms & offices at Vasna 30mt main road.",
         vision: "A-COMMERCIAL MARVEL",
         heroImage: "/images/project-images/project-tiles/supremus-2.webp",
         galleryImages: ["/images/project-images/project-tiles/supremus-2.webp"],
-        features: ["Main Road", "Growth Area"],
+        features: ["Main Road", "Growth Area", "Premium Spaces"],
         amenitiesList: [
             { icon: "Shield", label: "Security" },
             { icon: "Car", label: "Parking" },
             { icon: "ArrowUpFromLine", label: "Lifts" },
-            { icon: "Video", label: "CCTV" }
+            { icon: "Video", label: "CCTV" },
+            { icon: "CircleCheck", label: "Fire Safety" },
+            { icon: "Building", label: "Premium Elevation" }
         ],
         specifications: [
             { category: "Structure", items: ["RCC Frame"] },
-            { category: "Flooring", items: ["Vitrified Tiles"] }
+            { category: "Flooring", items: ["Vitrified Tiles"] },
+            { category: "Finish", items: ["Glass Facade"] }
         ],
         connectivity: [{ label: "Atladra", time: "0 Mins" }],
-        address: "Atladra Padra Road, Vadodara",
+        address: "Nr. New Court Beside RK Plaza Near Ward 11 Office, Vasna, 30, Mt Main Road, Diwalipura, Vadodara, Gujarat, India.",
         coordinates: { lat: 22.2850, lng: 73.1650 },
         mapEmbed: "https://maps.google.com/maps?q=Vihav+Supremus+II+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
@@ -1129,16 +1191,19 @@ export const PROJECTS = [
         reraLink: "https://gujrera.gujarat.gov.in/",
         phone: "+91 63567 77877",
         email: "wealthsquare@vihav.com",
-        description: "Dedicated showroom spaces for retail brands.",
+        tagline: "Commercial Office Spaces In Gotri",
+        description: "Premium commercial office spaces in Gotri, Vadodara, perfectly tailored to accommodate your business needs. Wealth Square offers a prime location at Yash Complex Junction.",
         vision: "Retail Excellence.",
         heroImage: "/images/project-images/project-tiles/wealth-square.webp",
         galleryImages: ["/images/project-images/project-tiles/wealth-square.webp"],
-        features: ["Facade Display", "Wide Frontage"],
+        features: ["Facade Display", "Wide Frontage", "Mechanical Parking", "High Speed Elevator"],
         amenitiesList: [
-            { icon: "Shield", label: "Security" },
-            { icon: "Car", label: "Front Parking" },
-            { icon: "Video", label: "CCTV" },
-            { icon: "CircleCheck", label: "Fire Safety" }
+            { icon: "Car", label: "Ample Parking (Mechanical at Basement)" },
+            { icon: "ArrowUpFromLine", label: "2 Highspeed Elevators" },
+            { icon: "Shield", label: "Security & CCTV" },
+            { icon: "Zap", label: "DG Power Backup (Common)" },
+            { icon: "Droplets", label: "Washrooms in Each Unit" },
+            { icon: "Fan", label: "Outdoor AC Provision" }
         ],
         specifications: [
             { category: "Structure", items: ["RCC Frame"] },
@@ -1146,13 +1211,12 @@ export const PROJECTS = [
             { category: "Flooring", items: ["Vitrified Tiles"] }
         ],
         connectivity: [{ label: "Gotri", time: "0 Mins" }],
-        address: "Gotri, Vadodara",
+        address: "At Yash Complex Junction, Opp. Axis Bank, Gotri main road, Vadodara, Gujarat, India.",
         coordinates: { lat: 22.3205, lng: 73.1470 },
         mapEmbed: "https://maps.google.com/maps?q=Wealth+Square+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
             category: "Commercial",
             transactionType: ["Buy", "Lease", "Rent"],
-            type: ["showrooms"],
             type: ["showrooms"],
             possession: "Ready to Move"
         }
@@ -1171,28 +1235,41 @@ export const PROJECTS = [
         reraLink: "https://gujrera.gujarat.gov.in/",
         phone: "+91 72018 54854",
         email: "vtc@vihav.com",
-        description: "Hub for trade and retail near Priya Cinema.",
+        tagline: "A Commercial Hub In Vasna-Bhayli",
+        description: "Vihav Trade Center is a premier commercial property on Vasna-Bhayli Road, Vadodara, offering offices & shops for businesses at prime location. The facilities are designed to enhance the business environment with great attention to detail.",
         vision: "Trade Hub.",
         heroImage: "/images/project-images/project-tiles/vtc.webp",
         galleryImages: ["/images/project-images/project-tiles/vtc.webp"],
-        features: ["Entertainment Vicinity", "Retail Focused"],
+        features: ["Entertainment Vicinity", "Retail Focused", "High-Tech Glazing"],
+        highlights: [
+            { icon: "MapPin", title: "Prime Location", label: "Vasna-Bhayli", description: "Near Waves Club and Essar Petrol Pump." },
+            { icon: "Building", title: "Modern Design", label: "Separate Entrances", description: "Separate entrances for office and retail sections." },
+            { icon: "Zap", title: "Power Backup", label: "100% Backup", description: "100% power back-up for uninterrupted operations." }
+        ],
         amenitiesList: [
-            { icon: "Shield", label: "Security" },
-            { icon: "Car", label: "Parking" },
-            { icon: "CircleCheck", label: "Fire Safety" }
+            { icon: "Video", label: "CCTV Surveillance" },
+            { icon: "ArrowUpFromLine", label: "Standard Elevators" },
+            { icon: "Car", label: "Basement & Ground Parking" },
+            { icon: "Zap", label: "DG Backup (Common)" },
+            { icon: "Droplets", label: "Water Proofing" },
+            { icon: "GlassWater", label: "Separate Toilets" },
+            { icon: "Wifi", label: "Internet Points" }
         ],
         specifications: [
-            { category: "Flooring", items: ["Vitrified Tiles"] },
-            { category: "Shutters", items: ["Rolling Shutters"] }
+            { category: "Structure", items: ["RCC Frame Structure", "Earthquake Resistance"] },
+            { category: "Electrification", items: ["Concealed Copper Wiring", "Modular Switches", "Provision for 3 Phase Meter"] },
+            { category: "Flooring", items: ["Vitrified Tile Flooring"] },
+            { category: "Finishing", items: ["Inside: Putty/Primer", "Outside: Exterior Paints"] },
+            { category: "Exterior", items: ["Hi-Tech glazing System with low heat transmission glass"] }
         ],
         connectivity: [{ label: "Priya Cinema", time: "0 Mins" }],
-        address: "Near Priya Cinema, Sevasi, Vadodara",
+        address: "Nr. Waves Club. Nr. Essar Petrol Pump, 30 Mtr. Canal Ring Road, Vasna-Bhayli Road, Vadodara, Gujarat, India.",
         coordinates: { lat: 22.3150, lng: 73.1200 },
         mapEmbed: "https://maps.google.com/maps?q=Vihav+Trade+Centre+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
             category: "Commercial",
             transactionType: ["Buy", "Lease", "Rent"],
-            type: ["shops"],
+            type: ["shops", "offices"],
             possession: "Ready to Move"
         }
     },
@@ -1210,18 +1287,23 @@ export const PROJECTS = [
         reraLink: "https://gujrera.gujarat.gov.in/",
         phone: "+91 72018 54854",
         email: "vbs@vihav.com",
-        description: "Budget-friendly to premium commercial spaces in Gotri.",
+        tagline: "Your Business Landmark on Sunpharma Road",
+        description: "Vihav Business Square is a state-of-the-art commercial development located on the highly sought-after Sunpharma Road in Atladara, Vadodara. Designed for growing businesses, smart investors, and professionals alike, VBS offers premium showrooms, shops, and offices for sale.",
         vision: "Business for Everyone.",
         heroImage: "/images/project-images/project-tiles/vbs.webp",
         galleryImages: ["/images/project-images/project-tiles/vbs.webp"],
-        features: ["High Footfall", "Mix of Sizes"],
+        features: ["Prime Location", "Excellent ROI", "Terrace Amenities"],
+        highlights: [
+            { icon: "MapPin", title: "Prime Location", label: "Sunpharma Road", description: "Located in Atladara, Vadodara." },
+            { icon: "TrendingUp", title: "Investment", label: "Excellent ROI", description: "Excellent ROI potential and long-term capital appreciation." }
+        ],
         amenitiesList: [
-            { icon: "Shield", label: "Security" },
-            { icon: "Car", label: "Basement Parking" },
-            { icon: "ArrowUpFromLine", label: "Elevator" },
-            { icon: "Video", label: "CCTV" },
-            { icon: "CircleCheck", label: "Power Backup (Common)" },
-            { icon: "Users", label: "Wide Corridors" }
+            { icon: "Car", label: "Ample Parking (Ground + Basement)" },
+            { icon: "ArrowUpFromLine", label: "Highspeed Elevators" },
+            { icon: "Zap", label: "DG Power Backup" },
+            { icon: "Video", label: "CCTV Surveillance" },
+            { icon: "Armchair", label: "Double Height Entrance Foyer" },
+            { icon: "Layout", label: "Conference, Pantry & Rec Area at Terrace" }
         ],
         specifications: [
             { category: "Flooring", items: ["Vitrified Tiles"] },
@@ -1229,7 +1311,7 @@ export const PROJECTS = [
             { category: "Electric", items: ["Standard Points"] }
         ],
         connectivity: [{ label: "Gotri", time: "0 Mins" }],
-        address: "Gotri Main Road, Vadodara",
+        address: "Nr. HCG Cancer Hospital, Sunpharma Road, Atladara, Vadodara – 390020, Gujarat, India.",
         coordinates: { lat: 22.3230, lng: 73.1450 },
         mapEmbed: "https://maps.google.com/maps?q=Vihav+Business+Square+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
@@ -1253,25 +1335,35 @@ export const PROJECTS = [
         reraLink: "https://gujrera.gujarat.gov.in/",
         phone: "+91 72018 51851",
         email: "supremus@vihav.com",
-        description: "The first of the Supremus series, establishing a legacy of corporate excellence.",
+        tagline: "Premium Commercial Spaces on Gotri Road",
+        description: "Vihav Supremus redefines business presence in Vadodara with its strategic location on Gotri Road. Designed to elevate the way you work, Vihav Supremus offers well-planned shops and offices for sale in Gotri – ideal for forward-thinking entrepreneurs, investors, and professionals.",
         vision: "Corporate Legacy.",
         heroImage: "/images/project-images/project-tiles/supremus-1.webp",
         galleryImages: ["/images/project-images/project-tiles/supremus-1.webp"],
-        features: ["Established Hub", "Modern Amenities"],
+        features: ["Established Hub", "Modern Amenities", "Double Height Lobby", "OTS Ducts"],
+        highlights: [
+            { icon: "MapPin", title: "Prime Frontage", label: "Gotri Road", description: "Prime frontage on Gotri Road, Vadodara’s growth corridor." },
+            { icon: "TrendingUp", title: "Investment", label: "Capital Appreciation", description: "Excellent potential for rental income and long-term appreciation." }
+        ],
         amenitiesList: [
-            { icon: "Shield", label: "24/7 Security" },
-            { icon: "ArrowUpFromLine", label: "High Speed Lifts" },
-            { icon: "Car", label: "Parking" },
-            { icon: "Video", label: "CCTV" },
-            { icon: "CircleCheck", label: "Power Backup" }
+            { icon: "Video", label: "CCTV Surveillance" },
+            { icon: "ArrowUpFromLine", label: "2 Highspeed Elevators" },
+            { icon: "ArrowUpFromLine", label: "Goods/Service Elevator" },
+            { icon: "Armchair", label: "Double Height AC Lobby" },
+            { icon: "Car", label: "Ample Parking (Ground + 2 Basements)" },
+            { icon: "Dumbbell", label: "Gym at 14th Level" },
+            { icon: "Layout", label: "Conference Room at 14th Level" },
+            { icon: "Coffee", label: "Built-in Pantry in Units" },
+            { icon: "Zap", label: "DG Power Backup" }
         ],
         specifications: [
             { category: "Structure", items: ["RCC Frame"] },
             { category: "Flooring", items: ["Vitrified Tiles"] },
-            { category: "Finishing", items: ["Internal Plaster"] }
+            { category: "Finishing", items: ["Internal Plaster"] },
+            { category: "Innovation", items: ["Well planned OTS ducts for AC"] }
         ],
         connectivity: [{ label: "Gotri", time: "0 Mins" }],
-        address: "Gotri, Vadodara",
+        address: "Near Iscon Heights, Gotri, Vadodara, Gujarat 390021, India",
         coordinates: { lat: 22.3144, lng: 73.1379 },
         mapEmbed: "https://maps.google.com/maps?q=Vihav+Supremus+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
@@ -1296,23 +1388,30 @@ export const PROJECTS = [
         reraLink: "https://gujrera.gujarat.gov.in/",
         phone: "+91 88663 41272",
         email: "sales@vihav.com",
-        description: "Premium shops and showrooms located on the prime Sun Pharma road.",
+        tagline: "Premium Business Center in Vadodara",
+        description: "At Sun Pharma Road-Vadodara, Vihav Elite Square offers exceptional shops and office spaces with reasonable and flexible lease terms. A premium business center designed for success.",
         vision: "Elite Business Address.",
         heroImage: "/images/project-images/project-tiles/elite-square.webp",
         galleryImages: ["/images/project-images/project-tiles/elite-square.webp"],
-        features: ["Prime Location", "Premium Facade"],
+        features: ["Prime Location", "Premium Facade", "Flexible Terms"],
         amenitiesList: [
-            { icon: "Shield", label: "Security" },
-            { icon: "Car", label: "Parking" },
-            { icon: "ArrowUpFromLine", label: "Elevators" },
-            { icon: "Video", label: "CCTV" }
+            { icon: "Video", label: "CCTV Surveillance" },
+            { icon: "ArrowUpFromLine", label: "Standard Elevators" },
+            { icon: "Car", label: "Ample Parking (Basement & Ground)" },
+            { icon: "Droplets", label: "Water Proofing on Terrace" },
+            { icon: "Zap", label: "DG Backup (Common)" },
+            { icon: "Droplets", label: "Ample Water Supply" },
+            { icon: "GlassWater", label: "Toilet in Every Unit" }
         ],
         specifications: [
-            { category: "Facade", items: ["Modern Elevation"] },
-            { category: "Flooring", items: ["Vitrified Tiles"] }
+            { category: "Structure", items: ["RCC Frame Structure", "Earthquake resistant"] },
+            { category: "Flooring", items: ["Vitrified Tile Flooring"] },
+            { category: "Facade", items: ["Hi-Tech Glazing System"] },
+            { category: "Electrification", items: ["Concealed Copper Wiring", "Modular Switches"] },
+            { category: "Finishing", items: ["Input: Putty/Primer", "Output: Exterior Paints"] }
         ],
         connectivity: [{ label: "Sun Pharma Rd", time: "0 Mins" }],
-        address: "Sun Pharma Road, Vadodara",
+        address: "SunPharma Road, Vadodara, Gujarat, India.",
         mapEmbed: "https://maps.google.com/maps?q=Elite+Square+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
             category: "Commercial",
