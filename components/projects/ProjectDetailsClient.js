@@ -5,7 +5,7 @@ import FloorPlans from "@/components/projects/FloorPlans";
 import { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, AnimatePresence, useInView } from "framer-motion";
 
-import { ArrowLeft, MapPin, Check, FileText, Phone, Mail, ExternalLink, Shield, Trees, Dumbbell, Users, Gamepad2, Car, Waves, Coffee, ArrowUpFromLine, Video, HardHat, CircleCheck, Play, Image as ImageIcon } from "lucide-react";
+import { ArrowLeft, MapPin, Check, FileText, Phone, Mail, ExternalLink, Shield, Trees, Dumbbell, Users, Gamepad2, Car, Waves, Coffee, ArrowUpFromLine, Video, HardHat, CircleCheck, Play, Image as ImageIcon, Maximize, Palette, Music, Activity, Telescope, BookOpen, TrendingUp, Navigation, CloudRain, Layout } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
@@ -205,7 +205,16 @@ export default function ProjectDetailsClient({ project, theme }) {
                                     <div className="h-px bg-border" />
                                     <div>
                                         <span className="block text-muted-foreground uppercase tracking-widest text-xs mb-1">Configuration</span>
-                                        <span className="block text-foreground">{project.type}</span>
+                                        <div className="flex flex-col gap-2">
+                                            {project.carpetArea && (
+                                                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gold-400/10 border border-gold-400/20 rounded md:rounded-lg w-fit">
+                                                    <Maximize size={14} className="text-gold-500 flex-shrink-0" />
+                                                    <span className="text-[10px] md:text-xs font-bold text-foreground tracking-widest uppercase whitespace-nowrap">{project.carpetArea}</span>
+                                                </div>
+                                            )}
+                                            {/* Note: User requested "first carpet area then 4BHK...". */}
+                                            <span className="block text-foreground">{project.type}</span>
+                                        </div>
                                     </div>
                                     <div className="h-px bg-border" />
                                     <div>
@@ -274,8 +283,8 @@ export default function ProjectDetailsClient({ project, theme }) {
                                     {project.amenitiesList.map((amenity, idx) => {
                                         const Icon = ICON_MAP[amenity.icon] || CircleCheck;
                                         return (
-                                            <div key={idx} className="flex flex-col items-start text-left p-4 md:p-8 border border-border bg-secondary/20 hover:bg-secondary hover:border-gold-400 transition-all duration-300 rounded-xl group min-h-[140px] md:min-h-[180px] justify-between">
-                                                <div className={`mb-4 md:mb-6 ${theme.text} group-hover:scale-110 transition-transform duration-300`}>
+                                            <div key={idx} className="flex flex-col items-start text-left p-3 md:p-8 border border-border bg-secondary/20 hover:bg-secondary hover:border-gold-400 transition-all duration-300 rounded-xl group min-h-[110px] md:min-h-[180px] justify-between">
+                                                <div className={`mb-2 md:mb-6 ${theme.text} group-hover:scale-110 transition-transform duration-300`}>
                                                     <Icon size={32} strokeWidth={1} className="md:w-10 md:h-10" />
                                                 </div>
                                                 <div>
@@ -307,6 +316,20 @@ export default function ProjectDetailsClient({ project, theme }) {
                                                     </li>
                                                 ))}
                                             </ul>
+                                        </div>
+                                    ))}
+                                </div>
+                            </CollapsibleSection>
+                        )}
+
+                        {/* Value Additions - Collapsible */}
+                        {project.valueAdditions && (
+                            <CollapsibleSection title="Value Additions" defaultOpen={false}>
+                                <div className="grid md:grid-cols-2 gap-6">
+                                    {project.valueAdditions.map((item, idx) => (
+                                        <div key={idx} className="flex items-start gap-4 p-6 bg-secondary/30 rounded-xl border border-border hover:border-gold-400/30 transition-colors">
+                                            <div className={`${theme.text} mt-1 flex-shrink-0 bg-secondary p-2 rounded-full`}><Check size={18} /></div>
+                                            <span className="text-foreground/90 leading-relaxed font-light text-base">{item}</span>
                                         </div>
                                     ))}
                                 </div>

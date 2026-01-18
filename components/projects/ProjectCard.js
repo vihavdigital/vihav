@@ -60,7 +60,17 @@ export default function ProjectCard({ project }) {
                                 </div>
                             )}
                         </div>
-                        <span className="text-muted-foreground text-[10px] md:text-xs text-right hidden md:block">{project.type}</span>
+                        {/* Right Column: Type & Badge */}
+                        <div className="flex flex-col items-end">
+                            <span className="text-muted-foreground text-[10px] md:text-xs text-right hidden md:block max-w-[200px] leading-tight">{project.type}</span>
+                            {project.customBadge && (
+                                <div className="mt-3 flex flex-col items-center justify-center bg-gradient-to-br from-amber-400 to-amber-500 text-white rounded shadow-xl shadow-amber-500/40 aspect-square min-h-[75px] min-w-[75px] border border-white/30 ring-1 ring-amber-500/50 ring-offset-2 ring-offset-card transform -translate-y-1">
+                                    <span className="text-[9px] uppercase font-medium tracking-[0.2em] leading-none text-white/90 mb-1">Only</span>
+                                    <span className="text-4xl font-serif leading-none mb-1">1</span>
+                                    <span className="text-[8px] uppercase font-bold tracking-widest leading-none text-center text-white/90">Unit Left</span>
+                                </div>
+                            )}
+                        </div>
                     </div>
                 </div>
 
@@ -82,7 +92,7 @@ export default function ProjectCard({ project }) {
                         </Link>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
     );
 }

@@ -28,19 +28,21 @@ export default function FloorPlans({ plans }) {
                                     <button
                                         key={plan.id}
                                         onClick={() => setActiveTab(index)}
-                                        className={`flex flex-col items-start p-4 rounded-xl transition-all duration-300 border relative ${activeTab === index
-                                            ? "bg-luxury-black text-white border-luxury-black shadow-lg transform scale-[1.02]"
+                                        className={`flex flex-col items-center p-3 rounded-xl transition-all duration-300 border relative justify-between ${index === plans.length - 1 ? 'col-span-2' : ''} ${activeTab === index
+                                            ? "bg-gold-400 text-white border-gold-400 shadow-lg shadow-gold-400/20 transform scale-[1.02]"
                                             : "bg-white text-muted-foreground border-border shadow-sm hover:border-gold-400/50"
                                             }`}
                                     >
-                                        <span className={`text-[10px] uppercase tracking-wider mb-1 font-bold ${activeTab === index ? "text-gold-400" : "text-muted-foreground"}`}>
-                                            {plan.type}
-                                        </span>
-                                        <span className="font-serif text-sm leading-tight text-left line-clamp-2">{plan.title}</span>
+                                        <div className="w-full text-center px-2">
+                                            <span className={`text-[10px] uppercase tracking-wider mb-1 block font-bold ${activeTab === index ? "text-white" : "text-muted-foreground"}`}>
+                                                {plan.type}
+                                            </span>
+                                            <span className="font-serif text-sm leading-tight text-center line-clamp-2 block">{plan.title}</span>
+                                        </div>
                                         {activeTab === index && (
                                             <motion.div
                                                 layoutId="activeTabIndicator"
-                                                className="absolute bottom-2 right-2 w-1.5 h-1.5 rounded-full bg-gold-400"
+                                                className="absolute top-2 right-2 w-1.5 h-1.5 rounded-full bg-white"
                                             />
                                         )}
                                     </button>
