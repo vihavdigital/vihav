@@ -166,6 +166,7 @@ export const PROJECTS = [
         description: "Niwa, meaning garden in Japanese, reflects our belief that a home should feel like nature never left us. At Keystone Niwa, we’ve reimagined luxury to grow not just above ground, but within it. Here, greenery isn’t a view from your window, it’s part of your everyday living. From private garden balconies to lush common spaces, Niwa is where you don’t just come home, you arrive in nature.",
         vision: "1 FLOOR 1 UNIT - GARDEN APARTMENT ( 1500 SQ.FT - DEDICATED SPACE FOR GARDEN)",
         heroImage: "/images/project-images/project-tiles/keystone-niwa.jpg",
+        heroVideo: "/videos/niwa.mp4",
         galleryImages: [
             "https://www.vihav.com/wp-content/uploads/Hurun-KEYSTONE-NIWA-Desktop-Slider-2048-×-778-px-01.webp",
             "https://www.vihav.com/wp-content/uploads/home-gray-bordered-extra-width.png",
@@ -347,6 +348,7 @@ export const PROJECTS = [
         slug: "keystone-48",
         title: "Keystone 48",
         category: "RESI-COMM",
+        customBadge: "Only 1 Unit Left",
         location: "Sevasi, Vadodara",
         carpetArea: "2700 to 3140 Sq.Ft.",
         type: "4B2HK & 5B2HK APARTMENT & SHOWROOMS",

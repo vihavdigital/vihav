@@ -22,21 +22,27 @@ export default function FloorPlans({ plans }) {
                         <div className="bg-secondary/30 p-4 md:p-8 rounded-2xl border border-border/50">
                             <h3 className="text-xl font-serif text-luxury-black mb-4 md:mb-6">Select Unit Type</h3>
 
-                            {/* Mobile: Horizontal Scrollable Tabs */}
-                            <div className="flex lg:hidden overflow-x-auto gap-3 pb-2 scrollbar-hide snap-x">
+                            {/* Mobile: Grid Layout (All Buttons Visible) */}
+                            <div className="grid grid-cols-2 gap-3 lg:hidden pb-4">
                                 {plans.map((plan, index) => (
                                     <button
                                         key={plan.id}
                                         onClick={() => setActiveTab(index)}
-                                        className={`min-w-[140px] flex-shrink-0 text-left p-3 rounded-xl transition-all duration-300 border snap-start ${activeTab === index
-                                            ? "bg-gold-400 text-white border-gold-400 shadow-lg"
-                                            : "bg-white text-muted-foreground border-transparent"
+                                        className={`flex flex-col items-start p-4 rounded-xl transition-all duration-300 border relative ${activeTab === index
+                                            ? "bg-luxury-black text-white border-luxury-black shadow-lg transform scale-[1.02]"
+                                            : "bg-white text-muted-foreground border-border shadow-sm hover:border-gold-400/50"
                                             }`}
                                     >
-                                        <span className={`block text-[10px] uppercase tracking-wider mb-1 ${activeTab === index ? "text-white/80" : "text-muted-foreground/70"}`}>
+                                        <span className={`text-[10px] uppercase tracking-wider mb-1 font-bold ${activeTab === index ? "text-gold-400" : "text-muted-foreground"}`}>
                                             {plan.type}
                                         </span>
-                                        <span className="font-serif text-sm leading-tight block">{plan.title}</span>
+                                        <span className="font-serif text-sm leading-tight text-left line-clamp-2">{plan.title}</span>
+                                        {activeTab === index && (
+                                            <motion.div
+                                                layoutId="activeTabIndicator"
+                                                className="absolute bottom-2 right-2 w-1.5 h-1.5 rounded-full bg-gold-400"
+                                            />
+                                        )}
                                     </button>
                                 ))}
                             </div>
@@ -66,7 +72,7 @@ export default function FloorPlans({ plans }) {
                             </div>
 
                             <button
-                                className="w-full mt-6 flex items-center justify-center gap-2 px-6 py-4 bg-luxury-black text-white text-xs uppercase tracking-widest rounded-xl hover:bg-gold-400 hover:text-black transition-all duration-300 shadow-md hover:shadow-lg group"
+                                className="w-full mt-6 hidden lg:flex items-center justify-center gap-2 px-6 py-4 bg-luxury-black text-white text-xs uppercase tracking-widest rounded-xl hover:bg-gold-400 hover:text-black transition-all duration-300 shadow-md hover:shadow-lg group"
                                 onClick={() => window.open(activePlan.image, '_blank')}
                             >
                                 <Download size={16} className="group-hover:animate-bounce" />
@@ -102,9 +108,14 @@ export default function FloorPlans({ plans }) {
                             <p className="text-center text-xs text-muted-foreground uppercase tracking-widest mt-6">Click to Expand</p>
                         </motion.div>
 
-                        {/* Compact Dimensions & Download Bar (Moved Below Image) */}
-                        {/* Compact Dimensions & Download Bar Removed as requested */}
-                        {/* Download button moved to sidebar */}
+                        {/* Mobile Download Button */}
+                        <button
+                            className="w-full mt-4 flex lg:hidden items-center justify-center gap-2 px-6 py-4 bg-luxury-black text-white text-xs uppercase tracking-widest rounded-xl hover:bg-gold-400 hover:text-black transition-all duration-300 shadow-md group"
+                            onClick={() => window.open(activePlan.image, '_blank')}
+                        >
+                            <Download size={16} className="group-hover:animate-bounce" />
+                            Download Layout
+                        </button>
                     </div>
                 </div>
             </div>
@@ -120,26 +131,48 @@ export default function FloorPlans({ plans }) {
                         className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-xl flex items-center justify-center p-4 md:p-8"
                         onClick={() => setIsLightboxOpen(false)}
                     >
+                        {/* Close Button - Fixed to Viewport */}
                         <button
-                            className="absolute top-6 right-6 text-white/50 hover:text-white transition-colors"
-                            onClick={() => setIsLightboxOpen(false)}
+                            className="fixed top-6 right-6 text-white/50 hover:text-white transition-colors z-[120] p-2 bg-black/20 rounded-full backdrop-blur-md"
+                            onClick={(e) => { e.stopPropagation(); setIsLightboxOpen(false); }}
                         >
-                            <X size={32} />
+                            <X size={24} />
                         </button>
 
                         <motion.div
-                            initial={{ scale: 0.9 }}
-                            animate={{ scale: 1 }}
-                            exit={{ scale: 0.9 }}
+                            initial={{ scale: 0.95, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1, y: 0 }}
+                            exit={{ scale: 0.95, opacity: 0, y: 100 }}
+                            drag="y"
+                            dragConstraints={{ top: 0, bottom: 0 }}
+                            dragElastic={0.7}
+                            onDragEnd={(e, { offset, velocity }) => {
+                                if (offset.y > 100 || velocity.y > 200) {
+                                    setIsLightboxOpen(false);
+                                }
+                            }}
                             className="relative w-full h-full max-w-6xl max-h-[90vh] flex items-center justify-center"
-                            onClick={(e) => e.stopPropagation()}
                         >
-                            <Image
-                                src={activePlan.image}
-                                alt={activePlan.title}
-                                fill
-                                className="object-contain"
-                            />
+                            <div className="relative w-full h-full flex items-center justify-center">
+                                <Image
+                                    src={activePlan.image}
+                                    alt={activePlan.title}
+                                    fill
+                                    className="object-contain pointer-events-auto select-none"
+                                    onClick={(e) => e.stopPropagation()}
+                                    draggable={false}
+                                />
+                            </div>
+                        </motion.div>
+
+                        {/* Hints */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.5, duration: 1 }}
+                            className="fixed bottom-6 left-0 right-0 text-center pointer-events-none"
+                        >
+                            <span className="text-white/30 text-[10px] uppercase tracking-widest">Swipe down to close</span>
                         </motion.div>
                     </motion.div>
                 )}

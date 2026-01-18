@@ -8,7 +8,7 @@ const SLIDES = [
     {
         id: 1,
         type: "video",
-        src: "/niwa-video.mp4", // Keystone Niwa
+        src: "/videos/niwa.mp4", // Keystone Niwa
         title: "Curated <br/> <span class='text-white/80 italic font-light'>Collections</span>",
         subtitle: "Experience a life of uncompromising luxury in our handpicked residential sanctuaries."
     },

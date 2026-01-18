@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll } from "framer-motion";
 import ProjectCard from "@/components/projects/ProjectCard";
 import { Button } from "@/components/ui/Button";
 import { ArrowRight, ChevronLeft, ChevronRight, Filter, ChevronDown, X } from "lucide-react";
@@ -31,6 +31,22 @@ function ProjectSectionContent({ projects, residentialProjects, commercialProjec
 
     const [showFilters, setShowFilters] = useState(false);
 
+    // Mobile Floating Toast Logic
+    const { scrollY } = useScroll();
+    const [isToastVisible, setIsToastVisible] = useState(true);
+
+    useEffect(() => {
+        return scrollY.onChange((latest) => {
+            const previous = scrollY.getPrevious();
+            // Hide on scroll down, show on scroll up (if active)
+            if (latest > previous && latest > 100) {
+                setIsToastVisible(false);
+            } else {
+                setIsToastVisible(true);
+            }
+        });
+    }, [scrollY]);
+
     // Ensure we start with Residential if current is 'All' (handling initial load)
     useEffect(() => {
         if (activeCategory === 'All') {
@@ -54,7 +70,7 @@ function ProjectSectionContent({ projects, residentialProjects, commercialProjec
     return (
         <section ref={sectionRef} className="py-24 md:py-32 border-b border-border bg-background min-h-[80vh] transition-colors duration-500">
             {/* 1. Header Title Block (Inside Container) */}
-            <div className="container mx-auto px-6">
+            <div className="container mx-auto px-6" id="project-collection">
                 <div className="flex flex-col items-center mb-10 relative z-40">
                     <div className="w-full text-center">
                         <span className="text-gold-400 uppercase tracking-[0.25em] text-xs font-bold mb-4 block">Discover</span>
@@ -104,7 +120,18 @@ function ProjectSectionContent({ projects, residentialProjects, commercialProjec
 
                         {/* Collapsible Dropdowns Area */}
                         {/* Mobile: Hidden unless open (Grid layout). Desktop: Always visible (Flex layout) */}
-                        <div className="hidden md:flex md:flex-row md:justify-end md:gap-4 w-full md:w-auto animate-in fade-in slide-in-from-top-2 md:animate-none">
+                        <div className="hidden md:flex md:flex-row md:items-center md:justify-end md:gap-4 w-full md:w-auto animate-in fade-in slide-in-from-top-2 md:animate-none">
+
+                            {/* Clear Filters Button (Desktop) */}
+                            {(activeType !== "All" || activePossession !== "All" || (activeCategory === "Commercial" && activeTransaction !== "Buy")) && (
+                                <button
+                                    onClick={() => { setActiveType("All"); setActivePossession("All"); setActiveTransaction("Buy"); }}
+                                    className="px-4 py-2 text-xs uppercase tracking-widest text-muted-foreground hover:text-red-400 font-medium transition-colors border border-transparent hover:border-red-400/20 rounded-lg"
+                                >
+                                    Clear Filters
+                                </button>
+                            )}
+
                             {/* Transaction Type Filter (Commercial Only) */}
                             {activeCategory === "Commercial" && (
                                 <FilterDropdown
@@ -282,6 +309,26 @@ function ProjectSectionContent({ projects, residentialProjects, commercialProjec
                     )}
                 </div>
             </div>
+            {/* Mobile Floating Clear Filter Toast */}
+            <AnimatePresence>
+                {!showFilters && isToastVisible && (activeType !== "All" || activePossession !== "All" || (activeCategory === "Commercial" && activeTransaction !== "Buy")) && (
+                    <motion.div
+                        initial={{ y: 100, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        exit={{ y: 100, opacity: 0 }}
+                        className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 md:hidden"
+                    >
+                        <button
+                            onClick={() => { setActiveType("All"); setActivePossession("All"); setActiveTransaction("Buy"); }}
+                            className="flex items-center gap-2 px-5 py-3 bg-luxury-black text-gold-400 rounded-full shadow-[0_10px_40px_-10px_rgba(0,0,0,0.8)] border border-gold-400/30 backdrop-blur-md"
+                        >
+                            <span className="text-xs font-bold uppercase tracking-widest">Clear Filters</span>
+                            <div className="w-px h-3 bg-gold-400/30 mx-1" />
+                            <X size={14} />
+                        </button>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </section>
     );
 }

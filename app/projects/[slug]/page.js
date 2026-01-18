@@ -81,9 +81,9 @@ export default async function ProjectPage({ params }) {
             {/* Hero Section */}
             <div className="relative h-[100svh]">
                 <div className="absolute inset-0">
-                    {project.heroImage?.endsWith('.mp4') ? (
+                    {project.heroVideo ? (
                         <video
-                            src={project.heroImage}
+                            src={project.heroVideo}
                             className="w-full h-full object-cover brightness-90"
                             autoPlay
                             muted
