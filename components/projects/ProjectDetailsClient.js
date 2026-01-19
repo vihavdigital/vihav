@@ -96,6 +96,24 @@ export default function ProjectDetailsClient({ project, theme }) {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
+    // 2. Auto-Horizontal Scroll for Nav Bar
+    const navContainerRef = useRef(null);
+    useEffect(() => {
+        if (activeSection && navContainerRef.current) {
+            const activeBtn = document.getElementById(`nav-btn-${activeSection}`);
+            if (activeBtn) {
+                // Scroll into view logic - center the button
+                const container = navContainerRef.current;
+                const scrollLeft = activeBtn.offsetLeft - (container.offsetWidth / 2) + (activeBtn.offsetWidth / 2);
+
+                container.scrollTo({
+                    left: scrollLeft,
+                    behavior: 'smooth'
+                });
+            }
+        }
+    }, [activeSection]);
+
     const scrollToSection = (id) => {
         const el = document.getElementById(id);
         if (el) {
@@ -116,12 +134,17 @@ export default function ProjectDetailsClient({ project, theme }) {
     return (
         <div className="relative">
             {/* Sticky Navigation Bar */}
-            <div className={`sticky top-[48px] md:top-[60px] z-40 bg-background/95 backdrop-blur-sm border-b border-border transition-all duration-300`}>
-                <div className="container mx-auto px-4 md:px-12 overflow-x-auto scrollbar-hide flex items-center justify-between md:justify-center">
-                    <div className="flex items-center gap-3 md:gap-8 w-full md:w-auto min-w-max md:min-w-0 h-16 px-1">
+            {/* Sticky Navigation Bar */}
+            {/* Sticky Navigation Bar */}
+            <div className={`sticky top-[62px] md:top-[82px] z-40 bg-background/80 backdrop-blur-md border-b border-border transition-all duration-300 py-2`}>
+                <div
+                    ref={navContainerRef}
+                    className="container mx-auto px-4 md:px-12 overflow-x-auto scrollbar-hide flex items-center justify-start md:justify-center py-2"
+                >
+                    <div className="flex items-center gap-2 md:gap-4 min-w-max px-1">
                         {[
                             { id: "overview", label: "Overview" },
-                            { id: "amenities", label: "Amenities" }, // Shortened for mobile fit
+                            { id: "amenities", label: "Amenities" },
                             ...(project.floorPlans?.length > 0 ? [{ id: "floor-plans", label: "Layouts" }] : []),
                             ...(project.amenitiesImages?.length > 0 ? [{ id: "amenities-gallery", label: "Visuals" }] : []),
                             ...(project.realPictureImages?.length > 0 ? [{ id: "real-site-gallery", label: "Real Site" }] : []),
@@ -131,10 +154,11 @@ export default function ProjectDetailsClient({ project, theme }) {
                         ].map((item) => (
                             <button
                                 key={item.id}
+                                id={`nav-btn-${item.id}`} // Add ID for selector
                                 onClick={() => scrollToSection(item.id)}
-                                className={`text-[10px] md:text-sm uppercase tracking-widest py-2 border-b-2 transition-colors whitespace-nowrap ${activeSection === item.id
-                                    ? `${theme.text} ${theme.border}`
-                                    : "text-muted-foreground border-transparent hover:text-foreground"
+                                className={`px-4 py-2 md:px-5 md:py-2.5 rounded-full text-[10px] md:text-xs uppercase tracking-wider md:tracking-widest font-bold transition-all duration-300 border whitespace-nowrap ${activeSection === item.id
+                                    ? "bg-luxury-black text-white border-luxury-black shadow-lg shadow-black/10 scale-105"
+                                    : "bg-transparent text-muted-foreground border-transparent hover:bg-secondary hover:text-foreground hover:border-border"
                                     }`}
                             >
                                 {item.label}
@@ -278,7 +302,7 @@ export default function ProjectDetailsClient({ project, theme }) {
                     <div className="space-y-0">
                         {/* Amenities Grid - Collapsible */}
                         {project.amenitiesList && (
-                            <CollapsibleSection title="Premium Amenities" defaultOpen={true}>
+                            <CollapsibleSection title="Premium Amenities" defaultOpen={false}>
                                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                                     {project.amenitiesList.map((amenity, idx) => {
                                         const Icon = ICON_MAP[amenity.icon] || CircleCheck;
@@ -451,48 +475,13 @@ export default function ProjectDetailsClient({ project, theme }) {
 
 // Sub-component for Animated Construction Status
 function ConstructionStatus({ project, theme }) {
-    const progress = project.progress || 0;
-    const ref = useRef(null);
-    const isInView = useInView(ref, { once: true, margin: "-100px" });
-    // Count up animation
-    const [count, setCount] = useState(0);
-
-    useEffect(() => {
-        if (isInView) {
-            let start = 0;
-            const end = parseInt(progress);
-            if (start === end) return;
-
-            let timer = setInterval(() => {
-                start += 1;
-                setCount(start);
-                if (start === end) clearInterval(timer);
-            }, 20); // Speed of count
-            return () => clearInterval(timer);
-        }
-    }, [isInView, progress]);
-
     return (
-        <div ref={ref} className="container mx-auto px-6 md:px-12">
-            <div className="flex flex-col md:flex-row justify-between items-end mb-8 md:mb-16">
+        <div className="container mx-auto px-6 md:px-12">
+            <div className="flex flex-col md:flex-row justify-between items-end mb-8 md:mb-12">
                 <div>
-                    <span className={`${theme.text} uppercase tracking-[0.25em] text-xs font-bold mb-4 block`}>Real-Time Updates</span>
-                    <h2 className="font-serif text-4xl text-foreground">Construction Status</h2>
+                    <span className={`${theme.text} uppercase tracking-[0.25em] text-xs font-bold mb-4 block`}>On Site</span>
+                    <h2 className="font-serif text-4xl text-foreground">Project Status Images</h2>
                 </div>
-                <div className="text-right mt-8 md:mt-0">
-                    <div className="text-muted-foreground text-sm uppercase tracking-widest mb-2">Completion Progress</div>
-                    <div className="text-5xl font-serif text-foreground">{count}%</div>
-                </div>
-            </div>
-
-            {/* Progress Bar */}
-            <div className="w-full bg-border h-2 rounded-full overflow-hidden mb-16">
-                <motion.div
-                    initial={{ width: 0 }}
-                    animate={isInView ? { width: `${progress}%` } : { width: 0 }}
-                    transition={{ duration: 1.5, ease: "easeOut" }}
-                    className={`h-full ${theme.bg}`}
-                />
             </div>
 
             {/* Construction Gallery */}
@@ -502,6 +491,7 @@ function ConstructionStatus({ project, theme }) {
         </div>
     );
 }
+
 
 // Helper for Visual Tour (Slider - Mixed Media)
 function VisualTourSection({ title = "Visual Tour", heading = "Gallery & Walkthroughs", images, videos, theme }) {

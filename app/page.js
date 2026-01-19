@@ -96,9 +96,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Project Section */}
-      <FeaturedProject />
-
       {/* Separate Enquiry Section */}
       <section className="py-24 bg-secondary/30 border-y border-border">
         <div className="container mx-auto px-6">
@@ -222,6 +219,9 @@ export default function Home() {
         residentialProjects={orderedResidentialProjects}
         commercialProjects={orderedCommercialProjects}
       />
+
+      {/* Featured Project Section (Minimal) */}
+      <FeaturedProject />
 
       {/* Immersive Philosophy Section */}
       <section className="relative py-32 bg-background border-t border-border">
