@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Download, Maximize2, X, ZoomIn } from "lucide-react";
+import { Download, Maximize2, X, ZoomIn, FileText } from "lucide-react";
 import Image from "next/image";
 
-export default function FloorPlans({ plans }) {
+export default function FloorPlans({ plans, onEnquire }) {
     const [activeTab, setActiveTab] = useState(0);
     const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
@@ -74,11 +74,11 @@ export default function FloorPlans({ plans }) {
                             </div>
 
                             <button
-                                className="w-full mt-6 hidden lg:flex items-center justify-center gap-2 px-6 py-4 bg-luxury-black text-white text-xs uppercase tracking-widest rounded-xl hover:bg-gold-400 hover:text-black transition-all duration-300 shadow-md hover:shadow-lg group"
-                                onClick={() => window.open(activePlan.image, '_blank')}
+                                className="w-full mt-6 hidden lg:flex items-center justify-center gap-2 px-6 py-4 bg-transparent border border-luxury-black text-luxury-black text-xs uppercase tracking-widest rounded-xl hover:bg-luxury-black hover:text-white transition-all duration-300 shadow-sm hover:shadow-lg group"
+                                onClick={onEnquire}
                             >
-                                <Download size={16} className="group-hover:animate-bounce" />
-                                Download Layout
+                                <FileText size={16} />
+                                Download Brochure
                             </button>
                         </div>
 
@@ -112,11 +112,11 @@ export default function FloorPlans({ plans }) {
 
                         {/* Mobile Download Button */}
                         <button
-                            className="w-full mt-4 flex lg:hidden items-center justify-center gap-2 px-6 py-4 bg-luxury-black text-white text-xs uppercase tracking-widest rounded-xl hover:bg-gold-400 hover:text-black transition-all duration-300 shadow-md group"
-                            onClick={() => window.open(activePlan.image, '_blank')}
+                            className="w-full mt-4 flex lg:hidden items-center justify-center gap-2 px-6 py-4 bg-transparent border border-luxury-black/20 text-luxury-black text-xs uppercase tracking-widest rounded-xl hover:bg-gold-400/10 transition-all duration-300 shadow-sm group"
+                            onClick={onEnquire}
                         >
-                            <Download size={16} className="group-hover:animate-bounce" />
-                            Download Layout
+                            <FileText size={16} />
+                            Download Brochure
                         </button>
                     </div>
                 </div>

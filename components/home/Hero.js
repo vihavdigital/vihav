@@ -1,128 +1,49 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronRight, ChevronLeft } from "lucide-react";
-
-const SLIDES = [
-    {
-        id: 1,
-        type: "video",
-        src: "/videos/niwa.mp4", // Keystone Niwa
-        title: "Curated <br/> <span class='text-white/80 italic font-light'>Collections</span>",
-        subtitle: "Experience a life of uncompromising luxury in our handpicked residential sanctuaries."
-    },
-    {
-        id: 2,
-        type: "video",
-        src: "/videos/sup-wt.webm", // Lifestyle/Aerial
-        title: "Corporate <br/> <span class='text-white/80 italic font-light'>Excellence</span>",
-        subtitle: "State-of-the-art panoramic workspaces designed to inspire ambition and success."
-    }
-];
+import { motion } from "framer-motion";
 
 export default function Hero() {
-    const [currentSlide, setCurrentSlide] = useState(0);
-
-    const nextSlide = () => {
-        setCurrentSlide((prev) => (prev + 1) % SLIDES.length);
-    };
-
-    const prevSlide = () => {
-        setCurrentSlide((prev) => (prev - 1 + SLIDES.length) % SLIDES.length);
-    };
-
-    // Auto-advance slideshow
-    useEffect(() => {
-        const timer = setInterval(() => {
-            setCurrentSlide((prev) => (prev + 1) % SLIDES.length);
-        }, 7000);
-        return () => clearInterval(timer);
-    }, []);
-
     return (
         <section className="relative h-[100svh] w-full overflow-hidden bg-luxury-black text-white">
-            <AnimatePresence mode="wait">
-                <motion.div
-                    key={currentSlide}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 1 }}
-                    className="absolute inset-0"
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1 }}
+                className="absolute inset-0"
+            >
+                {/* Media Layer */}
+                <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    preload="auto"
+                    className="w-full h-full object-cover transform scale-105"
                 >
-                    {/* Media Layer */}
-                    {SLIDES[currentSlide].type === "video" ? (
-                        <video
-                            autoPlay
-                            loop
-                            muted
-                            playsInline
-                            preload="auto"
-                            className="w-full h-full object-cover transform scale-105"
-                        >
-                            <source src={SLIDES[currentSlide].src} type={SLIDES[currentSlide].src.endsWith('.webm') ? "video/webm" : "video/mp4"} />
-                            <track kind="captions" src="/captions/en.vtt" srcLang="en" label="English" />
-                        </video>
-                    ) : (
-                        <img
-                            src={SLIDES[currentSlide].src}
-                            alt="Hero Background"
-                            className="w-full h-full object-cover transform scale-105"
-                            fetchPriority="high"
-                            decoding="async"
-                        />
-                    )}
+                    <source src="/videos/sup-wt.webm" type="video/webm" />
+                    <track kind="captions" src="/captions/en.vtt" srcLang="en" label="English" />
+                </video>
 
-                    {/* Gradient Overlay - Lightened for White Theme */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-                </motion.div>
-            </AnimatePresence>
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+            </motion.div>
 
             {/* Content Layer */}
-            <div className="relative z-10 h-full container mx-auto px-6 flex flex-col justify-end items-end text-right pb-24 md:pb-20">
-                <AnimatePresence mode="wait">
-                    <motion.div
-                        key={currentSlide}
-                        initial={{ opacity: 0, x: 30 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -30 }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
-                        className="max-w-4xl"
-                    >
-                        <h1
-                            className="font-serif text-4xl md:text-5xl lg:text-6xl xl:text-8xl font-medium text-white mb-4 md:mb-8 leading-none tracking-tight"
-                            dangerouslySetInnerHTML={{ __html: SLIDES[currentSlide].title }}
-                        />
-                        <p className="max-w-xl ml-auto text-gray-200 text-sm md:text-xl font-light mb-8 md:mb-12 leading-relaxed tracking-wide">
-                            {SLIDES[currentSlide].subtitle}
-                        </p>
-                    </motion.div>
-                </AnimatePresence>
-            </div>
-
-            {/* Controls */}
-            <div className="absolute bottom-12 left-0 w-full px-6 flex justify-between items-center z-20">
-                {/* Dots */}
-                <div className="flex gap-4">
-                    {SLIDES.map((_, idx) => (
-                        <button
-                            key={idx}
-                            onClick={() => setCurrentSlide(idx)}
-                            className={`h-[2px] transition-all duration-300 ${currentSlide === idx ? "w-12 bg-gold-400" : "w-6 bg-white/30 hover:bg-white"}`}
-                        />
-                    ))}
-                </div>
-
-                {/* Arrows */}
-                <div className="flex gap-4 text-white">
-                    <button onClick={prevSlide} className="p-2 border border-white/20 hover:bg-white hover:text-black transition-all rounded-full" aria-label="Previous slide">
-                        <ChevronLeft size={24} />
-                    </button>
-                    <button onClick={nextSlide} className="p-2 border border-white/20 hover:bg-white hover:text-black transition-all rounded-full" aria-label="Next slide">
-                        <ChevronRight size={24} />
-                    </button>
-                </div>
+            <div className="relative z-10 h-full container mx-auto px-6 flex flex-col justify-end items-end text-right pb-24 md:pb-32">
+                <motion.div
+                    initial={{ opacity: 0, x: 30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                    className="max-w-4xl"
+                >
+                    <h1
+                        className="font-serif text-4xl md:text-5xl lg:text-6xl xl:text-8xl font-medium text-white mb-4 md:mb-8 leading-none tracking-tight"
+                        dangerouslySetInnerHTML={{ __html: "Designing the <br/> <span class='text-white/80 italic font-light'>Skyline</span>" }}
+                    />
+                    <p className="max-w-xl ml-auto text-gray-200 text-sm md:text-xl font-light mb-8 md:mb-12 leading-relaxed tracking-wide">
+                        Experience a life of uncompromising luxury and corporate excellence.
+                    </p>
+                </motion.div>
             </div>
         </section>
     );

@@ -9,6 +9,7 @@ import MagneticWrapper from "@/components/ui/MagneticWrapper";
 import dynamic from "next/dynamic";
 
 const EnquiryModal = dynamic(() => import("@/components/ui/EnquiryModal"));
+const SearchModal = dynamic(() => import("@/components/ui/SearchModal"));
 
 import { usePathname } from "next/navigation";
 
@@ -16,6 +17,7 @@ export default function Header() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isEnquireModalOpen, setIsEnquireModalOpen] = useState(false);
+    const [isSearchOpen, setIsSearchOpen] = useState(false);
     const pathname = usePathname();
 
     const isNiwa = pathname?.includes('keystone-niwa');
@@ -70,18 +72,27 @@ export default function Header() {
                                 src={isNiwa ? "/images/project-images/project-logos/keystone-niwa-logo.svg" : isCBD ? "/images/project-images/project-logos/cbd-logo.svg" : "/images/project-images/project-logos/vihav-group-logo.svg"}
                                 alt={isNiwa ? "Keystone Niwa" : isCBD ? "Vihav CBD" : "Vihav Group"}
                                 className={cn(
-                                    "w-auto object-contain transition-all duration-500",
-                                    isScrolled ? "h-8 md:h-12" : "h-12 md:h-20"
+                                    "w-auto object-contain transition-all duration-500 h-10 md:h-16"
                                 )}
                             />
                         </div>
                     </Link>
 
-                    {/* Right Actions (Enquire) */}
+                    {/* Right Actions (Search + Enquire) */}
                     <div className={cn(
                         "flex items-center space-x-6 text-[10px] font-bold tracking-[0.3em]",
                         isScrolled ? "text-foreground" : "text-white drop-shadow-md"
                     )}>
+                        <MagneticWrapper>
+                            <button
+                                aria-label="Search"
+                                onClick={() => setIsSearchOpen(true)}
+                                className="p-2 hover:text-gold-400 transition-colors"
+                            >
+                                <Search size={20} />
+                            </button>
+                        </MagneticWrapper>
+
                         <MagneticWrapper>
                             <button
                                 aria-label="Open enquiry form"
@@ -100,6 +111,7 @@ export default function Header() {
 
             <SideMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
             <EnquiryModal isOpen={isEnquireModalOpen} onClose={() => setIsEnquireModalOpen(false)} />
+            <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
         </>
     );
 }

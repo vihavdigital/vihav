@@ -29,7 +29,7 @@ function ProjectSectionContent({ projects, residentialProjects, commercialProjec
         FILTER_TRANSACTION_OPTIONS,
         clearFilters,
         applyFilters
-    } = useProjectFilters(projects, "Residential", residentialProjects, commercialProjects);
+    } = useProjectFilters(projects, "All", residentialProjects, commercialProjects);
 
     const [showFilters, setShowFilters] = useState(false);
 
@@ -50,13 +50,6 @@ function ProjectSectionContent({ projects, residentialProjects, commercialProjec
             }
         });
     }, [scrollY]);
-
-    // Ensure we start with Residential if current is 'All' (handling initial load)
-    useEffect(() => {
-        if (activeCategory === 'All') {
-            setActiveCategory('Residential');
-        }
-    }, [activeCategory, setActiveCategory]);
 
     // Scroll to section top logic
     const handleApplyFilters = () => {
@@ -84,19 +77,19 @@ function ProjectSectionContent({ projects, residentialProjects, commercialProjec
             </div>
 
             {/* 2. Sticky Filter Bar (Full Width, Outside Container) */}
-            <div className={`sticky top-[48px] md:top-[60px] z-40 transition-all duration-300 w-full ${showFilters ? 'bg-background shadow-xl pb-4' : 'bg-background/80 backdrop-blur-xl py-4 border-b border-border/10'}`}>
+            <div className={`sticky top-[58px] md:top-[72px] z-40 transition-all duration-300 w-full ${showFilters ? 'bg-background shadow-xl pb-4' : 'bg-background/95 backdrop-blur-xl py-4 border-y border-border'}`}>
                 <div className="container mx-auto px-6">
-                    <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+                    <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
 
                         {/* Top Row: Tabs + Mobile Toggle */}
                         <div className="flex items-center justify-between gap-4">
                             {/* Category Tabs (Pill Switcher) - Scrollable on mobile */}
-                            <div className="flex bg-secondary p-1 rounded-full border border-border overflow-x-auto scrollbar-hide max-w-[calc(100%-50px)] md:max-w-none">
-                                {["Residential", "Commercial"].map((cat) => (
+                            <div className="flex bg-secondary p-1 rounded-full border border-border relative overflow-x-auto scrollbar-hide max-w-[calc(100%-50px)] md:max-w-none">
+                                {["All", "Residential", "Commercial"].map((cat) => (
                                     <button
                                         key={cat}
                                         onClick={() => applyFilters({ activeCategory: cat, activeType: "All", activePossession: "All" })}
-                                        className="relative px-6 md:px-8 py-3 md:py-2 rounded-full text-xs md:text-sm uppercase tracking-widest transition-all outline-none whitespace-nowrap"
+                                        className="relative flex-1 md:flex-none px-4 md:px-6 py-2 rounded-full text-[10px] md:text-sm uppercase tracking-widest transition-all outline-none whitespace-nowrap min-w-fit"
                                     >
                                         {activeCategory === cat && (
                                             <motion.div
@@ -116,7 +109,7 @@ function ProjectSectionContent({ projects, residentialProjects, commercialProjec
                             {/* Mobile Filter Toggle Button */}
                             <button
                                 onClick={() => setShowFilters(!showFilters)}
-                                className={`md:hidden flex items-center justify-center w-10 h-10 rounded-full border transition-all duration-300 ${showFilters ? 'bg-luxury-black text-gold-400 border-luxury-black' : 'bg-secondary text-foreground border-border'}`}
+                                className={`md:hidden flex items-center justify-center w-10 h-10 rounded-full border transition-colors ${showFilters ? 'bg-luxury-black text-gold-400 border-luxury-black' : 'bg-secondary border-border text-muted-foreground'}`}
                             >
                                 {showFilters ? <X size={18} /> : <Filter size={18} />}
                             </button>

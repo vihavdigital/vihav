@@ -53,7 +53,7 @@ const MENU_ITEMS = [
     {
         id: "contact",
         label: "CONTACT US",
-        href: "#",
+        href: "/contact",
         image: "https://images.unsplash.com/photo-1486325212027-8081e485255e?q=80&w=2000&auto=format&fit=crop",
         desc: "Get in touch with us."
     },

@@ -40,13 +40,13 @@ export default function Footer() {
                         <h4 className="text-amber-500 font-bold uppercase tracking-[0.2em] text-xs mb-8">Company</h4>
                         <ul className="space-y-4">
                             {[
-                                { name: "Our Story", link: "/about" },
-                                { name: "Leadership", link: "/about" },
+                                { name: "Home", link: "/" },
+                                { name: "Projects", link: "/projects" },
+                                { name: "About Us", link: "/about" },
                                 { name: "Awards", link: "/awards" },
-                                { name: "One Vihav Privilege", link: "/onevihav" },
-                                { name: "Sustainability", link: "#" },
-                                { name: "Careers", link: "#" },
-                                { name: "Contact", link: "/contact" }
+                                { name: "One Vihav", link: "/onevihav" },
+                                { name: "Careers", link: "/career" },
+                                { name: "Contact Us", link: "/contact" }
                             ].map(item => (
                                 <li key={item.name}>
                                     <Link href={item.link} className="text-muted-foreground hover:text-foreground transition-colors text-sm uppercase tracking-wider block hover:translate-x-1 duration-300">
@@ -59,18 +59,18 @@ export default function Footer() {
 
                     {/* Project Links */}
                     <div className="col-span-1 md:col-span-3">
-                        <h4 className="text-amber-500 font-bold uppercase tracking-[0.2em] text-xs mb-8">Selected Projects</h4>
+                        <h4 className="text-amber-500 font-bold uppercase tracking-[0.2em] text-xs mb-8">Explore Projects</h4>
                         <ul className="space-y-4">
                             {[
-                                "Keystone Skyvillas",
-                                "Vihav Elinor",
-                                "Supremus III",
-                                "Vihav Trade Centre",
-                                "Vihav CBD"
+                                { name: "3 BHK Flats", link: "/projects?category=Residential&type=3bhk" },
+                                { name: "4 BHK Flats", link: "/projects?category=Residential&type=4bhk" },
+                                { name: "5 BHK Flats", link: "/projects?category=Residential&type=5bhk" },
+                                { name: "Penthouses", link: "/projects?category=Residential&type=penthouse" },
+                                { name: "Bungalows", link: "/projects?category=Residential&type=Bunglow" }
                             ].map(item => (
-                                <li key={item}>
-                                    <Link href={`/projects/${item.toLowerCase().replace(/ /g, "-")}`} className="text-muted-foreground hover:text-foreground transition-colors text-sm uppercase tracking-wider block hover:translate-x-1 duration-300">
-                                        {item}
+                                <li key={item.name}>
+                                    <Link href={item.link} className="text-muted-foreground hover:text-foreground transition-colors text-sm uppercase tracking-wider block hover:translate-x-1 duration-300">
+                                        {item.name}
                                     </Link>
                                 </li>
                             ))}

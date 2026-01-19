@@ -40,83 +40,21 @@ export default function ContactPage() {
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
 
                     {/* Left Column: Office & General (4 cols) - Sticky */}
-                    <div className="lg:col-span-4 space-y-16 lg:sticky lg:top-32 lg:h-fit">
+                    <div className="lg:col-span-4 space-y-16 lg:sticky lg:top-32 lg:h-fit order-last lg:order-first">
 
-                        {/* Logo for Sticky Sidebar */}
-                        <div className="hidden lg:block mb-8">
-                            <img
-                                src="/images/project-images/project-logos/vihav-group-logo.svg"
-                                alt="Vihav Group"
-                                className="h-16 w-auto object-contain opacity-80"
-                            />
-                        </div>
-
-                        {/* Office Locations */}
-                        <div>
-                            <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-gold-400 mb-8 flex items-center gap-3">
-                                Corporate Offices
+                        {/* Email */}
+                        <div className="group bg-card/50 hover:bg-card p-6 rounded-xl border border-border hover:border-gold-400/30 transition-all duration-300">
+                            <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-gold-400 mb-6 flex items-center gap-3">
+                                Email Us
                             </h2>
-                            <div className="space-y-6">
-                                <div className="group bg-card/50 hover:bg-card p-6 rounded-xl border border-border hover:border-gold-400/30 transition-all duration-300">
-                                    <div className="flex items-start gap-4">
-                                        <div className="w-10 h-10 rounded-full bg-gold-400/10 flex items-center justify-center shrink-0">
-                                            <Building2 size={20} className="text-gold-400" />
-                                        </div>
-                                        <div>
-                                            <h3 className="font-bold text-lg mb-2">Corporate Office</h3>
-                                            <p className="text-muted-foreground font-light leading-relaxed text-sm">
-                                                Vihav Supremus, Near Iscon Heights,<br />
-                                                Gotri, Vadodara, Gujarat 390021
-                                            </p>
-                                            <a href="https://maps.google.com/?q=Vihav+Supremus+Vadodara" target="_blank" className="text-[10px] uppercase tracking-widest text-gold-400 mt-4 inline-flex items-center gap-1 hover:underline">
-                                                Get Directions <ArrowRight size={10} />
-                                            </a>
-                                        </div>
-                                    </div>
+                            <a href="mailto:info@vihav.com" className="flex items-center gap-4">
+                                <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center group-hover:bg-gold-400 group-hover:text-black transition-colors">
+                                    <Mail size={18} />
                                 </div>
-
-                                <div className="group bg-card/50 hover:bg-card p-6 rounded-xl border border-border hover:border-gold-400/30 transition-all duration-300">
-                                    <div className="flex items-start gap-4">
-                                        <div className="w-10 h-10 rounded-full bg-gold-400/10 flex items-center justify-center shrink-0">
-                                            <MapPin size={20} className="text-gold-400" />
-                                        </div>
-                                        <div>
-                                            <h3 className="font-bold text-lg mb-2">Registered Office</h3>
-                                            <p className="text-muted-foreground font-light leading-relaxed text-sm">
-                                                22, Greenwood, Sevasi-Ankodia Road,<br />
-                                                Vadodara, Gujarat 390021
-                                            </p>
-                                        </div>
-                                    </div>
+                                <div>
+                                    <span className="font-medium text-lg text-foreground group-hover:text-gold-400 transition-colors">info@vihav.com</span>
                                 </div>
-                            </div>
-                        </div>
-
-                        {/* General Contact */}
-                        <div>
-                            <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-gold-400 mb-8 flex items-center gap-3">
-                                General Inquiries
-                            </h2>
-                            <div className="grid grid-cols-1 gap-4">
-                                <a href="tel:+918866341272" className="flex items-center gap-4 p-5 border border-border rounded-xl hover:border-gold-400/50 hover:bg-white/5 transition-all group">
-                                    <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center group-hover:bg-gold-400 group-hover:text-black transition-colors">
-                                        <Phone size={18} />
-                                    </div>
-                                    <div>
-                                        <span className="text-[10px] uppercase tracking-wider text-muted-foreground block mb-1">Call Us</span>
-                                        <span className="font-medium text-lg">+91 88663 41272</span>
-                                    </div>
-                                </a>
-                                <a href="mailto:info@vihav.com" className="flex items-center gap-4 p-5 border border-border rounded-xl hover:border-gold-400/50 hover:bg-white/5 transition-all group">
-                                    <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center group-hover:bg-gold-400 group-hover:text-black transition-colors">
-                                        <Mail size={18} />
-                                    </div>
-                                    <div>
-                                        <span className="text-[10px] uppercase tracking-wider text-muted-foreground block mb-1">Email Us</span>
-                                        <span className="font-medium text-lg">info@vihav.com</span>
-                                    </div>
-                                </a>
-                            </div>
+                            </a>
                         </div>
 
                         {/* Social Media */}

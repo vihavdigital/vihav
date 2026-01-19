@@ -63,9 +63,9 @@ export default function ProjectsFeed() {
     return (
         <section ref={sectionRef} className="pb-20 min-h-screen">
             {/* Sticky Filter Bar */}
-            <div className={`sticky top-[48px] md:top-[60px] z-40 transition-all duration-300 w-full mb-12 ${showFilters ? 'bg-background shadow-xl pb-4' : 'bg-background/95 backdrop-blur-xl py-4 border-y border-border'}`}>
+            <div className={`sticky top-[58px] md:top-[72px] z-40 transition-all duration-300 w-full mb-12 ${showFilters ? 'bg-background shadow-xl pb-4' : 'bg-background/95 backdrop-blur-xl py-4 border-y border-border'}`}>
                 <div className="container mx-auto px-6">
-                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
 
                         {/* Top Row: Tabs + Mobile Toggle */}
                         <div className="flex items-center justify-between gap-4 w-full md:w-auto">

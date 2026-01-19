@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Header from "@/components/layout/Header";
 import Hero from "@/components/home/Hero";
 import ProjectSection from "@/components/home/ProjectSection";
+import FeaturedProject from "@/components/home/FeaturedProject";
 import PhilosophySlider from "@/components/home/PhilosophySlider";
 import TextReveal from "@/components/ui/TextReveal";
 import { PROJECTS } from "@/data/projects";
@@ -95,6 +96,8 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Featured Project Section */}
+      <FeaturedProject />
 
       {/* Separate Enquiry Section */}
       <section className="py-24 bg-secondary/30 border-y border-border">

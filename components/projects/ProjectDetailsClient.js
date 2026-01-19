@@ -348,7 +348,7 @@ export default function ProjectDetailsClient({ project, theme }) {
                         <h2 className="font-serif text-3xl md:text-5xl text-foreground mb-6">Floor Plans</h2>
                         <div className="w-24 h-1 bg-gold-400/30 rounded-full" />
                     </div>
-                    <FloorPlans plans={project.floorPlans} />
+                    <FloorPlans plans={project.floorPlans} onEnquire={() => openModal("Download Brochure")} />
                 </section>
             )}
 
@@ -358,8 +358,8 @@ export default function ProjectDetailsClient({ project, theme }) {
                     <div className="container mx-auto px-6 md:px-12 mb-8 md:mb-12">
                         <div className="flex justify-between items-end">
                             <div>
-                                <span className={`${theme.text} uppercase tracking-[0.25em] text-[10px] md:text-xs font-bold mb-4 md:mb-6 block`}>Visualization</span>
-                                <h2 className="font-serif text-3xl md:text-5xl text-foreground mb-6">Amenities Gallery</h2>
+                                <span className={`${theme.text} uppercase tracking-[0.25em] text-[10px] md:text-xs font-bold mb-4 md:mb-6 block`}>Actual Images</span>
+                                <h2 className="font-serif text-3xl md:text-5xl text-foreground mb-6">Amenities Images (Actual)</h2>
                                 <div className="w-24 h-1 bg-gold-400/30 rounded-full" />
                             </div>
                             {renderCounter(amenitiesIndex, project.amenitiesImages.length)}

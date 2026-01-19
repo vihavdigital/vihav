@@ -10,7 +10,20 @@ const swipePower = (offset, velocity) => {
     return Math.abs(offset) * velocity;
 };
 
-export default function ProjectGallery({ images, className = "", onIndexChange, isLightMode = false, showProgress = true }) {
+// Helper to format image name
+const formatImageName = (path) => {
+    if (!path) return "";
+    // Handle both local paths and URLs
+    const fileName = path.split('/').pop().split('.')[0];
+    return fileName
+        .replace(/[-_]/g, ' ') // Replace hyphens/underscores with spaces
+        .replace(/[0-9]/g, '') // Remove numbers (optional, creates cleaner look)
+        .replace(/%20/g, ' ') // Handle URL encoding
+        .trim();
+};
+
+export default function ProjectGallery({ images, className = "", onIndexChange, isLightMode = false, showProgress = true, showCaptions = true }) {
+    // ... refs and state ...
     const scrollRef = useRef(null);
     const [selectedImage, setSelectedImage] = useState(null);
     const { scrollXProgress } = useScroll({ container: scrollRef });
@@ -119,8 +132,6 @@ export default function ProjectGallery({ images, className = "", onIndexChange, 
 
     return (
         <section className={`relative group ${baseTheme} ${className}`}>
-            {/* Counter Removed - Moved to Header */}
-
             {/* Horizontal Slider Container */}
             <div className="relative group/gallery">
                 {/* Navigation Buttons (Desktop) */}
@@ -154,6 +165,7 @@ export default function ProjectGallery({ images, className = "", onIndexChange, 
                 >
                     {images.map((media, idx) => {
                         const isVideo = typeof media === 'string' && (media.endsWith('.mp4') || media.endsWith('.webm'));
+                        const displayName = formatImageName(media);
 
                         return (
                             <motion.div
@@ -185,9 +197,21 @@ export default function ProjectGallery({ images, className = "", onIndexChange, 
                                     />
                                 )}
 
-                                <div className="absolute inset-0 bg-black/10 group-hover/card:bg-transparent transition-colors" />
+                                {/* Cinematic Gradient Overlay for Captions */}
+                                {showCaptions && (
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover/card:opacity-80 transition-opacity" />
+                                )}
 
-                                <div className="absolute bottom-4 right-4 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300">
+                                {/* Caption Overlay */}
+                                {showCaptions && (
+                                    <div className="absolute bottom-0 left-0 p-6 w-full transform translate-y-2 group-hover/card:translate-y-0 transition-transform duration-500">
+                                        <h3 className="text-xl font-serif text-white group-hover/card:text-gold-400 transition-colors duration-300 capitalize drop-shadow-md">
+                                            {displayName || `View ${idx + 1}`}
+                                        </h3>
+                                    </div>
+                                )}
+
+                                <div className="absolute top-4 right-4 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300">
                                     <div className="bg-black/40 backdrop-blur-md p-2 rounded-full text-white border border-white/20">
                                         <Expand size={16} />
                                     </div>
