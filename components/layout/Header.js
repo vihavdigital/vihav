@@ -72,7 +72,8 @@ export default function Header() {
                                 src={isNiwa ? "/images/project-images/project-logos/keystone-niwa-logo.svg" : isCBD ? "/images/project-images/project-logos/cbd-logo.svg" : "/images/project-images/project-logos/vihav-group-logo.svg"}
                                 alt={isNiwa ? "Keystone Niwa" : isCBD ? "Vihav CBD" : "Vihav Group"}
                                 className={cn(
-                                    "w-auto object-contain transition-all duration-500 h-10 md:h-16"
+                                    "w-auto object-contain transition-all duration-500",
+                                    isScrolled ? "h-8 md:h-12" : "h-12 md:h-20"
                                 )}
                             />
                         </div>

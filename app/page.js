@@ -320,9 +320,9 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section >
+      </section>
 
       <Footer />
-    </main >
+    </main>
   );
 }

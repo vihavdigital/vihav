@@ -74,7 +74,15 @@ export default function FloorPlans({ plans, onEnquire }) {
                             </div>
 
                             <button
-                                className="w-full mt-6 hidden lg:flex items-center justify-center gap-2 px-6 py-4 bg-transparent border border-luxury-black text-luxury-black text-xs uppercase tracking-widest rounded-xl hover:bg-luxury-black hover:text-white transition-all duration-300 shadow-sm hover:shadow-lg group"
+                                className="w-full mt-6 hidden lg:flex items-center justify-center gap-2 px-6 py-4 bg-luxury-black text-white text-xs uppercase tracking-widest rounded-xl hover:bg-gold-400 hover:text-black transition-all duration-300 shadow-md hover:shadow-lg group"
+                                onClick={() => window.open(activePlan.image, '_blank')}
+                            >
+                                <Download size={16} className="group-hover:animate-bounce" />
+                                Download Layout
+                            </button>
+
+                            <button
+                                className="w-full mt-3 hidden lg:flex items-center justify-center gap-2 px-6 py-4 bg-transparent border border-luxury-black text-luxury-black text-xs uppercase tracking-widest rounded-xl hover:bg-luxury-black hover:text-white transition-all duration-300 shadow-sm hover:shadow-lg group"
                                 onClick={onEnquire}
                             >
                                 <FileText size={16} />
@@ -112,7 +120,15 @@ export default function FloorPlans({ plans, onEnquire }) {
 
                         {/* Mobile Download Button */}
                         <button
-                            className="w-full mt-4 flex lg:hidden items-center justify-center gap-2 px-6 py-4 bg-transparent border border-luxury-black/20 text-luxury-black text-xs uppercase tracking-widest rounded-xl hover:bg-gold-400/10 transition-all duration-300 shadow-sm group"
+                            className="w-full mt-4 flex lg:hidden items-center justify-center gap-2 px-6 py-4 bg-luxury-black text-white text-xs uppercase tracking-widest rounded-xl hover:bg-gold-400 hover:text-black transition-all duration-300 shadow-md group"
+                            onClick={() => window.open(activePlan.image, '_blank')}
+                        >
+                            <Download size={16} className="group-hover:animate-bounce" />
+                            Download Layout
+                        </button>
+
+                        <button
+                            className="w-full mt-3 flex lg:hidden items-center justify-center gap-2 px-6 py-4 bg-transparent border border-luxury-black/20 text-luxury-black text-xs uppercase tracking-widest rounded-xl hover:bg-gold-400/10 transition-all duration-300 shadow-sm group"
                             onClick={onEnquire}
                         >
                             <FileText size={16} />
