@@ -1,6 +1,40 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowUpRight, Maximize } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { usePathname } from "next/navigation";
+
+function StatusTag({ category, possession }) {
+    const pathname = usePathname();
+    // Default to Residential if category missing, just like before
+    const cat = category || 'Residential';
+
+    return (
+        <Link
+            href={`${pathname}?category=${cat}&status=${encodeURIComponent(possession)}`}
+            scroll={false}
+            className="absolute top-4 left-4 z-30"
+            onClick={(e) => {
+                e.stopPropagation();
+                // Check if we are on home or projects page to decide scroll target
+                // If on home, 'project-collection' exists. If on projects, maybe scroll to top?
+                // The existing code tried to scroll 'project-collection'.
+                // We'll keep it safe.
+                const targetId = pathname === '/' ? 'project-collection' : 'projects-feed';
+                // Note: ProjectsFeed doesn't have an ID in the original code, but sectionRef handles it in ProjectsFeed component. 
+                // The click here just updates URL, which triggers useProjectFilters. 
+                // We can probably drop the manual scroll here as the page or feed component should handle reaction.
+                // But let's keep the existing behaviour for Home.
+                document.getElementById('project-collection')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+        >
+            <span className="inline-block px-3 py-1 bg-white/90 backdrop-blur-md text-luxury-black text-[10px] md:text-xs font-bold uppercase tracking-widest rounded-sm shadow-lg hover:bg-gold-400 transition-colors duration-300">
+                {possession}
+            </span>
+        </Link>
+    );
+}
 
 export default function ProjectCard({ project }) {
     return (
@@ -30,56 +64,45 @@ export default function ProjectCard({ project }) {
 
                 {/* Status Tag */}
                 {project.filterData?.possession && (
-                    <Link
-                        href={`/?category=${project.category || 'Residential'}&status=${encodeURIComponent(project.filterData.possession)}`}
-                        scroll={false}
-                        className="absolute top-4 left-4 z-30"
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            document.getElementById('project-collection')?.scrollIntoView({ behavior: 'smooth' });
-                        }}
-                    >
-                        <span className="inline-block px-3 py-1 bg-white/90 backdrop-blur-md text-luxury-black text-[10px] md:text-xs font-bold uppercase tracking-widest rounded-sm shadow-lg hover:bg-gold-400 transition-colors duration-300">
-                            {project.filterData.possession}
-                        </span>
-                    </Link>
+                    <StatusTag
+                        category={project.category}
+                        possession={project.filterData.possession}
+                    />
                 )}
             </div>
 
             {/* Content */}
-            <div className="p-5 md:p-8 flex flex-col flex-1 justify-between">
+            <div className="p-5 md:p-6 flex flex-col flex-1 justify-between gap-4">
                 <div>
-                    <div className="flex justify-between items-start gap-4 mb-4">
-                        <div>
-                            <span className="text-amber-500 text-[10px] md:text-xs uppercase tracking-widest block mb-2 font-bold">{project.location}</span>
-                            <h3 className="text-xl md:text-2xl font-serif text-foreground leading-tight">{project.title}</h3>
+                    <div className="flex justify-between items-start gap-3 mb-2">
+                        <div className="flex-1 min-w-0 pr-2">
+                            <span className="text-amber-500 text-[10px] md:text-xs uppercase tracking-widest block mb-1 font-bold truncate">{project.location}</span>
+                            <h3 className="text-lg md:text-xl font-serif text-foreground leading-tight mb-2">{project.title}</h3>
                             {project.carpetArea && (
-                                <div className="inline-flex items-center gap-2 mt-4 px-3 py-1.5 bg-gold-400/10 border border-gold-400/20 rounded md:rounded-lg">
-                                    <Maximize size={14} className="text-gold-500 flex-shrink-0" />
-                                    <span className="text-[10px] md:text-xs font-bold text-foreground tracking-widest uppercase whitespace-nowrap">{project.carpetArea}</span>
+                                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-gold-400/10 border border-gold-400/20 rounded md:rounded-lg">
+                                    <Maximize size={12} className="text-gold-500 flex-shrink-0" />
+                                    <span className="text-[9px] md:text-[10px] font-bold text-foreground tracking-widest uppercase whitespace-nowrap">{project.carpetArea}</span>
                                 </div>
                             )}
                         </div>
                         {/* Right Column: Type & Badge */}
-                        <div className="flex flex-col items-end">
-                            <span className="text-muted-foreground text-[10px] md:text-xs text-right hidden md:block max-w-[200px] leading-tight">{project.type}</span>
+                        <div className="flex flex-col items-end shrink-0">
+                            <span className="text-muted-foreground text-[10px] md:text-xs text-right hidden md:block max-w-[120px] lg:max-w-[150px] leading-tight">{project.type}</span>
                             {project.customBadge && (
-                                <div className="mt-3 flex flex-col items-center justify-center bg-gradient-to-br from-amber-400 to-amber-500 text-white rounded shadow-xl shadow-amber-500/40 aspect-square min-h-[75px] min-w-[75px] border border-white/30 ring-1 ring-amber-500/50 ring-offset-2 ring-offset-card transform -translate-y-1">
-                                    <span className="text-[9px] uppercase font-medium tracking-[0.2em] leading-none text-white/90 mb-1">Only</span>
-                                    <span className="text-4xl font-serif leading-none mb-1">1</span>
-                                    <span className="text-[8px] uppercase font-bold tracking-widest leading-none text-center text-white/90">Unit Left</span>
+                                <div className="mt-3 flex flex-col items-center justify-center bg-gradient-to-br from-amber-400 to-amber-500 text-white rounded shadow-xl shadow-amber-500/40 aspect-square w-[60px] h-[60px] md:w-[70px] md:h-[70px] border border-white/30 ring-1 ring-amber-500/50 ring-offset-2 ring-offset-card transform -translate-y-1">
+                                    <span className="text-[8px] uppercase font-medium tracking-[0.2em] leading-none text-white/90 mb-0.5">Only</span>
+                                    <span className="text-2xl md:text-3xl font-serif leading-none mb-0.5">1</span>
+                                    <span className="text-[6px] md:text-[7px] uppercase font-bold tracking-widest leading-none text-center text-white/90">Unit Left</span>
                                 </div>
                             )}
                         </div>
                     </div>
                 </div>
 
-                <div>
-                    <div className="h-px bg-border w-full my-4 opacity-50" />
-
+                <div className="pt-4 border-t border-border/50">
                     <div className="flex flex-row justify-between items-center">
                         <div className="flex flex-col">
-                            <span className="text-muted-foreground text-[10px] uppercase tracking-wider mb-1">Starting from</span>
+                            <span className="text-muted-foreground text-[10px] uppercase tracking-wider mb-0.5">Starting from</span>
                             <span className="text-foreground font-medium text-sm md:text-base">{project.price}</span>
                         </div>
 

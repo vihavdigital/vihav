@@ -59,8 +59,19 @@ const MENU_ITEMS = [
     },
 ];
 
+import { usePathname } from "next/navigation";
+
 export default function SideMenu({ isOpen, onClose }) {
-    const [hoveredItem, setHoveredItem] = useState(MENU_ITEMS[0]);
+    const pathname = usePathname();
+
+    const [hoveredItem, setHoveredItem] = useState(() => {
+        const active = MENU_ITEMS.find(item =>
+            item.href === '/'
+                ? pathname === '/'
+                : (item.href !== '#' && pathname?.startsWith(item.href))
+        );
+        return active || MENU_ITEMS[0];
+    });
 
     return (
         <AnimatePresence>
@@ -119,7 +130,13 @@ export default function SideMenu({ isOpen, onClose }) {
                                             hidden: { opacity: 0, x: -100 },
                                             show: { opacity: 1, x: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
                                         }}
-                                        onMouseEnter={() => setHoveredItem(item)}
+                                        onMouseEnter={() => {
+                                            // Only trigger hover effect on devices that support hover (mouse)
+                                            // This prevents "double tap" issue on iPad/Mobile where first tap triggers hover
+                                            if (typeof window !== 'undefined' && window.matchMedia('(hover: hover)').matches) {
+                                                setHoveredItem(item);
+                                            }
+                                        }}
                                         className="block text-right"
                                     >
                                         <Link

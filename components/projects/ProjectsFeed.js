@@ -2,7 +2,7 @@
 
 import ProjectCard from "@/components/projects/ProjectCard";
 import { useState, useRef, useEffect, Suspense } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll } from "framer-motion";
 import FilterDropdown from "@/components/ui/FilterDropdown";
 import { useProjectFilters } from "@/hooks/useProjectFilters";
 import { Filter, X } from "lucide-react";
@@ -25,10 +25,31 @@ export default function ProjectsFeed() {
         FILTER_POSSESSION,
         activeTransaction,
         setActiveTransaction,
-        FILTER_TRANSACTION_OPTIONS
+        FILTER_TRANSACTION_OPTIONS,
+        clearFilters,
+        resetAll,
+        applyFilters
     } = useProjectFilters(PROJECTS, "All");
 
     const [showFilters, setShowFilters] = useState(false);
+
+    // Mobile & Desktop Floating Toast Logic
+    const { scrollY } = useScroll();
+    const [isInCardsView, setIsInCardsView] = useState(false);
+    const cardsRef = useRef(null);
+
+    useEffect(() => {
+        return scrollY.onChange(() => {
+            // Check if we are in the cards section
+            if (cardsRef.current) {
+                const rect = cardsRef.current.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                // Visible if top is entering view or bottom hasn't left view completely
+                const isVisible = rect.top < windowHeight - 100 && rect.bottom > 100;
+                setIsInCardsView(isVisible);
+            }
+        });
+    }, [scrollY]);
 
     // Scroll to top of grid on filter apply (optional)
     const handleApplyFilters = () => {
@@ -53,7 +74,7 @@ export default function ProjectsFeed() {
                                 {["All", "Residential", "Commercial"].map(type => (
                                     <button
                                         key={type}
-                                        onClick={() => { setActiveCategory(type); setActiveType("All"); setActivePossession("All"); }}
+                                        onClick={() => applyFilters({ activeCategory: type, activeType: 'All', activePossession: 'All' })}
                                         className="relative flex-1 md:flex-none px-4 md:px-6 py-2 rounded-full text-[10px] md:text-sm uppercase tracking-widest transition-all outline-none whitespace-nowrap min-w-fit"
                                     >
                                         {activeCategory === type && (
@@ -117,6 +138,27 @@ export default function ProjectsFeed() {
                 </div>
             </div>
 
+            {/* Floating Clear Filter Toast (Desktop & Mobile) */}
+            <AnimatePresence>
+                {!showFilters && isInCardsView && (activeType !== "All" || activePossession !== "All" || (activeCategory === "Commercial" && activeTransaction !== "Buy")) && (
+                    <motion.div
+                        initial={{ y: 100, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        exit={{ y: 100, opacity: 0 }}
+                        className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50"
+                    >
+                        <button
+                            onClick={clearFilters}
+                            className="flex items-center gap-2 px-5 py-3 bg-luxury-black text-gold-400 rounded-full shadow-[0_10px_40px_-10px_rgba(0,0,0,0.8)] border border-gold-400/30 backdrop-blur-md hover:bg-luxury-black/90 transition-colors"
+                        >
+                            <span className="text-xs font-bold uppercase tracking-widest">Clear Filters</span>
+                            <div className="w-px h-3 bg-gold-400/30 mx-1" />
+                            <X size={14} />
+                        </button>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
             {/* Mobile Filter Popup (Modal) */}
             <AnimatePresence>
                 {showFilters && (
@@ -143,7 +185,7 @@ export default function ProjectsFeed() {
                                 <h3 className="text-xl font-serif text-foreground">Refine</h3>
                                 <div className="flex items-center gap-4">
                                     <button
-                                        onClick={() => { setActiveType("All"); setActivePossession("All"); setActiveTransaction("Buy"); }}
+                                        onClick={clearFilters}
                                         className="text-[10px] uppercase tracking-widest text-muted-foreground hover:text-gold-400 font-medium transition-colors"
                                     >
                                         Clear All
@@ -220,7 +262,7 @@ export default function ProjectsFeed() {
                 )}
             </AnimatePresence>
 
-            <div className="px-6 container mx-auto">
+            <div className="px-6 container mx-auto" ref={cardsRef} id="projects-feed">
                 <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <AnimatePresence mode="popLayout">
                         {filteredProjects.length > 0 ? (
@@ -245,7 +287,7 @@ export default function ProjectsFeed() {
                                 <h3 className="text-2xl text-foreground font-serif mb-2">No Projects Match</h3>
                                 <p className="text-muted-foreground">Try adjusting your filters.</p>
                                 <button
-                                    onClick={() => { setActiveCategory("All"); setActiveType("All"); setActivePossession("All"); }}
+                                    onClick={resetAll}
                                     className="mt-6 text-gold-400 hover:text-foreground underline underline-offset-4"
                                 >
                                     Clear All Filters

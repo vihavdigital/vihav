@@ -1,6 +1,5 @@
-"use client";
-
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 
 export const FILTER_RESIDENTIAL_TYPES = ["All", "Bunglow", "Apartments", "3bhk", "4bhk", "5bhk", "Penthouse"];
 export const FILTER_COMMERCIAL_TYPES = ["All", "shops", "showrooms", "offices"];
@@ -8,35 +7,193 @@ export const FILTER_ALL_TYPES = ["All", "Bunglow", "Apartments", "3bhk", "4bhk",
 export const FILTER_POSSESSION = ["All", "Newly Launched", "Ready to Move", "Under construction"];
 export const FILTER_TRANSACTION_OPTIONS = ["Buy", "Rent", "Lease"];
 
-import { useSearchParams } from "next/navigation";
-import { useEffect } from "react";
-
 export function useProjectFilters(projects, initialCategory = "Residential", residentialProjects = null, commercialProjects = null) {
     const searchParams = useSearchParams();
-    const [activeCategory, setActiveCategory] = useState(initialCategory);
-    const [activeType, setActiveType] = useState("All");
-    const [activePossession, setActivePossession] = useState("All");
-    const [activeTransaction, setActiveTransaction] = useState("Buy"); // Default to Buy
+    const router = useRouter();
+    const pathname = usePathname();
 
-    // Initialize from URL params
+    // Helper to get initial value from URL or default
+    const getInitialCategory = () => {
+        const param = searchParams.get("category");
+        if (param) {
+            const match = ["Residential", "Commercial", "All"].find(c => c.toLowerCase() === param.toLowerCase());
+            if (match) return match;
+        }
+        return initialCategory;
+    };
+
+    const getInitialType = () => {
+        const param = searchParams.get("type");
+        if (param) {
+            // Check against all known types
+            const match = FILTER_ALL_TYPES.find(t => t.toLowerCase() === param.toLowerCase());
+            if (match) return match;
+        }
+        return "All";
+    };
+
+    const getInitialPossession = () => {
+        const param = searchParams.get("status");
+        if (param) {
+            const match = FILTER_POSSESSION.find(p => p.toLowerCase() === param.toLowerCase());
+            if (match) return match;
+        }
+        return "All";
+    };
+
+    const getInitialTransaction = () => {
+        const param = searchParams.get("transaction");
+        if (param) {
+            const match = FILTER_TRANSACTION_OPTIONS.find(t => t.toLowerCase() === param.toLowerCase());
+            if (match) return match;
+        }
+        return "Buy";
+    };
+
+    const [activeCategory, setActiveCategory] = useState(getInitialCategory);
+    const [activeType, setActiveType] = useState(getInitialType);
+    const [activePossession, setActivePossession] = useState(getInitialPossession);
+    const [activeTransaction, setActiveTransaction] = useState(getInitialTransaction);
+
+    // 1. Sync URL -> State (Handle Back/Forward navigation)
     useEffect(() => {
-        const categoryParam = searchParams.get("category");
-        const statusParam = searchParams.get("status");
-
-        if (categoryParam) {
-            // Case insensitive check for category
-            const match = ["Residential", "Commercial"].find(c => c.toLowerCase() === categoryParam.toLowerCase());
-            if (match) setActiveCategory(match);
+        const paramCategory = searchParams.get("category");
+        if (paramCategory) {
+            const match = ["Residential", "Commercial", "All"].find(c => c.toLowerCase() === paramCategory.toLowerCase());
+            if (match && match !== activeCategory) setActiveCategory(match);
+        } else {
+            if (activeCategory !== initialCategory) setActiveCategory(initialCategory);
         }
 
-        if (statusParam) {
-            // Case insensitive check for possession status
-            const match = FILTER_POSSESSION.find(p => p.toLowerCase() === statusParam.toLowerCase());
-            if (match) {
-                setActivePossession(match);
+        const paramType = searchParams.get("type");
+        if (paramType) {
+            const match = FILTER_ALL_TYPES.find(t => t.toLowerCase() === paramType.toLowerCase());
+            if (match && match !== activeType) setActiveType(match);
+        } else {
+            if (activeType !== "All") setActiveType("All");
+        }
+
+        const paramStatus = searchParams.get("status");
+        if (paramStatus) {
+            const match = FILTER_POSSESSION.find(p => p.toLowerCase() === paramStatus.toLowerCase());
+            if (match && match !== activePossession) setActivePossession(match);
+        } else {
+            if (activePossession !== "All") setActivePossession("All");
+        }
+
+        const paramTrans = searchParams.get("transaction");
+        if (paramTrans) {
+            const match = FILTER_TRANSACTION_OPTIONS.find(t => t.toLowerCase() === paramTrans.toLowerCase());
+            if (match && match !== activeTransaction) setActiveTransaction(match);
+        } else {
+            if (activeTransaction !== "Buy") setActiveTransaction("Buy");
+        }
+    }, [searchParams, initialCategory]);
+
+    // Helper to update URL
+    const updateUrl = (updates) => {
+        const params = new URLSearchParams(searchParams.toString());
+
+        Object.entries(updates).forEach(([key, value]) => {
+            if (value === null || value === undefined) {
+                params.delete(key);
+            } else {
+                params.set(key, value);
             }
+        });
+
+        router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+    };
+
+    // Wrappers for state updates + URL sync
+    const setCategoryWrapper = (cat) => {
+        setActiveCategory(cat);
+        // Reset others when category changes? Usually yes for type/trans.
+        // But keeping it simple: just update category in URL.
+        const updates = {};
+
+        if (cat !== initialCategory) updates.category = cat;
+        else updates.category = null; // remove
+
+        // If category changes, we often want to reset type/trans if incompatible, 
+        // but current UI handles hiding incompatible options. 
+        // Let's just update category.
+        updateUrl(updates);
+    };
+
+    const setTypeWrapper = (type) => {
+        setActiveType(type);
+        const updates = {};
+        if (type !== "All") updates.type = type;
+        else updates.type = null;
+        updateUrl(updates);
+    };
+
+    const setPossessionWrapper = (poss) => {
+        setActivePossession(poss);
+        const updates = {};
+        if (poss !== "All") updates.status = poss;
+        else updates.status = null;
+        updateUrl(updates);
+    };
+
+    const setTransactionWrapper = (trans) => {
+        setActiveTransaction(trans);
+        const updates = {};
+        if (trans !== "Buy") updates.transaction = trans;
+        else updates.transaction = null;
+        updateUrl(updates);
+    };
+
+    const clearFilters = () => {
+        setActiveType("All");
+        setActivePossession("All");
+        setActiveTransaction("Buy");
+
+        updateUrl({
+            type: null,
+            status: null,
+            transaction: null
+        });
+    };
+
+    // Clear ALL including category (for "Clear All" button)
+    const resetAll = () => {
+        setActiveCategory(initialCategory);
+        setActiveType("All");
+        setActivePossession("All");
+        setActiveTransaction("Buy");
+
+        updateUrl({
+            category: null,
+            type: null,
+            status: null,
+            transaction: null
+        });
+    };
+
+    const applyFilters = (updatesObj) => {
+        const urlUpdates = {};
+
+        if (updatesObj.activeCategory !== undefined) {
+            setActiveCategory(updatesObj.activeCategory);
+            urlUpdates.category = updatesObj.activeCategory !== initialCategory ? updatesObj.activeCategory : null;
         }
-    }, [searchParams]);
+        if (updatesObj.activeType !== undefined) {
+            setActiveType(updatesObj.activeType);
+            urlUpdates.type = updatesObj.activeType !== "All" ? updatesObj.activeType : null;
+        }
+        if (updatesObj.activePossession !== undefined) {
+            setActivePossession(updatesObj.activePossession);
+            urlUpdates.status = updatesObj.activePossession !== "All" ? updatesObj.activePossession : null;
+        }
+        if (updatesObj.activeTransaction !== undefined) {
+            setActiveTransaction(updatesObj.activeTransaction);
+            urlUpdates.transaction = updatesObj.activeTransaction !== "Buy" ? updatesObj.activeTransaction : null;
+        }
+
+        updateUrl(urlUpdates);
+    };
 
     const filteredProjects = useMemo(() => {
         let sourceProjects = projects;
@@ -47,8 +204,6 @@ export function useProjectFilters(projects, initialCategory = "Residential", res
         }
 
         return sourceProjects.filter(project => {
-            // If project is missing filterData, filter it based on simple category if available or include if loose, 
-            // but strict check is safer. Assuming all have filterData now.
             if (!project.filterData) return false;
 
             // 1. Category Filter
@@ -61,26 +216,21 @@ export function useProjectFilters(projects, initialCategory = "Residential", res
                 }
             }
 
-            // 2. Transaction Filter (Commercial Only) - NEW
+            // 2. Transaction Filter (Commercial Only)
             if (activeCategory === "Commercial") {
-                // If data doesn't specify transactionType, assume it's "Buy"
                 const pTransactions = project.filterData.transactionType || ["Buy"];
                 const normalizedPTransactions = pTransactions.map(t => t.toLowerCase());
                 if (!normalizedPTransactions.includes(activeTransaction.toLowerCase())) return false;
             }
 
-            // 3. Type Filter (Only if not All)
-            // Note: We typically hide Type filter for Commercial, but if user sets it, we enforce it.
-            // Logic: If activeType is set and Project has types, check overlap.
-            // 4. Type Filter (Only if not All)
+            // 3. Type Filter
             if (activeType !== "All") {
                 if (!project.filterData.type || !Array.isArray(project.filterData.type)) return false;
-                // Case-insensitive check
                 const projectTypes = project.filterData.type.map(t => t.toLowerCase());
                 if (!projectTypes.includes(activeType.toLowerCase())) return false;
             }
 
-            // 5. Possession Filter
+            // 4. Possession Filter
             if (activePossession !== "All") {
                 if (!project.filterData.possession) return false;
                 if (project.filterData.possession.toLowerCase() !== activePossession.toLowerCase()) return false;
@@ -88,17 +238,20 @@ export function useProjectFilters(projects, initialCategory = "Residential", res
 
             return true;
         });
-    }, [projects, activeCategory, activeType, activePossession, activeTransaction]);
+    }, [projects, activeCategory, activeType, activePossession, activeTransaction, residentialProjects, commercialProjects]);
 
     return {
         activeCategory,
-        setActiveCategory,
+        setActiveCategory: setCategoryWrapper,
         activeType,
-        setActiveType,
+        setActiveType: setTypeWrapper,
         activePossession,
-        setActivePossession,
+        setActivePossession: setPossessionWrapper,
         activeTransaction,
-        setActiveTransaction,
+        setActiveTransaction: setTransactionWrapper,
+        applyFilters, // New batched update function
+        clearFilters,
+        resetAll,
         filteredProjects,
         FILTER_RESIDENTIAL_TYPES,
         FILTER_COMMERCIAL_TYPES,

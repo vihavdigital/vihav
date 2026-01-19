@@ -26,23 +26,27 @@ function ProjectSectionContent({ projects, residentialProjects, commercialProjec
         FILTER_POSSESSION,
         activeTransaction,
         setActiveTransaction,
-        FILTER_TRANSACTION_OPTIONS
+        FILTER_TRANSACTION_OPTIONS,
+        clearFilters,
+        applyFilters
     } = useProjectFilters(projects, "Residential", residentialProjects, commercialProjects);
 
     const [showFilters, setShowFilters] = useState(false);
 
     // Mobile Floating Toast Logic
     const { scrollY } = useScroll();
-    const [isToastVisible, setIsToastVisible] = useState(true);
+    const [isInCardsView, setIsInCardsView] = useState(false);
+    const cardsRef = useRef(null);
 
     useEffect(() => {
-        return scrollY.onChange((latest) => {
-            const previous = scrollY.getPrevious();
-            // Hide on scroll down, show on scroll up (if active)
-            if (latest > previous && latest > 100) {
-                setIsToastVisible(false);
-            } else {
-                setIsToastVisible(true);
+        return scrollY.onChange(() => {
+            // Check if we are in the cards section
+            if (cardsRef.current) {
+                const rect = cardsRef.current.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                // Visible if top is entering view or bottom hasn't left view completely
+                const isVisible = rect.top < windowHeight - 100 && rect.bottom > 100;
+                setIsInCardsView(isVisible);
             }
         });
     }, [scrollY]);
@@ -91,7 +95,7 @@ function ProjectSectionContent({ projects, residentialProjects, commercialProjec
                                 {["Residential", "Commercial"].map((cat) => (
                                     <button
                                         key={cat}
-                                        onClick={() => { setActiveCategory(cat); setActiveType("All"); setActivePossession("All"); }}
+                                        onClick={() => applyFilters({ activeCategory: cat, activeType: "All", activePossession: "All" })}
                                         className="relative px-6 md:px-8 py-3 md:py-2 rounded-full text-xs md:text-sm uppercase tracking-widest transition-all outline-none whitespace-nowrap"
                                     >
                                         {activeCategory === cat && (
@@ -123,14 +127,7 @@ function ProjectSectionContent({ projects, residentialProjects, commercialProjec
                         <div className="hidden md:flex md:flex-row md:items-center md:justify-end md:gap-4 w-full md:w-auto animate-in fade-in slide-in-from-top-2 md:animate-none">
 
                             {/* Clear Filters Button (Desktop) */}
-                            {(activeType !== "All" || activePossession !== "All" || (activeCategory === "Commercial" && activeTransaction !== "Buy")) && (
-                                <button
-                                    onClick={() => { setActiveType("All"); setActivePossession("All"); setActiveTransaction("Buy"); }}
-                                    className="px-4 py-2 text-xs uppercase tracking-widest text-muted-foreground hover:text-red-400 font-medium transition-colors border border-transparent hover:border-red-400/20 rounded-lg"
-                                >
-                                    Clear Filters
-                                </button>
-                            )}
+
 
                             {/* Transaction Type Filter (Commercial Only) */}
                             {activeCategory === "Commercial" && (
@@ -193,7 +190,7 @@ function ProjectSectionContent({ projects, residentialProjects, commercialProjec
                                 <h3 className="text-xl font-serif text-foreground">Refine</h3>
                                 <div className="flex items-center gap-4">
                                     <button
-                                        onClick={() => { setActiveType("All"); setActivePossession("All"); setActiveTransaction("Buy"); }}
+                                        onClick={clearFilters}
                                         className="text-[10px] uppercase tracking-widest text-muted-foreground hover:text-gold-400 font-medium transition-colors"
                                     >
                                         Clear All
@@ -271,7 +268,7 @@ function ProjectSectionContent({ projects, residentialProjects, commercialProjec
             </AnimatePresence>
 
             {/* 3. Projects Grid (Re-open Container) */}
-            <div className="container mx-auto px-6">
+            <div className="container mx-auto px-6" ref={cardsRef}>
                 <div className="min-h-[400px]">
                     {visibleProjects.length > 0 ? (
                         <motion.div
@@ -300,7 +297,7 @@ function ProjectSectionContent({ projects, residentialProjects, commercialProjec
                             <h3 className="text-xl text-foreground font-serif mb-2">No Projects Found</h3>
                             <p className="text-muted-foreground">Try adjusting your filters to see more results.</p>
                             <button
-                                onClick={() => { setActiveType("All"); setActivePossession("All"); }}
+                                onClick={clearFilters}
                                 className="mt-6 text-gold-400 hover:text-foreground underline underline-offset-4"
                             >
                                 Clear Filters
@@ -309,18 +306,18 @@ function ProjectSectionContent({ projects, residentialProjects, commercialProjec
                     )}
                 </div>
             </div>
-            {/* Mobile Floating Clear Filter Toast */}
+            {/* Floating Clear Filter Toast (Desktop & Mobile) */}
             <AnimatePresence>
-                {!showFilters && isToastVisible && (activeType !== "All" || activePossession !== "All" || (activeCategory === "Commercial" && activeTransaction !== "Buy")) && (
+                {!showFilters && isInCardsView && (activeType !== "All" || activePossession !== "All" || (activeCategory === "Commercial" && activeTransaction !== "Buy")) && (
                     <motion.div
                         initial={{ y: 100, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         exit={{ y: 100, opacity: 0 }}
-                        className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 md:hidden"
+                        className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50"
                     >
                         <button
-                            onClick={() => { setActiveType("All"); setActivePossession("All"); setActiveTransaction("Buy"); }}
-                            className="flex items-center gap-2 px-5 py-3 bg-luxury-black text-gold-400 rounded-full shadow-[0_10px_40px_-10px_rgba(0,0,0,0.8)] border border-gold-400/30 backdrop-blur-md"
+                            onClick={clearFilters}
+                            className="flex items-center gap-2 px-5 py-3 bg-luxury-black text-gold-400 rounded-full shadow-[0_10px_40px_-10px_rgba(0,0,0,0.8)] border border-gold-400/30 backdrop-blur-md hover:bg-luxury-black/90 transition-colors"
                         >
                             <span className="text-xs font-bold uppercase tracking-widest">Clear Filters</span>
                             <div className="w-px h-3 bg-gold-400/30 mx-1" />
