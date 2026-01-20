@@ -14,7 +14,7 @@ const lato = Lato({
 });
 
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
-import CustomCursor from "@/components/ui/CustomCursor";
+// import CustomCursor from "@/components/ui/CustomCursor"; // Removed
 import SmoothScroll from "@/components/layout/SmoothScroll";
 import ChatLoader from "@/components/chat/ChatLoader";
 
@@ -98,7 +98,7 @@ export default function RootLayout({ children }) {
                 className={`${playfair.variable} ${lato.variable} antialiased transition-colors duration-300`}
             >
                 <ThemeProvider>
-                    <CustomCursor />
+                    {/* <CustomCursor /> Removed */}
                     <Preloader />
                     {/* <SmoothScroll /> Removed for native responsiveness */}
                     {/* <ChatLoader /> */}
