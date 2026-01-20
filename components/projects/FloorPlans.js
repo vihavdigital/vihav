@@ -19,7 +19,7 @@ export default function FloorPlans({ plans, onEnquire }) {
                 <div className="flex flex-col lg:flex-row gap-4 lg:gap-12 items-start">
                     {/* Left: Navigation Tabs */}
                     <div className="w-full lg:w-1/3 space-y-4">
-                        <div className="bg-secondary/30 p-4 md:p-8 rounded-2xl border border-border/50">
+                        <div className="bg-secondary p-4 md:p-8 rounded-2xl border border-border">
                             <h3 className="text-xl font-serif text-luxury-black mb-4 md:mb-6">Select Unit Type</h3>
 
                             {/* Mobile: Grid Layout (All Buttons Visible) */}
@@ -28,9 +28,9 @@ export default function FloorPlans({ plans, onEnquire }) {
                                     <button
                                         key={plan.id}
                                         onClick={() => setActiveTab(index)}
-                                        className={`flex flex-col items-center p-3 rounded-xl transition-all duration-300 border relative justify-between ${index === plans.length - 1 ? 'col-span-2' : ''} ${activeTab === index
-                                            ? "bg-gold-400 text-white border-gold-400 shadow-lg shadow-gold-400/20 transform scale-[1.02]"
-                                            : "bg-white text-muted-foreground border-border shadow-sm hover:border-gold-400/50"
+                                        className={`flex flex-col items-center p-3 rounded-xl transition-all duration-200 border-2 relative justify-between ${index === plans.length - 1 ? 'col-span-2' : ''} ${activeTab === index
+                                            ? "bg-gold-400 text-white border-gold-400 border-b-gold-600 border-b-4 translate-y-[1px]"
+                                            : "bg-white text-foreground/80 border-border border-b-4 border-b-gray-200 hover:border-gold-400 hover:border-b-gold-400 active:border-b-0 active:translate-y-1"
                                             }`}
                                     >
                                         <div className="w-full text-center px-2">
@@ -55,16 +55,16 @@ export default function FloorPlans({ plans, onEnquire }) {
                                     <button
                                         key={plan.id}
                                         onClick={() => setActiveTab(index)}
-                                        className={`w-full text-left p-4 rounded-xl transition-all duration-300 flex justify-between items-center group ${activeTab === index
-                                            ? "bg-gold-400 text-white shadow-lg shadow-gold-400/20"
-                                            : "bg-white hover:bg-white/80 text-muted-foreground hover:text-luxury-black border border-transparent hover:border-gold-400/30"
+                                        className={`w-full text-left p-4 rounded-xl transition-all duration-200 flex justify-between items-center group border-2 ${activeTab === index
+                                            ? "bg-gold-400 text-white border-gold-400 border-b-gold-600 border-b-4 shadow-lg translate-y-[1px]"
+                                            : "bg-white hover:bg-white/90 text-foreground/70 hover:text-luxury-black border-border border-b-4 border-b-gray-200 hover:border-gold-400 hover:border-b-gold-400 active:border-b-0 active:translate-y-1"
                                             }`}
                                     >
                                         <div>
-                                            <span className={`block text-xs uppercase tracking-wider mb-1 ${activeTab === index ? "text-white/80" : "text-muted-foreground/70 group-hover:text-gold-400"}`}>
+                                            <span className={`block text-xs uppercase tracking-wider mb-1 font-bold ${activeTab === index ? "text-white/90" : "text-muted-foreground/80 group-hover:text-gold-600"}`}>
                                                 {plan.type}
                                             </span>
-                                            <span className="font-serif text-lg">{plan.title}</span>
+                                            <span className={`font-serif text-lg ${activeTab === index ? "font-medium" : ""}`}>{plan.title}</span>
                                         </div>
                                         {activeTab === index && (
                                             <motion.div layoutId="active-dot" className="w-2 h-2 bg-white rounded-full" />
@@ -76,7 +76,7 @@ export default function FloorPlans({ plans, onEnquire }) {
 
 
                             <button
-                                className="w-full mt-3 hidden lg:flex items-center justify-center gap-2 px-6 py-4 bg-transparent border border-luxury-black text-luxury-black text-xs uppercase tracking-widest rounded-xl hover:bg-luxury-black hover:text-white transition-all duration-300 shadow-sm hover:shadow-lg group"
+                                className="w-full mt-3 hidden lg:flex items-center justify-center gap-2 px-6 py-4 bg-white border-2 border-luxury-black text-luxury-black text-xs uppercase tracking-widest rounded-xl hover:bg-luxury-black hover:text-white transition-all duration-300 shadow-sm hover:shadow-xl group font-bold"
                                 onClick={onEnquire}
                             >
                                 <FileText size={16} />
@@ -93,30 +93,30 @@ export default function FloorPlans({ plans, onEnquire }) {
                             initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.5 }}
-                            className="bg-white border border-border p-2 md:p-6 rounded-2xl relative group cursor-zoom-in shadow-sm hover:shadow-xl transition-shadow duration-500"
+                            className="bg-white border border-border p-2 md:p-6 rounded-2xl relative group cursor-zoom-in shadow-lg hover:shadow-2xl transition-all duration-500"
                             onClick={() => setIsLightboxOpen(true)}
                         >
-                            <div className="relative aspect-[4/3] md:aspect-video w-full bg-secondary/10 rounded-lg overflow-hidden">
+                            <div className="relative aspect-[4/3] md:aspect-video w-full bg-neutral-50 rounded-lg overflow-hidden border border-border/30">
                                 <Image
                                     src={activePlan.image}
                                     alt={activePlan.title}
                                     fill
-                                    className="object-contain p-2 group-hover:scale-105 transition-transform duration-700"
+                                    className="object-contain p-4 group-hover:scale-105 transition-transform duration-700"
                                 />
                                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300 flex items-center justify-center">
-                                    <div className="bg-white/90 backdrop-blur-sm p-4 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 shadow-lg">
-                                        <Maximize2 className="text-luxury-black w-6 h-6" />
+                                    <div className="bg-white/90 backdrop-blur-sm p-4 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 shadow-xl border border-white/50">
+                                        <Maximize2 className="text-gold-500 w-6 h-6" />
                                     </div>
                                 </div>
                             </div>
-                            <p className="text-center text-xs text-muted-foreground uppercase tracking-widest mt-6">Click to Expand</p>
+                            <p className="text-center text-xs text-muted-foreground uppercase tracking-widest mt-6 font-medium group-hover:text-gold-500 transition-colors">Click to Expand</p>
                         </motion.div>
 
                         {/* Mobile Download Button */}
 
 
                         <button
-                            className="w-full mt-3 flex lg:hidden items-center justify-center gap-2 px-6 py-4 bg-transparent border border-luxury-black/20 text-luxury-black text-xs uppercase tracking-widest rounded-xl hover:bg-gold-400/10 transition-all duration-300 shadow-sm group"
+                            className="w-full mt-3 flex lg:hidden items-center justify-center gap-2 px-6 py-4 bg-white border-2 border-luxury-black text-luxury-black text-xs uppercase tracking-widest rounded-xl hover:bg-luxury-black hover:text-white transition-all duration-300 shadow-sm group font-bold"
                             onClick={onEnquire}
                         >
                             <FileText size={16} />

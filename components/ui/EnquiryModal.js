@@ -4,7 +4,26 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import EnquiryForm from "@/components/ui/EnquiryForm";
 
-export default function EnquiryModal({ isOpen, onClose, title = "Enquire Now" }) {
+export default function EnquiryModal({ isOpen, onClose, title = "Enquire Now", layout = "center" }) {
+    const isSidebar = layout === "right-sheet";
+
+    const modalVariants = {
+        center: {
+            initial: { opacity: 0, scale: 0.95, y: 20 },
+            animate: { opacity: 1, scale: 1, y: 0 },
+            exit: { opacity: 0, scale: 0.95, y: 20 },
+            className: "fixed inset-0 m-auto w-full max-w-lg h-fit max-h-[90vh] bg-background border border-border rounded-2xl shadow-2xl z-[70] overflow-hidden flex flex-col"
+        },
+        "right-sheet": {
+            initial: { x: "100%", opacity: 0.5 },
+            animate: { x: 0, opacity: 1 },
+            exit: { x: "100%", opacity: 0.5 },
+            className: "fixed top-0 right-0 h-full w-full max-w-md bg-background border-l border-border shadow-2xl z-[70] flex flex-col rounded-l-2xl"
+        }
+    };
+
+    const currentVariant = modalVariants[isSidebar ? "right-sheet" : "center"];
+
     return (
         <AnimatePresence>
             {isOpen && (
@@ -18,15 +37,16 @@ export default function EnquiryModal({ isOpen, onClose, title = "Enquire Now" })
                         className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[60] cursor-pointer"
                     />
 
-                    {/* Modal */}
+                    {/* Modal/Sheet */}
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.95, y: 20 }}
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                        className="fixed inset-0 m-auto w-full max-w-lg h-fit max-h-[90vh] bg-background border border-border rounded-2xl shadow-2xl z-[70] overflow-hidden flex flex-col"
+                        initial={currentVariant.initial}
+                        animate={currentVariant.animate}
+                        exit={currentVariant.exit}
+                        transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                        className={currentVariant.className}
                     >
                         {/* Header */}
-                        <div className="flex justify-between items-center p-6 border-b border-border">
+                        <div className="flex justify-between items-center p-6 border-b border-border shrink-0">
                             <h3 className="font-serif text-2xl text-foreground">{title}</h3>
                             <button
                                 onClick={onClose}
@@ -37,7 +57,7 @@ export default function EnquiryModal({ isOpen, onClose, title = "Enquire Now" })
                         </div>
 
                         {/* Content */}
-                        <div className="p-6 md:p-8 overflow-y-auto">
+                        <div className="p-6 md:p-8 overflow-y-auto flex-1">
                             <EnquiryForm onSuccess={onClose} variant="standard" />
                         </div>
                     </motion.div>

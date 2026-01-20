@@ -11,7 +11,9 @@ import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import dynamic from "next/dynamic";
 import CollapsibleSection from "@/components/ui/CollapsibleSection";
+import RotatingEnquireButton from "@/components/ui/RotatingEnquireButton";
 import EnquiryModal from "@/components/ui/EnquiryModal";
+import MagneticWrapper from "@/components/ui/MagneticWrapper";
 
 // New Gallery Imports
 import ProjectGallery from "@/components/projects/ProjectGallery";
@@ -131,12 +133,21 @@ export default function ProjectDetailsClient({ project, theme }) {
         }
     };
 
+    const [showFloatingBtn, setShowFloatingBtn] = useState(false);
+    useEffect(() => {
+        const handleScroll = () => {
+            setShowFloatingBtn(window.scrollY > 600);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
     return (
         <div className="relative">
             {/* Sticky Navigation Bar */}
             {/* Sticky Navigation Bar */}
             {/* Sticky Navigation Bar */}
-            <div className={`sticky top-[62px] md:top-[82px] z-40 bg-background/80 backdrop-blur-md border-b border-border transition-all duration-300 py-2`}>
+            <div className={`sticky top-[62px] md:top-[64px] z-40 bg-background/80 backdrop-blur-md border-b border-border transition-all duration-300 py-2`}>
                 <div
                     ref={navContainerRef}
                     className="container mx-auto px-4 md:px-12 overflow-x-auto scrollbar-hide flex items-center justify-start md:justify-center py-2"
@@ -247,20 +258,26 @@ export default function ProjectDetailsClient({ project, theme }) {
                                     </div>
 
                                     <div className="pt-6 flex flex-col gap-3">
-                                        <div className="flex flex-col md:flex-row gap-3">
-                                            <Button
-                                                onClick={() => openModal("Enquire Now")}
-                                                className={`w-full md:flex-1 ${theme.bg} ${theme.hoverBg} text-white font-bold uppercase tracking-widest py-6 border-none text-[10px] md:text-xs`}
-                                            >
-                                                Enquire Now
-                                            </Button>
-                                            <Button
-                                                variant="outline"
-                                                onClick={() => openModal("Download Brochure")}
-                                                className={`w-full md:flex-1 bg-transparent border border-border text-foreground hover:bg-secondary font-bold uppercase tracking-widest py-6 text-[10px] md:text-xs`}
-                                            >
-                                                <FileText className="mr-2" size={14} /> Brochure
-                                            </Button>
+                                        <div className="flex gap-3 w-full">
+                                            <MagneticWrapper className="flex-1">
+                                                <Button
+                                                    magnetic={false}
+                                                    onClick={() => openModal("Enquire Now")}
+                                                    className={`w-full ${theme.bg} ${theme.hoverBg} text-white font-bold uppercase tracking-widest py-6 border-none text-[10px] px-2`}
+                                                >
+                                                    Enquire Now
+                                                </Button>
+                                            </MagneticWrapper>
+                                            <MagneticWrapper className="flex-1">
+                                                <Button
+                                                    variant="outline"
+                                                    magnetic={false}
+                                                    onClick={() => openModal("Download Brochure")}
+                                                    className={`w-full bg-transparent border border-border text-foreground hover:bg-secondary font-bold uppercase tracking-widest py-6 text-[10px] px-2`}
+                                                >
+                                                    <FileText className="mr-1 md:mr-2" size={14} /> Brochure
+                                                </Button>
+                                            </MagneticWrapper>
                                         </div>
 
                                         <div className="bg-secondary/30 rounded-lg p-4 space-y-3 mt-2 border border-border/50">
@@ -464,14 +481,23 @@ export default function ProjectDetailsClient({ project, theme }) {
                 <ConstructionStatus project={project} theme={theme} />
             </section>
 
+            {/* NEW: Rotating Luxury Floating Button */}
+            <RotatingEnquireButton
+                onClick={() => openModal("Enquire Now")}
+                show={showFloatingBtn}
+                theme={theme.name}
+            />
+
             <EnquiryModal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
-                title={modalTitle}
+                title={`${project.title} - ${modalTitle}`}
+                theme={theme.name}
             />
         </div>
     );
 }
+
 
 // Sub-component for Animated Construction Status
 function ConstructionStatus({ project, theme }) {
