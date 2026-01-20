@@ -108,7 +108,7 @@ export default async function ProjectPage({ params }) {
                             />
                         ) : (
                             <Image
-                                src={project.heroImage}
+                                src={project.desktopHeroImage || project.heroImage}
                                 alt={project.title}
                                 fill
                                 priority
