@@ -76,6 +76,8 @@ export default function ProjectCard({ project }) {
                             possession={project.filterData.possession}
                         />
                     )}
+
+
                 </div>
 
                 {/* Content */}

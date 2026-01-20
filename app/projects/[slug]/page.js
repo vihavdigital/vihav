@@ -123,6 +123,7 @@ export default async function ProjectPage({ params }) {
                     <span className={`px-4 py-1 text-[10px] md:text-xs font-bold uppercase tracking-widest w-fit mb-3 ${project.slug === 'keystone-select' ? 'bg-white text-black border border-white' : `${theme.bgLight} text-luxury-black shadow-lg ${theme.shadow}`}`}>
                         {project.slug === 'keystone-select' ? 'The Signature Collection' : 'Selling Fast'}
                     </span>
+
                     <h1 className="text-4xl md:text-7xl font-serif text-white mb-3 md:mb-6 drop-shadow-2xl leading-none">{project.title}</h1>
                     <div className="flex flex-col md:flex-row gap-4 md:gap-8 text-xs md:text-sm uppercase tracking-widest text-gray-300">
                         <div className="flex items-center gap-2">

@@ -77,14 +77,14 @@ function ProjectSectionContent({ projects, residentialProjects, commercialProjec
             </div>
 
             {/* 2. Sticky Filter Bar (Full Width, Outside Container) */}
-            <div className={`sticky top-[58px] md:top-[72px] z-40 transition-all duration-300 w-full ${showFilters ? 'bg-background shadow-xl pb-4' : 'bg-background/95 backdrop-blur-xl py-4 border-y border-border'}`}>
+            <div className={`sticky top-[48px] md:top-[64px] z-40 transition-all duration-300 w-full ${showFilters ? 'bg-background shadow-xl pb-4' : 'bg-background/95 backdrop-blur-xl py-4 border-y border-border'}`}>
                 <div className="container mx-auto px-6">
-                    <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+                    <div className="flex flex-col md:flex-row md:items-center md:relative gap-6">
 
                         {/* Top Row: Tabs + Mobile Toggle */}
-                        <div className="flex items-center justify-between gap-4">
+                        <div className="flex items-center justify-between gap-4 md:w-auto w-full">
                             {/* Category Tabs (Pill Switcher) - Scrollable on mobile */}
-                            <div className="flex bg-secondary p-1 rounded-full border border-border relative overflow-x-auto scrollbar-hide max-w-[calc(100%-50px)] md:max-w-none">
+                            <div className="flex bg-secondary p-1 rounded-full border border-border relative overflow-x-auto scrollbar-hide max-w-[calc(100%-50px)] md:max-w-none mx-auto md:mx-0">
                                 {["All", "Residential", "Commercial"].map((cat) => (
                                     <button
                                         key={cat}
@@ -117,7 +117,7 @@ function ProjectSectionContent({ projects, residentialProjects, commercialProjec
 
                         {/* Collapsible Dropdowns Area */}
                         {/* Mobile: Hidden unless open (Grid layout). Desktop: Always visible (Flex layout) */}
-                        <div className="hidden md:flex md:flex-row md:items-center md:justify-end md:gap-4 w-full md:w-auto animate-in fade-in slide-in-from-top-2 md:animate-none">
+                        <div className="hidden md:flex md:flex-row md:items-center md:justify-end md:gap-4 w-full md:w-auto md:ml-auto animate-in fade-in slide-in-from-top-2 md:animate-none">
 
                             {/* Clear Filters Button (Desktop) */}
 

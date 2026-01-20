@@ -45,7 +45,7 @@ export default function Footer() {
                                 { name: "About Us", link: "/about" },
                                 { name: "Awards", link: "/awards" },
                                 { name: "One Vihav", link: "/onevihav" },
-                                { name: "Careers", link: "/career" },
+                                { name: "Careers", link: "/careers" },
                                 { name: "Contact Us", link: "/contact" }
                             ].map(item => (
                                 <li key={item.name}>

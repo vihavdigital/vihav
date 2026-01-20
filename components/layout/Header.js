@@ -13,6 +13,8 @@ const SearchModal = dynamic(() => import("@/components/ui/SearchModal"));
 
 import { usePathname } from "next/navigation";
 
+import { PROJECTS } from "@/data/projects";
+
 export default function Header() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -20,9 +22,26 @@ export default function Header() {
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const pathname = usePathname();
 
-    const isNiwa = pathname?.includes('keystone-niwa');
-    const isCBD = pathname?.includes('cbd') || pathname?.includes('vihav-cbd');
-    const isRentals = pathname?.includes('rentals');
+    // Determine current logo
+    let logoSrc = "/images/project-images/project-logos/vihav-group-logo.svg";
+    let logoAlt = "Vihav Group";
+
+    if (pathname?.includes('rentals')) {
+        logoSrc = "/images/project-images/other-images/vihav-rentals-logo.png";
+        logoAlt = "Vihav Rentals";
+    } else {
+        // Try to find matching project
+        // We look for a project where the pathname starts with /projects/slug or matches project link
+        const currentProject = PROJECTS.find(p =>
+            pathname === p.link ||
+            (p.slug && pathname?.startsWith(`/projects/${p.slug}`))
+        );
+
+        if (currentProject?.logo) {
+            logoSrc = currentProject.logo;
+            logoAlt = currentProject.title;
+        }
+    }
 
     useEffect(() => {
         const handleScroll = () => {
@@ -70,8 +89,8 @@ export default function Header() {
                         <div className="flex flex-col items-center">
                             {/* Logo with improved sizing for elegance */}
                             <img
-                                src={isNiwa ? "/images/project-images/project-logos/keystone-niwa-logo.svg" : isCBD ? "/images/project-images/project-logos/cbd-logo.svg" : isRentals ? "/images/project-images/other-images/vihav-rentals-logo.png" : "/images/project-images/project-logos/vihav-group-logo.svg"}
-                                alt={isNiwa ? "Keystone Niwa" : isCBD ? "Vihav CBD" : isRentals ? "Vihav Rentals" : "Vihav Group"}
+                                src={logoSrc}
+                                alt={logoAlt}
                                 className={cn(
                                     "w-auto object-contain transition-all duration-500",
                                     isScrolled ? "h-8 md:h-12" : "h-12 md:h-20"
