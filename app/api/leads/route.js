@@ -97,7 +97,7 @@ export async function POST(req) {
         const API_KEY = extractFieldValue('api_key') || 'e90c80d27f7ba2858b7e8d045b1d9f18';
 
         // 6. Send to Sell.do
-        console.log("Sending to Sell.do...", sellDoData.toString());
+
 
         const response = await fetch(`https://app.sell.do/api/leads/create?api_key=${API_KEY}`, {
             method: 'POST',
@@ -108,7 +108,7 @@ export async function POST(req) {
         });
 
         const result = await response.json();
-        console.log("Sell.do Response:", result);
+
 
         // 7. Save to Prisma [DISABLED]
         /*

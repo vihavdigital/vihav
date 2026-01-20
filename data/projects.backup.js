@@ -38,7 +38,7 @@ export const PROJECTS = [
                 id: "fp-1",
                 title: "Typical Floor Plan - 4B2HK",
                 type: "4BHK",
-                image: "https://images.unsplash.com/photo-1590486803833-1c5dc8ce84ac?q=80&w=1000&auto=format&fit=crop", // Placeholder
+                image: "https://images.unsplash.com/photo-1600596542815-27bfef4093a9?q=80&w=1000&auto=format&fit=crop", // Placeholder
                 dimensions: "3120 Sq. Ft."
             },
             {
@@ -82,7 +82,7 @@ export const PROJECTS = [
         constructionImages: [
             "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1000&auto=format&fit=crop",
             "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1000&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1590486803833-1c5dc8ce84ac?q=80&w=1000&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1600596542815-27bfef4093a9?q=80&w=1000&auto=format&fit=crop",
             "https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=1000&auto=format&fit=crop"
         ],
         filterData: {
@@ -116,7 +116,7 @@ export const PROJECTS = [
             "https://images.unsplash.com/photo-1600607687644-c7171b42498f"  // Bathroom
         ],
         constructionImages: [
-            "https://images.unsplash.com/photo-1590486803833-1c5dc8ce84ac?q=80&w=1000&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1600596542815-27bfef4093a9?q=80&w=1000&auto=format&fit=crop",
             "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1000&auto=format&fit=crop",
             "https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=1000&auto=format&fit=crop",
             "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1000&auto=format&fit=crop"

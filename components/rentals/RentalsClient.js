@@ -2,9 +2,16 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import TenantForm from "./TenantForm";
-import OwnerForm from "./OwnerForm";
+import dynamic from "next/dynamic";
 import RentalProjectCard from "./RentalProjectCard";
+
+// Lazy load Heavy Forms
+const TenantForm = dynamic(() => import("./TenantForm"), {
+    loading: () => <div className="h-[400px] w-full bg-gray-50 animate-pulse rounded-lg" />
+});
+const OwnerForm = dynamic(() => import("./OwnerForm"), {
+    loading: () => <div className="h-[400px] w-full bg-gray-50 animate-pulse rounded-lg" />
+});
 import { PROJECTS } from "@/data/projects";
 import { ArrowDown, Building2, Key, Search, ShieldCheck, Star } from "lucide-react";
 
@@ -125,6 +132,47 @@ export default function RentalsClient() {
                 </section>
             )}
 
+            {/* NEW: How it Works Section */}
+            <section className="py-24 bg-white relative overflow-hidden">
+                <div className="container mx-auto px-6 md:px-12 relative z-10">
+                    <div className="text-center max-w-3xl mx-auto mb-20">
+                        <span className="text-gold-600 font-bold tracking-[0.2em] text-xs uppercase block mb-4">
+                            Process
+                        </span>
+                        <h2 className="text-4xl md:text-5xl font-serif text-black mb-6">
+                            How It Works
+                        </h2>
+                        <p className="text-gray-500 text-lg font-light leading-relaxed">
+                            {activeTab === 'rent'
+                                ? "Your journey to a premium lifestyle in 4 simple steps."
+                                : "A streamlined approach to maximizing your asset's value."
+                            }
+                        </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+                        {/* Connecting Line (Desktop) */}
+                        <div className="hidden md:block absolute top-12 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gold-200 to-transparent z-0" />
+
+                        {activeTab === 'rent' ? (
+                            <>
+                                <Step number="01" title="Browse & Shortlist" desc="Explore our curated list of verified premium properties." />
+                                <Step number="02" title="Schedule Visit" desc="Book a private viewing at your convenience." />
+                                <Step number="03" title="Documentation" desc="Hassle-free paperwork and agreement formalities." />
+                                <Step number="04" title="Move In" desc="Receive keys and settle into your new luxury home." isLast />
+                            </>
+                        ) : (
+                            <>
+                                <Step number="01" title="Register Property" desc="Submit property details for our review." />
+                                <Step number="02" title="Verification" desc="Our team conducts a quality and compliance check." />
+                                <Step number="03" title="Tenant Matching" desc="We connect you with verified corporate/premium tenants." />
+                                <Step number="04" title="Lease Management" desc="End-to-end support for agreement and maintenance." isLast />
+                            </>
+                        )}
+                    </div>
+                </div>
+            </section>
+
             {/* Content Section - Light Theme */}
             <section className="py-24 bg-white relative">
                 <div className="container mx-auto px-6 md:px-12 relative z-10">
@@ -206,6 +254,20 @@ function Feature({ icon: Icon, title, desc }) {
                 <h4 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-gold-600 transition-colors">{title}</h4>
                 <p className="text-gray-500 leading-relaxed text-sm">{desc}</p>
             </div>
+        </div>
+    )
+}
+
+function Step({ number, title, desc, isLast }) {
+    return (
+        <div className="relative z-10 flex flex-col items-center text-center group">
+            <div className="w-24 h-24 rounded-full bg-white border border-gray-100 shadow-xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500 relative">
+                <span className="text-3xl font-serif text-gold-400 font-bold group-hover:text-gold-600 transition-colors">{number}</span>
+                {/* Ring Effect */}
+                <div className="absolute inset-0 border border-gold-100 rounded-full scale-110 opacity-0 group-hover:opacity-100 group-hover:scale-125 transition-all duration-500" />
+            </div>
+            <h4 className="text-xl font-bold text-gray-900 mb-3">{title}</h4>
+            <p className="text-gray-500 text-sm leading-relaxed max-w-[200px]">{desc}</p>
         </div>
     )
 }

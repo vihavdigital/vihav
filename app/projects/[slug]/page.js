@@ -90,7 +90,7 @@ export default async function ProjectPage({ params }) {
                                 fill
                                 priority
                                 className="object-cover brightness-90"
-                                sizes="100vw"
+                                sizes="(max-width: 768px) 100vw, 1px"
                             />
                         </div>
                     )}
@@ -113,7 +113,7 @@ export default async function ProjectPage({ params }) {
                                 fill
                                 priority
                                 className="object-cover brightness-90"
-                                sizes="100vw"
+                                sizes="(max-width: 768px) 1px, 100vw"
                             />
                         )}
                     </div>

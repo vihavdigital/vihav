@@ -35,8 +35,6 @@ export async function POST(request) {
         });
 
         const responseText = await response.text();
-        console.log("Upstream API Status:", response.status);
-        console.log("Upstream API Response:", responseText);
 
         if (response.ok) {
             return NextResponse.json({ success: true, message: "Lead submitted successfully" });
