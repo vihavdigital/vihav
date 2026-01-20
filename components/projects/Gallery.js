@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import { X, ZoomIn } from "lucide-react";
 
 export default function Gallery({ images }) {
@@ -29,10 +30,12 @@ export default function Gallery({ images }) {
                             className={`relative group overflow-hidden cursor-pointer ${idx === 0 ? "md:col-span-2 md:row-span-2" : ""}`}
                             onClick={() => setSelectedImage(img)}
                         >
-                            <img
+                            <Image
                                 src={img}
                                 alt={`Gallery ${idx}`}
-                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                fill
+                                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                sizes="(max-width: 768px) 100vw, 33vw"
                             />
                             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
                                 <ZoomIn className="text-white opacity-0 group-hover:opacity-100 transition-opacity transform scale-75 group-hover:scale-100" size={32} />

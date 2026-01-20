@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight, Facebook, Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
@@ -20,10 +21,12 @@ export default function Footer() {
                     {/* Brand & Address */}
                     <div className="col-span-1 md:col-span-4 space-y-8">
                         <Link href="/" className="block">
-                            <img
+                            <Image
                                 src="/images/project-images/project-logos/vihav-group-logo.svg"
                                 alt="Vihav Group"
-                                className="h-24 md:h-48 w-auto object-contain opacity-100"
+                                width={300}
+                                height={150}
+                                className="h-24 md:h-48 w-auto object-contain"
                             />
                         </Link>
                         <div className="space-y-6 text-muted-foreground font-light text-sm leading-relaxed max-w-xs">

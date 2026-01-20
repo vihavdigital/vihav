@@ -77,7 +77,7 @@ function ProjectSectionContent({ projects, residentialProjects, commercialProjec
             </div>
 
             {/* 2. Sticky Filter Bar (Full Width, Outside Container) */}
-            <div className={`sticky top-[48px] md:top-[64px] z-40 transition-all duration-300 w-full ${showFilters ? 'bg-background shadow-xl pb-4' : 'bg-background/95 backdrop-blur-xl py-4 border-y border-border'}`}>
+            <div className={`sticky top-[59px] md:top-[71px] z-40 transition-all duration-300 w-full ${showFilters ? 'bg-background shadow-xl pb-4' : 'bg-background/95 backdrop-blur-xl py-4 border-y border-border'}`}>
                 <div className="container mx-auto px-6">
                     <div className="flex flex-col md:flex-row md:items-center md:relative gap-6">
 

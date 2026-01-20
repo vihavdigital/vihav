@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronRight, ChevronLeft } from "lucide-react";
@@ -68,12 +69,13 @@ export default function Hero() {
                             <track kind="captions" srcLang="en" label="English" />
                         </video>
                     ) : (
-                        <img
+                        <Image
                             src={SLIDES[currentSlide].src}
                             alt="Hero Background"
-                            className="w-full h-full object-cover transform scale-105"
-                            fetchPriority="high"
-                            decoding="async"
+                            fill
+                            priority
+                            className="object-cover transform scale-105"
+                            sizes="100vw"
                         />
                     )}
 

@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const images = [
     {
@@ -42,10 +43,12 @@ export default function VadodaraShowcase() {
                             transition={{ delay: idx * 0.2 }}
                             className="group relative h-80 rounded-xl overflow-hidden border border-border shadow-sm hover:shadow-xl transition-all duration-500"
                         >
-                            <img
+                            <Image
                                 src={img.url}
                                 alt={img.caption}
-                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0"
+                                fill
+                                className="object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0"
+                                sizes="(max-width: 768px) 100vw, 33vw"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-90" />
                             <div className="absolute bottom-6 left-6">

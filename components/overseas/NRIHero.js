@@ -2,6 +2,7 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowDown } from "lucide-react";
+import Image from "next/image";
 
 export default function NRIHero() {
     const containerRef = useRef(null);
@@ -13,10 +14,13 @@ export default function NRIHero() {
         <div ref={containerRef} className="relative h-screen flex items-center justify-center overflow-hidden">
             {/* Background Image / Video */}
             <motion.div style={{ y }} className="absolute inset-0 z-0">
-                <img
+                <Image
                     src="/vdr.webp"
                     alt="Laxmi Vilas Palace Vadodara"
-                    className="w-full h-full object-cover"
+                    fill
+                    priority
+                    className="object-cover"
+                    sizes="100vw"
                 />
                 {/* Maximum Contrast Overlay */}
                 <div className="absolute inset-0 bg-black/60" />

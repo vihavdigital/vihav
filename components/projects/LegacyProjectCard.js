@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -8,10 +9,12 @@ export default function LegacyProjectCard({ project }) {
             <div className="relative overflow-hidden mb-6 aspect-[4/5] object-cover bg-gray-100">
                 {/* Image Scale Effect */}
                 <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-105">
-                    <img
+                    <Image
                         src={project.heroImage}
                         alt={project.title}
-                        className="h-full w-full object-cover transition-all duration-700 grayscale group-hover:grayscale-0"
+                        fill
+                        className="object-cover transition-all duration-700 grayscale group-hover:grayscale-0"
+                        sizes="(max-width: 768px) 100vw, 50vw"
                     />
                 </div>
 

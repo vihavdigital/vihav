@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Search, MapPin, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import SideMenu from "@/components/layout/SideMenu";
@@ -88,14 +89,19 @@ export default function Header() {
                     <Link href="/" className="group absolute left-1/2 -translate-x-1/2 z-50">
                         <div className="flex flex-col items-center">
                             {/* Logo with improved sizing for elegance */}
-                            <img
-                                src={logoSrc}
-                                alt={logoAlt}
-                                className={cn(
-                                    "w-auto object-contain transition-all duration-500",
-                                    isScrolled ? "h-8 md:h-12" : "h-12 md:h-20"
-                                )}
-                            />
+                            <div className={cn(
+                                "relative transition-all duration-500",
+                                isScrolled ? "h-8 md:h-12 w-32 md:w-48" : "h-12 md:h-20 w-48 md:w-64"
+                            )}>
+                                <Image
+                                    src={logoSrc}
+                                    alt={logoAlt}
+                                    fill
+                                    priority
+                                    className="object-contain"
+                                    sizes="(max-width: 768px) 128px, 192px"
+                                />
+                            </div>
                         </div>
                     </Link>
 

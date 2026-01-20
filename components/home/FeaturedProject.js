@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import MagneticWrapper from "@/components/ui/MagneticWrapper";
 import { ArrowUpRight, MapPin } from "lucide-react";
 
@@ -32,10 +33,12 @@ export default function FeaturedProject() {
                 style={{ y }}
                 className="absolute inset-0 z-0 h-[120%] -top-[10%]"
             >
-                <img
+                <Image
                     src={featured.image}
                     alt="Keystone Select"
-                    className="w-full h-full object-cover"
+                    fill
+                    className="object-cover"
+                    sizes="100vw"
                 />
                 <div className="absolute inset-0 bg-black/40" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />

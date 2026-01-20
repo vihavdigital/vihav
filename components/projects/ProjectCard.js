@@ -6,6 +6,7 @@ import { ArrowUpRight, Maximize } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { usePathname } from "next/navigation";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import MagneticWrapper from "@/components/ui/MagneticWrapper";
 
 const EnquiryModal = dynamic(() => import("@/components/ui/EnquiryModal"));
@@ -58,10 +59,15 @@ export default function ProjectCard({ project }) {
                 {/* Image Container */}
                 <div className="block relative aspect-[4/3] overflow-hidden">
                     <div className="absolute inset-0 bg-secondary animate-pulse group-hover:animate-none transition-colors" />
-                    <div
-                        className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 group-hover:brightness-[0.8] transition-all"
-                        style={{ backgroundImage: `url(${project.heroImage || 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=1000&auto=format&fit=crop'})` }}
-                    />
+                    <div className="absolute inset-0">
+                        <Image
+                            src={project.heroImage || 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=1000&auto=format&fit=crop'}
+                            alt={project.title}
+                            fill
+                            className="object-cover transition-transform duration-700 group-hover:scale-110 group-hover:brightness-[0.8]"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
+                    </div>
 
                     <div className="absolute top-4 right-4 z-20 pointer-events-none">
                         <Button size="icon" variant="outline" className="rounded-full bg-black/20 backdrop-blur-sm border-white/20 text-white group-hover:bg-gold-400 group-hover:border-gold-400 group-hover:text-black transition-colors">

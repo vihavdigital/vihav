@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { ArrowRight } from "lucide-react";
 
@@ -22,7 +23,13 @@ export default function CategoryShowcase({ title, subtitle, description, image, 
             {/* Parallax Background Image */}
             <div className="absolute inset-0 z-0">
                 <motion.div style={{ y }} className="w-full h-[120%] relative -top-[10%]">
-                    <img src={image} alt={title} className="w-full h-full object-cover brightness-[0.6]" />
+                    <Image
+                        src={image}
+                        alt={title}
+                        fill
+                        className="object-cover brightness-[0.6]"
+                        sizes="100vw"
+                    />
                 </motion.div>
                 <div className="absolute inset-0 bg-gradient-to-t from-luxury-black via-transparent to-black/20" />
             </div>
