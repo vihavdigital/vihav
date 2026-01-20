@@ -1,17 +1,16 @@
 "use client";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button"; // Check if this exists, or use standard button
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight, CheckCircle2, ChevronDown } from "lucide-react";
 
 export default function TenantForm({ theme }) {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
         phone: "",
-        requirement: "2BHK",
-        location: "",
-        budget: "",
-        moveInDate: "",
+        requirement: "Bunglow",
+        preferredProject: "",
+        area: "",
         message: ""
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -51,108 +50,120 @@ export default function TenantForm({ theme }) {
     }
 
     return (
-        <form onSubmit={handleSubmit} className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
-            <div className="grid md:grid-cols-2 gap-6 w-full">
+        <form onSubmit={handleSubmit} className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+            <div className="grid md:grid-cols-2 gap-8 w-full">
                 {/* Personal Details */}
                 <div className="space-y-6">
-                    <div className="relative group">
+                    <div>
+                        <label className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 block ml-1">Name</label>
                         <input
                             type="text"
                             name="name"
                             required
-                            placeholder="YOUR NAME"
+                            placeholder="Your full name"
                             value={formData.name}
                             onChange={handleChange}
-                            className="w-full bg-transparent border-b border-gray-300 py-4 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-gold-500 transition-all font-serif text-lg tracking-wide"
+                            className="w-full bg-gray-50/50 border border-gray-200 focus:border-gold-500 focus:bg-white focus:ring-1 focus:ring-gold-500/20 rounded-xl px-4 py-4 text-gray-900 placeholder:text-gray-400 transition-all duration-300 font-serif text-lg outline-none"
                         />
                     </div>
-                    <div className="relative group">
+                    <div>
+                        <label className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 block ml-1">Email</label>
                         <input
                             type="email"
                             name="email"
                             required
-                            placeholder="EMAIL ADDRESS"
+                            placeholder="Email address"
                             value={formData.email}
                             onChange={handleChange}
-                            className="w-full bg-transparent border-b border-gray-300 py-4 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-gold-500 transition-all font-serif text-lg tracking-wide"
+                            className="w-full bg-gray-50/50 border border-gray-200 focus:border-gold-500 focus:bg-white focus:ring-1 focus:ring-gold-500/20 rounded-xl px-4 py-4 text-gray-900 placeholder:text-gray-400 transition-all duration-300 font-serif text-lg outline-none"
                         />
                     </div>
-                    <div className="relative group">
+                    <div>
+                        <label className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 block ml-1">Mobile</label>
                         <input
                             type="tel"
                             name="phone"
                             required
-                            placeholder="PHONE NUMBER"
+                            placeholder="10-digit mobile number"
                             value={formData.phone}
                             onChange={handleChange}
-                            className="w-full bg-transparent border-b border-gray-300 py-4 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-gold-500 transition-all font-serif text-lg tracking-wide"
+                            className="w-full bg-gray-50/50 border border-gray-200 focus:border-gold-500 focus:bg-white focus:ring-1 focus:ring-gold-500/20 rounded-xl px-4 py-4 text-gray-900 placeholder:text-gray-400 transition-all duration-300 font-serif text-lg outline-none"
                         />
                     </div>
                 </div>
 
                 {/* Requirement Details */}
                 <div className="space-y-6">
-                    <div className="relative group">
+                    <div className="relative">
+                        <label className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 block ml-1">Requirement</label>
                         <select
                             name="requirement"
                             value={formData.requirement}
                             onChange={handleChange}
-                            className="w-full bg-transparent border-b border-gray-300 py-4 text-gray-900 focus:outline-none focus:border-gold-500 transition-all font-serif text-lg tracking-wide appearance-none"
+                            className="w-full bg-gray-50/50 border border-gray-200 focus:border-gold-500 focus:bg-white focus:ring-1 focus:ring-gold-500/20 rounded-xl px-4 py-4 text-gray-900 transition-all duration-300 font-serif text-lg outline-none appearance-none cursor-pointer"
                         >
-                            <option value="1BHK" className="bg-white text-gray-900">1 BHK Apartment</option>
-                            <option value="2BHK" className="bg-white text-gray-900">2 BHK Apartment</option>
-                            <option value="3BHK" className="bg-white text-gray-900">3 BHK Apartment</option>
-                            <option value="4BHK+" className="bg-white text-gray-900">4 BHK+ / Penthouse</option>
-                            <option value="Villa" className="bg-white text-gray-900">Villa / Bungalow</option>
-                            <option value="Commercial" className="bg-white text-gray-900">Commercial Space</option>
+                            <option value="Bunglow" className="bg-white text-gray-900">Bunglow</option>
+                            <option value="Apartments" className="bg-white text-gray-900">Apartments</option>
+                            <option value="3BHK" className="bg-white text-gray-900">3BHK</option>
+                            <option value="4BHK" className="bg-white text-gray-900">4BHK</option>
+                            <option value="5BHK" className="bg-white text-gray-900">5BHK</option>
+                            <option value="Penthouse" className="bg-white text-gray-900">Penthouse</option>
+                            <option value="Shops" className="bg-white text-gray-900">Shops</option>
+                            <option value="Showrooms" className="bg-white text-gray-900">Showrooms</option>
+                            <option value="Offices" className="bg-white text-gray-900">Offices</option>
                         </select>
-                        <span className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400 text-xs uppercase tracking-widest">Type</span>
+                        <div className="absolute right-4 top-[3.25rem] pointer-events-none text-gray-400">
+                            <ChevronDown size={18} />
+                        </div>
                     </div>
 
-                    <div className="relative group">
+                    <div>
+                        <label className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 block ml-1">Preferred Project</label>
                         <input
                             type="text"
-                            name="location"
-                            placeholder="PREFERRED LOCATION (Optional)"
-                            value={formData.location}
+                            name="preferredProject"
+                            placeholder="e.g. Vihav Skyone (Optional)"
+                            value={formData.preferredProject}
                             onChange={handleChange}
-                            className="w-full bg-transparent border-b border-gray-300 py-4 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-gold-500 transition-all font-serif text-lg tracking-wide"
+                            className="w-full bg-gray-50/50 border border-gray-200 focus:border-gold-500 focus:bg-white focus:ring-1 focus:ring-gold-500/20 rounded-xl px-4 py-4 text-gray-900 placeholder:text-gray-400 transition-all duration-300 font-serif text-lg outline-none"
                         />
                     </div>
-                    <div className="relative group">
+                    <div>
+                        <label className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 block ml-1">Preferred Area</label>
                         <input
                             type="text"
-                            name="budget"
-                            placeholder="BUDGET RANGE (e.g. 25k - 40k)"
-                            value={formData.budget}
+                            name="area"
+                            placeholder="e.g. Vasna-Bhayli (Optional)"
+                            value={formData.area}
                             onChange={handleChange}
-                            className="w-full bg-transparent border-b border-gray-300 py-4 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-gold-500 transition-all font-serif text-lg tracking-wide"
+                            className="w-full bg-gray-50/50 border border-gray-200 focus:border-gold-500 focus:bg-white focus:ring-1 focus:ring-gold-500/20 rounded-xl px-4 py-4 text-gray-900 placeholder:text-gray-400 transition-all duration-300 font-serif text-lg outline-none"
                         />
                     </div>
                 </div>
             </div>
 
-            <div className="relative group pt-4">
+            <div className="pt-4">
+                <label className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 block ml-1">Message</label>
                 <textarea
                     name="message"
                     rows="3"
-                    placeholder="ADDITIONAL REQUIREMENTS OR SPECIFIC PREFERENCES..."
+                    placeholder="Any specific requirements..."
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full bg-transparent border-b border-gray-300 py-4 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-gold-500 transition-all font-serif text-lg tracking-wide resize-none"
+                    className="w-full bg-gray-50/50 border border-gray-200 focus:border-gold-500 focus:bg-white focus:ring-1 focus:ring-gold-500/20 rounded-xl px-4 py-4 text-gray-900 placeholder:text-gray-400 transition-all duration-300 font-serif text-lg outline-none resize-none"
                 />
             </div>
 
-            <div className="pt-8 flex justify-end">
+            <div className="pt-4">
                 <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="bg-gold-500 hover:bg-gold-600 text-black font-bold uppercase tracking-widest px-8 py-6 rounded-none min-w-[200px] shadow-lg"
+                    className="w-full bg-luxury-black hover:bg-gold-500 hover:text-black text-white font-bold uppercase tracking-widest py-6 rounded-xl shadow-lg transition-all duration-300"
                 >
                     {isSubmitting ? (
-                        <span className="animate-pulse">Processing...</span>
+                        <span className="animate-pulse">Processing Request...</span>
                     ) : (
-                        <span className="flex items-center gap-2">Find My Home <ArrowRight size={18} /></span>
+                        <span className="flex items-center justify-center gap-2">Send Request <ArrowRight size={18} /></span>
                     )}
                 </Button>
             </div>

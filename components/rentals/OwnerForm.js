@@ -8,11 +8,9 @@ export default function OwnerForm({ theme }) {
         name: "",
         email: "",
         phone: "",
-        propertyType: "Residential",
-        propertyName: "", // Project name
-        configuration: "",
-        expectedRent: "",
-        details: ""
+        project: "",
+        unitNumber: "",
+        expectedRent: ""
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
@@ -51,128 +49,106 @@ export default function OwnerForm({ theme }) {
     }
 
     return (
-        <form onSubmit={handleSubmit} className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">
-            <div className="bg-blue-50 border border-blue-100 p-4 rounded mb-6">
-                <p className="text-sm text-gray-600 text-center">
-                    <span className="text-blue-600 font-bold">Note:</span> We only accept listings for premium properties in verified Vihav data or key prime locations.
-                </p>
-            </div>
+        <form onSubmit={handleSubmit} className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">
 
-            <div className="grid md:grid-cols-2 gap-6 w-full">
+
+            <div className="grid md:grid-cols-2 gap-8 w-full">
                 {/* Personal Details */}
                 <div className="space-y-6">
-                    <h4 className="text-xs uppercase tracking-widest text-gray-500 font-bold mb-4">Owner Details</h4>
-                    <div className="relative group">
+                    <h4 className="text-xs uppercase tracking-widest text-gold-600 font-bold border-b border-gray-100 pb-2 mb-6">Owner Details</h4>
+                    <div>
+                        <label className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 block ml-1">Name</label>
                         <input
                             type="text"
                             name="name"
                             required
-                            placeholder="YOUR NAME"
+                            placeholder="Your full name"
                             value={formData.name}
                             onChange={handleChange}
-                            className="w-full bg-transparent border-b border-gray-300 py-4 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-gold-500 transition-all font-serif text-lg tracking-wide"
+                            className="w-full bg-gray-50/50 border border-gray-200 focus:border-gold-500 focus:bg-white focus:ring-1 focus:ring-gold-500/20 rounded-xl px-4 py-4 text-gray-900 placeholder:text-gray-400 transition-all duration-300 font-serif text-lg outline-none"
                         />
                     </div>
-                    <div className="relative group">
+                    <div>
+                        <label className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 block ml-1">Email</label>
                         <input
                             type="email"
                             name="email"
                             required
-                            placeholder="EMAIL ADDRESS"
+                            placeholder="Email address"
                             value={formData.email}
                             onChange={handleChange}
-                            className="w-full bg-transparent border-b border-gray-300 py-4 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-gold-500 transition-all font-serif text-lg tracking-wide"
+                            className="w-full bg-gray-50/50 border border-gray-200 focus:border-gold-500 focus:bg-white focus:ring-1 focus:ring-gold-500/20 rounded-xl px-4 py-4 text-gray-900 placeholder:text-gray-400 transition-all duration-300 font-serif text-lg outline-none"
                         />
                     </div>
-                    <div className="relative group">
+                    <div>
+                        <label className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 block ml-1">Mobile</label>
                         <input
                             type="tel"
                             name="phone"
                             required
-                            placeholder="PHONE NUMBER"
+                            placeholder="10-digit mobile number"
                             value={formData.phone}
                             onChange={handleChange}
-                            className="w-full bg-transparent border-b border-gray-300 py-4 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-gold-500 transition-all font-serif text-lg tracking-wide"
+                            className="w-full bg-gray-50/50 border border-gray-200 focus:border-gold-500 focus:bg-white focus:ring-1 focus:ring-gold-500/20 rounded-xl px-4 py-4 text-gray-900 placeholder:text-gray-400 transition-all duration-300 font-serif text-lg outline-none"
                         />
                     </div>
                 </div>
 
                 {/* Property Details */}
                 <div className="space-y-6">
-                    <h4 className="text-xs uppercase tracking-widest text-gray-500 font-bold mb-4">Property Data</h4>
-                    <div className="relative group">
-                        <select
-                            name="propertyType"
-                            value={formData.propertyType}
-                            onChange={handleChange}
-                            className="w-full bg-transparent border-b border-gray-300 py-4 text-gray-900 focus:outline-none focus:border-gold-500 transition-all font-serif text-lg tracking-wide appearance-none"
-                        >
-                            <option value="Residential" className="bg-white text-gray-900">Residential</option>
-                            <option value="Commercial" className="bg-white text-gray-900">Commercial Space</option>
-                            <option value="Plot" className="bg-white text-gray-900">Land / Plot</option>
-                        </select>
-                        <span className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400 text-xs uppercase tracking-widest">Type</span>
-                    </div>
+                    <h4 className="text-xs uppercase tracking-widest text-gold-600 font-bold border-b border-gray-100 pb-2 mb-6">Property Data</h4>
 
-                    <div className="relative group">
+                    <div>
+                        <label className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 block ml-1">Project Name</label>
                         <input
                             type="text"
-                            name="propertyName"
+                            name="project"
                             required
-                            placeholder="PROJECT / BUILDING NAME"
-                            value={formData.propertyName}
+                            placeholder="e.g. Vihav Skyones"
+                            value={formData.project}
                             onChange={handleChange}
-                            className="w-full bg-transparent border-b border-gray-300 py-4 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-gold-500 transition-all font-serif text-lg tracking-wide"
+                            className="w-full bg-gray-50/50 border border-gray-200 focus:border-gold-500 focus:bg-white focus:ring-1 focus:ring-gold-500/20 rounded-xl px-4 py-4 text-gray-900 placeholder:text-gray-400 transition-all duration-300 font-serif text-lg outline-none"
                         />
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4">
-                        <div className="relative group">
+                    <div className="grid grid-cols-2 gap-6">
+                        <div>
+                            <label className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 block ml-1">Unit No.</label>
                             <input
                                 type="text"
-                                name="configuration"
-                                placeholder="CONFIG (e.g. 3BHK)"
-                                value={formData.configuration}
+                                name="unitNumber"
+                                required
+                                placeholder="e.g. A-402"
+                                value={formData.unitNumber}
                                 onChange={handleChange}
-                                className="w-full bg-transparent border-b border-gray-300 py-4 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-gold-500 transition-all font-serif text-lg tracking-wide"
+                                className="w-full bg-gray-50/50 border border-gray-200 focus:border-gold-500 focus:bg-white focus:ring-1 focus:ring-gold-500/20 rounded-xl px-4 py-4 text-gray-900 placeholder:text-gray-400 transition-all duration-300 font-serif text-lg outline-none"
                             />
                         </div>
-                        <div className="relative group">
+                        <div>
+                            <label className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 block ml-1">Expected Rent</label>
                             <input
                                 type="text"
                                 name="expectedRent"
-                                placeholder="EXPECTED RENT"
+                                placeholder="₹ / Month"
                                 value={formData.expectedRent}
                                 onChange={handleChange}
-                                className="w-full bg-transparent border-b border-gray-300 py-4 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-gold-500 transition-all font-serif text-lg tracking-wide"
+                                className="w-full bg-gray-50/50 border border-gray-200 focus:border-gold-500 focus:bg-white focus:ring-1 focus:ring-gold-500/20 rounded-xl px-4 py-4 text-gray-900 placeholder:text-gray-400 transition-all duration-300 font-serif text-lg outline-none"
                             />
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div className="relative group pt-4">
-                <textarea
-                    name="details"
-                    rows="3"
-                    placeholder="ADDITIONAL DETAILS (Furnishing status, floor no, etc.)"
-                    value={formData.details}
-                    onChange={handleChange}
-                    className="w-full bg-transparent border-b border-gray-300 py-4 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-gold-500 transition-all font-serif text-lg tracking-wide resize-none"
-                />
-            </div>
-
-            <div className="pt-8 flex justify-end">
+            <div className="pt-4">
                 <Button
                     type="submit"
-                    variant="outline"
                     disabled={isSubmitting}
-                    className="bg-transparent border border-black hover:bg-black hover:text-white text-black font-bold uppercase tracking-widest px-8 py-6 rounded-none min-w-[200px]"
+                    className="w-full bg-luxury-black hover:bg-gold-500 hover:text-black text-white font-bold uppercase tracking-widest py-6 rounded-xl shadow-lg transition-all duration-300"
                 >
                     {isSubmitting ? (
-                        <span className="animate-pulse">Submitting...</span>
+                        <span className="animate-pulse">Processing...</span>
                     ) : (
-                        <span className="flex items-center gap-2">Submit Listing <ArrowRight size={18} /></span>
+                        <span className="flex items-center justify-center gap-2">Submit Listing <ArrowRight size={18} /></span>
                     )}
                 </Button>
             </div>

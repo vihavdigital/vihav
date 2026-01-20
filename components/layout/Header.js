@@ -22,6 +22,7 @@ export default function Header() {
 
     const isNiwa = pathname?.includes('keystone-niwa');
     const isCBD = pathname?.includes('cbd') || pathname?.includes('vihav-cbd');
+    const isRentals = pathname?.includes('rentals');
 
     useEffect(() => {
         const handleScroll = () => {
@@ -69,8 +70,8 @@ export default function Header() {
                         <div className="flex flex-col items-center">
                             {/* Logo with improved sizing for elegance */}
                             <img
-                                src={isNiwa ? "/images/project-images/project-logos/keystone-niwa-logo.svg" : isCBD ? "/images/project-images/project-logos/cbd-logo.svg" : "/images/project-images/project-logos/vihav-group-logo.svg"}
-                                alt={isNiwa ? "Keystone Niwa" : isCBD ? "Vihav CBD" : "Vihav Group"}
+                                src={isNiwa ? "/images/project-images/project-logos/keystone-niwa-logo.svg" : isCBD ? "/images/project-images/project-logos/cbd-logo.svg" : isRentals ? "/images/project-images/other-images/vihav-rentals-logo.png" : "/images/project-images/project-logos/vihav-group-logo.svg"}
+                                alt={isNiwa ? "Keystone Niwa" : isCBD ? "Vihav CBD" : isRentals ? "Vihav Rentals" : "Vihav Group"}
                                 className={cn(
                                     "w-auto object-contain transition-all duration-500",
                                     isScrolled ? "h-8 md:h-12" : "h-12 md:h-20"

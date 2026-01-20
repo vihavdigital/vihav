@@ -3,271 +3,371 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import dynamic from "next/dynamic";
+import { ArrowRight, CheckCircle2, ChevronRight, Home, Key, ShieldCheck, Building2, Star, Search, CalendarCheck, FileText, BadgeCheck, Phone, Mail } from "lucide-react";
 import RentalProjectCard from "./RentalProjectCard";
+import { PROJECTS } from "@/data/projects";
 
-// Lazy load Heavy Forms
+// Lazy load Forms
 const TenantForm = dynamic(() => import("./TenantForm"), {
-    loading: () => <div className="h-[400px] w-full bg-gray-50 animate-pulse rounded-lg" />
+    loading: () => <div className="h-[400px] w-full bg-gray-50/50 animate-pulse rounded-xl" />
 });
 const OwnerForm = dynamic(() => import("./OwnerForm"), {
-    loading: () => <div className="h-[400px] w-full bg-gray-50 animate-pulse rounded-lg" />
+    loading: () => <div className="h-[400px] w-full bg-gray-50/50 animate-pulse rounded-xl" />
 });
-import { PROJECTS } from "@/data/projects";
-import { ArrowDown, Building2, Key, Search, ShieldCheck, Star } from "lucide-react";
 
 export default function RentalsClient() {
-    const [activeTab, setActiveTab] = useState("rent"); // 'rent' | 'list'
+    // State
+    const [userType, setUserType] = useState("tenant"); // 'tenant' | 'owner'
 
-    // Filter verified projects for rentals
+    const [filterCategory, setFilterCategory] = useState("Commercial");
+
+    // Filter verified projects for rentals (Featured section at bottom)
+    // Expanded list to include potential residential matches if available in data, 
+    // otherwise specific IDs are used.
+    // Logic: 'RESI-COMM' appears in both.
     const featuredProjects = PROJECTS.filter(p => ['wealth-square', 'vtc', 'skyone'].includes(p.id));
 
+    const filteredProjects = featuredProjects.filter(project => {
+        if (project.category === "RESI-COMM") return true;
+        return project.category === filterCategory;
+    });
+
     return (
-        <div className="min-h-screen bg-white text-black selection:bg-gold-500/30 font-sans">
-            {/* Hero Section with Split Background Concept */}
-            <section className="relative min-h-[85vh] flex flex-col pt-32 pb-20 overflow-hidden">
+        <div className="min-h-screen bg-[#FDFBF7] selection:bg-gold-500/30 text-luxury-black font-sans">
 
-                {/* Dynamic Background */}
-                <div className="absolute inset-0 z-0">
-                    <AnimatePresence mode="wait">
-                        <motion.div
-                            key={activeTab}
-                            initial={{ opacity: 0, scale: 1.1 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 1.5, ease: "easeOut" }}
-                            className="absolute inset-0"
-                        >
-                            <Image
-                                src={activeTab === 'rent'
-                                    ? "/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (1).webp"
-                                    : "/images/project-images/project-tiles/vihav-cbd.jpg"
-                                }
-                                alt="Luxury Real Estate"
-                                fill
-                                className="object-cover"
-                            />
-                            {/* Gradient Overlay for better text contrast - kept dark for Hero readability */}
-                            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
-                            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-transparent" />
-                        </motion.div>
-                    </AnimatePresence>
+            {/* --- TOP HEADER --- */}
+            <div className="bg-luxury-black text-white pt-48 pb-32 relative overflow-hidden">
+                <div className="absolute inset-0 opacity-20">
+                    <Image
+                        src="/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (1).webp"
+                        alt="Background"
+                        fill
+                        className="object-cover grayscale"
+                    />
                 </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-luxury-black via-luxury-black/80 to-transparent" />
 
-                <div className="container mx-auto px-6 md:px-12 relative z-10 flex flex-col items-start justify-center flex-grow">
+                <div className="container mx-auto px-6 md:px-12 relative z-10 text-center">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.7 }}
+                        className="flex flex-col items-center"
+                    >
+                        <h1 className="text-4xl md:text-6xl font-serif mb-6 leading-tight">
+                            Exclusive Platform for <br className="hidden md:block" /> Vihav Properties
+                        </h1>
+                        <p className="text-white/60 text-lg md:text-xl font-light max-w-2xl mx-auto">
+                            The official concierge service for verified Vihav homeowners and discerning tenants.
+                        </p>
+                    </motion.div>
+                </div>
+            </div>
 
-                    {/* Toggle Switch */}
-                    <div className="flex p-1 bg-white/20 backdrop-blur-md border border-white/30 rounded-full mb-12 self-start shadow-lg">
-                        <button
-                            onClick={() => setActiveTab("rent")}
-                            className={`px-8 py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-500 ${activeTab === "rent" ? "bg-white text-black shadow-lg" : "text-white hover:bg-white/10"
-                                }`}
-                        >
-                            Find a Home
-                        </button>
-                        <button
-                            onClick={() => setActiveTab("list")}
-                            className={`px-8 py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-500 ${activeTab === "list" ? "bg-gold-500 text-black shadow-lg" : "text-white hover:bg-white/10"
-                                }`}
-                        >
-                            List Your Property
-                        </button>
+            <div className="container mx-auto px-6 md:px-12 -mt-8 relative z-20 pb-24">
+                <div className="flex flex-col lg:flex-row gap-8 items-start">
+
+                    {/* --- LEFT SIDEBAR (Navigation & Context) --- */}
+                    <div className="w-full lg:w-1/3 lg:sticky lg:top-32 space-y-8">
+
+                        {/* Selector Switch Cards */}
+                        <div className="bg-white p-2 rounded-2xl shadow-xl shadow-black/5 border border-gray-100">
+                            <button
+                                onClick={() => setUserType("tenant")}
+                                className={`w-full text-left p-4 rounded-xl transition-all duration-300 group ${userType === "tenant"
+                                    ? "bg-luxury-black text-white px-6"
+                                    : "hover:bg-gray-50 text-gray-400 hover:text-gray-900"
+                                    }`}
+                            >
+                                <div className="flex justify-between items-center">
+                                    <div>
+                                        <h3 className={`font-serif text-xl ${userType === 'tenant' ? 'text-white' : 'text-gray-900'}`}>Property on Rent</h3>
+                                        <p className={`text-xs mt-1 ${userType === 'tenant' ? 'text-gray-400' : 'text-gray-500'}`}>For Tenants</p>
+                                    </div>
+                                    <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${userType === 'tenant' ? 'bg-gold-500 text-black' : 'bg-gray-100 text-gray-400 opacity-0 group-hover:opacity-100'
+                                        }`}>
+                                        <CheckCircle2 size={16} />
+                                    </div>
+                                </div>
+                            </button>
+
+                            <div className="h-px bg-gray-100 my-1 mx-4" />
+
+                            <button
+                                onClick={() => setUserType("owner")}
+                                className={`w-full text-left p-4 rounded-xl transition-all duration-300 group ${userType === "owner"
+                                    ? "bg-luxury-black text-white px-6"
+                                    : "hover:bg-gray-50 text-gray-400 hover:text-gray-900"
+                                    }`}
+                            >
+                                <div className="flex justify-between items-center">
+                                    <div>
+                                        <h3 className={`font-serif text-xl ${userType === 'owner' ? 'text-white' : 'text-gray-900'}`}>Post property for rental</h3>
+                                        <p className={`text-xs mt-1 ${userType === 'owner' ? 'text-gray-400' : 'text-gray-500'}`}>For Owners</p>
+                                    </div>
+                                    <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${userType === 'owner' ? 'bg-gold-500 text-black' : 'bg-gray-100 text-gray-400 opacity-0 group-hover:opacity-100'
+                                        }`}>
+                                        <CheckCircle2 size={16} />
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
+
+                        {/* Process / Why Us Section */}
+                        <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hidden lg:block">
+                            <h4 className="text-xs font-bold uppercase tracking-widest text-gold-600 mb-6">
+                                {userType === 'tenant' ? 'The Vihav Experience' : 'Asset Management'}
+                            </h4>
+
+                            <div className="space-y-6">
+                                <AnimatePresence mode="wait">
+                                    {userType === 'tenant' ? (
+                                        <motion.div
+                                            key="tenant-features"
+                                            initial={{ opacity: 0, x: -10 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            exit={{ opacity: 0, x: 10 }}
+                                            className="space-y-6"
+                                        >
+                                            <FeatureRow icon={ShieldCheck} title="Verified Listings" desc="Direct from Vihav homeowners." />
+                                            <FeatureRow icon={Key} title="Quick Move-in" desc="Seamless documentation support." />
+                                            <FeatureRow icon={Star} title="Premium Lifecycle" desc="Access to lifestyle amenities." />
+                                        </motion.div>
+                                    ) : (
+                                        <motion.div
+                                            key="owner-features"
+                                            initial={{ opacity: 0, x: -10 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            exit={{ opacity: 0, x: 10 }}
+                                            className="space-y-6"
+                                        >
+                                            <FeatureRow icon={ShieldCheck} title="Verified Tenants" desc="Corporate & premium background checks." />
+                                            <FeatureRow icon={Building2} title="Zero Hassle" desc="We handle viewings and queries." />
+                                            <FeatureRow icon={Home} title="Asset Care" desc="Maintenance support for your unit." />
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </div>
+                        </div>
+
                     </div>
 
-                    <div className="max-w-3xl space-y-8">
-                        <AnimatePresence mode="wait">
-                            <motion.div
-                                key={activeTab}
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -20 }}
-                                transition={{ duration: 0.5 }}
-                            >
-                                <div className="flex items-center gap-4 mb-6">
-                                    <div className="h-[1px] w-12 bg-gold-400" />
-                                    <span className="text-gold-400 font-bold tracking-[0.3em] text-xs uppercase shadow-black/50 drop-shadow-md">
-                                        {activeTab === 'rent' ? "Premium Residential Leasing" : "Asset Management Partner"}
-                                    </span>
-                                </div>
+                    {/* --- RIGHT CONTENT (Active Form) --- */}
+                    <div className="w-full lg:w-2/3">
+                        <motion.div
+                            id="rental-inquiry-form"
+                            key={userType}
+                            initial={{ opacity: 0, scale: 0.98 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.4 }}
+                            className="bg-white rounded-3xl p-8 md:p-12 shadow-2xl shadow-black/5 border border-gray-100 relative overflow-hidden"
+                        >
+                            {/* Decorative Elements */}
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-gold-400/10 rounded-bl-full -mr-16 -mt-16 pointer-events-none" />
 
-                                <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif text-white leading-[1.1] mb-8 drop-shadow-lg">
-                                    {activeTab === 'rent'
-                                        ? <>Curated Living <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-200 to-gold-400">Experiences.</span></>
-                                        : <>Maximize Your <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-200 to-gold-400">Investment.</span></>
-                                    }
-                                </h1>
-                                <p className="text-lg md:text-xl text-white/90 max-w-xl leading-relaxed font-light border-l-2 border-gold-500/50 pl-6 drop-shadow-md">
-                                    {activeTab === 'rent'
-                                        ? "Access Vadodara's most exclusive rental portfolio. From high-rise penthouses to serene garden villas."
-                                        : "Leverage Vihav Group's extensive network to find verified tenants for your premium property."
+                            <div className="relative z-10 mb-8">
+                                <h2 className="font-serif text-3xl md:text-4xl text-gray-900 mb-2">
+                                    {userType === 'tenant' ? 'Find Your Perfect Home' : 'Register Your Property'}
+                                </h2>
+                                <p className="text-gray-500 font-light text-lg">
+                                    {userType === 'tenant'
+                                        ? "Tell us what you're looking for, and we'll match you with exclusive listings."
+                                        : "Join our exclusive rental pool. Fill in the details of your Vihav property below."
                                     }
                                 </p>
-                            </motion.div>
-                        </AnimatePresence>
+                            </div>
+
+                            <div className="relative z-10">
+                                {userType === 'tenant'
+                                    ? <TenantForm theme="minimal" />
+                                    : <OwnerForm theme="minimal" />
+                                }
+                            </div>
+                        </motion.div>
                     </div>
                 </div>
-            </section>
 
-            {/* Featured Listings Section - Added as requested */}
-            {activeTab === 'rent' && (
-                <section className="py-24 bg-gray-50 border-b border-gray-100">
-                    <div className="container mx-auto px-6 md:px-12">
-                        <div className="text-center max-w-3xl mx-auto mb-16">
-                            <span className="text-gold-600 font-bold tracking-[0.2em] text-xs uppercase block mb-4">
-                                Exclusive Opportunities
-                            </span>
-                            <h2 className="text-4xl md:text-5xl font-serif text-black mb-6">
-                                Featured Commercial Spaces
-                            </h2>
-                            <p className="text-gray-500 text-lg font-light leading-relaxed">
-                                Discover premium office and retail spaces available for immediate lease in Vadodara's prime business districts.
-                            </p>
+                {/* --- FEATURED PROPERTIES (Discovery) --- */}
+                {userType === 'tenant' && (
+                    <div className="mt-32 border-t border-gray-200 pt-16">
+                        <div className="flex justify-between items-end mb-12">
+                            <div>
+                                <span className="text-gold-600 font-bold tracking-widest text-xs uppercase block mb-3">Available Now</span>
+                                <h2 className="text-4xl font-serif text-gray-900">Featured Premium Rentals</h2>
+                            </div>
+                            <button className="hidden md:flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:text-gold-600 transition-colors">
+                                View Full Inventory <ArrowRight size={16} />
+                            </button>
+                        </div>
+
+                        {/* Category Toggle */}
+                        <div className="flex justify-center mb-12">
+                            <div className="flex bg-white p-1 rounded-full border border-gray-200 shadow-sm">
+                                <button
+                                    onClick={() => setFilterCategory("Commercial")}
+                                    className={`px-8 py-3 rounded-full text-sm font-bold uppercase tracking-wider transition-all duration-300 ${filterCategory === "Commercial"
+                                        ? "bg-luxury-black text-white shadow-md"
+                                        : "text-gray-500 hover:text-gray-900"
+                                        }`}
+                                >
+                                    Commercial
+                                </button>
+                                <button
+                                    onClick={() => setFilterCategory("Residential")}
+                                    className={`px-8 py-3 rounded-full text-sm font-bold uppercase tracking-wider transition-all duration-300 ${filterCategory === "Residential"
+                                        ? "bg-luxury-black text-white shadow-md"
+                                        : "text-gray-500 hover:text-gray-900"
+                                        }`}
+                                >
+                                    Residential
+                                </button>
+                            </div>
                         </div>
 
                         <div className="grid md:grid-cols-3 gap-8">
-                            {featuredProjects.map((project) => (
+                            {filteredProjects.map((project) => (
                                 <RentalProjectCard key={project.id} project={project} />
                             ))}
                         </div>
                     </div>
-                </section>
-            )}
+                )}
 
-            {/* NEW: How it Works Section */}
-            <section className="py-24 bg-white relative overflow-hidden">
-                <div className="container mx-auto px-6 md:px-12 relative z-10">
-                    <div className="text-center max-w-3xl mx-auto mb-20">
-                        <span className="text-gold-600 font-bold tracking-[0.2em] text-xs uppercase block mb-4">
-                            Process
-                        </span>
-                        <h2 className="text-4xl md:text-5xl font-serif text-black mb-6">
-                            How It Works
-                        </h2>
-                        <p className="text-gray-500 text-lg font-light leading-relaxed">
-                            {activeTab === 'rent'
-                                ? "Your journey to a premium lifestyle in 4 simple steps."
-                                : "A streamlined approach to maximizing your asset's value."
-                            }
-                        </p>
+                {/* --- PROCESS SECTION --- */}
+                <div className="mt-32 border-t border-gray-200 pt-16">
+                    <div className="text-center mb-20 max-w-2xl mx-auto">
+                        <span className="text-gold-600 font-bold tracking-[0.2em] text-xs uppercase block mb-4">Process</span>
+                        <h2 className="text-5xl font-serif text-gray-900 mb-4">How It Works</h2>
+                        <p className="text-gray-500">Your journey to a premium lifestyle in 4 simple steps.</p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+                    <div className="grid md:grid-cols-4 gap-8 relative max-w-6xl mx-auto">
                         {/* Connecting Line (Desktop) */}
-                        <div className="hidden md:block absolute top-12 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gold-200 to-transparent z-0" />
+                        <div className="hidden md:block absolute top-12 left-[10%] right-[10%] h-px bg-gold-100 -z-10" />
 
-                        {activeTab === 'rent' ? (
-                            <>
-                                <Step number="01" title="Browse & Shortlist" desc="Explore our curated list of verified premium properties." />
-                                <Step number="02" title="Schedule Visit" desc="Book a private viewing at your convenience." />
-                                <Step number="03" title="Documentation" desc="Hassle-free paperwork and agreement formalities." />
-                                <Step number="04" title="Move In" desc="Receive keys and settle into your new luxury home." isLast />
-                            </>
-                        ) : (
-                            <>
-                                <Step number="01" title="Register Property" desc="Submit property details for our review." />
-                                <Step number="02" title="Verification" desc="Our team conducts a quality and compliance check." />
-                                <Step number="03" title="Tenant Matching" desc="We connect you with verified corporate/premium tenants." />
-                                <Step number="04" title="Lease Management" desc="End-to-end support for agreement and maintenance." isLast />
-                            </>
-                        )}
+                        <ProcessStep
+                            step="01"
+                            title="Browse & Shortlist"
+                            desc="Explore our curated list of verified premium properties."
+                        />
+                        <ProcessStep
+                            step="02"
+                            title="Schedule Visit"
+                            desc="Book a private viewing at your convenience."
+                        />
+                        <ProcessStep
+                            step="03"
+                            title="Documentation"
+                            desc="Hassle-free paperwork and agreement formalities."
+                        />
+                        <ProcessStep
+                            step="04"
+                            title="Move In"
+                            desc="Receive keys and settle into your new luxury home."
+                        />
                     </div>
                 </div>
-            </section>
 
-            {/* Content Section - Light Theme */}
-            <section className="py-24 bg-white relative">
-                <div className="container mx-auto px-6 md:px-12 relative z-10">
-                    <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-start">
+                {/* --- GUARANTEE SECTION --- */}
+                <div className="mt-32 mb-16 bg-luxury-black rounded-3xl p-12 md:p-24 relative overflow-hidden text-center">
+                    <div className="absolute inset-0 opacity-10">
+                        <Image
+                            src="/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (1).webp"
+                            alt="Background"
+                            fill
+                            className="object-cover grayscale"
+                        />
+                    </div>
 
-                        {/* Left: Value Prop */}
-                        <div className="lg:w-1/3 space-y-12 sticky top-32">
-                            <div className="space-y-6">
-                                <h3 className="text-3xl font-serif text-black">
-                                    The Vihav {activeTab === 'rent' ? "Guarantee" : "Advantage"}
-                                </h3>
-                                <p className="text-gray-600 leading-relaxed">
-                                    We don't just facilitate transactions; we build lasting relationships based on trust, transparency, and superior service.
-                                </p>
-                            </div>
-
-                            <div className="space-y-6">
-                                <Feature
-                                    icon={ShieldCheck}
-                                    title="Verified Listings"
-                                    desc="Zero brokerage on direct developer listings. All properties are vetted for quality."
-                                />
-                                <Feature
-                                    icon={Building2}
-                                    title="Prime Locations"
-                                    desc="Properties situated in the most coveted neighborhoods of Vadodara."
-                                />
-                                <Feature
-                                    icon={Key}
-                                    title="Seamless Move-in"
-                                    desc="End-to-end support with documentation, agreements, and handover."
-                                />
-                            </div>
-
-                            {/* Trust Indicator */}
-                            <div className="p-6 bg-gray-50 border border-gray-100 rounded-xl mt-8 shadow-sm">
-                                <div className="flex items-center gap-2 mb-2">
-                                    <Star size={16} className="text-gold-500 fill-gold-500" />
-                                    <Star size={16} className="text-gold-500 fill-gold-500" />
-                                    <Star size={16} className="text-gold-500 fill-gold-500" />
-                                    <Star size={16} className="text-gold-500 fill-gold-500" />
-                                    <Star size={16} className="text-gold-500 fill-gold-500" />
-                                </div>
-                                <p className="text-sm text-gray-700 italic">"The most professional rental experience I've had in the city. Highly recommended."</p>
-                                <p className="text-xs text-gold-600 mt-2 uppercase tracking-wider font-bold">- Recent Client</p>
-                            </div>
+                    <div className="relative z-10 max-w-4xl mx-auto">
+                        <div className="w-16 h-16 bg-gold-500 rounded-full flex items-center justify-center mx-auto mb-8 text-black">
+                            <BadgeCheck size={32} />
                         </div>
 
-                        {/* Right: The Form */}
-                        <div className="lg:w-2/3 w-full">
-                            <div className="bg-white border border-gray-200 p-8 md:p-12 rounded-3xl relative overflow-hidden shadow-xl">
-                                {/* Decorative Blur - Lighter for white theme */}
-                                <div className="absolute top-0 right-0 w-64 h-64 bg-gold-500/5 rounded-full blur-[80px] -mr-32 -mt-32 pointer-events-none" />
+                        <h2 className="text-4xl md:text-5xl font-serif text-white mb-6">The Vihav Guarantee</h2>
+                        <p className="text-white/70 text-lg md:text-xl leading-relaxed mb-12">
+                            We don't just list properties; we manage lifestyles. Every Vihav rental comes with the assurance of quality, transparency, and direct support from the developer.
+                        </p>
 
-                                <div className="relative z-10">
-                                    <h3 className="font-serif text-3xl mb-2 text-black">
-                                        {activeTab === 'rent' ? "Tell Us What You Need" : "Register Your Property"}
-                                    </h3>
-                                    <p className="text-gray-500 mb-10">Fill out the details below and our team will get back to you within 24 hours.</p>
-
-                                    {activeTab === 'rent' ? <TenantForm theme="light" /> : <OwnerForm theme="light" />}
-                                </div>
-                            </div>
+                        <div className="grid md:grid-cols-3 gap-8 text-left">
+                            <GuaranteeCard
+                                icon={ShieldCheck}
+                                title="100% Verified"
+                                desc="Zero fake listings. Every property is owned and verified by Vihav Group."
+                            />
+                            <GuaranteeCard
+                                icon={FileText}
+                                title="Transparent Deals"
+                                desc="No hidden charges. Clear contracts and direct negotiation."
+                            />
+                            <GuaranteeCard
+                                icon={Home}
+                                title="Property Care"
+                                desc="Dedicated maintenance team for structural and amenity support."
+                            />
                         </div>
                     </div>
                 </div>
-            </section>
+
+                {/* --- CTA SECTION --- */}
+                <div className="text-center py-16">
+                    <p className="text-gray-500 mb-6">Still have questions?</p>
+                    <div className="flex justify-center gap-8">
+                        <a href="tel:+917201854854" className="flex items-center gap-2 text-lg font-serif font-bold text-gray-900 hover:text-gold-600 transition-colors">
+                            <Phone size={20} className="text-gold-500" /> +91 72018 54854
+                        </a>
+                        <a href="mailto:rentals@vihav.com" className="flex items-center gap-2 text-lg font-serif font-bold text-gray-900 hover:text-gold-600 transition-colors">
+                            <Mail size={20} className="text-gold-500" /> rentals@vihav.com
+                        </a>
+                    </div>
+                </div>
+
+            </div>
         </div>
     );
 }
 
-function Feature({ icon: Icon, title, desc }) {
+// Helper Component for Sidebar Features
+function FeatureRow({ icon: Icon, title, desc }) {
     return (
-        <div className="flex gap-5 group">
-            <div className="w-14 h-14 rounded-full bg-gray-50 border border-gray-200 flex items-center justify-center text-gold-500 flex-shrink-0 group-hover:bg-gold-500 group-hover:text-white transition-all duration-300 shadow-sm">
-                <Icon size={24} strokeWidth={1.5} />
+        <div className="flex gap-4 items-start">
+            <div className="w-10 h-10 rounded-full bg-gold-50 text-gold-600 flex items-center justify-center flex-shrink-0 mt-1">
+                <Icon size={18} />
             </div>
             <div>
-                <h4 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-gold-600 transition-colors">{title}</h4>
-                <p className="text-gray-500 leading-relaxed text-sm">{desc}</p>
+                <h5 className="font-bold text-gray-900 text-sm">{title}</h5>
+                <p className="text-gray-500 text-sm leading-relaxed mt-1">{desc}</p>
             </div>
         </div>
     )
 }
 
-function Step({ number, title, desc, isLast }) {
+function ProcessStep({ step, title, desc }) {
     return (
-        <div className="relative z-10 flex flex-col items-center text-center group">
-            <div className="w-24 h-24 rounded-full bg-white border border-gray-100 shadow-xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500 relative">
-                <span className="text-3xl font-serif text-gold-400 font-bold group-hover:text-gold-600 transition-colors">{number}</span>
-                {/* Ring Effect */}
-                <div className="absolute inset-0 border border-gold-100 rounded-full scale-110 opacity-0 group-hover:opacity-100 group-hover:scale-125 transition-all duration-500" />
+        <div className="relative z-10 text-center group px-4">
+            <div className="w-24 h-24 mx-auto bg-white rounded-full shadow-lg border border-gray-100 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500 relative">
+                <span className="text-3xl text-gold-500 font-serif font-bold">
+                    {step}
+                </span>
             </div>
-            <h4 className="text-xl font-bold text-gray-900 mb-3">{title}</h4>
-            <p className="text-gray-500 text-sm leading-relaxed max-w-[200px]">{desc}</p>
+
+            <h3 className="text-xl font-serif font-bold text-gray-900 mb-3">{title}</h3>
+            <p className="text-gray-500 text-sm leading-relaxed max-w-[200px] mx-auto">
+                {desc}
+            </p>
         </div>
-    )
+    );
+}
+
+function GuaranteeCard({ icon: Icon, title, desc }) {
+    return (
+        <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-colors duration-300">
+            <div className="mb-4 text-gold-400">
+                <Icon size={24} />
+            </div>
+            <h4 className="text-white font-bold text-lg mb-2">{title}</h4>
+            <p className="text-white/60 text-sm leading-relaxed">
+                {desc}
+            </p>
+        </div>
+    );
 }
