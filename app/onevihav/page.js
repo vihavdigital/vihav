@@ -1,179 +1,152 @@
+"use strict";
 "use client";
 
 import { motion } from "framer-motion";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import ReferralForm from "@/components/ui/ReferralForm";
-import { Repeat, Gift, Users } from "lucide-react";
+import { Repeat, Gift, Users, BadgeCheck, Zap, ArrowRight } from "lucide-react";
 
 export default function OneVihavPage() {
     return (
         <main className="min-h-screen bg-onevihav-green text-white font-sans selection:bg-gold-400 selection:text-black overflow-x-hidden">
             <Header />
 
-            {/* Image Background */}
+            {/* Background */}
             <div className="fixed inset-0 z-0 pointer-events-none">
                 <img
                     src="/images/project-images/other-images/onevihav-bg.jpg"
                     alt="OneVihav Background"
-                    className="w-full h-full object-cover opacity-60"
+                    className="w-full h-full object-cover opacity-40 blur-sm"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-onevihav-green via-transparent to-black/40" />
+                <div className="absolute inset-0 bg-gradient-to-t from-onevihav-green via-onevihav-green/90 to-black/60" />
             </div>
 
-            {/* Hero Section */}
-            <section className="relative min-h-screen flex flex-col justify-center pt-24 pb-16 md:pt-32 md:pb-20 container mx-auto px-4 md:px-6 z-10">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* Compact Hero Section */}
+            <section className="relative pt-32 pb-16 container mx-auto px-6 z-10 flex flex-col md:flex-row items-center justify-between gap-12">
+                <motion.div
+                    initial={{ opacity: 0, x: -30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.8 }}
+                    className="md:w-1/2 space-y-6"
+                >
+                    <div className="inline-flex items-center gap-2 border border-gold-400/30 px-4 py-1.5 rounded-full bg-gold-400/5 backdrop-blur-sm">
+                        <BadgeCheck size={14} className="text-gold-400" />
+                        <span className="text-xs font-bold tracking-widest text-gold-400 uppercase">Exclusive Associate Program</span>
+                    </div>
 
-                    {/* Left: Presentation Box */}
-                    <motion.div
-                        initial={{ opacity: 0, x: -50 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 1, ease: "easeOut" }}
-                        className="space-y-6 lg:pr-12 lg:order-1 order-2"
-                    >
-                        <h2 className="text-sm md:text-base font-medium tracking-[0.3em] text-gold-400 uppercase opacity-80 pl-2">Presenting</h2>
+                    <h1 className="text-5xl md:text-7xl font-serif text-white leading-tight">
+                        One<span className="text-gold-400">Vihav</span> <br />
+                        <span className="text-3xl md:text-4xl text-white/60 font-light italic">Privilege Circle</span>
+                    </h1>
 
-                        {/* Card Container */}
-                        <div className="border border-gold-400/30 p-6 md:p-12 relative max-w-xl bg-gradient-to-br from-black/60 to-black/20 backdrop-blur-md shadow-2xl rounded-sm">
-                            {/* Decorative Corner Accents */}
-                            <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-gold-400" />
-                            <div className="absolute top-0 right-0 w-3 h-3 border-t border-r border-gold-400" />
-                            <div className="absolute bottom-0 left-0 w-3 h-3 border-b border-l border-gold-400" />
-                            <div className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-gold-400" />
+                    <p className="text-lg text-gray-300 max-w-lg leading-relaxed border-l-2 border-gold-400 pl-6">
+                        An ecosystem of rewards designed to honor the valuable contributions of our Vihav Group Associates.
+                        Refer excellence, earn limitlessly.
+                    </p>
 
-                            <p className="text-white/90 text-lg md:text-xl font-light mb-8 md:mb-10 leading-relaxed font-serif italic text-center md:text-left">
-                                "An exclusive referral program curated for our cherished Vihav Group Associates."
-                            </p>
+                    <div className="flex gap-4 pt-4">
+                        <a href="#join-now" className="bg-gold-500 hover:bg-gold-600 text-black px-8 py-3 rounded-none font-bold uppercase tracking-widest transition-all flex items-center gap-2">
+                            Join Circle <ArrowRight size={18} />
+                        </a>
+                    </div>
+                </motion.div>
 
-                            {/* Logo Representation */}
-                            <div className="mb-8 md:mb-10 flex justify-center md:justify-start">
-                                <img
-                                    src="/images/project-images/other-images/onevihav-logo.png"
-                                    alt="One Vihav Privilege Circle"
-                                    className="h-24 md:h-36 w-auto object-contain drop-shadow-[0_4px_20px_rgba(212,175,55,0.15)]"
-                                />
-                            </div>
+                {/* Right: Condensed Benefits Card */}
+                <motion.div
+                    initial={{ opacity: 0, x: 30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                    className="md:w-1/2 w-full"
+                >
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <BenefitCard
+                            icon={Users}
+                            title="REFER"
+                            desc="Connect your network with premium Vihav properties."
+                            delay={0.3}
+                        />
+                        <BenefitCard
+                            icon={Gift}
+                            title="REDEEM"
+                            desc="Earn direct financial rewards on every successful booking."
+                            delay={0.4}
+                        />
+                        <BenefitCard
+                            icon={Repeat}
+                            title="REPEAT"
+                            desc="Uncapped earning potential for consistent partners."
+                            delay={0.5}
+                        />
+                    </div>
+                </motion.div>
+            </section>
 
-                            <div className="space-y-3 text-sm text-gray-300 font-light border-t border-gold-400/20 pt-8">
-                                <p className="leading-relaxed">The difference you make is invaluable and truly appreciated.</p>
-                                <p className="text-gold-400">Let us be grateful for your enduring support.</p>
+            {/* Combined Info & Form Section */}
+            <section className="py-16 bg-black/20 backdrop-blur-sm border-t border-white/5 relative z-10" id="join-now">
+                <div className="container mx-auto px-6">
+                    <div className="flex flex-col lg:flex-row gap-16">
+
+                        {/* Left: Program Details (Compact List) */}
+                        <div className="lg:w-1/3 space-y-8">
+                            <h3 className="text-2xl font-serif text-white mb-6">Program Highlights</h3>
+                            <ul className="space-y-6">
+                                <li className="flex gap-4 group">
+                                    <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gold-400 flex-shrink-0 group-hover:bg-gold-400 group-hover:text-black transition-all">
+                                        <Zap size={20} />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-bold text-white">Instant Activation</h4>
+                                        <p className="text-sm text-gray-400">Start referring immediately after registration approval.</p>
+                                    </div>
+                                </li>
+                                <li className="flex gap-4 group">
+                                    <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gold-400 flex-shrink-0 group-hover:bg-gold-400 group-hover:text-black transition-all">
+                                        <BadgeCheck size={20} />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-bold text-white">Transparent Tracking</h4>
+                                        <p className="text-sm text-gray-400">Clear documentation and timely payout processing.</p>
+                                    </div>
+                                </li>
+                            </ul>
+
+                            <div className="p-6 bg-gold-400/10 border border-gold-400/20 rounded-lg mt-8">
+                                <p className="text-gold-300 text-sm italic">
+                                    "Our associates are the pillars of our extended family. OneVihav is our way of saying thank you."
+                                </p>
                             </div>
                         </div>
-                    </motion.div>
 
-                    {/* Right: Say Hello */}
-                    <motion.div
-                        initial={{ opacity: 0, x: 50 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-                        className="text-center lg:text-left relative order-1 lg:order-2 mb-8 lg:mb-0"
-                    >
-                        <h1 className="text-6xl md:text-8xl lg:text-[10rem] font-serif text-transparent bg-clip-text bg-gradient-to-r from-gold-200 via-gold-400 to-gold-600 leading-[0.9] tracking-tight drop-shadow-2xl py-2">
-                            Say <span className="text-white/10 italic absolute -z-10 blur-sm scale-105 ml-4 hidden md:inline-block">Hello</span>
-                            <span className="text-white italic relative z-10 font-thin">Hello</span>
-                        </h1>
-                        <p className="text-sm md:text-2xl text-gold-400/80 font-light tracking-[0.2em] md:tracking-[0.25em] mt-4 md:mt-8 uppercase border-t border-gold-400/20 pt-4 md:pt-8 inline-block">
-                            to the world of privileges
-                        </p>
-                    </motion.div>
-                </div>
-            </section>
-
-            {/* Refer, Redeem, Repeat Section */}
-            <section className="py-32 relative z-10 bg-black/30 backdrop-blur-md border-y border-white/5">
-                <div className="container mx-auto px-6">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-16 relative">
-                        {/* Connecting Line (Desktop) */}
-                        <div className="hidden md:block absolute top-[60px] left-[16%] right-[16%] h-px bg-gradient-to-r from-transparent via-gold-400/30 to-transparent z-0" />
-
-                        {/* Step 1: Refer */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8 }}
-                            className="space-y-8 relative z-10 group"
-                        >
-                            <div className="w-24 h-24 mx-auto md:mx-0 bg-gradient-to-br from-black to-onevihav-green border border-gold-400/30 rounded-full flex items-center justify-center shadow-2xl group-hover:border-gold-400 transition-colors duration-500">
-                                <Users size={40} className="text-gold-400" strokeWidth={1} />
+                        {/* Right: The Form (Existing Component) */}
+                        <div className="lg:w-2/3">
+                            <div className="bg-white/5 border border-white/10 p-8 rounded-2xl">
+                                <h3 className="text-xl font-serif text-white mb-8 border-b border-white/10 pb-4">Associate Registration</h3>
+                                <ReferralForm />
                             </div>
-                            <div className="md:pr-8">
-                                <h3 className="text-4xl font-serif text-gold-400 mb-4">REFER</h3>
-                                <div className="space-y-4 text-gray-300 font-light leading-relaxed text-lg">
-                                    <p className="font-medium text-white border-b border-gold-400/20 pb-2 inline-block">Spread the word</p>
-                                    <p className="opacity-80">
-                                        Help your network find their perfect residential or commercial space from our extraordinary portfolio.
-                                    </p>
-                                </div>
-                            </div>
-                        </motion.div>
-
-                        {/* Step 2: Redeem */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8, delay: 0.2 }}
-                            className="space-y-8 relative z-10 group"
-                        >
-                            <div className="w-24 h-24 mx-auto md:mx-0 bg-gradient-to-br from-black to-onevihav-green border border-gold-400/30 rounded-full flex items-center justify-center shadow-2xl group-hover:border-gold-400 transition-colors duration-500">
-                                <Gift size={40} className="text-gold-400" strokeWidth={1} />
-                            </div>
-                            <div className="md:pr-8">
-                                <h3 className="text-4xl font-serif text-gold-400 mb-4">REDEEM</h3>
-                                <div className="space-y-4 text-gray-300 font-light leading-relaxed text-lg">
-                                    <p className="font-medium text-white border-b border-gold-400/20 pb-2 inline-block">Assured Rewards</p>
-                                    <p className="opacity-80">
-                                        Successful bookings earn you substantial points transferred directly to your bank account. <span className="text-gold-400 italic">It's that simple.</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </motion.div>
-
-                        {/* Step 3: Repeat */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8, delay: 0.4 }}
-                            className="space-y-8 relative z-10 group"
-                        >
-                            <div className="w-24 h-24 mx-auto md:mx-0 bg-gradient-to-br from-black to-onevihav-green border border-gold-400/30 rounded-full flex items-center justify-center shadow-2xl group-hover:border-gold-400 transition-colors duration-500">
-                                <Repeat size={40} className="text-gold-400" strokeWidth={1} />
-                            </div>
-                            <div className="md:pr-8">
-                                <h3 className="text-4xl font-serif text-gold-400 mb-4">REPEAT</h3>
-                                <div className="space-y-4 text-gray-300 font-light leading-relaxed text-lg">
-                                    <p className="font-medium text-white border-b border-gold-400/20 pb-2 inline-block">Limitless Benefits</p>
-                                    <p className="opacity-80">
-                                        The more you refer, the more your privileges grow. There is no cap on your potential rewards.
-                                    </p>
-                                </div>
-                            </div>
-                        </motion.div>
+                        </div>
                     </div>
-                </div>
-            </section>
-
-            {/* Form Section */}
-            <section className="py-32 px-6 container mx-auto relative z-10" id="join-now">
-                <div className="max-w-4xl mx-auto">
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.8 }}
-                        className="text-center mb-16"
-                    >
-                        <h2 className="text-4xl md:text-5xl font-serif text-white mb-6">Start Your Journey</h2>
-                        <p className="text-gold-400 text-lg uppercase tracking-widest">Join the Circle of Privilege</p>
-                    </motion.div>
-
-                    <ReferralForm />
                 </div>
             </section>
 
             <Footer />
         </main>
     );
+}
+
+function BenefitCard({ icon: Icon, title, desc, delay }) {
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: delay }}
+            className="bg-black/40 border border-white/10 p-6 rounded-xl hover:border-gold-400/50 transition-all group"
+        >
+            <div className="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center text-gold-400 mb-4 group-hover:bg-gold-400 group-hover:text-black transition-colors">
+                <Icon size={22} strokeWidth={1.5} />
+            </div>
+            <h4 className="text-lg font-bold text-white mb-2 tracking-wide">{title}</h4>
+            <p className="text-xs text-gray-400 leading-relaxed">{desc}</p>
+        </motion.div>
+    )
 }

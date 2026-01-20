@@ -81,25 +81,42 @@ export default async function ProjectPage({ params }) {
             {/* Hero Section */}
             <div className="relative h-[100svh]">
                 <div className="absolute inset-0">
-                    {project.heroVideo ? (
-                        <video
-                            src={project.heroVideo}
-                            className="w-full h-full object-cover brightness-90"
-                            autoPlay
-                            muted
-                            loop
-                            playsInline
-                        />
-                    ) : (
-                        <Image
-                            src={project.heroImage}
-                            alt={project.title}
-                            fill
-                            priority
-                            className="object-cover brightness-90"
-                            sizes="(max-width: 768px) 100vw, 100vw"
-                        />
+                    {/* Mobile Banner (Priority on Mobile) */}
+                    {project.mobileHeroImage && (
+                        <div className="relative w-full h-full md:hidden block">
+                            <Image
+                                src={project.mobileHeroImage}
+                                alt={project.title}
+                                fill
+                                priority
+                                className="object-cover brightness-90"
+                                sizes="100vw"
+                            />
+                        </div>
                     )}
+
+                    {/* Desktop Media (Video or Image) */}
+                    <div className={`relative w-full h-full ${project.mobileHeroImage ? 'hidden md:block' : 'block'}`}>
+                        {project.heroVideo ? (
+                            <video
+                                src={project.heroVideo}
+                                className="w-full h-full object-cover brightness-90"
+                                autoPlay
+                                muted
+                                loop
+                                playsInline
+                            />
+                        ) : (
+                            <Image
+                                src={project.heroImage}
+                                alt={project.title}
+                                fill
+                                priority
+                                className="object-cover brightness-90"
+                                sizes="100vw"
+                            />
+                        )}
+                    </div>
                     <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/20" />
                 </div>
                 <div className="relative z-10 h-full container mx-auto px-6 md:px-12 flex flex-col justify-end pb-8 md:pb-12">

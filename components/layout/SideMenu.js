@@ -23,6 +23,13 @@ const MENU_ITEMS = [
         desc: "Explore our residential and commercial landmarks."
     },
     {
+        id: "rentals",
+        label: "RENTALS",
+        href: "/rentals",
+        image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=2000&auto=format&fit=crop", // Example image for rentals
+        desc: "Discover our available rental properties."
+    },
+    {
         id: "about",
         label: "ABOUT US",
         href: "/about",
@@ -42,13 +49,6 @@ const MENU_ITEMS = [
         href: "/onevihav",
         image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2000&auto=format&fit=crop",
         desc: "Exclusive privilege program for our family."
-    },
-    {
-        id: "career",
-        label: "CAREERS",
-        href: "#",
-        image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2000&auto=format&fit=crop",
-        desc: "Join the team building the future."
     },
     {
         id: "contact",

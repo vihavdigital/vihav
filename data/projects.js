@@ -31,6 +31,7 @@ export const PROJECTS = [
         description: "A signature address that balances comfort, connectivity, and prestige. Every home is thoughtfully planned to offer generous proportions (3120 - 5046 sq. ft.), seamless layouts, and abundant natural light. Contemporary architecture with timeless appeal.",
         vision: "75MTR MAIN ROAD.",
         heroImage: "/images/project-images/project-tiles/Select.jpg",
+        mobileHeroImage: "/images/project-images/hero-banner/mobile-banner/keystone-select.webp",
         galleryImages: ["https://www.vihav.com/wp-content/uploads/Card-Select.webp"],
         features: ["Carpet: 3120-5046 sq.ft", "Near 75m Ring Road", "Abundant Natural Light", "Exclusive Penthouses"],
         floorPlans: [
@@ -110,6 +111,7 @@ export const PROJECTS = [
         description: "Only a select few will experience life at Keystone 51, making it one of the most exclusive residential addresses in Vadodara. 1,00,000 sq.ft for just 51 families. Designed with modern families in mind, each home features expansive living areas, high-end finishes, and is four-side open with 2500 sq.ft Built-up Area.",
         vision: "1,00,000 SQ.FT FOR JUST 51 FAMILIES.",
         heroImage: "/images/project-images/project-tiles/keystone-51.jpg",
+        mobileHeroImage: "/images/project-images/hero-banner/mobile-banner/keystone-51.webp",
         galleryImages: [
             "/images/project-images/project-tiles/keystone-51.jpg",
             "https://www.vihav.com/wp-content/uploads/Vihav-51-Living-room-cam-03-a-scaled.webp",
@@ -166,6 +168,7 @@ export const PROJECTS = [
         description: "Niwa, meaning garden in Japanese, reflects our belief that a home should feel like nature never left us. At Keystone Niwa, we’ve reimagined luxury to grow not just above ground, but within it. Here, greenery isn’t a view from your window, it’s part of your everyday living. From private garden balconies to lush common spaces, Niwa is where you don’t just come home, you arrive in nature.",
         vision: "ONE FLOOR. ONE APARTMENT.",
         heroImage: "/images/project-images/project-tiles/keystone-niwa.jpg",
+        mobileHeroImage: "/images/project-images/hero-banner/mobile-banner/keystone-niwa.webp",
         heroVideo: "/videos/niwa.mp4",
         galleryImages: [
             "https://www.vihav.com/wp-content/uploads/Hurun-KEYSTONE-NIWA-Desktop-Slider-2048-×-778-px-01.webp",
@@ -229,6 +232,7 @@ export const PROJECTS = [
         description: "Explore the future of luxury living with Keystone Clermont, an upcoming real estate project by Vihav Group, offering stunning 4B2HK Apartments and 5B2HK Penthouses at the prime location of Vadodara. Whether you’re looking for an investment opportunity or a place to call home, Keystone Clermont combines modern design, world-class amenities, and unparalleled convenience.",
         vision: "1 FLOOR 2 UNIT - EXTRA TERRACE APARTMENT",
         heroImage: "/images/project-images/project-tiles/clermont.jpg",
+        mobileHeroImage: "/images/project-images/hero-banner/mobile-banner/clermont.webp",
         galleryImages: ["https://www.vihav.com/wp-content/uploads/vihav-clmnt-new-images-21-scaled-1-e1757592539176.webp"],
         features: ["Double Height Badminton Court", "Covered Swimming Pool", "Skating Rink", "Gazebo Seating"],
         highlights: [
@@ -318,7 +322,7 @@ export const PROJECTS = [
         id: "keystone-skyvillas-xl",
         link: "/projects/keystone-skyvillas-xl",
         status: "Ongoing",
-        slug: "skyvillas-xl",
+        slug: "keystone-skyvillas-xl",
         title: "Keystone Skyvillas XL",
         category: "Residential",
         location: "New Alkapuri, Gotri",
@@ -333,6 +337,7 @@ export const PROJECTS = [
         description: "Keystone Skyvillas XL, where opulence meets architectural brilliance. Nestled in the heart of New Alkapuri, Vadodara’s most sought-after residential locale, this iconic address offers an exclusive collection of 5 BHK luxurious apartments, 6B2HK premium penthouses, and 5 BHK premium flats crafted for discerning homeowners.",
         vision: "THE LARGEST CARPET AREA PROPERTIES IN VADODARA",
         heroImage: "/images/project-images/project-tiles/skyvillas-xl.jpg",
+        mobileHeroImage: "/images/project-images/hero-banner/mobile-banner/skyvillas-xl.webp",
         galleryImages: ["/images/project-images/project-tiles/skyvillas-xl.jpg"],
         features: ["30,000 Sq.Ft Amenities", "Only 2 Flats Per Floor", "Infinity Pool", "Personalized Lift"],
         highlights: [
@@ -388,6 +393,7 @@ export const PROJECTS = [
         description: "Seamless bungalows for a grounded lifestyle.",
         vision: "ONLY 36 A-CLASS APARTMENT",
         heroImage: "/images/project-images/project-tiles/keystone-48.jpg", // Bungalow Placeholder
+        mobileHeroImage: "/images/project-images/hero-banner/mobile-banner/keystone-48.webp",
         features: ["Own Land", "Gated Security"],
         amenitiesList: [
             { icon: "Shield", label: "Security" },
@@ -425,6 +431,7 @@ export const PROJECTS = [
         description: "Vihav CBD (Central Business District) stands as an iconic residential and commercial development in the heart of Bhayli, offering an exclusive collection of 4 BHK luxurious flats and 5B2HK Penthouses. Thoughtfully designed for those who seek elegance, space, and a premium lifestyle.",
         vision: "HEART OF BHAYLI",
         heroImage: "/images/project-images/project-tiles/vihav-cbd.jpg",
+        mobileHeroImage: "/images/project-images/hero-banner/mobile-banner/cbd-residential.webp",
         galleryImages: [
             "/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (1).webp",
             "/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (2).webp",
@@ -534,6 +541,7 @@ export const PROJECTS = [
         description: "Welcome to Vihav Spring Woods, a thoughtfully planned residential project offering spacious 3 BHK duplex homes in Tarsali, one of the most connected and fast-developing localities in Vadodara. Located close to Makarpura, Manjalpur, Danteshwar, Ghanghretia, and Chikhodara, this gated community provides the ideal setting for families who desire space, comfort, and convenience all in one place.",
         vision: "ONLY 36 PREMIUM BUNGALOWS",
         heroImage: "/images/project-images/project-tiles/springwoods.jpg",
+        mobileHeroImage: "/images/project-images/hero-banner/mobile-banner/springwoods.webp",
         galleryImages: ["/images/project-images/project-tiles/springwoods.jpg"],
         features: ["Duplex Layouts", "Clubhouse", "Stem Room", "Swimming Pool"],
         highlights: [
@@ -589,6 +597,7 @@ export const PROJECTS = [
         description: "Vihav Elinor is an exclusive residential project offering spacious 3 BHK and 4 BHK flats and 5 BHK penthouses in New Alkapuri, Gotri, Vadodara. Nestled in one of the city’s most prestigious and peaceful neighborhoods, Vihav Elinor is designed for those who seek refined living with space, elegance, and comfort at its core.",
         vision: "BETWEEN 2 TOWERS 100FT DISTANCE",
         heroImage: "/images/project-images/project-tiles/vihav-elinor.jpg",
+        mobileHeroImage: "/images/project-images/hero-banner/mobile-banner/elinor.webp",
         galleryImages: ["/images/project-images/project-tiles/vihav-elinor.jpg"],
         features: ["100ft Distance Between Towers", "Squash Room", "Swimming Pool"],
         highlights: [
@@ -654,6 +663,7 @@ export const PROJECTS = [
         description: "Looking for a home that’s ready when you are? Vihav Parvarish offers beautifully crafted ready possession flats that combine thoughtful design, modern amenities, and a prime location in Bhayli, Vadodara. Say goodbye to construction delays and hello to immediate comfort and convenience.",
         vision: "FAMILY-CENTRIC HOME",
         heroImage: "/images/project-images/project-tiles/vihav-parvarish.jpg",
+        mobileHeroImage: "/images/project-images/hero-banner/mobile-banner/parvarish-residential.webp",
         galleryImages: ["https://www.vihav.com/wp-content/uploads/vihav_parvarish_thum.webp"],
         realPictureImages: [
             "https://www.vihav.com/wp-content/uploads/parvarish-amenities-gallary-image-5.webp",
@@ -715,6 +725,7 @@ export const PROJECTS = [
         description: "Vihav Parvarish Commercial: A premier commercial property located in Sevasi-Bhayli, Vadodara. Designed to meet modern business needs, these ground floor shops offer excellent visibility and accessibility.",
         vision: "Commercial Excellence",
         heroImage: "/images/project-images/project-tiles/parvarish-commercial.webp",
+        mobileHeroImage: "/images/project-images/hero-banner/mobile-banner/parvarish-commercial.webp",
         galleryImages: ["/images/project-images/project-tiles/parvarish-commercial.webp"],
         features: ["Ground Floor Shops", "Main Road Access", "High Visibility"],
         highlights: [
@@ -874,6 +885,7 @@ export const PROJECTS = [
         description: "Vihav Skyone offers the best commercial and residential properties built by the best real estate developer in Vadodara, Vihav Group. Strategic commercial shops on the bustling 30 Mtr Main Road in Bhayli.",
         vision: "Sky High Commerce.",
         heroImage: "/images/project-images/project-tiles/Skyone.webp",
+        mobileHeroImage: "/images/project-images/hero-banner/mobile-banner/vihav-skyone.webp",
         galleryImages: ["/images/project-images/project-tiles/Skyone.webp"],
         features: ["Main Road Facing", "High Visibility", "Mixed Use"],
         amenitiesList: [
@@ -986,6 +998,7 @@ export const PROJECTS = [
         description: "A bold new commercial destination located at the heart of the rapidly developing Atladra-Padra Road corridor in Vadodara. Designed for ambitious businesses and visionary investors, VS Monolith offers premium showrooms, shops, and offices for sale in Atladra, set within a contemporary, high-visibility commercial complex.",
         vision: "Main ATLADRA -PADRA 40.MTR Road",
         heroImage: "/images/project-images/project-tiles/vs-monolith.webp",
+        mobileHeroImage: "/images/project-images/hero-banner/mobile-banner/vs-monolith.webp",
         galleryImages: ["/images/project-images/project-tiles/vs-monolith.webp"],
         features: ["Iconic Design", "Strategic Junction", "High Visibility", "Modern Infrastructure"],
         highlights: [
@@ -1041,6 +1054,7 @@ export const PROJECTS = [
         description: "A landmark commercial development in Vasna, strategically located near Manisha Circle, Vadodara. Whether you’re a retailer, a growing brand, or a professional looking for a premium workspace, Supremus 3 offers thoughtfully designed shops, showrooms, and offices that cater to every business need.",
         vision: "A ELEGANT CO-ORPORATE PARK",
         heroImage: "/images/project-images/project-tiles/supremus-3.webp",
+        mobileHeroImage: "/images/project-images/hero-banner/mobile-banner/supremus3.webp",
         galleryImages: ["/images/project-images/project-tiles/supremus-3.webp"],
         features: ["Main Road Frontage", "Corporate Look", "Near D-Mart"],
         highlights: [
@@ -1098,6 +1112,7 @@ export const PROJECTS = [
         description: "A premium development offering versatile commercial properties for sale in Bhayli. Whether you’re looking for a showroom, a shop, or an office, Vihav CBD has the perfect space for you. With its strategic location on the bustling Vasna-Bhayli Road, this is an opportunity you won’t want to miss!",
         vision: "HEART OF BHAYLI",
         heroImage: "/images/project-images/project-tiles/cbd-commercial.webp",
+        mobileHeroImage: "/images/project-images/hero-banner/mobile-banner/cbd-commercial.webp",
         features: ["Prime Junction", "Mixed Use", "Self-Contained Offices", "Terrace Garden"],
         highlights: [
             { icon: "MapPin", title: "Prime Location", label: "Vasna-Bhayli Road", description: "Excellent connectivity to key commercial areas of Vadodara." },
@@ -1152,6 +1167,7 @@ export const PROJECTS = [
         description: "Enquire now for a superior commercial property in Vadodara Vihav Supremus 2. High-quality shops, showrooms & offices at Vasna 30mt main road.",
         vision: "A-COMMERCIAL MARVEL",
         heroImage: "/images/project-images/project-tiles/supremus-2.webp",
+        mobileHeroImage: "/images/project-images/hero-banner/mobile-banner/supremus2.webp",
         galleryImages: ["/images/project-images/project-tiles/supremus-2.webp"],
         features: ["Main Road", "Growth Area", "Premium Spaces"],
         amenitiesList: [
@@ -1197,6 +1213,7 @@ export const PROJECTS = [
         description: "Premium commercial office spaces in Gotri, Vadodara, perfectly tailored to accommodate your business needs. Wealth Square offers a prime location at Yash Complex Junction.",
         vision: "Retail Excellence.",
         heroImage: "/images/project-images/project-tiles/wealth-square.webp",
+        mobileHeroImage: "/images/project-images/hero-banner/mobile-banner/wealth-square.webp",
         galleryImages: ["/images/project-images/project-tiles/wealth-square.webp"],
         features: ["Facade Display", "Wide Frontage", "Mechanical Parking", "High Speed Elevator"],
         amenitiesList: [
@@ -1241,6 +1258,7 @@ export const PROJECTS = [
         description: "Vihav Trade Center is a premier commercial property on Vasna-Bhayli Road, Vadodara, offering offices & shops for businesses at prime location. The facilities are designed to enhance the business environment with great attention to detail.",
         vision: "Trade Hub.",
         heroImage: "/images/project-images/project-tiles/vtc.webp",
+        mobileHeroImage: "/images/project-images/hero-banner/mobile-banner/vtc.webp",
         galleryImages: ["/images/project-images/project-tiles/vtc.webp"],
         features: ["Entertainment Vicinity", "Retail Focused", "High-Tech Glazing"],
         highlights: [
@@ -1293,6 +1311,7 @@ export const PROJECTS = [
         description: "Vihav Business Square is a state-of-the-art commercial development located on the highly sought-after Sunpharma Road in Atladara, Vadodara. Designed for growing businesses, smart investors, and professionals alike, VBS offers premium showrooms, shops, and offices for sale.",
         vision: "Business for Everyone.",
         heroImage: "/images/project-images/project-tiles/vbs.webp",
+        mobileHeroImage: "/images/project-images/hero-banner/mobile-banner/vbs.webp",
         galleryImages: ["/images/project-images/project-tiles/vbs.webp"],
         features: ["Prime Location", "Excellent ROI", "Terrace Amenities"],
         highlights: [
@@ -1341,6 +1360,7 @@ export const PROJECTS = [
         description: "Vihav Supremus redefines business presence in Vadodara with its strategic location on Gotri Road. Designed to elevate the way you work, Vihav Supremus offers well-planned shops and offices for sale in Gotri – ideal for forward-thinking entrepreneurs, investors, and professionals.",
         vision: "Corporate Legacy.",
         heroImage: "/images/project-images/project-tiles/supremus-1.webp",
+        mobileHeroImage: "/images/project-images/hero-banner/mobile-banner/supremus1.webp",
         galleryImages: ["/images/project-images/project-tiles/supremus-1.webp"],
         features: ["Established Hub", "Modern Amenities", "Double Height Lobby", "OTS Ducts"],
         highlights: [
@@ -1394,6 +1414,7 @@ export const PROJECTS = [
         description: "At Sun Pharma Road-Vadodara, Vihav Elite Square offers exceptional shops and office spaces with reasonable and flexible lease terms. A premium business center designed for success.",
         vision: "Elite Business Address.",
         heroImage: "/images/project-images/project-tiles/elite-square.webp",
+        mobileHeroImage: "/images/project-images/hero-banner/mobile-banner/elite-square.webp",
         galleryImages: ["/images/project-images/project-tiles/elite-square.webp"],
         features: ["Prime Location", "Premium Facade", "Flexible Terms"],
         amenitiesList: [
