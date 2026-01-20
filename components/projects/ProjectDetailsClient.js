@@ -233,7 +233,7 @@ export default function ProjectDetailsClient({ project, theme }) {
                                             {project.carpetArea && (
                                                 <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gold-400/10 border border-gold-400/20 rounded md:rounded-lg w-fit">
                                                     <Maximize size={14} className="text-gold-500 flex-shrink-0" />
-                                                    <span className="text-[10px] md:text-xs font-bold text-foreground tracking-widest uppercase whitespace-nowrap">{project.carpetArea}</span>
+                                                    <span className="text-[10px] md:text-xs font-bold text-foreground tracking-widest uppercase">{project.carpetArea}</span>
                                                 </div>
                                             )}
                                             {/* Note: User requested "first carpet area then 4BHK...". */}
@@ -250,7 +250,7 @@ export default function ProjectDetailsClient({ project, theme }) {
                                         <div className="flex flex-col md:flex-row gap-3">
                                             <Button
                                                 onClick={() => openModal("Enquire Now")}
-                                                className={`w-full md:flex-1 ${theme.bg} ${theme.hoverBg} text-black font-bold uppercase tracking-widest py-6 border-none text-[10px] md:text-xs`}
+                                                className={`w-full md:flex-1 ${theme.bg} ${theme.hoverBg} text-white font-bold uppercase tracking-widest py-6 border-none text-[10px] md:text-xs`}
                                             >
                                                 Enquire Now
                                             </Button>

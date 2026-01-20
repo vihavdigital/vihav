@@ -430,7 +430,7 @@ export const PROJECTS = [
         email: "cbd@vihav.com",
         description: "Vihav CBD (Central Business District) stands as an iconic residential and commercial development in the heart of Bhayli, offering an exclusive collection of 4 BHK luxurious flats and 5B2HK Penthouses. Thoughtfully designed for those who seek elegance, space, and a premium lifestyle.",
         vision: "HEART OF BHAYLI",
-        heroImage: "/images/project-images/project-tiles/vihav-cbd.jpg",
+        heroImage: "/images/project-images/hero-banner/desktop-banner/cbd-banner.webp",
         mobileHeroImage: "/images/project-images/hero-banner/mobile-banner/cbd-residential.webp",
         galleryImages: [
             "/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (1).webp",
