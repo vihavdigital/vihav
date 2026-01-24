@@ -19,12 +19,14 @@ export default function EnquiryForm({ className, onSuccess, variant = "minimal",
         utm_medium: "",
         utm_campaign: "",
         utm_term: "",
-        utm_content: ""
+        utm_content: "",
+        user_agent: "",
+        referrer: ""
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
 
-    // Capture UTM parameters on mount
+    // Capture UTM parameters & Device Info on mount
     useEffect(() => {
         if (typeof window !== 'undefined') {
             const params = new URLSearchParams(window.location.search);
@@ -34,7 +36,9 @@ export default function EnquiryForm({ className, onSuccess, variant = "minimal",
                 utm_medium: params.get('utm_medium') || "",
                 utm_campaign: params.get('utm_campaign') || "",
                 utm_term: params.get('utm_term') || "",
-                utm_content: params.get('utm_content') || ""
+                utm_content: params.get('utm_content') || "",
+                user_agent: window.navigator.userAgent,
+                referrer: document.referrer
             }));
         }
     }, []);

@@ -117,42 +117,66 @@ export async function POST(req) {
         const API_KEY = extractFieldValue('api_key') || 'e90c80d27f7ba2858b7e8d045b1d9f18';
 
         // 6. Send to Sell.do
-
-
-        const response = await fetch(`https://app.sell.do/api/leads/create?api_key=${API_KEY}`, {
+        const sellDoPromise = fetch(`https://app.sell.do/api/leads/create?api_key=${API_KEY}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
             body: sellDoData.toString(),
-        });
+        }).then(res => res.json());
 
-        const result = await response.json();
+        // 7. Send to Google Sheets (Async/Parallel)
+        // Requires: GOOGLE_SERVICE_ACCOUNT_EMAIL, GOOGLE_PRIVATE_KEY, GOOGLE_SHEET_ID
+        const googleSheetPromise = (async () => {
+            if (!process.env.GOOGLE_SHEET_ID || !process.env.GOOGLE_PRIVATE_KEY || !process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL) {
+                console.warn("Google Sheets credentials missing. Skipping.");
+                return { skipped: true };
+            }
 
+            try {
+                const { GoogleSpreadsheet } = require('google-spreadsheet');
+                const { JWT } = require('google-auth-library');
 
-        // 7. Save to Prisma [DISABLED]
-        /*
-        const savedForm = await prisma.formEntry.create({
-            data: {
-                formId: rawData['form[id]'] || '',
-                formName: rawData['form[name]'] || '',
-                sellDoLeadId: result.sell_do_lead_id || null,
-                sellDoVerified: result.sell_do_lead_verified === 'true',
-                fields: {
-                    create: Object.keys(rawData)
-                        .filter((key) => key.startsWith('fields['))
-                        .map((rawKey) => ({
-                            key: rawKey,
-                            rawValue: rawData[rawKey],
-                        })),
-                }
-            },
-        });
-        */
+                // Initialize auth - this is key for service account
+                const serviceAccountAuth = new JWT({
+                    email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+                    key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+                    scopes: [
+                        'https://www.googleapis.com/auth/spreadsheets',
+                    ],
+                });
+
+                const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_ID, serviceAccountAuth);
+                await doc.loadInfo();
+                const sheet = doc.sheetsByIndex[0]; // Assumes first sheet
+
+                await sheet.addRow({
+                    Name: extractFieldValue('name'),
+                    Phone: extractFieldValue('phone'),
+                    Email: extractFieldValue('email'),
+                    Project: extractFieldValue('project_id'),
+                    SRD: extractFieldValue('srd'),
+                    Source: extractFieldValue('sub_source'),
+                    Date: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
+                    UserAgent: extractFieldValue('user_agent'),
+                    Referrer: extractFieldValue('referrer'),
+                    UTM_Source: utmSource,
+                    UTM_Medium: utmMedium,
+                    UTM_Campaign: utmCampaign
+                });
+                return { success: true };
+            } catch (sheetErr) {
+                console.error("Google Sheet Error:", sheetErr);
+                return { error: sheetErr.message };
+            }
+        })();
+
+        // Wait for both (or just Sell.do if you want valid response first)
+        const [result, sheetResult] = await Promise.all([sellDoPromise, googleSheetPromise]);
 
         // Assuming success if Sell.do accepts it, or just returning result
         // We return a mock entryId since DB is disabled
-        return NextResponse.json({ success: true, result, entryId: "mock-id" }, { status: 200 });
+        return NextResponse.json({ success: true, result, sheetResult, entryId: "mock-id" }, { status: 200 });
 
     } catch (err) {
         console.error('Webhook Error:', err);
