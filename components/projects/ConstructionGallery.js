@@ -14,10 +14,7 @@ export default function ConstructionGallery({ images, theme }) {
             {/* Slider View */}
             <ProjectGallery
                 images={images}
-                isLightMode={theme.text.includes("luxury-black") || theme.bg.includes("white")} // Infer mode from theme classes if possible, or default
-                // Actually ProjectDetailsClient passes theme object. Let's just default isLightMode to false (dark theme usually for construction) 
-                // or check theme.
-                // Looking at ProjectDetailsClient usage of ProjectGallery: it sets isLightMode={true} for amenities.
+                // images={images}
                 // Construction section has `bg-secondary` which is usually light grey.
                 isLightMode={true}
                 showCaptions={false}

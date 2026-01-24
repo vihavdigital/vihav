@@ -53,9 +53,15 @@ export default function ProjectDetailsClient({ project, theme }) {
     const [galleryTab, setGalleryTab] = useState("images"); // 'images' | 'videos'
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalTitle, setModalTitle] = useState("Enquire Now");
+    const [modalContext, setModalContext] = useState({});
 
-    const openModal = (title) => {
+    const openModal = (title, subSource = "Project Page") => {
         setModalTitle(title);
+        setModalContext({
+            project_id: project.id, // Using the ID from data/projects.js
+            srd: project.srd,
+            sub_source: subSource
+        });
         setIsModalOpen(true);
     };
 
@@ -272,7 +278,7 @@ export default function ProjectDetailsClient({ project, theme }) {
                                                 <Button
                                                     variant="outline"
                                                     magnetic={false}
-                                                    onClick={() => openModal("Download Brochure")}
+                                                    onClick={() => openModal("Download Brochure", "Brochure Download")}
                                                     className={`w-full bg-transparent border border-border text-foreground hover:bg-secondary font-bold uppercase tracking-widest py-6 text-[10px] px-2`}
                                                 >
                                                     <FileText className="mr-1 md:mr-2" size={14} /> Brochure
@@ -389,7 +395,7 @@ export default function ProjectDetailsClient({ project, theme }) {
                         <h2 className="font-serif text-3xl md:text-5xl text-foreground mb-6">Floor Plans</h2>
                         <div className="w-24 h-1 bg-gold-400/30 rounded-full" />
                     </div>
-                    <FloorPlans plans={project.floorPlans} onEnquire={() => openModal("Download Brochure")} />
+                    <FloorPlans plans={project.floorPlans} onEnquire={() => openModal("Download Brochure", "Floor Plan Section")} />
                 </section>
             )}
 
@@ -493,6 +499,7 @@ export default function ProjectDetailsClient({ project, theme }) {
                 onClose={() => setIsModalOpen(false)}
                 title={`${project.title} - ${modalTitle}`}
                 theme={theme.name}
+                contextData={modalContext}
             />
         </div>
     );

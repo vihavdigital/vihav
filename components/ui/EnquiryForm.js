@@ -1,11 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { COUNTRY_CODES } from "@/data/countryCodes";
 
-export default function EnquiryForm({ className, onSuccess, variant = "minimal", isCompact = false }) {
+export default function EnquiryForm({ className, onSuccess, variant = "minimal", isCompact = false, contextData = {} }) {
     const [formState, setFormState] = useState({
         name: "",
         phone: "",
@@ -13,10 +13,31 @@ export default function EnquiryForm({ className, onSuccess, variant = "minimal",
         countryCode: "+91",
         category: "",
         interest: "",
-        _honey: "" // Honeypot field
+        _honey: "", // Honeypot field
+        // UTM Fields
+        utm_source: "",
+        utm_medium: "",
+        utm_campaign: "",
+        utm_term: "",
+        utm_content: ""
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
+
+    // Capture UTM parameters on mount
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const params = new URLSearchParams(window.location.search);
+            setFormState(prev => ({
+                ...prev,
+                utm_source: params.get('utm_source') || "",
+                utm_medium: params.get('utm_medium') || "",
+                utm_campaign: params.get('utm_campaign') || "",
+                utm_term: params.get('utm_term') || "",
+                utm_content: params.get('utm_content') || ""
+            }));
+        }
+    }, []);
 
     // Interest Options Mapping
     const INTEREST_OPTIONS = {
@@ -35,11 +56,14 @@ export default function EnquiryForm({ className, onSuccess, variant = "minimal",
         e.preventDefault();
         setIsSubmitting(true);
 
+        // Merge form state with context data (SRD, Project ID, etc.)
+        const payload = { ...formState, ...contextData };
+
         try {
             const response = await fetch('/api/leads', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formState)
+                body: JSON.stringify(payload)
             });
 
             const data = await response.json();

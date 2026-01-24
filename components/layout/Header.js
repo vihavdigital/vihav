@@ -90,16 +90,19 @@ export default function Header() {
                         <div className="flex flex-col items-center">
                             {/* Logo with improved sizing for elegance */}
                             <div className={cn(
-                                "relative transition-all duration-500",
-                                isScrolled ? "h-8 md:h-12 w-32 md:w-48" : "h-12 md:h-20 w-48 md:w-64"
+                                "relative transition-all duration-500 flex items-center justify-center",
+                                isScrolled ? "h-12 md:h-14 w-auto" : "h-16 md:h-24 w-auto"
                             )}>
                                 <Image
-                                    src={logoSrc}
+                                    src={(!isScrolled && logoSrc.includes('vihav-group-logo'))
+                                        ? "/images/project-images/project-logos/vihav-group-logo-white-text.svg"
+                                        : logoSrc}
                                     alt={logoAlt}
-                                    fill
+                                    width={0}
+                                    height={0}
+                                    sizes="100vw"
+                                    className="w-auto h-full object-contain"
                                     priority
-                                    className="object-contain"
-                                    sizes="(max-width: 768px) 128px, 192px"
                                 />
                             </div>
                         </div>

@@ -10,7 +10,7 @@ import LuxuryMapWrapper from "@/components/projects/LuxuryMapWrapper";
 import Link from "next/link";
 import { ArrowRight, Phone } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import EnquireModal from "@/components/ui/EnquireModal";
+import EnquiryModal from "@/components/ui/EnquiryModal";
 import OverseasProjects from "@/components/overseas/OverseasProjects";
 import { Suspense } from "react";
 
@@ -137,7 +137,15 @@ export default function OverseasPage() {
                 <Phone size={24} className="group-hover:animate-pulse" />
             </button>
 
-            <EnquireModal isOpen={isEnquireOpen} onClose={() => setIsEnquireOpen(false)} />
+            <EnquiryModal
+                isOpen={isEnquireOpen}
+                onClose={() => setIsEnquireOpen(false)}
+                contextData={{
+                    srd: "67b4277658f1e73887ed6281",
+                    project_id: "overseas-nri", // Or appropriate ID
+                    sub_source: "Overseas Page"
+                }}
+            />
         </main>
     );
 }

@@ -100,6 +100,19 @@ export async function POST(req) {
         if (purpose) sellDoData.append('sell_do[form][custom][custom_purpose_of_purchase]', purpose);
         if (type) sellDoData.append('sell_do[form][custom][custom_property_type_interested_in]', type);
 
+        // -- Analytics / UTMs --
+        const utmSource = extractFieldValue('utm_source');
+        const utmMedium = extractFieldValue('utm_medium');
+        const utmCampaign = extractFieldValue('utm_campaign');
+        const utmTerm = extractFieldValue('utm_term');
+        const utmContent = extractFieldValue('utm_content');
+
+        if (utmSource) sellDoData.append('sell_do[analytics][utm_source]', utmSource);
+        if (utmMedium) sellDoData.append('sell_do[analytics][utm_medium]', utmMedium);
+        if (utmCampaign) sellDoData.append('sell_do[analytics][utm_campaign]', utmCampaign);
+        if (utmTerm) sellDoData.append('sell_do[analytics][utm_term]', utmTerm);
+        if (utmContent) sellDoData.append('sell_do[analytics][utm_content]', utmContent);
+
         // API Key
         const API_KEY = extractFieldValue('api_key') || 'e90c80d27f7ba2858b7e8d045b1d9f18';
 

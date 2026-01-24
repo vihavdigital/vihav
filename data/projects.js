@@ -14,6 +14,7 @@
 export const PROJECTS = [
     {
         id: "keystone-select",
+        srd: "PLACEHOLDER_SRD", // User to provide
         link: "/projects/keystone-select",
         slug: "keystone-select",
         title: "Keystone Select",
@@ -96,6 +97,7 @@ export const PROJECTS = [
     },
     {
         id: "keystone-51",
+        srd: "PLACEHOLDER_SRD",
         link: "/projects/keystone-51",
         status: "Upcoming",
         slug: "keystone-51",
@@ -152,6 +154,7 @@ export const PROJECTS = [
     },
     {
         id: "keystone-niwa",
+        srd: "PLACEHOLDER_SRD",
         link: "/projects/keystone-niwa-4b2hk-apartments-in-vadodara/",
         slug: "keystone-niwa-4b2hk-apartments-in-vadodara",
         title: "Keystone Niwa",
@@ -219,6 +222,7 @@ export const PROJECTS = [
     },
     {
         id: "keystone-clermont",
+        srd: "PLACEHOLDER_SRD",
         link: "/projects/keystone-clermont-4b2hk-apartments-in-vadodara/",
         status: "Newly Launched",
         slug: "keystone-clermont-4b2hk-apartments-in-vadodara",
@@ -282,6 +286,7 @@ export const PROJECTS = [
     },
     {
         id: "keystone-30",
+        srd: "PLACEHOLDER_SRD",
         link: "https://keystone30.in/",
         status: "Ongoing",
         slug: "keystone-30",
@@ -326,6 +331,7 @@ export const PROJECTS = [
     },
     {
         id: "keystone-skyvillas-xl",
+        srd: "PLACEHOLDER_SRD",
         link: "/projects/keystone-skyvillas-xl",
         status: "Ongoing",
         slug: "keystone-skyvillas-xl",
@@ -387,6 +393,7 @@ export const PROJECTS = [
     },
     {
         id: "keystone-48",
+        srd: "PLACEHOLDER_SRD",
         status: "Ongoing",
         slug: "keystone-48",
         title: "Keystone 48",
@@ -422,6 +429,7 @@ export const PROJECTS = [
     },
     {
         id: "vihav-cbd-res",
+        srd: "PLACEHOLDER_SRD",
         link: "/projects/cbd",
         launchYear: "2022",
         brochureLink: "https://drive.google.com/file/d/10dM1tq9y9lGhpbkU2zy3DB5afBs_MQP0/view?usp=drive_link",
@@ -535,6 +543,7 @@ export const PROJECTS = [
     },
     {
         id: "vihav-spring-woods",
+        srd: "PLACEHOLDER_SRD",
         link: "/projects/spring-woods/",
         status: "Ongoing",
         slug: "spring-woods",
@@ -593,6 +602,7 @@ export const PROJECTS = [
     },
     {
         id: "vihav-elinor",
+        srd: "PLACEHOLDER_SRD",
         link: "/projects/elinor",
         status: "Ongoing",
         slug: "elinor",
@@ -661,6 +671,7 @@ export const PROJECTS = [
     },
     {
         id: "vihav-parvarish-res",
+        srd: "PLACEHOLDER_SRD",
         status: "Ready to Move",
         rentalPrice: "₹45,000 / month",
         slug: "parvarish",
@@ -729,6 +740,7 @@ export const PROJECTS = [
     },
     {
         id: "vihav-parvarish-comm",
+        srd: "PLACEHOLDER_SRD",
         slug: "parvarish-commercial",
         title: "Vihav Parvarish Commercial",
         link: "/projects/parvarish-commercial/",
@@ -774,6 +786,7 @@ export const PROJECTS = [
     },
     {
         id: "vihav-skymont",
+        srd: "PLACEHOLDER_SRD",
         status: "Completed",
         slug: "vihav-skymont",
         title: "Keystone Skymont",
