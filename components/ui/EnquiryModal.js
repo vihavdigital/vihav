@@ -57,7 +57,7 @@ export default function EnquiryModal({ isOpen, onClose, title = "Enquire Now", l
                         </div>
 
                         {/* Content */}
-                        <div className="p-6 md:p-8 overflow-y-auto flex-1">
+                        <div className="p-4 md:p-8 overflow-y-auto flex-1">
                             <EnquiryForm onSuccess={onClose} variant="standard" />
                         </div>
                     </motion.div>

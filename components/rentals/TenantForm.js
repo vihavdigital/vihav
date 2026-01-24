@@ -11,7 +11,8 @@ export default function TenantForm({ theme }) {
         requirement: "Bunglow",
         preferredProject: "",
         area: "",
-        message: ""
+        message: "",
+        _honey: "" // Honeypot
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
@@ -50,10 +51,20 @@ export default function TenantForm({ theme }) {
     }
 
     return (
-        <form onSubmit={handleSubmit} className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
-            <div className="grid md:grid-cols-2 gap-8 w-full">
+        <form onSubmit={handleSubmit} className="space-y-5 md:space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+            <div className="grid md:grid-cols-2 gap-5 md:gap-8 w-full">
                 {/* Personal Details */}
-                <div className="space-y-6">
+                <div className="space-y-4 md:space-y-6">
+                    {/* Honeypot Field - Hidden */}
+                    <input
+                        type="text"
+                        name="_honey"
+                        value={formData._honey}
+                        onChange={handleChange}
+                        style={{ display: 'none' }}
+                        tabIndex="-1"
+                        autoComplete="off"
+                    />
                     <div>
                         <label className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 block ml-1">Name</label>
                         <input
@@ -63,7 +74,7 @@ export default function TenantForm({ theme }) {
                             placeholder="Your full name"
                             value={formData.name}
                             onChange={handleChange}
-                            className="w-full bg-gray-50/50 border border-gray-200 focus:border-gold-500 focus:bg-white focus:ring-1 focus:ring-gold-500/20 rounded-xl px-4 py-4 text-gray-900 placeholder:text-gray-400 transition-all duration-300 font-serif text-lg outline-none"
+                            className="w-full bg-gray-50/50 border border-gray-200 focus:border-gold-500 focus:bg-white focus:ring-1 focus:ring-gold-500/20 rounded-xl px-3 py-3 md:px-4 md:py-4 text-gray-900 placeholder:text-gray-400 transition-all duration-300 font-serif text-base md:text-lg outline-none"
                         />
                     </div>
                     <div>
@@ -75,7 +86,7 @@ export default function TenantForm({ theme }) {
                             placeholder="Email address"
                             value={formData.email}
                             onChange={handleChange}
-                            className="w-full bg-gray-50/50 border border-gray-200 focus:border-gold-500 focus:bg-white focus:ring-1 focus:ring-gold-500/20 rounded-xl px-4 py-4 text-gray-900 placeholder:text-gray-400 transition-all duration-300 font-serif text-lg outline-none"
+                            className="w-full bg-gray-50/50 border border-gray-200 focus:border-gold-500 focus:bg-white focus:ring-1 focus:ring-gold-500/20 rounded-xl px-3 py-3 md:px-4 md:py-4 text-gray-900 placeholder:text-gray-400 transition-all duration-300 font-serif text-base md:text-lg outline-none"
                         />
                     </div>
                     <div>
@@ -87,20 +98,20 @@ export default function TenantForm({ theme }) {
                             placeholder="10-digit mobile number"
                             value={formData.phone}
                             onChange={handleChange}
-                            className="w-full bg-gray-50/50 border border-gray-200 focus:border-gold-500 focus:bg-white focus:ring-1 focus:ring-gold-500/20 rounded-xl px-4 py-4 text-gray-900 placeholder:text-gray-400 transition-all duration-300 font-serif text-lg outline-none"
+                            className="w-full bg-gray-50/50 border border-gray-200 focus:border-gold-500 focus:bg-white focus:ring-1 focus:ring-gold-500/20 rounded-xl px-3 py-3 md:px-4 md:py-4 text-gray-900 placeholder:text-gray-400 transition-all duration-300 font-serif text-base md:text-lg outline-none"
                         />
                     </div>
                 </div>
 
                 {/* Requirement Details */}
-                <div className="space-y-6">
+                <div className="space-y-4 md:space-y-6">
                     <div className="relative">
                         <label className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 block ml-1">Requirement</label>
                         <select
                             name="requirement"
                             value={formData.requirement}
                             onChange={handleChange}
-                            className="w-full bg-gray-50/50 border border-gray-200 focus:border-gold-500 focus:bg-white focus:ring-1 focus:ring-gold-500/20 rounded-xl px-4 py-4 text-gray-900 transition-all duration-300 font-serif text-lg outline-none appearance-none cursor-pointer"
+                            className="w-full bg-gray-50/50 border border-gray-200 focus:border-gold-500 focus:bg-white focus:ring-1 focus:ring-gold-500/20 rounded-xl px-3 py-3 md:px-4 md:py-4 text-gray-900 transition-all duration-300 font-serif text-base md:text-lg outline-none appearance-none cursor-pointer"
                         >
                             <option value="Bunglow" className="bg-white text-gray-900">Bunglow</option>
                             <option value="Apartments" className="bg-white text-gray-900">Apartments</option>
@@ -125,7 +136,7 @@ export default function TenantForm({ theme }) {
                             placeholder="e.g. Vihav Skyone (Optional)"
                             value={formData.preferredProject}
                             onChange={handleChange}
-                            className="w-full bg-gray-50/50 border border-gray-200 focus:border-gold-500 focus:bg-white focus:ring-1 focus:ring-gold-500/20 rounded-xl px-4 py-4 text-gray-900 placeholder:text-gray-400 transition-all duration-300 font-serif text-lg outline-none"
+                            className="w-full bg-gray-50/50 border border-gray-200 focus:border-gold-500 focus:bg-white focus:ring-1 focus:ring-gold-500/20 rounded-xl px-3 py-3 md:px-4 md:py-4 text-gray-900 placeholder:text-gray-400 transition-all duration-300 font-serif text-base md:text-lg outline-none"
                         />
                     </div>
                     <div>
@@ -136,7 +147,7 @@ export default function TenantForm({ theme }) {
                             placeholder="e.g. Vasna-Bhayli (Optional)"
                             value={formData.area}
                             onChange={handleChange}
-                            className="w-full bg-gray-50/50 border border-gray-200 focus:border-gold-500 focus:bg-white focus:ring-1 focus:ring-gold-500/20 rounded-xl px-4 py-4 text-gray-900 placeholder:text-gray-400 transition-all duration-300 font-serif text-lg outline-none"
+                            className="w-full bg-gray-50/50 border border-gray-200 focus:border-gold-500 focus:bg-white focus:ring-1 focus:ring-gold-500/20 rounded-xl px-3 py-3 md:px-4 md:py-4 text-gray-900 placeholder:text-gray-400 transition-all duration-300 font-serif text-base md:text-lg outline-none"
                         />
                     </div>
                 </div>
@@ -150,7 +161,7 @@ export default function TenantForm({ theme }) {
                     placeholder="Any specific requirements..."
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full bg-gray-50/50 border border-gray-200 focus:border-gold-500 focus:bg-white focus:ring-1 focus:ring-gold-500/20 rounded-xl px-4 py-4 text-gray-900 placeholder:text-gray-400 transition-all duration-300 font-serif text-lg outline-none resize-none"
+                    className="w-full bg-gray-50/50 border border-gray-200 focus:border-gold-500 focus:bg-white focus:ring-1 focus:ring-gold-500/20 rounded-xl px-3 py-3 md:px-4 md:py-4 text-gray-900 placeholder:text-gray-400 transition-all duration-300 font-serif text-base md:text-lg outline-none resize-none"
                 />
             </div>
 

@@ -23,9 +23,16 @@ export async function POST(req) {
             rawData[field] ||
             rawData[`fields[${field}][value]`] ||
             rawData[`fields[${field}][raw_value]`] ||
+            rawData[`fields[${field}][raw_value]`] ||
             '';
 
-        // 3. Process Standard Fields (BHK, Budget)
+        // 3. Spam Check (Honeypot)
+        if (extractFieldValue('_honey')) {
+            // Silently reject bots (Return success so they don't retry)
+            return NextResponse.json({ success: true, message: "Received" }, { status: 200 });
+        }
+
+        // 4. Process Standard Fields (BHK, Budget)
         const bhkString = extractFieldValue('bhk');
         const bhk = bhkString ? bhkString.split(',').map((v) => v.trim()) : ['2', '3']; // Default fallback
 

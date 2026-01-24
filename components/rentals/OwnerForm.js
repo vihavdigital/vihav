@@ -10,7 +10,8 @@ export default function OwnerForm({ theme }) {
         phone: "",
         project: "",
         unitNumber: "",
-        expectedRent: ""
+        expectedRent: "",
+        _honey: "" // Honeypot
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
@@ -49,13 +50,23 @@ export default function OwnerForm({ theme }) {
     }
 
     return (
-        <form onSubmit={handleSubmit} className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">
+        <form onSubmit={handleSubmit} className="space-y-5 md:space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">
 
 
-            <div className="grid md:grid-cols-2 gap-8 w-full">
+            <div className="grid md:grid-cols-2 gap-5 md:gap-8 w-full">
                 {/* Personal Details */}
-                <div className="space-y-6">
-                    <h4 className="text-xs uppercase tracking-widest text-gold-600 font-bold border-b border-gray-100 pb-2 mb-6">Owner Details</h4>
+                <div className="space-y-4 md:space-y-6">
+                    {/* Honeypot Field - Hidden */}
+                    <input
+                        type="text"
+                        name="_honey"
+                        value={formData._honey}
+                        onChange={handleChange}
+                        style={{ display: 'none' }}
+                        tabIndex="-1"
+                        autoComplete="off"
+                    />
+                    <h4 className="text-xs uppercase tracking-widest text-gold-600 font-bold border-b border-gray-100 pb-2 mb-4 md:mb-6">Owner Details</h4>
                     <div>
                         <label className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 block ml-1">Name</label>
                         <input
@@ -65,7 +76,7 @@ export default function OwnerForm({ theme }) {
                             placeholder="Your full name"
                             value={formData.name}
                             onChange={handleChange}
-                            className="w-full bg-gray-50/50 border border-gray-200 focus:border-gold-500 focus:bg-white focus:ring-1 focus:ring-gold-500/20 rounded-xl px-4 py-4 text-gray-900 placeholder:text-gray-400 transition-all duration-300 font-serif text-lg outline-none"
+                            className="w-full bg-gray-50/50 border border-gray-200 focus:border-gold-500 focus:bg-white focus:ring-1 focus:ring-gold-500/20 rounded-xl px-3 py-3 md:px-4 md:py-4 text-gray-900 placeholder:text-gray-400 transition-all duration-300 font-serif text-base md:text-lg outline-none"
                         />
                     </div>
                     <div>
@@ -95,8 +106,8 @@ export default function OwnerForm({ theme }) {
                 </div>
 
                 {/* Property Details */}
-                <div className="space-y-6">
-                    <h4 className="text-xs uppercase tracking-widest text-gold-600 font-bold border-b border-gray-100 pb-2 mb-6">Property Data</h4>
+                <div className="space-y-4 md:space-y-6">
+                    <h4 className="text-xs uppercase tracking-widest text-gold-600 font-bold border-b border-gray-100 pb-2 mb-4 md:mb-6">Property Data</h4>
 
                     <div>
                         <label className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 block ml-1">Project Name</label>
@@ -111,7 +122,7 @@ export default function OwnerForm({ theme }) {
                         />
                     </div>
 
-                    <div className="grid grid-cols-2 gap-6">
+                    <div className="grid grid-cols-2 gap-4 md:gap-6">
                         <div>
                             <label className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 block ml-1">Unit No.</label>
                             <input
@@ -143,7 +154,7 @@ export default function OwnerForm({ theme }) {
                 <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-luxury-black hover:bg-gold-500 hover:text-black text-white font-bold uppercase tracking-widest py-6 rounded-xl shadow-lg transition-all duration-300"
+                    className="w-full bg-luxury-black hover:bg-gold-500 hover:text-black text-white font-bold uppercase tracking-widest py-4 md:py-6 rounded-xl shadow-lg transition-all duration-300"
                 >
                     {isSubmitting ? (
                         <span className="animate-pulse">Processing...</span>

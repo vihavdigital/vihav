@@ -12,7 +12,8 @@ export default function EnquiryForm({ className, onSuccess, variant = "minimal",
         email: "",
         countryCode: "+91",
         category: "",
-        interest: ""
+        interest: "",
+        _honey: "" // Honeypot field
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
@@ -70,9 +71,9 @@ export default function EnquiryForm({ className, onSuccess, variant = "minimal",
             button: "bg-foreground text-background hover:bg-gold-400 hover:text-black rounded-none py-4 md:py-6 tracking-[0.2em] text-sm md:text-base"
         },
         standard: {
-            input: "w-full bg-secondary border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:border-gold-400 focus:outline-none transition-colors",
-            select: "w-full bg-secondary border border-border rounded-lg px-4 py-3 text-foreground focus:border-gold-400 focus:outline-none transition-colors appearance-none cursor-pointer",
-            button: "bg-gold-400 text-black hover:bg-foreground hover:text-background rounded-lg py-4 tracking-widest"
+            input: "w-full bg-secondary border border-border rounded-lg px-3 md:px-4 py-2.5 md:py-3 text-sm md:text-base text-foreground placeholder:text-muted-foreground focus:border-gold-400 focus:outline-none transition-colors",
+            select: "w-full bg-secondary border border-border rounded-lg px-3 md:px-4 py-2.5 md:py-3 text-sm md:text-base text-foreground focus:border-gold-400 focus:outline-none transition-colors appearance-none cursor-pointer",
+            button: "bg-gold-400 text-black hover:bg-foreground hover:text-background rounded-lg py-3 md:py-4 tracking-widest text-sm md:text-base"
         }
     };
 
@@ -91,10 +92,21 @@ export default function EnquiryForm({ className, onSuccess, variant = "minimal",
     }
 
     return (
-        <form onSubmit={handleSubmit} className={`space-y-8 ${className}`}>
+        <form onSubmit={handleSubmit} className={`space-y-5 md:space-y-8 ${className}`}>
             <div className={`space-y-6 ${variant === 'minimal' ? 'space-y-8' : ''}`}>
 
                 <div className="group">
+                    {/* Honeypot Field - Hidden for humans */}
+                    <input
+                        type="text"
+                        name="_honey"
+                        value={formState._honey}
+                        onChange={(e) => setFormState({ ...formState, _honey: e.target.value })}
+                        style={{ display: 'none' }}
+                        tabIndex="-1"
+                        autoComplete="off"
+                    />
+
                     {variant === 'standard' && <label className="block text-xs uppercase tracking-widest text-muted-foreground mb-2">Full Name</label>}
                     <input
                         type="text"
@@ -107,7 +119,7 @@ export default function EnquiryForm({ className, onSuccess, variant = "minimal",
                     />
                 </div>
 
-                <div className="space-y-6">
+                <div className="space-y-4 md:space-y-6">
                     {/* Phone Input with Country Code */}
                     <div className="group">
                         {variant === 'standard' && <label className="block text-xs uppercase tracking-widest text-muted-foreground mb-2">Phone Number</label>}

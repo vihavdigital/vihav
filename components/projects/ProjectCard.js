@@ -122,9 +122,20 @@ export default function ProjectCard({ project }) {
 
                     <div className="pt-4 border-t border-border/50">
                         <div className="flex flex-row justify-between items-center gap-4">
-                            <div className="flex flex-col">
+                            <div
+                                className={`flex flex-col relative z-20 ${project.price === "Price on Request" ? "cursor-pointer group/price" : ""}`}
+                                onClick={(e) => {
+                                    if (project.price === "Price on Request") {
+                                        e.preventDefault();
+                                        e.stopPropagation();
+                                        setIsEnquireOpen(true);
+                                    }
+                                }}
+                            >
                                 <span className="text-muted-foreground text-[10px] uppercase tracking-wider mb-0.5">Starting from</span>
-                                <span className="text-foreground font-medium text-sm md:text-base">{project.price}</span>
+                                <span className={`text-foreground font-medium text-sm md:text-base transition-colors ${project.price === "Price on Request" ? "group-hover/price:text-gold-400" : ""}`}>
+                                    {project.price}
+                                </span>
                             </div>
 
                             <MagneticWrapper className="w-fit z-20 relative">
