@@ -79,7 +79,7 @@ export default function Home() {
           <div className="mb-10 min-h-[120px]">
             <TextReveal
               as="h2"
-              text="Designing spaces that transcend time."
+              text="Designing timeless spaces with Enduring Values."
               className="justify-center font-serif text-4xl md:text-6xl lg:text-7xl leading-tight text-foreground"
             />
           </div>
@@ -188,13 +188,14 @@ export default function Home() {
                 <strong>Vihav Group Wins Hurun India Award.</strong> From Vadodara to national acclaim, Vihav Group has been honoured with the prestigious "Excellence in Lifestyle Real Estate Development – Gujarat Award 2025".
               </p>
               <p>
-                Presented by Hurun India, part of the globally renowned Hurun Report, the award recognises visionary companies setting benchmarks in business, lifestyle, and innovation. With forward-thinking leadership, cutting-edge design, and a deep understanding of lifestyle aspirations, Vihav Group creates spaces that blend culture with modernity.
+                “Vihav has been recognised by the Hurun Report for its commitment to excellence in real estate development. This recognition reflects our focus on quality construction, thoughtful design, and consistent value creation across residential and commercial projects in Vadodara.”
+
               </p>
-              <div className="bg-secondary border-l-2 border-gold-400 p-6 mt-8">
+              {/* <div className="bg-secondary border-l-2 border-gold-400 p-6 mt-8">
                 <p className="text-foreground italic">
                   "This accolade is a testament to Vihav’s role in shaping Vadodara’s skyline and placing it firmly on India’s map of excellence."
                 </p>
-              </div>
+              </div> */}
             </div>
 
             <div className="flex gap-8 mt-12">
@@ -218,46 +219,42 @@ export default function Home() {
         projects={allFeatured}
         residentialProjects={orderedResidentialProjects}
         commercialProjects={orderedCommercialProjects}
+        showAllTab={false}
       />
 
       {/* Featured Project Section (Minimal) */}
+      <section className="container mx-auto px-6 pt-24 pb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="flex items-center gap-4"
+        >
+          <div className="h-[2px] w-12 md:w-24 bg-gold-400 shrink-0" />
+          <span className="text-gold-400 text-lg md:text-3xl font-bold uppercase tracking-[0.2em] md:tracking-[0.3em] whitespace-nowrap">
+            Featured Project
+          </span>
+        </motion.div>
+      </section>
       <FeaturedProject />
 
-      {/* Immersive Philosophy Section */}
-      <section className="relative py-32 bg-background border-t border-border">
+      {/* Selected Works Section */}
+      <section className="py-24 md:py-32 bg-background border-t border-border overflow-hidden">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
-            {/* Sticky Left Content */}
-            <div className="lg:sticky lg:top-32 h-fit">
-              <span className="text-gold-400 uppercase tracking-[0.25em] text-xs font-bold mb-6 block">Our Philosophy</span>
+          <div className="flex flex-col gap-12">
+            {/* Header */}
+            <div className="max-w-4xl">
+              <span className="text-gold-400 uppercase tracking-[0.25em] text-xs font-bold mb-6 block">Portfolio Showcase</span>
               <TextReveal
                 as="h2"
-                text="Perfection is not an act, but a habit."
-                className="font-serif text-5xl md:text-7xl text-foreground mb-12 leading-none"
+                text="Our Selected Works"
+                className="font-serif text-3xl md:text-5xl text-foreground leading-none"
               />
-              <div className="space-y-12">
-                <div>
-                  <h3 className="text-foreground text-xl font-serif mb-4 flex items-center gap-4">
-                    <span className="w-8 h-px bg-gold-400"></span> Uncompromising Construction Quality
-                  </h3>
-                  <p className="text-muted-foreground pl-12 font-light leading-relaxed">
-                    Our unique "backward integration" model ensures complete control over every aspect of construction. This guarantees that every <strong>luxury apartment in Vadodara</strong> we build meets a level of precision and durability that defines the Vihav standard in the real estate market.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-foreground text-xl font-serif mb-4 flex items-center gap-4">
-                    <span className="w-8 h-px bg-gold-400"></span> Sustainable & Green Living
-                  </h3>
-                  <p className="text-muted-foreground pl-12 font-light leading-relaxed">
-                    We pioneer <strong>green building practices</strong> to create <strong>sustainable luxury homes</strong>. Our designs prioritize energy efficiency and environmental harmony, ensuring that our <strong>3BHK and 4BHK flats</strong> offer not just comfort, but a healthier lifestyle for generations to come.
-                  </p>
-                </div>
-              </div>
             </div>
 
-            {/* Right Image Grid - Enhanced Layout */}
-            {/* Right Image Grid - Enhanced Layout with Slider */}
-            <div className="h-full flex items-center lg:pl-10">
+            {/* Full Width Slider */}
+            <div className="w-full">
               <PhilosophySlider slides={PHILOSOPHY_SLIDES} />
             </div>
           </div>
@@ -286,15 +283,12 @@ export default function Home() {
             </div>
 
             <h2 className="text-4xl md:text-6xl font-serif text-white mb-8 leading-tight">
-              Designing the Skyline of <br />
+              Shaping the Urban Skyline of <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-300 via-gold-500 to-gold-300">Vadodara</span>
             </h2>
 
             <p className="text-gray-400 text-lg md:text-xl font-light leading-relaxed mb-4 max-w-3xl mx-auto">
-              From the architectural marvel of <strong>Keystone Skyvillas</strong> to the commercial dominance of <strong>Vihav Trade Centre</strong>, we define the standard for <strong>luxury living in Vadodara</strong>.
-            </p>
-            <p className="text-gray-400 text-lg md:text-xl font-light leading-relaxed mb-16 max-w-3xl mx-auto">
-              Our portfolio encompasses <strong>premium 3 & 4 BHK flats</strong>, <strong>corporate showrooms</strong>, and <strong>ultra-luxury sky villas</strong>, ensuring that whether you seek a dream home or a landmark business address, Vihav Group delivers excellence across every dimension.
+              Through disciplined planning and quality-driven execution, Vihav delivers residential and commercial real estate projects that contribute to Vadodara’s growing urban landscape and long-term development.
             </p>
 
             {/* Close max-w-5xl, keep inside container */}
@@ -323,6 +317,6 @@ export default function Home() {
       </section>
 
       <Footer />
-    </main>
+    </main >
   );
 }

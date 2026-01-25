@@ -406,7 +406,7 @@ export default function ProjectDetailsClient({ project, theme }) {
                         <div className="flex justify-between items-end">
                             <div>
                                 <span className={`${theme.text} uppercase tracking-[0.25em] text-[10px] md:text-xs font-bold mb-4 md:mb-6 block`}>Actual Images</span>
-                                <h2 className="font-serif text-3xl md:text-5xl text-foreground mb-6">Amenities Images (Actual)</h2>
+                                <h2 className="font-serif text-3xl md:text-5xl text-foreground mb-6">Amenities Images</h2>
                                 <div className="w-24 h-1 bg-gold-400/30 rounded-full" />
                             </div>
                             {renderCounter(amenitiesIndex, project.amenitiesImages.length)}
@@ -418,6 +418,7 @@ export default function ProjectDetailsClient({ project, theme }) {
                             onIndexChange={setAmenitiesIndex}
                             isLightMode={true}
                             showProgress={false}
+                            showCaptions={true}
                         />
                     </div>
                 </section>
@@ -429,8 +430,8 @@ export default function ProjectDetailsClient({ project, theme }) {
                     <div className="container mx-auto px-6 md:px-12 mb-8 md:mb-12">
                         <div className="flex justify-between items-end">
                             <div>
-                                <span className={`${theme.text} uppercase tracking-[0.25em] text-[10px] md:text-xs font-bold mb-4 md:mb-6 block`}>On Site</span>
-                                <h2 className="font-serif text-3xl md:text-5xl text-foreground mb-6">Real Site Pictures</h2>
+                                <span className={`${theme.text} uppercase tracking-[0.25em] text-[10px] md:text-xs font-bold mb-4 md:mb-6 block`}>Actual images</span>
+                                <h2 className="font-serif text-3xl md:text-5xl text-foreground mb-6">Show House</h2>
                                 <div className="w-24 h-1 bg-gold-400/30 rounded-full" />
                             </div>
                             {renderCounter(realSiteIndex, project.realPictureImages.length)}
@@ -442,6 +443,7 @@ export default function ProjectDetailsClient({ project, theme }) {
                             onIndexChange={setRealSiteIndex}
                             isLightMode={true}
                             showProgress={false}
+                            showCaptions={false}
                         />
                     </div>
                 </section>
@@ -527,7 +529,7 @@ function ConstructionStatus({ project, theme }) {
 
 
 // Helper for Visual Tour (Slider - Mixed Media)
-function VisualTourSection({ title = "Visual Tour", heading = "Gallery & Walkthroughs", images, videos, theme }) {
+function VisualTourSection({ title = "Visual Tour", heading = "Gallery", images, videos, theme, showCaptions = false }) {
     // Merge images and videos into one slider
     const allMedia = [...(images || []), ...(videos || [])];
     const [activeIndex, setActiveIndex] = useState(0);
@@ -550,7 +552,7 @@ function VisualTourSection({ title = "Visual Tour", heading = "Gallery & Walkthr
             </div>
 
             <div className="">
-                <ProjectGallery images={allMedia} onIndexChange={setActiveIndex} />
+                <ProjectGallery images={allMedia} onIndexChange={setActiveIndex} showCaptions={showCaptions} />
             </div>
         </>
     );

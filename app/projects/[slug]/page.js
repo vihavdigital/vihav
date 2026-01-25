@@ -7,6 +7,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { PROJECTS, getProjectBySlug } from "@/data/projects";
 import ProjectDetailsClient from "@/components/projects/ProjectDetailsClient"; // New Client Component
+import VideoPlayer from "@/components/ui/VideoPlayer";
 
 // Removed unused imports (ProjectGallery, ConstructionGallery, etc as they are moved to Client)
 import { motion } from "framer-motion";
@@ -98,13 +99,9 @@ export default async function ProjectPage({ params }) {
                     {/* Desktop Media (Video or Image) */}
                     <div className={`relative w-full h-full ${project.mobileHeroImage ? 'hidden md:block' : 'block'}`}>
                         {project.heroVideo ? (
-                            <video
+                            <VideoPlayer
                                 src={project.heroVideo}
                                 className="w-full h-full object-cover brightness-90"
-                                autoPlay
-                                muted
-                                loop
-                                playsInline
                             />
                         ) : (
                             <Image

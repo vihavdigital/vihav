@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronRight, ChevronLeft } from "lucide-react";
+import VideoPlayer from "@/components/ui/VideoPlayer";
 
 const SLIDES = [
     {
@@ -11,14 +12,14 @@ const SLIDES = [
         type: "video",
         src: "/videos/niwa.mp4", // Keystone Niwa
         title: "Curated <br/> <span class='text-white/80 italic font-light'>Collections</span>",
-        subtitle: "Experience a life of uncompromising luxury in our handpicked residential sanctuaries."
+        subtitle: "Luxury Homes crafted for modern living."
     },
     {
         id: 2,
         type: "video",
         src: "/videos/sup-wt.webm", // Lifestyle/Aerial
         title: "Corporate <br/> <span class='text-white/80 italic font-light'>Excellence</span>",
-        subtitle: "State-of-the-art panoramic workspaces designed to inspire ambition and success."
+        subtitle: "Commercial Real Estate for Growing Businesses"
     }
 ];
 
@@ -57,17 +58,7 @@ export default function Hero() {
                 >
                     {/* Media Layer */}
                     {SLIDES[currentSlide].type === "video" ? (
-                        <video
-                            autoPlay
-                            loop
-                            muted
-                            playsInline
-                            preload="auto"
-                            className="w-full h-full object-cover transform scale-105"
-                        >
-                            <source src={SLIDES[currentSlide].src} type={SLIDES[currentSlide].src.endsWith('.webm') ? "video/webm" : "video/mp4"} />
-                            <track kind="captions" srcLang="en" label="English" />
-                        </video>
+                        <VideoPlayer src={SLIDES[currentSlide].src} />
                     ) : (
                         <Image
                             src={SLIDES[currentSlide].src}

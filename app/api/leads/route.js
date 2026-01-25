@@ -171,12 +171,52 @@ export async function POST(req) {
             }
         })();
 
-        // Wait for both (or just Sell.do if you want valid response first)
-        const [result, sheetResult] = await Promise.all([sellDoPromise, googleSheetPromise]);
+        // 8. Send to Supabase (Async/Parallel)
+        const supabasePromise = (async () => {
+            const supabase = require('@/lib/supabase').default;
+            if (!supabase) return { skipped: true };
 
-        // Assuming success if Sell.do accepts it, or just returning result
-        // We return a mock entryId since DB is disabled
-        return NextResponse.json({ success: true, result, sheetResult, entryId: "mock-id" }, { status: 200 });
+            try {
+                const { error } = await supabase
+                    .from('leads')
+                    .insert([
+                        {
+                            name: extractFieldValue('name'),
+                            email: extractFieldValue('email'),
+                            phone: extractFieldValue('phone'),
+                            project_id: extractFieldValue('project_id'),
+                            srd: extractFieldValue('srd'),
+                            source: extractFieldValue('sub_source'),
+                            user_agent: extractFieldValue('user_agent'),
+                            referrer: extractFieldValue('referrer'),
+                            utm_source: utmSource,
+                            utm_medium: utmMedium,
+                            utm_campaign: utmCampaign,
+                            utm_term: utmTerm,
+                            utm_content: utmContent,
+                            metadata: { note: noteContent, budget: selectedBudget } // JSONB column for extras
+                        }
+                    ]);
+
+                if (error) throw error;
+                return { success: true };
+            } catch (dbErr) {
+                console.error("Supabase Error:", dbErr);
+                return { error: dbErr.message };
+            }
+        })();
+
+        // Wait for all (Sell.do is primary, others are secondary but we wait for all to log results)
+        const [result, sheetResult, dbResult] = await Promise.all([sellDoPromise, googleSheetPromise, supabasePromise]);
+
+        // Return combined result
+        return NextResponse.json({
+            success: true,
+            result,
+            sheetResult,
+            dbResult,
+            entryId: "mock-id"
+        }, { status: 200 });
 
     } catch (err) {
         console.error('Webhook Error:', err);

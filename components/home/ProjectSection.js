@@ -10,8 +10,9 @@ import FilterDropdown from "@/components/ui/FilterDropdown";
 import { useProjectFilters, FILTER_COMMERCIAL_TYPES } from "@/hooks/useProjectFilters";
 
 // Internal Component with Filter Logic
-function ProjectSectionContent({ projects, residentialProjects, commercialProjects }) {
+function ProjectSectionContent({ projects, residentialProjects, commercialProjects, showAllTab = true }) {
     const sectionRef = useRef(null);
+    const initialCategory = showAllTab ? "All" : "Residential";
     const {
         activeCategory,
         setActiveCategory,
@@ -29,7 +30,7 @@ function ProjectSectionContent({ projects, residentialProjects, commercialProjec
         FILTER_TRANSACTION_OPTIONS,
         clearFilters,
         applyFilters
-    } = useProjectFilters(projects, "All", residentialProjects, commercialProjects);
+    } = useProjectFilters(projects, initialCategory, residentialProjects, commercialProjects);
 
     const [showFilters, setShowFilters] = useState(false);
 
@@ -64,6 +65,8 @@ function ProjectSectionContent({ projects, residentialProjects, commercialProjec
     // Show ALL projects as requested
     const visibleProjects = filteredProjects;
 
+    const visibleTabs = showAllTab ? ["All", "Residential", "Commercial"] : ["Residential", "Commercial"];
+
     return (
         <section ref={sectionRef} className="py-24 md:py-32 border-b border-border bg-background min-h-[80vh] transition-colors duration-500">
             {/* 1. Header Title Block (Inside Container) */}
@@ -85,7 +88,7 @@ function ProjectSectionContent({ projects, residentialProjects, commercialProjec
                         <div className="flex items-center justify-between gap-4 md:w-auto w-full">
                             {/* Category Tabs (Pill Switcher) - Scrollable on mobile */}
                             <div className="flex bg-secondary p-1 rounded-full border border-border relative overflow-x-auto scrollbar-hide max-w-[calc(100%-50px)] md:max-w-none mx-auto md:mx-0">
-                                {["All", "Residential", "Commercial"].map((cat) => (
+                                {visibleTabs.map((cat) => (
                                     <button
                                         key={cat}
                                         onClick={() => applyFilters({ activeCategory: cat, activeType: "All", activePossession: "All" })}

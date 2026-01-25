@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronRight, ChevronLeft, Sparkles } from "lucide-react";
+import VideoPlayer from "@/components/ui/VideoPlayer";
 
 const SLIDES = [
     {
@@ -52,15 +53,10 @@ export default function DealUtsavHero() {
                 >
                     {/* Media Layer - Cinematic Warmth */}
                     {SLIDES[currentSlide].type === "video" ? (
-                        <video
-                            autoPlay
-                            loop
-                            muted
-                            playsInline
+                        <VideoPlayer
+                            src={SLIDES[currentSlide].src}
                             className="w-full h-full object-cover brightness-[0.55] transform scale-105"
-                        >
-                            <source src={SLIDES[currentSlide].src} type={SLIDES[currentSlide].src.endsWith('.webm') ? "video/webm" : "video/mp4"} />
-                        </video>
+                        />
                     ) : (
                         <div
                             className="w-full h-full bg-cover bg-center brightness-[0.55] transform scale-105"

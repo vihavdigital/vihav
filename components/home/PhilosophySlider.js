@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import VideoPlayer from "@/components/ui/VideoPlayer";
 
 export default function PhilosophySlider({ slides }) {
     const [current, setCurrent] = useState(0);
@@ -113,15 +114,7 @@ function SlideContent({ slide }) {
     return (
         <Wrapper>
             {slide.type === "video" ? (
-                <video
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="w-full h-full object-cover"
-                >
-                    <source src={slide.src} />
-                </video>
+                <VideoPlayer src={slide.src} />
             ) : (
                 <Image
                     src={slide.src}

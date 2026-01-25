@@ -19,11 +19,12 @@ export default function FeaturedProject() {
     // Data for Featured Project (Keystone Select)
     const featured = {
         title: "Keystone Select",
-        tagline: "Contemporary Architecture with Timeless Appeal",
-        description: "A signature address that balances comfort, connectivity, and prestige. Every home is thoughtfully planned to offer generous proportions.",
-        location: "Bhayli, Vadodara",
-        image: "/images/project-images/project-tiles/Select.jpg",
-        link: "/projects/keystone-select"
+        type: "4B2HK & 5B2HK APARTMENT",
+        location: "Nr Navrachana University, Bhayli",
+        carpetArea: "SBA : 5772 Sq.Ft Onwards",
+        image: "/images/project-images/other-images/select-featured.webp",
+        link: "/projects/keystone-select",
+        status: "Upcoming"
     };
 
     return (
@@ -44,47 +45,55 @@ export default function FeaturedProject() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
             </motion.div>
 
-            <div className="container mx-auto px-6 relative z-10 h-full flex flex-col justify-end pb-24 md:pb-32">
+            <div className="container mx-auto px-6 relative z-10 h-full flex flex-col justify-end pb-12 md:pb-24">
                 <motion.div
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
-                    className="max-w-4xl"
+                    className="max-w-5xl"
                 >
-                    {/* Header Label */}
-                    <div className="flex items-center gap-4 mb-6">
-                        <div className="h-[1px] w-12 bg-gold-400" />
-                        <span className="text-gold-400 text-xs md:text-sm font-bold uppercase tracking-[0.3em]">
-                            Featured Project
-                        </span>
+                    {/* Status - Moved to Top */}
+                    <div className="mb-6">
+                        <div className="inline-block px-3 py-1 bg-white/90 backdrop-blur-md text-luxury-black text-[10px] md:text-xs font-bold uppercase tracking-widest rounded-sm shadow-lg">
+                            {featured.status}
+                        </div>
                     </div>
 
                     {/* Main Title */}
-                    <h2 className="font-serif text-6xl md:text-8xl lg:text-9xl text-white mb-6 leading-none tracking-tight">
+                    <h2 className="font-serif text-4xl sm:text-6xl md:text-8xl lg:text-9xl text-white mb-4 leading-[0.9] tracking-tight drop-shadow-lg">
                         {featured.title}
                     </h2>
 
-                    {/* Tagline & Location */}
-                    <div className="flex flex-col md:flex-row md:items-end gap-8 md:gap-16 mb-10">
-                        <p className="text-xl md:text-3xl text-white/90 font-light font-serif italic max-w-2xl leading-relaxed">
-                            "{featured.tagline}"
-                        </p>
+                    {/* Type - Cleaner Typography */}
+                    <p className="text-white/90 text-sm md:text-xl font-light tracking-[0.2em] mb-8 uppercase border-l-2 border-gold-400 pl-4">
+                        {featured.type}
+                    </p>
 
-                        <div className="flex items-center gap-2 text-white/70">
-                            <MapPin size={18} className="text-gold-400" />
-                            <span className="uppercase tracking-widest text-xs font-medium">{featured.location}</span>
+                    {/* Details Container - Clean Row with better mobile wrapping */}
+                    <div className="flex flex-wrap items-center gap-3 md:gap-6 mb-10">
+                        {/* Carpet Area */}
+                        <div className="inline-flex items-center px-4 py-2 bg-black/40 backdrop-blur-md border border-white/20 hover:bg-white/10 transition-colors">
+                            <span className="text-white text-[10px] md:text-xs font-bold uppercase tracking-widest">
+                                {featured.carpetArea}
+                            </span>
+                        </div>
+
+                        {/* Location */}
+                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-black/40 backdrop-blur-md border border-white/20 hover:bg-white/10 transition-colors">
+                            <MapPin size={14} className="text-gold-400" />
+                            <span className="text-white text-[10px] md:text-xs font-bold uppercase tracking-widest">{featured.location}</span>
                         </div>
                     </div>
 
                     {/* CTA Button */}
                     <Link href={featured.link}>
                         <MagneticWrapper>
-                            <button className="group flex items-center gap-4 px-8 py-4 border border-white/20 hover:border-gold-400 bg-white/5 hover:bg-gold-400/10 backdrop-blur-sm transition-all duration-300">
-                                <span className="text-white group-hover:text-gold-400 text-sm uppercase tracking-[0.2em] font-bold transition-colors">
-                                    Discover Residence
+                            <button className="group flex items-center gap-4 px-6 py-3 md:px-8 md:py-4 bg-white text-black hover:bg-gold-400 transition-all duration-300 shadow-lg hover:shadow-gold-400/50">
+                                <span className="text-xs md:text-sm uppercase tracking-[0.2em] font-bold">
+                                    Enquire Now
                                 </span>
-                                <ArrowUpRight className="text-white group-hover:text-gold-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" size={18} />
+                                <ArrowUpRight className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" size={18} />
                             </button>
                         </MagneticWrapper>
                     </Link>
