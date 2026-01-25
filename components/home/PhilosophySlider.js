@@ -101,9 +101,14 @@ export default function PhilosophySlider({ slides }) {
 
 function SlideContent({ slide }) {
     const Wrapper = ({ children }) => {
+        const isExternal = slide.link && slide.link.startsWith('http');
         if (slide.link) {
             return (
-                <Link href={slide.link} target="_blank" className="block w-full h-full cursor-pointer relative">
+                <Link
+                    href={slide.link}
+                    target={isExternal ? "_blank" : undefined}
+                    className="block w-full h-full cursor-pointer relative"
+                >
                     {children}
                 </Link>
             );

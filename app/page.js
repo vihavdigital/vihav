@@ -8,7 +8,7 @@ import FeaturedProject from "@/components/home/FeaturedProject";
 import PhilosophySlider from "@/components/home/PhilosophySlider";
 import TextReveal from "@/components/ui/TextReveal";
 import { PROJECTS } from "@/data/projects";
-import { PHILOSOPHY_SLIDES } from "@/data/philosophySlides";
+// import { PHILOSOPHY_SLIDES } from "@/data/philosophySlides";
 import EnquiryForm from "@/components/ui/EnquiryForm";
 import { Trophy, Award, Star } from "lucide-react";
 import Image from 'next/image';
@@ -57,6 +57,18 @@ export default function Home() {
       allFeatured.push(p);
     }
   });
+
+  // Filter for Selected Works Slider (Upcoming & Ongoing)
+  const selectedWorksSlides = PROJECTS
+    .filter(p => ["Upcoming", "Newly Launched", "Under Construction"].includes(p.status) && p.id !== "keystone-30")
+    .map(p => ({
+      type: "image",
+      src: p.desktopHeroImage,
+      link: p.link,
+      label: p.status,
+      title: p.title,
+      alt: p.title
+    }));
 
   return (
     <main className="min-h-screen bg-background text-foreground selection:bg-gold-400 selection:text-luxury-black transition-colors duration-500">
@@ -255,7 +267,7 @@ export default function Home() {
 
             {/* Full Width Slider */}
             <div className="w-full">
-              <PhilosophySlider slides={PHILOSOPHY_SLIDES} />
+              <PhilosophySlider slides={selectedWorksSlides} />
             </div>
           </div>
         </div>
