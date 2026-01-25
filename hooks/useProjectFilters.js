@@ -4,7 +4,7 @@ import { useSearchParams, useRouter, usePathname } from "next/navigation";
 export const FILTER_RESIDENTIAL_TYPES = ["All", "Bunglow", "Apartments", "3bhk", "4bhk", "5bhk", "Penthouse"];
 export const FILTER_COMMERCIAL_TYPES = ["All", "shops", "showrooms", "offices"];
 export const FILTER_ALL_TYPES = ["All", "Bunglow", "Apartments", "3bhk", "4bhk", "5bhk", "penthouse", "shops", "showrooms", "offices"];
-export const FILTER_POSSESSION = ["All", "Upcoming", "Newly Launched", "Ready to Move", "Under construction"];
+export const FILTER_POSSESSION = ["All", "Upcoming", "Newly Launched", "Ready to Move", "Under construction", "Completed"];
 export const FILTER_TRANSACTION_OPTIONS = ["Buy", "Rent", "Lease"];
 
 export function useProjectFilters(projects, initialCategory = "Residential", residentialProjects = null, commercialProjects = null) {

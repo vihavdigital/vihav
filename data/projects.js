@@ -99,7 +99,7 @@ export const PROJECTS = [
         id: "keystone-51",
         srd: "PLACEHOLDER_SRD",
         link: "/projects/keystone-51",
-        status: "Upcoming",
+        status: "Newly Launched",
         slug: "keystone-51",
         title: "Keystone 51",
         category: "Residential",
@@ -149,7 +149,7 @@ export const PROJECTS = [
         filterData: {
             category: "Residential",
             type: ["4bhk", "Bunglow", "Bunglow"],
-            possession: "Under construction"
+            possession: "Newly Launched"
         }
     },
     {
@@ -164,7 +164,7 @@ export const PROJECTS = [
         carpetArea: "CARPET - 5000 Sq.Ft.",
         type: "4B2HK & 5B2HK APARTMENT",
         price: "Price on Request",
-        status: "Upcoming",
+        status: "Newly Launched",
         progress: 40,
         reraId: "RAA16029/181025/311230",
         reraLink: "https://gujrera.gujarat.gov.in/",
@@ -217,14 +217,14 @@ export const PROJECTS = [
         filterData: {
             category: "Residential",
             type: ["4bhk", "penthouse", "Apartments"],
-            possession: "Under construction"
+            possession: "Newly Launched"
         }
     },
     {
         id: "keystone-clermont",
         srd: "PLACEHOLDER_SRD",
         link: "/projects/keystone-clermont-4b2hk-apartments-in-vadodara/",
-        status: "Newly Launched",
+        status: "Under Construction",
         slug: "keystone-clermont-4b2hk-apartments-in-vadodara",
         title: "Keystone Clermont",
         logo: "/images/project-images/project-logos/Clermont-logo.png",
@@ -288,7 +288,7 @@ export const PROJECTS = [
         id: "keystone-30",
         srd: "PLACEHOLDER_SRD",
         link: "https://keystone30.in/",
-        status: "Ongoing",
+        status: "Under Construction",
         slug: "keystone-30",
         title: "Keystone 30",
         category: "Residential",
@@ -333,7 +333,7 @@ export const PROJECTS = [
         id: "keystone-skyvillas-xl",
         srd: "PLACEHOLDER_SRD",
         link: "/projects/keystone-skyvillas-xl",
-        status: "Ongoing",
+        status: "Under Construction",
         slug: "keystone-skyvillas-xl",
         title: "Keystone Skyvillas XL",
         logo: "/images/project-images/project-logos/keystone-skyvillas-xl-logo.webp",
@@ -388,13 +388,13 @@ export const PROJECTS = [
         filterData: {
             category: "Residential",
             type: ["5bhk", "6bhk", "penthouse", "Apartments"],
-            possession: "Ongoing"
+            possession: "Under construction"
         }
     },
     {
         id: "keystone-48",
         srd: "PLACEHOLDER_SRD",
-        status: "Ongoing",
+        status: "Under Construction",
         slug: "keystone-48",
         title: "Keystone 48",
         logo: "/images/project-images/project-logos/keystone-48-logo.svg",
@@ -433,7 +433,7 @@ export const PROJECTS = [
         link: "/projects/cbd",
         launchYear: "2022",
         brochureLink: "https://drive.google.com/file/d/10dM1tq9y9lGhpbkU2zy3DB5afBs_MQP0/view?usp=drive_link",
-        status: "Ongoing",
+        status: "Under Construction",
         progress: 75,
         slug: "cbd",
         title: "CBD Residential",
@@ -538,14 +538,14 @@ export const PROJECTS = [
             category: "Residential",
             transactionType: ["Buy", "Lease", "Rent"],
             type: ["Invest", "End Use", "Pre-lease"],
-            possession: "Newly Launched"
+            possession: "Under construction"
         }
     },
     {
         id: "vihav-spring-woods",
         srd: "PLACEHOLDER_SRD",
         link: "/projects/spring-woods/",
-        status: "Ongoing",
+        status: "Ready to Move",
         slug: "spring-woods",
         title: "Vihav Spring Woods",
         logo: "/images/project-images/project-logos/vihav-spring_woods-logo.svg",
@@ -604,7 +604,7 @@ export const PROJECTS = [
         id: "vihav-elinor",
         srd: "PLACEHOLDER_SRD",
         link: "/projects/elinor",
-        status: "Ongoing",
+        status: "Ready to Move",
         slug: "elinor",
         title: "Vihav Elinor",
         logo: "/images/project-images/project-logos/vihav-elinor-logo.png",
@@ -666,7 +666,7 @@ export const PROJECTS = [
         filterData: {
             category: "Residential",
             type: ["4bhk", "5bhk", "penthouse", "Apartments"],
-            possession: "Newly Launched"
+            possession: "Ready to Move"
         }
     },
     {
@@ -743,6 +743,7 @@ export const PROJECTS = [
         srd: "PLACEHOLDER_SRD",
         slug: "parvarish-commercial",
         title: "Vihav Parvarish Commercial",
+        status: "Ready to Move",
         link: "/projects/parvarish-commercial/",
         logo: "/images/project-images/project-logos/vihav-parvarish-logo.webp",
         category: "Commercial",
@@ -811,7 +812,11 @@ export const PROJECTS = [
         connectivity: [{ label: "New Alkapuri", time: "0 Mins" }],
         address: "New Alkapuri, Vadodara",
         coordinates: { lat: 22.3120, lng: 73.1500 },
-        mapEmbed: "https://maps.google.com/maps?q=Vihav+Skymont+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed"
+        mapEmbed: "https://maps.google.com/maps?q=Vihav+Skymont+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
+        filterData: {
+            category: "Residential",
+            possession: "Completed"
+        }
     },
     {
         id: "keystone-72",
@@ -843,7 +848,7 @@ export const PROJECTS = [
         filterData: {
             category: "Residential",
             type: ["4bhk", "5bhk", "penthouse", "Apartments"],
-            possession: "Under construction"
+            possession: "Completed"
         }
     },
     {
@@ -899,12 +904,13 @@ export const PROJECTS = [
         filterData: {
             category: "Residential",
             type: ["4bhk", "penthouse", "Apartments"],
-            possession: "Ready to Move"
+            possession: "Completed"
         },
         link: "/projects/skyvillas"
     },
     {
         id: "skyone",
+        status: "Completed",
         link: "/projects/skyone/",
         slug: "skyone",
         title: "Skyone",
@@ -954,7 +960,7 @@ export const PROJECTS = [
             category: ["Residential", "Commercial"],
             transactionType: ["Buy", "Lease", "Rent"],
             type: ["shops"],
-            possession: "Ready to Move"
+            possession: "Completed"
         }
     },
     {
@@ -985,7 +991,7 @@ export const PROJECTS = [
         filterData: {
             category: "Residential",
             type: ["5bhk", "Bunglows"],
-            possession: "Ready to Move"
+            possession: "Completed"
         }
     },
     {
@@ -1016,13 +1022,13 @@ export const PROJECTS = [
         filterData: {
             category: "Residential",
             type: ["5bhk", "Bunglows"],
-            possession: "Ready to Move"
+            possession: "Completed"
         }
     },
     {
         id: "vs-monolith",
         link: "/projects/vs-monolith/",
-        status: "Newly Launched",
+        status: "Under Construction",
         slug: "vs-monolith",
         title: "VS Monolith",
         logo: "/images/project-images/project-logos/vs-monolith-logo.svg",
@@ -1074,13 +1080,13 @@ export const PROJECTS = [
             category: "Commercial",
             transactionType: ["Buy", "Lease", "Rent"],
             type: ["offices", "shops", "showrooms"],
-            possession: "Newly Launched"
+            possession: "Under construction"
         }
     },
     {
         id: "supremus-iii",
         link: "/projects/supremus-3/",
-        status: "Newly Launched",
+        status: "Under Construction",
         slug: "supremus-3",
         title: "Supremus 3",
         logo: "/images/project-images/project-logos/supremus-3-logo.svg",
@@ -1134,7 +1140,7 @@ export const PROJECTS = [
             category: "Commercial",
             transactionType: ["Buy", "Lease", "Rent"],
             type: ["offices", "showrooms"],
-            possession: "Newly Launched"
+            possession: "Under construction"
         }
     },
     {
@@ -1142,7 +1148,7 @@ export const PROJECTS = [
         link: "/projects/cbd-commercial/",
         launchYear: "2022",
         brochureLink: "https://drive.google.com/file/d/1YEC52psDRHd111wP970Qvd-YGFFyjUPm/view?usp=drive_link",
-        status: "Ongoing",
+        status: "Under Construction",
         slug: "cbd-commercial",
         title: "Vihav CBD",
         logo: "/images/project-images/project-logos/cbd-logo.svg",
@@ -1191,13 +1197,13 @@ export const PROJECTS = [
             category: "Commercial",
             transactionType: ["Buy", "Lease", "Rent"],
             type: ["Invest", "End Use", "Pre-lease"],
-            possession: "Newly Launched"
+            possession: "Under construction"
         }
     },
     {
         id: "vihav-supremus-2",
         link: "/projects/supremus2/",
-        status: "Ongoing",
+        status: "Ready to Move",
         slug: "supremus2",
         title: "Vihav Supremus 2",
         logo: "/images/project-images/project-logos/supremus2-logo.svg",
@@ -1239,12 +1245,13 @@ export const PROJECTS = [
             category: "Commercial",
             transactionType: ["Buy", "Lease", "Rent"],
             type: ["shops", "showrooms", "offices"],
-            possession: "Under construction"
+            possession: "Ready to Move"
         }
     },
 
     {
         id: "wealth-square",
+        status: "Completed",
         link: "/projects/wealth-square/",
         slug: "wealth-square",
         title: "Wealth Square",
@@ -1289,11 +1296,12 @@ export const PROJECTS = [
             category: "Commercial",
             transactionType: ["Buy", "Lease", "Rent"],
             type: ["showrooms"],
-            possession: "Ready to Move"
+            possession: "Completed"
         }
     },
     {
         id: "vtc",
+        status: "Completed",
         link: "/projects/vtc/",
         slug: "vtc",
         title: "VTC",
@@ -1346,11 +1354,12 @@ export const PROJECTS = [
             category: "Commercial",
             transactionType: ["Buy", "Lease", "Rent"],
             type: ["shops", "offices"],
-            possession: "Ready to Move"
+            possession: "Completed"
         }
     },
     {
         id: "vbs",
+        status: "Completed",
         link: "/projects/vbs/",
         slug: "vbs",
         title: "VBS",
@@ -1397,11 +1406,12 @@ export const PROJECTS = [
             category: "Commercial",
             transactionType: ["Buy", "Lease", "Rent"],
             type: ["showrooms", "shops", "offices"],
-            possession: "Ready to Move"
+            possession: "Completed"
         }
     },
     {
         id: "supremus",
+        status: "Completed",
         link: "/projects/supremus/",
         slug: "supremus",
         title: "Supremus",
@@ -1452,7 +1462,7 @@ export const PROJECTS = [
             category: "Commercial",
             transactionType: ["Buy", "Lease", "Rent"],
             type: ["showrooms", "shops", "offices"],
-            possession: "Ready to Move"
+            possession: "Completed"
         }
     },
     {
@@ -1501,7 +1511,7 @@ export const PROJECTS = [
             category: "Commercial",
             transactionType: ["Buy", "Lease", "Rent"],
             type: ["shops", "showrooms"],
-            possession: "Ready to Move"
+            possession: "Completed"
         }
     },
     {
@@ -1528,7 +1538,11 @@ export const PROJECTS = [
         connectivity: [{ label: "Gotri", time: "0 Mins" }],
         address: "Gotri, Vadodara",
         coordinates: { lat: 22.3300, lng: 73.1600 },
-        mapEmbed: "https://maps.google.com/maps?q=Vihav+Ensign+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed"
+        mapEmbed: "https://maps.google.com/maps?q=Vihav+Ensign+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
+        filterData: {
+            category: "Commercial",
+            possession: "Completed"
+        }
     },
     {
         id: "excellus",
@@ -1554,7 +1568,11 @@ export const PROJECTS = [
         connectivity: [{ label: "Vasna Bhayli", time: "0 Mins" }],
         address: "Vasna Bhayli Road, Vadodara",
         coordinates: { lat: 22.3020, lng: 73.1390 },
-        mapEmbed: "https://maps.google.com/maps?q=Vihav+Excelus+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed"
+        mapEmbed: "https://maps.google.com/maps?q=Vihav+Excelus+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
+        filterData: {
+            category: "Commercial",
+            possession: "Completed"
+        }
     },
 ];
 
