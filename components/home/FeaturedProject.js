@@ -61,9 +61,16 @@ export default function FeaturedProject() {
                     </div>
 
                     {/* Main Title */}
-                    <h2 className="font-serif text-4xl sm:text-6xl md:text-8xl lg:text-9xl text-white mb-4 leading-[0.9] tracking-tight drop-shadow-lg">
-                        {featured.title}
-                    </h2>
+                    {/* Main Logo */}
+                    <div className="mb-6 relative w-[280px] md:w-[400px] h-[100px] md:h-[140px]">
+                        <Image
+                            src="/images/project-images/project-logos/keystone-select.png"
+                            alt={featured.title}
+                            fill
+                            className="object-contain object-left"
+                            priority
+                        />
+                    </div>
 
                     {/* Type - Cleaner Typography */}
                     <p className="text-white/90 text-sm md:text-xl font-light tracking-[0.2em] mb-8 uppercase border-l-2 border-gold-400 pl-4">

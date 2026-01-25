@@ -1,7 +1,7 @@
 export const PHILOSOPHY_SLIDES = [
     {
         type: "video",
-        src: "/niwa-video.mp4",
+        src: "/videos/niwa.mp4",
         link: "/projects/residential/keystone-niwa",
         label: "Cinematic Tour",
         title: "Experience Perfection",

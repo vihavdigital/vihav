@@ -85,9 +85,9 @@ function ProjectSectionContent({ projects, residentialProjects, commercialProjec
                     <div className="flex flex-col md:flex-row md:items-center md:relative gap-6">
 
                         {/* Top Row: Tabs + Mobile Toggle */}
-                        <div className="flex items-center justify-between gap-4 md:w-auto w-full">
+                        <div className="flex items-center justify-between w-full">
                             {/* Category Tabs (Pill Switcher) - Scrollable on mobile */}
-                            <div className="flex bg-secondary p-1 rounded-full border border-border relative overflow-x-auto scrollbar-hide max-w-[calc(100%-50px)] md:max-w-none mx-auto md:mx-0">
+                            <div className="flex bg-secondary p-1 rounded-full border border-border relative overflow-x-auto scrollbar-hide max-w-[calc(100%-50px)] md:max-w-none md:mx-0">
                                 {visibleTabs.map((cat) => (
                                     <button
                                         key={cat}
@@ -112,7 +112,7 @@ function ProjectSectionContent({ projects, residentialProjects, commercialProjec
                             {/* Mobile Filter Toggle Button */}
                             <button
                                 onClick={() => setShowFilters(!showFilters)}
-                                className={`md:hidden flex items-center justify-center w-10 h-10 rounded-full border transition-colors ${showFilters ? 'bg-luxury-black text-gold-400 border-luxury-black' : 'bg-secondary border-border text-muted-foreground'}`}
+                                className={`md:hidden flex items-center justify-center w-10 h-10 rounded-full border transition-colors ${showFilters ? 'bg-luxury-black text-gold-400 border-luxury-black' : 'bg-gold-400 border-gold-400 text-luxury-black hover:bg-gold-500 shadow-md'}`}
                             >
                                 {showFilters ? <X size={18} /> : <Filter size={18} />}
                             </button>
@@ -120,7 +120,7 @@ function ProjectSectionContent({ projects, residentialProjects, commercialProjec
 
                         {/* Collapsible Dropdowns Area */}
                         {/* Mobile: Hidden unless open (Grid layout). Desktop: Always visible (Flex layout) */}
-                        <div className="hidden md:flex md:flex-row md:items-center md:justify-end md:gap-4 w-full md:w-auto md:ml-auto animate-in fade-in slide-in-from-top-2 md:animate-none">
+                        <div className="hidden md:flex md:flex-row md:items-center md:items-center md:gap-4 md:ml-auto animate-in fade-in slide-in-from-top-2 md:animate-none">
 
                             {/* Clear Filters Button (Desktop) */}
 
@@ -316,8 +316,6 @@ function ProjectSectionContent({ projects, residentialProjects, commercialProjec
                             className="flex items-center gap-2 px-5 py-3 bg-luxury-black text-gold-400 rounded-full shadow-[0_10px_40px_-10px_rgba(0,0,0,0.8)] border border-gold-400/30 backdrop-blur-md hover:bg-luxury-black/90 transition-colors"
                         >
                             <span className="text-xs font-bold uppercase tracking-widest">Clear Filters</span>
-                            <div className="w-px h-3 bg-gold-400/30 mx-1" />
-                            <X size={14} />
                         </button>
                     </motion.div>
                 )}

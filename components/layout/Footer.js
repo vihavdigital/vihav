@@ -105,7 +105,7 @@ export default function Footer() {
                 <div className="flex flex-col md:flex-row justify-between items-center text-muted-foreground text-xs uppercase tracking-widest border-t border-border pt-8">
                     <div className="flex flex-col md:flex-row gap-4 items-center">
                         <p>&copy; {new Date().getFullYear()} Vihav Group.</p>
-                        <span className="hidden md:block w-1 h-1 bg-muted-foreground rounded-full"></span>
+                        {/* <span className="hidden md:block w-1 h-1 bg-muted-foreground rounded-full"></span> */}
                         {/* <p className="opacity-70 hover:opacity-100 transition-opacity">Developed by SK Developers</p> */}
                     </div>
                     <div className="flex space-x-8 mt-4 md:mt-0">

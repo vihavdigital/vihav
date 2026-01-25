@@ -122,7 +122,7 @@ export default function ProjectCard({ project }) {
                     <div className="pt-4 border-t border-border/50 relative z-20">
                         <div className="flex flex-row justify-between items-center gap-4">
                             <div
-                                className={`flex flex-col ${project.price === "Price on Request" ? "cursor-pointer group/price" : ""}`}
+                                className={`flex flex-col flex-1 ${project.price === "Price on Request" ? "cursor-pointer group/price" : ""}`}
                                 onClick={(e) => {
                                     if (project.price === "Price on Request") {
                                         e.preventDefault();
@@ -134,19 +134,19 @@ export default function ProjectCard({ project }) {
                                 {project.price !== "Price on Request" && (
                                     <span className="text-muted-foreground text-[10px] uppercase tracking-wider mb-0.5">Starting from</span>
                                 )}
-                                <span className={`text-foreground transition-colors flex items-center gap-2 ${project.price === "Price on Request" ? "bg-secondary hover:bg-gold-400/20 px-4 md:px-6 py-2 md:py-3 rounded font-bold text-[10px] md:text-xs uppercase tracking-widest" : "font-medium text-sm md:text-base"}`}>
+                                <span className={`text-foreground transition-colors flex items-center gap-2 ${project.price === "Price on Request" ? "bg-secondary hover:bg-gold-400/20 px-4 md:px-6 py-2 md:py-3 rounded font-bold text-[10px] md:text-xs uppercase tracking-widest w-full justify-center text-center" : "font-medium text-sm md:text-base"}`}>
                                     {project.price}
                                 </span>
                             </div>
 
-                            <MagneticWrapper className="w-fit relative">
+                            <MagneticWrapper className="flex-1 relative">
                                 <button
                                     onClick={(e) => {
                                         e.preventDefault();
                                         e.stopPropagation();
                                         setIsEnquireOpen(true);
                                     }}
-                                    className="bg-gold-400 hover:bg-gold-500 text-black font-bold uppercase tracking-widest px-4 md:px-6 py-2 md:py-3 text-[10px] md:text-xs rounded transition-all duration-300 shadow-lg hover:shadow-gold-400/20 active:scale-95"
+                                    className="bg-gold-400 hover:bg-gold-500 text-black font-bold uppercase tracking-widest px-4 md:px-6 py-2 md:py-3 text-[10px] md:text-xs rounded transition-all duration-300 shadow-lg hover:shadow-gold-400/20 active:scale-95 w-full"
                                 >
                                     Enquire Now
                                 </button>
