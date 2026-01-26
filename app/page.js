@@ -295,7 +295,7 @@ export default function Home() {
             </div>
 
             <h2 className="text-4xl md:text-6xl font-serif text-white mb-8 leading-tight">
-              Transforming the Urban Skyline of <br />
+              Transforming f <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-300 via-gold-500 to-gold-300">Vadodara</span>
             </h2>
 
