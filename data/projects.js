@@ -144,7 +144,8 @@ export const PROJECTS = [
         ],
         connectivity: [{ label: "Navrachana Uni", time: "2 Mins" }, { label: "75m Ring Road", time: "0 Mins" }],
         address: "Near Navrachana University, Off. 75 Mtr. Ring Road, Bhayli – Vadodara",
-        coordinates: { lat: 22.2960, lng: 73.1420 },
+        coordinates: { lat: 22.294083, lng: 73.113472 },
+        // coordinates: { lat: 22.2960, lng: 73.1420 },
         mapEmbed: "https://maps.google.com/maps?q=Keystone+51+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
             category: "Residential",
@@ -532,7 +533,7 @@ export const PROJECTS = [
         ],
         connectivity: [{ label: "Bhayli", time: "0 Mins" }, { label: "Bright Day School", time: "Nearby" }],
         address: "Beside Rajpath, Nr Bright Day School, Vasna Bhayli Road, Vadodara",
-        coordinates: { lat: 22.290250, lng: 73.131861 },
+        coordinates: { lat: 22.290306, lng: 73.131833 },
         mapEmbed: "https://maps.google.com/maps?q=Vihav+CBD+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
         filterData: {
             category: "Residential",
