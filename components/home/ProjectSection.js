@@ -85,7 +85,7 @@ function ProjectSectionContent({ projects, residentialProjects, commercialProjec
                     <div className="flex flex-col md:flex-row md:items-center md:relative gap-6">
 
                         {/* Top Row: Tabs + Mobile Toggle */}
-                        <div className="flex items-center justify-between w-full">
+                        <div className="flex items-center justify-between w-full md:w-auto">
                             {/* Category Tabs (Pill Switcher) - Scrollable on mobile */}
                             <div className="flex bg-secondary p-1 rounded-full border border-border relative overflow-x-auto scrollbar-hide max-w-[calc(100%-50px)] md:max-w-none md:mx-0">
                                 {visibleTabs.map((cat) => (
@@ -114,7 +114,7 @@ function ProjectSectionContent({ projects, residentialProjects, commercialProjec
                                 onClick={() => setShowFilters(!showFilters)}
                                 className={`md:hidden flex items-center justify-center w-10 h-10 rounded-full border transition-colors ${showFilters ? 'bg-luxury-black text-gold-400 border-luxury-black' : 'bg-gold-400 border-gold-400 text-luxury-black hover:bg-gold-500 shadow-md'}`}
                             >
-                                {showFilters ? <X size={18} /> : <Filter size={18} />}
+                                {showFilters ? <ChevronDown size={18} className="rotate-180" /> : <Filter size={18} />}
                             </button>
                         </div>
 
@@ -272,14 +272,15 @@ function ProjectSectionContent({ projects, residentialProjects, commercialProjec
                             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
                         >
                             <AnimatePresence mode="popLayout">
-                                {visibleProjects.map((project) => (
+                                {visibleProjects.map((project, index) => (
                                     <motion.div
                                         key={project.id}
                                         layout
-                                        initial={{ opacity: 0, scale: 0.9 }}
-                                        animate={{ opacity: 1, scale: 1 }}
+                                        initial={{ opacity: 0, y: 20 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true, margin: "-50px" }}
                                         exit={{ opacity: 0, scale: 0.9 }}
-                                        transition={{ duration: 0.3 }}
+                                        transition={{ duration: 0.5, delay: index * 0.1 }}
                                         className="h-full"
                                     >
                                         <ProjectCard project={project} />

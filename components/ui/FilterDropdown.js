@@ -15,7 +15,7 @@ const FilterDropdown = ({ label, value, options, onChange, className = "", minim
             <button
                 onClick={() => setIsOpen(!isOpen)}
                 onBlur={() => setTimeout(() => setIsOpen(false), 200)}
-                className={`w-full flex items-center justify-between bg-background border border-border rounded-lg text-sm text-foreground hover:border-gold-400 transition-colors ${minimal ? 'px-3 py-2' : 'px-4 py-3'}`}
+                className={`w-full flex items-center justify-between bg-background border border-gold-400/50 rounded-lg text-sm text-foreground hover:border-gold-400 transition-colors ${minimal ? 'px-3 py-2' : 'px-4 py-3'}`}
             >
                 <span className="truncate mr-2 flex items-center">
                     {/* Inline Label (Minimal Mode) */}

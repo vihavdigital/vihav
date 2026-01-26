@@ -120,7 +120,7 @@ export default function Home() {
           >
 
             <h3 className="text-xl md:text-2xl font-serif text-foreground mb-12 uppercase tracking-widest text-center">Begin Your Conversation</h3>
-            <div className="bg-background/50 p-8 md:p-12 rounded-none border border-border hover:border-gold-400/30 transition-colors duration-500">
+            <div className="bg-background p-8 md:p-12 rounded-none border border-border shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] hover:shadow-[0_40px_70px_-15px_rgba(0,0,0,0.15)] hover:border-gold-400/30 transition-all duration-500">
               <EnquiryForm className="text-left" variant="minimal" />
             </div>
           </motion.div>
