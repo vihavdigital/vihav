@@ -63,7 +63,6 @@ export default function Header() {
                 )}
             >
                 <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
-
                     {/* Left Actions (Menu) */}
                     <div className="flex items-center space-x-8">
                         <MagneticWrapper>
