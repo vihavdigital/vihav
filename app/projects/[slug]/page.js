@@ -101,6 +101,7 @@ export default async function ProjectPage({ params }) {
                         {project.heroVideo ? (
                             <VideoPlayer
                                 src={project.heroVideo}
+                                poster={project.desktopHeroImage || project.heroImage}
                                 className="w-full h-full object-cover brightness-90"
                             />
                         ) : (

@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Download, Maximize2, X, ZoomIn, FileText } from "lucide-react";
 import Image from "next/image";
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 
 export default function FloorPlans({ plans, onEnquire }) {
     const [activeTab, setActiveTab] = useState(0);
@@ -28,7 +29,7 @@ export default function FloorPlans({ plans, onEnquire }) {
                                     <button
                                         key={plan.id}
                                         onClick={() => setActiveTab(index)}
-                                        className={`flex flex-col items-center p-3 rounded-xl transition-all duration-200 border-2 relative justify-between ${index === plans.length - 1 ? 'col-span-2' : ''} ${activeTab === index
+                                        className={`flex flex-col items-center p-3 rounded-xl transition-all duration-200 border-2 relative justify-between ${plans.length % 2 !== 0 && index === plans.length - 1 ? 'col-span-2' : ''} ${activeTab === index
                                             ? "bg-gold-400 text-white border-gold-400 border-b-gold-600 border-b-4 translate-y-[1px]"
                                             : "bg-white text-foreground/80 border-border border-b-4 border-b-gray-200 hover:border-gold-400 hover:border-b-gold-400 active:border-b-0 active:translate-y-1"
                                             }`}
@@ -130,59 +131,102 @@ export default function FloorPlans({ plans, onEnquire }) {
             {/* Lightbox Overlay */}
             <AnimatePresence>
                 {isLightboxOpen && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-xl flex items-center justify-center p-4 md:p-8"
-                        onClick={() => setIsLightboxOpen(false)}
-                    >
-                        {/* Close Button - Fixed to Viewport */}
-                        <button
-                            className="fixed top-6 right-6 text-white/50 hover:text-white transition-colors z-[120] p-2 bg-black/20 rounded-full backdrop-blur-md"
-                            onClick={(e) => { e.stopPropagation(); setIsLightboxOpen(false); }}
-                        >
-                            <X size={24} />
-                        </button>
-
-                        <motion.div
-                            initial={{ scale: 0.95, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1, y: 0 }}
-                            exit={{ scale: 0.95, opacity: 0, y: 100 }}
-                            drag="y"
-                            dragConstraints={{ top: 0, bottom: 0 }}
-                            dragElastic={0.7}
-                            onDragEnd={(e, { offset, velocity }) => {
-                                if (offset.y > 100 || velocity.y > 200) {
-                                    setIsLightboxOpen(false);
-                                }
-                            }}
-                            className="relative w-full h-full max-w-6xl max-h-[90vh] flex items-center justify-center"
-                        >
-                            <div className="relative w-full h-full flex items-center justify-center">
-                                <Image
-                                    src={activePlan.image}
-                                    alt={activePlan.title}
-                                    fill
-                                    className="object-contain pointer-events-auto select-none"
-                                    onClick={(e) => e.stopPropagation()}
-                                    draggable={false}
-                                />
-                            </div>
-                        </motion.div>
-
-                        {/* Hints */}
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 0.5, duration: 1 }}
-                            className="fixed bottom-6 left-0 right-0 text-center pointer-events-none"
-                        >
-                            <span className="text-white/30 text-[10px] uppercase tracking-widest">Swipe down to close</span>
-                        </motion.div>
-                    </motion.div>
+                    <LightboxOverlay
+                        activePlan={activePlan}
+                        onClose={() => setIsLightboxOpen(false)}
+                    />
                 )}
             </AnimatePresence>
         </section >
+    );
+}
+
+// Separated Lightbox Component for Floor Plans to manage state better
+function LightboxOverlay({ activePlan, onClose }) {
+    const [isZoomed, setIsZoomed] = useState(false);
+
+    // PREVENT BACKGROUND SCROLL
+    useEffect(() => {
+        document.body.style.overflow = "hidden";
+        return () => {
+            document.body.style.overflow = "auto";
+        };
+    }, []);
+
+    return (
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-xl flex items-center justify-center p-0 md:p-12 overflow-hidden"
+            onClick={onClose}
+        >
+            {/* Close Button */}
+            <button
+                className="fixed top-6 right-6 text-white/50 hover:text-white transition-colors z-[120] p-2 bg-black/20 rounded-full backdrop-blur-md"
+                onClick={(e) => { e.stopPropagation(); onClose(); }}
+            >
+                <X size={24} />
+            </button>
+
+            {/* Hint */}
+            <div className="absolute bottom-4 left-0 right-0 text-center pointer-events-none z-50">
+                <span className="text-white/30 text-[10px] uppercase tracking-widest">
+                    {isZoomed ? "Double tap to exit zoom" : "Swipe down to close • Pinch to zoom"}
+                </span>
+            </div>
+
+            <div className="w-full h-full flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
+                <motion.div
+                    className="w-full h-full flex items-center justify-center"
+                    drag="y"
+                    dragEnabled={!isZoomed}
+                    dragConstraints={{ top: 0, bottom: 0 }}
+                    dragElastic={0.7}
+                    onDragEnd={(e, { offset, velocity }) => {
+                        if (isZoomed) return;
+                        if (offset.y > 100 || velocity.y > 200) {
+                            onClose();
+                        }
+                    }}
+                >
+                    <TransformWrapper
+                        initialScale={1}
+                        minScale={1}
+                        maxScale={4}
+                        centerOnInit={true}
+                        doubleClick={{ disabled: false, mode: "zoomIn" }}
+                        panning={{ disabled: !isZoomed, velocityDisabled: false }}
+                        onTransformed={(e) => {
+                            const newZoom = e.state.scale > 1.01;
+                            if (newZoom !== isZoomed) setIsZoomed(newZoom);
+                        }}
+                        alignmentAnimation={{ sizeX: 0, sizeY: 0 }}
+                    >
+                        {({ zoomIn, zoomOut, resetTransform }) => (
+                            <TransformComponent
+                                wrapperStyle={{ width: "100%", height: "100%" }}
+                                contentStyle={{ width: "100%", height: "100%" }}
+                            >
+                                <div
+                                    className="relative w-full h-full"
+                                    onDoubleClick={() => isZoomed && setIsZoomed(false)}
+                                >
+                                    <Image
+                                        src={activePlan.image}
+                                        alt={activePlan.title}
+                                        fill
+                                        className="object-contain pointer-events-auto select-none"
+                                        sizes="100vw"
+                                        draggable={false}
+                                        priority
+                                    />
+                                </div>
+                            </TransformComponent>
+                        )}
+                    </TransformWrapper>
+                </motion.div>
+            </div>
+        </motion.div>
     );
 }

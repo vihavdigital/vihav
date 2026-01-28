@@ -3,7 +3,7 @@
 
 import { useEffect, useRef } from "react";
 
-export default function VideoPlayer({ src, className = "w-full h-full object-cover" }) {
+export default function VideoPlayer({ src, poster, className = "w-full h-full object-cover" }) {
     const videoRef = useRef(null);
 
     useEffect(() => {
@@ -31,6 +31,7 @@ export default function VideoPlayer({ src, className = "w-full h-full object-cov
             muted
             playsInline
             className={className}
+            poster={poster}
         />
     );
 }

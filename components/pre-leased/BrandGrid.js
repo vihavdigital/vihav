@@ -8,36 +8,45 @@ const BRANDS = [
         id: 1,
         name: "McDonald's",
         location: "Atladara-Padra Road",
-        logo: null, // Placeholder: Will use text if logo missing
-        color: "#DA291C" // McDonald's Brand Color
+        logo: "/images/project-images/other-images/pre-leased/macdonald-logo.png",
+        color: "#DA291C", // McDonald's Brand Color
+        soldOut: true
     },
     {
         id: 2,
         name: "Blinkit",
         location: "Nr. Gurudwara, Tarsali",
-        logo: null,
+        logo: "/images/project-images/other-images/pre-leased/blinkit-logo.png",
         color: "#F8CB46" // Blinkit Yellow
     },
     {
         id: 3,
         name: "Ola",
-        location: "Sunpharma Road\n100 Ft Main Road",
-        logo: null,
+        location: "Sunpharma Road",
+        subLocation: "100 Ft Main Road",
+        logo: "/images/project-images/other-images/pre-leased/ola-cabs-logo.png",
         color: "#000000"
     },
     {
         id: 4,
         name: "Gujco Mart",
         location: "60 Ft Gotri Main Road",
-        logo: null,
+        logo: "/images/project-images/other-images/pre-leased/gujcomart-logo.png",
         color: "#1B5E20" // Green
     },
     {
         id: 5,
         name: "Swiggy Instamart",
         location: "60 Ft Gotri Main Road",
-        logo: null,
+        logo: "/images/project-images/other-images/pre-leased/swiggy-instamart-logo.png",
         color: "#FC8019" // Swiggy Orange
+    },
+    {
+        id: 6,
+        name: "Connplex Cinemas",
+        location: "Available",
+        logo: "/images/project-images/other-images/pre-leased/connplex-cinemas.avif",
+        color: "#E50914" // Netflix-ish Red or Standard Cinema Color
     }
 ];
 
@@ -61,20 +70,47 @@ export default function BrandGrid() {
                             className="relative flex flex-col items-center justify-center p-12 lg:p-16 border-r border-b border-border bg-background hover:bg-secondary/30 transition-all duration-500 group h-[300px]"
                         >
                             {/* Location Top Label */}
-                            <span className="absolute top-8 text-[10px] md:text-xs font-bold uppercase tracking-widest text-muted-foreground/60 text-center px-4 group-hover:text-gold-400 transition-colors">
-                                {brand.location}
-                            </span>
+                            <div className="absolute top-8 text-center px-4 w-full flex flex-col items-center">
+                                <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-muted-foreground/60 group-hover:text-gold-400 transition-colors">
+                                    {brand.location}
+                                </span>
+                                {brand.subLocation && (
+                                    <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-muted-foreground/60 group-hover:text-gold-400 transition-colors mt-1">
+                                        {brand.subLocation}
+                                    </span>
+                                )}
+                            </div>
 
                             {/* Logo / Brand Name */}
                             <div className="relative w-full h-full flex items-center justify-center transition-transform duration-500 group-hover:scale-110">
-                                {/* Using Stylized Text as Placeholder since we don't have actual SVG logos yet */}
-                                <h3
-                                    className="text-3xl md:text-5xl font-black text-center tracking-tight"
-                                    style={{ color: brand.color }}
-                                >
-                                    {brand.name}
-                                </h3>
+                                {brand.logo ? (
+                                    <div className="relative w-48 h-24 md:w-56 md:h-28">
+                                        <Image
+                                            src={brand.logo}
+                                            alt={brand.name}
+                                            fill
+                                            className="object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500"
+                                            sizes="(max-width: 768px) 100vw, 33vw"
+                                        />
+                                    </div>
+                                ) : (
+                                    <h3
+                                        className="text-3xl md:text-5xl font-black text-center tracking-tight"
+                                        style={{ color: brand.color }}
+                                    >
+                                        {brand.name}
+                                    </h3>
+                                )}
                             </div>
+
+                            {/* Sold Out Badge */}
+                            {brand.soldOut && (
+                                <div className="absolute inset-0 flex items-center justify-center bg-black/60 z-10 backdrop-blur-[1px]">
+                                    <div className="border border-red-500/50 bg-red-500/20 text-red-500 px-4 py-2 uppercase tracking-[0.2em] text-sm font-bold transform -rotate-12 shadow-lg backdrop-blur-md">
+                                        Sold Out
+                                    </div>
+                                </div>
+                            )}
                         </motion.div>
                     ))}
 

@@ -85,13 +85,13 @@ export default function Header() {
                         </MagneticWrapper>
                     </div>
 
-                    {/* Centered Logo */}
+                    {/* Centered Logo - Improved Mobile Positioning */}
                     <Link href="/" className="group absolute left-1/2 -translate-x-1/2 z-50">
                         <div className="flex flex-col items-center">
                             {/* Logo with improved sizing for elegance */}
                             <div className={cn(
                                 "relative transition-all duration-500 flex items-center justify-center",
-                                isScrolled ? "h-12 md:h-14 w-auto" : "h-16 md:h-24 w-auto"
+                                isScrolled ? "h-10 md:h-14 w-auto" : "h-12 md:h-24 w-auto"
                             )}>
                                 <Image
                                     src={(!isScrolled && logoSrc.includes('vihav-group-logo'))
@@ -101,7 +101,7 @@ export default function Header() {
                                     width={0}
                                     height={0}
                                     sizes="100vw"
-                                    className="w-auto h-full object-contain"
+                                    className="w-auto h-full object-contain max-w-[120px] md:max-w-none"
                                     priority
                                 />
                             </div>
@@ -110,7 +110,7 @@ export default function Header() {
 
                     {/* Right Actions (Search + Enquire) */}
                     <div className={cn(
-                        "flex items-center space-x-6 text-[10px] font-bold tracking-[0.3em]",
+                        "flex items-center gap-3 md:space-x-6 text-[10px] font-bold tracking-[0.3em]",
                         isScrolled ? "text-foreground" : "text-white drop-shadow-md"
                     )}>
                         <MagneticWrapper>
@@ -127,7 +127,7 @@ export default function Header() {
                             <button
                                 aria-label="Open enquiry form"
                                 onClick={() => setIsEnquireModalOpen(true)}
-                                className="flex items-center gap-3 hover:text-gold-400 transition-colors group"
+                                className="flex items-center gap-2 hover:text-gold-400 transition-colors group"
                             >
                                 <span className="hidden md:block group-hover:mr-2 transition-all duration-300">ENQUIRE</span>
                                 <div className="w-8 h-8 rounded-full border border-current/30 flex items-center justify-center group-hover:border-gold-400 group-hover:bg-gold-400 group-hover:text-black transition-all duration-300">

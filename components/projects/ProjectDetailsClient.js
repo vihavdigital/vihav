@@ -11,7 +11,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import dynamic from "next/dynamic";
 import CollapsibleSection from "@/components/ui/CollapsibleSection";
-import RotatingEnquireButton from "@/components/ui/RotatingEnquireButton";
+
 import EnquiryModal from "@/components/ui/EnquiryModal";
 import MagneticWrapper from "@/components/ui/MagneticWrapper";
 
@@ -41,6 +41,11 @@ export default function ProjectDetailsClient({ project, theme }) {
     // State for Gallery Counters (Amenities & Real Site)
     const [amenitiesIndex, setAmenitiesIndex] = useState(0);
     const [realSiteIndex, setRealSiteIndex] = useState(0);
+
+    // Show House State
+    const showHouseKeys = project.showHouse ? Object.keys(project.showHouse) : [];
+    const [activeShowHouseTab, setActiveShowHouseTab] = useState(showHouseKeys[0] || null);
+    const [showHouseIndex, setShowHouseIndex] = useState(0);
 
     // Helper to render inline counter
     const renderCounter = (current, total) => (
@@ -139,14 +144,7 @@ export default function ProjectDetailsClient({ project, theme }) {
         }
     };
 
-    const [showFloatingBtn, setShowFloatingBtn] = useState(false);
-    useEffect(() => {
-        const handleScroll = () => {
-            setShowFloatingBtn(window.scrollY > 600);
-        };
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+
 
     return (
         <div className="relative">
@@ -249,7 +247,6 @@ export default function ProjectDetailsClient({ project, theme }) {
                                         <div className="flex flex-col gap-2">
                                             {project.carpetArea && (
                                                 <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gold-400/10 border border-gold-400/20 rounded md:rounded-lg w-fit">
-                                                    <Maximize size={14} className="text-gold-500 flex-shrink-0" />
                                                     <span className="text-[10px] md:text-xs font-bold text-foreground tracking-widest uppercase">{project.carpetArea}</span>
                                                 </div>
                                             )}
@@ -326,7 +323,7 @@ export default function ProjectDetailsClient({ project, theme }) {
                         {/* Amenities Grid - Collapsible */}
                         {project.amenitiesList && (
                             <CollapsibleSection title="Premium Amenities" defaultOpen={false}>
-                                <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
                                     {project.amenitiesList.map((amenity, idx) => {
                                         const Icon = ICON_MAP[amenity.icon] || CircleCheck;
                                         return (
@@ -425,26 +422,84 @@ export default function ProjectDetailsClient({ project, theme }) {
             )}
 
             {/* NEW: Real Site Pictures Section */}
-            {project.realPictureImages && project.realPictureImages.length > 0 && (
+            {(project.realPictureImages?.length > 0 || project.showHouse) && (
                 <section id="real-site-gallery" className="py-12 md:py-24 bg-background border-t border-border scroll-mt-24">
                     <div className="container mx-auto px-6 md:px-12 mb-8 md:mb-12">
                         <div className="flex justify-between items-end">
                             <div>
                                 <span className={`${theme.text} uppercase tracking-[0.25em] text-[10px] md:text-xs font-bold mb-4 md:mb-6 block`}>Actual images</span>
-                                <h2 className="font-serif text-3xl md:text-5xl text-foreground mb-6">Show House</h2>
+                                <h2 className="font-serif text-3xl md:text-5xl text-foreground mb-6 flex items-baseline gap-4">
+                                    Show House
+                                    {/* Inline Counter when Show House is active */}
+                                    {project.showHouse && (
+                                        <div className="flex items-end baseline gap-2 font-serif">
+                                            <span className="text-gold-400 text-xl leading-none">{String(showHouseIndex + 1).padStart(2, '0')}</span>
+                                            <span className="text-muted-foreground/40 text-sm leading-none">/</span>
+                                            <span className="text-muted-foreground/60 text-sm leading-none">{String(project.showHouse[activeShowHouseTab]?.length || 0).padStart(2, '0')}</span>
+                                        </div>
+                                    )}
+                                </h2>
                                 <div className="w-24 h-1 bg-gold-400/30 rounded-full" />
                             </div>
-                            {renderCounter(realSiteIndex, project.realPictureImages.length)}
+                            {/* Header Title Only */}
                         </div>
+
+                        {/* Toggle & Counter Row - Below Header */}
+                        {project.showHouse ? (
+                            <div className="flex flex-col md:flex-row justify-between items-end md:items-center mt-6 md:mt-8 gap-4">
+
+                                {/* Compact Pill Toggle */}
+                                <div className="flex bg-secondary p-1 rounded-full border border-border relative">
+                                    {showHouseKeys.map((key) => (
+                                        <button
+                                            key={key}
+                                            onClick={() => {
+                                                setActiveShowHouseTab(key);
+                                                setShowHouseIndex(0);
+                                            }}
+                                            className="relative px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all outline-none z-10"
+                                        >
+                                            {activeShowHouseTab === key && (
+                                                <motion.div
+                                                    layoutId="activeShowHouseTab"
+                                                    className="absolute inset-0 bg-gold-400 rounded-full shadow-lg"
+                                                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                                                />
+                                            )}
+                                            <span className={`relative z-10 transition-colors duration-200 ${activeShowHouseTab === key ? "text-luxury-black" : "text-muted-foreground hover:text-foreground"}`}>
+                                                {key} Show House
+                                            </span>
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                        ) : (
+                            /* If no show house (just real pictures), show counter aligned right */
+                            <div className="flex justify-end mt-4">
+                                {renderCounter(realSiteIndex, project.realPictureImages.length)}
+                            </div>
+                        )}
                     </div>
+
                     <div className="">
-                        <ProjectGallery
-                            images={project.realPictureImages}
-                            onIndexChange={setRealSiteIndex}
-                            isLightMode={true}
-                            showProgress={false}
-                            showCaptions={false}
-                        />
+                        {project.showHouse ? (
+                            <ProjectGallery
+                                images={project.showHouse[activeShowHouseTab]}
+                                onIndexChange={setShowHouseIndex}
+                                isLightMode={true}
+                                showProgress={false}
+                                showCaptions={false}
+                                key={activeShowHouseTab}
+                            />
+                        ) : (
+                            <ProjectGallery
+                                images={project.realPictureImages}
+                                onIndexChange={setRealSiteIndex}
+                                isLightMode={true}
+                                showProgress={false}
+                                showCaptions={false}
+                            />
+                        )}
                     </div>
                 </section>
             )}
@@ -485,16 +540,13 @@ export default function ProjectDetailsClient({ project, theme }) {
             </section>
 
             {/* 5. Construction Status (Animated) */}
-            <section id="construction" className="py-12 md:py-24 bg-secondary relative border-t border-border scroll-mt-24">
-                <ConstructionStatus project={project} theme={theme} />
-            </section>
+            {project.constructionImages && project.constructionImages.length > 0 && (
+                <section id="construction" className="py-12 md:py-24 bg-secondary relative border-t border-border scroll-mt-24">
+                    <ConstructionStatus project={project} theme={theme} />
+                </section>
+            )}
 
-            {/* NEW: Rotating Luxury Floating Button */}
-            <RotatingEnquireButton
-                onClick={() => openModal("Enquire Now")}
-                show={showFloatingBtn}
-                theme={theme.name}
-            />
+
 
             <EnquiryModal
                 isOpen={isModalOpen}
@@ -513,9 +565,29 @@ function ConstructionStatus({ project, theme }) {
     return (
         <div className="container mx-auto px-6 md:px-12">
             <div className="flex flex-col md:flex-row justify-between items-end mb-8 md:mb-12">
-                <div>
+                <div className="w-full md:w-auto">
                     <span className={`${theme.text} uppercase tracking-[0.25em] text-xs font-bold mb-4 block`}>On Site</span>
-                    <h2 className="font-serif text-4xl text-foreground">Project Status Images</h2>
+                    <div className="flex flex-col md:flex-row justify-between items-end md:items-center gap-8 w-full">
+                        <h2 className="font-serif text-4xl text-foreground">Project Status Images</h2>
+
+                        {/* Progress Bar Section */}
+                        {project.progress && (
+                            <div className="w-full md:w-64">
+                                <div className="flex justify-between text-sm mb-2">
+                                    <span className="font-bold text-foreground">Progress</span>
+                                    <span className={`${theme.text} font-bold`}>{project.progress}%</span>
+                                </div>
+                                <div className="h-2 bg-secondary-foreground/10 rounded-full overflow-hidden">
+                                    <motion.div
+                                        initial={{ width: 0 }}
+                                        whileInView={{ width: `${project.progress}%` }}
+                                        transition={{ duration: 1.5, ease: "easeOut" }}
+                                        className={`h-full ${theme.bg}`}
+                                    />
+                                </div>
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
 
@@ -557,3 +629,6 @@ function VisualTourSection({ title = "Visual Tour", heading = "Gallery", images,
         </>
     );
 }
+
+// Helper for Show House Toggle Gallery (e.g. Elinor 3BHK/4BHK)
+

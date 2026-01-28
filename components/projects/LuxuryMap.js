@@ -202,50 +202,91 @@ function LuxuryMap({ activeProject }) {
                 ))}
 
                 {/* Vihav Projects */}
+                {/* Vihav Projects */}
                 {PROJECTS.map((project, idx) => {
+                    if (project.hideOnMap) return null; // Skip hidden projects (e.g. grouped pins)
+
                     const isActive = activeProject && project.id === activeProject.id;
                     // Fallback to center if coords missing (shouldn't happen with correct data)
                     const pos = project.coordinates || defaultCenter;
+                    const displayTitle = project.mapTitle || project.title;
 
                     return (
                         <Marker
                             key={`project-${idx}`}
                             position={pos}
-                            icon={createVihavIcon(project.title, isActive)}
+                            icon={createVihavIcon(displayTitle, isActive)}
                             zIndexOffset={isActive ? 1000 : 100}
                         >
                             <Popup minWidth={220} closeButton={false} className="custom-popup-glass">
-                                <a
-                                    href={project.link || `/projects/${project.slug}`}
-                                    className="block group relative min-w-[200px] bg-black/90 backdrop-blur-xl border border-gold-400/30 rounded-sm p-0 overflow-hidden shadow-2xl hover:border-gold-400 transition-colors"
-                                >
+                                <div className="min-w-[200px] md:min-w-[250px] bg-black/90 backdrop-blur-xl border border-gold-400/30 rounded-sm overflow-hidden shadow-2xl">
+
                                     {/* Image Banner in Popup */}
-                                    <div className="h-24 w-full relative overflow-hidden">
-                                        <div
-                                            className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                                            style={{ backgroundImage: `url(${project.desktopHeroImage || project.heroImage})` }}
-                                        />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
-                                        <div className="absolute top-2 right-2 px-2 py-0.5 bg-gold-400 text-black text-[9px] font-bold uppercase tracking-widest rounded-sm">
-                                            {project.status === "Ready to Move" ? "Ready" : project.status}
-                                        </div>
+                                    <div className="relative h-24 w-full group overflow-hidden">
+                                        <a href={project.link || `/projects/${project.slug}`} className="block h-full w-full">
+                                            <div
+                                                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                                                style={{ backgroundImage: `url(${project.desktopHeroImage || project.heroImage})` }}
+                                            />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
+                                            <div className="absolute top-2 right-2 px-2 py-0.5 bg-gold-400 text-black text-[9px] font-bold uppercase tracking-widest rounded-sm">
+                                                {project.status === "Ready to Move" ? "Ready" : project.status}
+                                            </div>
+                                        </a>
+
+                                        {/* Overlay Map Button */}
+                                        {project.googleMapsLink && project.mapButtonText && (
+                                            <a
+                                                href={project.googleMapsLink}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="absolute bottom-2 right-2 z-10 bg-black/90 text-gold-400 text-[9px] font-bold px-2.5 py-1 rounded-sm border border-gold-400/50 hover:bg-gold-400 hover:text-black transition-all shadow-lg uppercase tracking-widest"
+                                            >
+                                                {project.mapButtonText}
+                                            </a>
+                                        )}
                                     </div>
 
                                     <div className="p-4">
-                                        <h3 className="font-serif text-base font-bold text-white leading-tight mb-1">{project.title}</h3>
-                                        <p className="text-[10px] uppercase text-gray-400 tracking-widest mb-3 flex items-center gap-1">
-                                            {project.location}
-                                        </p>
-                                        <div className="flex items-center justify-between mt-2 pt-2 border-t border-white/10">
-                                            <span className="text-[10px] text-gold-400 font-bold uppercase tracking-widest">Explore</span>
-                                            <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-gold-400 group-hover:text-black transition-colors text-white">
-                                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-                                                    <path d="M5 12h14M12 5l7 7-7 7" />
-                                                </svg>
-                                            </div>
+                                        <a href={project.link || `/projects/${project.slug}`} className="block">
+                                            <h3 className="font-serif text-base font-bold text-white leading-tight mb-1 hover:text-gold-400 transition-colors">{displayTitle}</h3>
+                                            <p className="text-[10px] uppercase text-gray-400 tracking-widest mb-3 flex items-center gap-1">
+                                                {project.location}
+                                            </p>
+                                        </a>
+
+                                        <div className="flex flex-col gap-2 mt-2 pt-2 border-t border-white/10">
+                                            <a
+                                                href={project.link || `/projects/${project.slug}`}
+                                                className="flex items-center justify-between group"
+                                            >
+                                                <span className="text-[10px] text-gold-400 font-bold uppercase tracking-widest">Explore Project</span>
+                                                <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-gold-400 group-hover:text-black transition-colors text-white">
+                                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+                                                        <path d="M5 12h14M12 5l7 7-7 7" />
+                                                    </svg>
+                                                </div>
+                                            </a>
+
+                                            {project.googleMapsLink && (
+                                                <a
+                                                    href={project.googleMapsLink}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="flex items-center justify-between group"
+                                                >
+                                                    <span className="text-[10px] text-white/70 font-bold uppercase tracking-widest group-hover:text-white transition-colors">Open in Maps</span>
+                                                    <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-blue-500 group-hover:text-white transition-colors text-white">
+                                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                                                            <circle cx="12" cy="10" r="3" />
+                                                        </svg>
+                                                    </div>
+                                                </a>
+                                            )}
                                         </div>
                                     </div>
-                                </a>
+                                </div>
                             </Popup>
                         </Marker>
                     );

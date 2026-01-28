@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring, AnimatePresence } from "framer-motion";
 import { X, ArrowRight, ArrowLeft, Expand, ChevronLeft, ChevronRight } from "lucide-react";
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 
 const swipeConfidenceThreshold = 10000;
 const swipePower = (offset, velocity) => {
@@ -151,7 +152,7 @@ export default function ProjectGallery({ images, className = "", onIndexChange, 
                 </button>
 
                 <div
-                    className="flex gap-4 md:gap-8 px-4 md:px-[10vw] overflow-x-auto pb-6 md:pb-12 scrollbar-none pt-6 md:pt-10 select-none cursor-grab active:cursor-grabbing"
+                    className="flex gap-4 md:gap-8 px-4 md:px-[10vw] overflow-x-auto pb-6 md:pb-12 scrollbar-none pt-6 md:pt-10 select-none cursor-grab active:cursor-grabbing snap-x snap-mandatory"
                     ref={scrollRef}
                     style={{
                         scrollbarWidth: 'none',
@@ -171,9 +172,9 @@ export default function ProjectGallery({ images, className = "", onIndexChange, 
                             <motion.div
                                 key={idx}
                                 data-gallery-item="true"
-                                className={`relative flex-none w-[85vw] md:w-[60vw] lg:w-[28vw] aspect-[16/9] md:aspect-[3/2] group/card cursor-pointer ${cardBg} overflow-hidden rounded-lg`}
+                                className={`relative flex-none w-[85vw] md:w-[60vw] lg:w-[28vw] aspect-[16/9] md:aspect-[3/2] group/card cursor-pointer ${cardBg} overflow-hidden rounded-lg snap-center`}
                                 onViewportEnter={() => setActiveIndex(idx)}
-                                viewport={{ margin: "-40% 0px -40% 0px" }}
+                                viewport={{ margin: "0px -40% 0px -40%" }}
                                 onClick={() => {
                                     if (!hasMoved.current) setSelectedImage(media);
                                 }}
@@ -226,14 +227,16 @@ export default function ProjectGallery({ images, className = "", onIndexChange, 
             </div>
 
             {/* Dynamic Scroll Progress Bar */}
-            {showProgress && (
-                <div className={`container mx-auto px-6 mt-4 relative h-0.5 md:h-1 rounded-full overflow-hidden ${trackColor}`}>
-                    <motion.div
-                        style={{ scaleX }}
-                        className="absolute top-0 left-0 h-full w-full bg-gold-400 origin-left"
-                    />
-                </div>
-            )}
+            {
+                showProgress && (
+                    <div className={`container mx-auto px-6 mt-4 relative h-0.5 md:h-1 rounded-full overflow-hidden ${trackColor}`}>
+                        <motion.div
+                            style={{ scaleX }}
+                            className="absolute top-0 left-0 h-full w-full bg-gold-400 origin-left"
+                        />
+                    </div>
+                )
+            }
 
             {/* Lightbox */}
             <AnimatePresence>
@@ -245,26 +248,32 @@ export default function ProjectGallery({ images, className = "", onIndexChange, 
                     />
                 )}
             </AnimatePresence>
-        </section>
+        </section >
     );
 }
 
 // Separated Lightbox Component
+// Separated Lightbox Component
 function Lightbox({ selectedImage, setSelectedImage, images }) {
-    const [scale, setScale] = useState(1);
+    const [isZoomed, setIsZoomed] = useState(false);
     const [direction, setDirection] = useState(0);
 
-    // Reset scale when image changes
+    // Reset zoom state when image changes
     useEffect(() => {
-        setScale(1);
+        setIsZoomed(false);
     }, [selectedImage]);
 
-    const handleZoomToggle = (e) => {
-        e.stopPropagation();
-        setScale(prev => prev > 1 ? 1 : 2.5);
-    };
+    // PREVENT BACKGROUND SCROLL
+    useEffect(() => {
+        document.body.style.overflow = "hidden";
+        return () => {
+            document.body.style.overflow = "auto";
+        };
+    }, []);
 
     const paginate = (newDirection) => {
+        // Only paginate if not zoomed
+        if (isZoomed) return;
         setDirection(newDirection);
         const currentIndex = images.indexOf(selectedImage);
         const newIndex = (currentIndex + newDirection + images.length) % images.length;
@@ -305,11 +314,11 @@ function Lightbox({ selectedImage, setSelectedImage, images }) {
                 <X size={24} />
             </button>
 
-            {/* Prev/Next Buttons - Hidden when zoomed */}
-            {scale === 1 && (
+            {/* Prev/Next Buttons - Only visible when not zoomed */}
+            {!isZoomed && (
                 <>
                     <button
-                        className="absolute left-2 md:left-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white p-2 z-50 transition-all hover:scale-110"
+                        className="absolute left-2 md:left-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white p-2 z-[60] transition-all hover:scale-110"
                         onClick={(e) => {
                             e.stopPropagation();
                             paginate(-1);
@@ -318,7 +327,7 @@ function Lightbox({ selectedImage, setSelectedImage, images }) {
                         <ChevronLeft size={40} />
                     </button>
                     <button
-                        className="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white p-2 z-50 transition-all hover:scale-110"
+                        className="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white p-2 z-[60] transition-all hover:scale-110"
                         onClick={(e) => {
                             e.stopPropagation();
                             paginate(1);
@@ -329,70 +338,105 @@ function Lightbox({ selectedImage, setSelectedImage, images }) {
                 </>
             )}
 
+            {/* Hint */}
+            <div className="absolute bottom-4 left-0 right-0 text-center pointer-events-none z-50">
+                <span className="text-white/30 text-[10px] uppercase tracking-widest">
+                    {isZoomed ? "Double tap to exit zoom" : "Swipe down to close • Pinch to zoom"}
+                </span>
+            </div>
+
             <div
                 className="relative w-full h-full flex items-center justify-center p-4"
                 onClick={(e) => e.stopPropagation()}
             >
-                <AnimatePresence initial={false} custom={direction} mode="popLayout">
-                    <motion.div
-                        key={selectedImage}
-                        custom={direction}
-                        variants={variants}
-                        initial="enter"
-                        animate="center"
-                        exit="exit"
-                        transition={{
-                            x: { type: "spring", stiffness: 300, damping: 30 },
-                            opacity: { duration: 0.2 }
-                        }}
-                        className="absolute w-full h-full flex items-center justify-center"
-                        drag={scale === 1 ? "x" : false}
-                        dragConstraints={{ left: 0, right: 0 }}
-                        dragElastic={1}
-                        onDragEnd={(e, { offset, velocity }) => {
-                            const swipe = swipePower(offset.x, velocity.x);
-                            if (swipe < -swipeConfidenceThreshold) {
-                                paginate(1);
-                            } else if (swipe > swipeConfidenceThreshold) {
-                                paginate(-1);
-                            }
-                        }}
-                    >
-                        {selectedImage.endsWith('.mp4') || selectedImage.endsWith('.webm') ? (
-                            <div className="relative w-full h-full max-w-7xl flex items-center justify-center">
-                                <video
-                                    src={selectedImage}
-                                    className="max-w-full max-h-[100vh] object-contain shadow-2xl rounded-sm"
-                                    controls
-                                    autoPlay
-                                    playsInline
-                                />
-                            </div>
-                        ) : (
-                            <div
-                                className="relative w-full h-full flex items-center justify-center overflow-hidden"
-                                onDoubleClick={handleZoomToggle}
+                {selectedImage.endsWith('.mp4') || selectedImage.endsWith('.webm') ? (
+                    <div className="relative w-full h-full max-w-7xl flex items-center justify-center">
+                        <video
+                            src={selectedImage}
+                            className="max-w-full max-h-[100vh] object-contain shadow-2xl rounded-sm"
+                            controls
+                            autoPlay
+                            playsInline
+                        />
+                    </div>
+                ) : (
+                    <div className="absolute w-full h-full flex items-center justify-center overflow-hidden">
+                        <AnimatePresence initial={false} custom={direction} mode="popLayout">
+                            <motion.div
+                                key={selectedImage}
+                                custom={direction}
+                                variants={variants}
+                                initial="enter"
+                                animate="center"
+                                exit="exit"
+                                transition={{
+                                    x: { type: "spring", stiffness: 300, damping: 30 },
+                                    opacity: { duration: 0.2 }
+                                }}
+                                className="absolute w-full h-full flex items-center justify-center"
+                                drag={!isZoomed} // Disable drag when zoomed to allow Panning
+                                dragDirectionLock={true}
+                                dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+                                dragElastic={0.7}
+                                onDragEnd={(e, { offset, velocity }) => {
+                                    if (isZoomed) return; // Safety check
+                                    const swipe = swipePower(offset.x, velocity.x);
+
+                                    // Check dominance
+                                    if (Math.abs(offset.x) > Math.abs(offset.y)) {
+                                        // Horizontal -> Navigation
+                                        if (swipe < -swipeConfidenceThreshold) {
+                                            paginate(1);
+                                        } else if (swipe > swipeConfidenceThreshold) {
+                                            paginate(-1);
+                                        }
+                                    } else {
+                                        // Vertical -> Close
+                                        if (offset.y > 100 || velocity.y > 200) {
+                                            setSelectedImage(null);
+                                        }
+                                    }
+                                }}
                             >
-                                <motion.div
-                                    animate={{ scale: scale }}
-                                    transition={{ type: "spring", stiffness: 200, damping: 30 }}
-                                    className="relative w-full h-full"
-                                    style={{ cursor: scale > 1 ? 'zoom-out' : 'zoom-in' }}
+                                <TransformWrapper
+                                    initialScale={1}
+                                    minScale={1}
+                                    maxScale={4}
+                                    centerOnInit={true}
+                                    doubleClick={{ disabled: false, mode: "zoomIn" }}
+                                    panning={{ disabled: !isZoomed, velocityDisabled: false }}
+                                    onTransformed={(e) => {
+                                        const newZoom = e.state.scale > 1.01;
+                                        if (newZoom !== isZoomed) setIsZoomed(newZoom);
+                                    }}
+                                    alignmentAnimation={{ sizeX: 0, sizeY: 0 }}
                                 >
-                                    <Image
-                                        src={selectedImage}
-                                        alt="Fullscreen Preview"
-                                        fill
-                                        className="object-contain"
-                                        sizes="100vw"
-                                        draggable={false}
-                                        priority
-                                    />
-                                </motion.div>
-                            </div>
-                        )}
-                    </motion.div>
-                </AnimatePresence>
+                                    {({ zoomIn, zoomOut, resetTransform }) => (
+                                        <TransformComponent
+                                            wrapperStyle={{ width: "100%", height: "100%" }}
+                                            contentStyle={{ width: "100%", height: "100%" }}
+                                        >
+                                            <div
+                                                className="relative w-full h-full"
+                                                onDoubleClick={() => isZoomed && setIsZoomed(false)}
+                                            >
+                                                <Image
+                                                    src={selectedImage}
+                                                    alt="Fullscreen Preview"
+                                                    fill
+                                                    className="object-contain pointer-events-auto select-none"
+                                                    sizes="100vw"
+                                                    draggable={false}
+                                                    priority
+                                                />
+                                            </div>
+                                        </TransformComponent>
+                                    )}
+                                </TransformWrapper>
+                            </motion.div>
+                        </AnimatePresence>
+                    </div>
+                )}
             </div>
         </motion.div>
     );
