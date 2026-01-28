@@ -220,7 +220,7 @@ export default function ProjectDetailsClient({ project, theme }) {
                     {/* Sidebar Enquire Section (Right) */}
                     <div className="lg:w-1/3 relative">
                         <div className="sticky top-32">
-                            <div className="bg-card border border-border p-8 shadow-2xl rounded-sm">
+                            <div className="bg-card/80 backdrop-blur-md border border-border/50 p-8 shadow-2xl shadow-gold-400/5 rounded-xl ring-1 ring-gold-400/20 dark:ring-white/5 transition-all duration-300 hover:shadow-gold-400/10">
                                 {project.logo ? (
                                     <div className="flex justify-center mb-6">
                                         <div className="relative w-40 h-20">
@@ -505,7 +505,7 @@ export default function ProjectDetailsClient({ project, theme }) {
             )}
 
             {/* 3. Main Gallery (Visual Tour) */}
-            <section id="gallery" className="py-16 md:py-24 bg-luxury-black text-white scroll-mt-24">
+            <section id="gallery" className="py-16 md:py-24 bg-background text-foreground scroll-mt-24 border-t border-border">
                 <VisualTourSection images={imagesOnly} videos={videosOnly} theme={theme} />
             </section>
 
@@ -560,35 +560,80 @@ export default function ProjectDetailsClient({ project, theme }) {
 }
 
 
+// Helper for Animated Counter
+function AnimatedCounter({ value, className }) {
+    const ref = useRef(null);
+    const inView = useInView(ref, { once: true });
+    const [displayValue, setDisplayValue] = useState(0);
+
+    useEffect(() => {
+        if (inView) {
+            let startTimestamp = null;
+            const duration = 1500; // ms
+
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                // Ease out cubic
+                const ease = 1 - Math.pow(1 - progress, 3);
+
+                setDisplayValue(Math.floor(ease * value));
+
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+    }, [inView, value]);
+
+    return <span ref={ref} className={className}>{displayValue}%</span>;
+}
+
 // Sub-component for Animated Construction Status
 function ConstructionStatus({ project, theme }) {
-    return (
-        <div className="container mx-auto px-6 md:px-12">
-            <div className="flex flex-col md:flex-row justify-between items-end mb-8 md:mb-12">
-                <div className="w-full md:w-auto">
-                    <span className={`${theme.text} uppercase tracking-[0.25em] text-xs font-bold mb-4 block`}>On Site</span>
-                    <div className="flex flex-col md:flex-row justify-between items-end md:items-center gap-8 w-full">
-                        <h2 className="font-serif text-4xl text-foreground">Project Status Images</h2>
+    const progress = project.progress ? parseInt(project.progress) : 0;
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, margin: "-100px" });
+    // Count up animation
+    const [count, setCount] = useState(0);
 
-                        {/* Progress Bar Section */}
-                        {project.progress && (
-                            <div className="w-full md:w-64">
-                                <div className="flex justify-between text-sm mb-2">
-                                    <span className="font-bold text-foreground">Progress</span>
-                                    <span className={`${theme.text} font-bold`}>{project.progress}%</span>
-                                </div>
-                                <div className="h-2 bg-secondary-foreground/10 rounded-full overflow-hidden">
-                                    <motion.div
-                                        initial={{ width: 0 }}
-                                        whileInView={{ width: `${project.progress}%` }}
-                                        transition={{ duration: 1.5, ease: "easeOut" }}
-                                        className={`h-full ${theme.bg}`}
-                                    />
-                                </div>
-                            </div>
-                        )}
-                    </div>
+    useEffect(() => {
+        if (isInView) {
+            let start = 0;
+            const end = parseInt(progress);
+            if (start === end) return;
+
+            let timer = setInterval(() => {
+                start += 1;
+                setCount(start);
+                if (start === end) clearInterval(timer);
+            }, 20); // Speed of count
+            return () => clearInterval(timer);
+        }
+    }, [isInView, progress]);
+
+    return (
+        <div ref={ref} className="container mx-auto px-6 md:px-12">
+            <div className="flex flex-col md:flex-row justify-between items-end mb-8 md:mb-16">
+                <div>
+                    <span className={`${theme.text} uppercase tracking-[0.25em] text-xs font-bold mb-4 block`}>Real-Time Updates</span>
+                    <h2 className="font-serif text-4xl text-foreground">Construction Status</h2>
                 </div>
+                <div className="text-right mt-8 md:mt-0">
+                    <div className={`${theme.text} text-sm uppercase tracking-widest mb-2 font-bold`}>Completion Progress</div>
+                    <div className="text-5xl font-serif text-foreground">{count}%</div>
+                </div>
+            </div>
+
+            {/* Progress Bar */}
+            <div className="w-full bg-secondary-foreground/10 h-2 rounded-full overflow-hidden mb-16">
+                <motion.div
+                    initial={{ width: 0 }}
+                    animate={isInView ? { width: `${progress}%` } : { width: 0 }}
+                    transition={{ duration: 1.5, ease: "easeOut" }}
+                    className={`h-full ${theme.bg}`}
+                />
             </div>
 
             {/* Construction Gallery */}
@@ -612,13 +657,13 @@ function VisualTourSection({ title = "Visual Tour", heading = "Gallery", images,
                 <div className="flex justify-between items-end">
                     <div>
                         <span className={`${theme.text} uppercase tracking-[0.25em] text-[10px] md:text-xs font-bold mb-4 block`}>{title}</span>
-                        <h2 className="font-serif text-3xl md:text-5xl text-white">{heading}</h2>
+                        <h2 className="font-serif text-3xl md:text-5xl text-foreground">{heading}</h2>
                     </div>
                     {/* Integrated Counter */}
                     <div className="flex items-end baseline gap-2 font-serif">
                         <span className="text-gold-400 text-xl leading-none">{String(activeIndex + 1).padStart(2, '0')}</span>
-                        <span className="text-white/40 text-sm leading-none">/</span>
-                        <span className="text-white/60 text-sm leading-none">{String(allMedia.length).padStart(2, '0')}</span>
+                        <span className="text-muted-foreground/40 text-sm leading-none">/</span>
+                        <span className="text-muted-foreground/60 text-sm leading-none">{String(allMedia.length).padStart(2, '0')}</span>
                     </div>
                 </div>
             </div>

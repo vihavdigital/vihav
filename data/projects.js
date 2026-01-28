@@ -14,7 +14,7 @@
 export const PROJECTS = [
   {
     id: "keystone-select",
-    srd: "PLACEHOLDER_SRD", // User to provide
+    srd: "6948f166e114873dbd357523", // KEYSTONE SELECT
     link: "/projects/keystone-select",
     slug: "keystone-select",
     title: "Keystone Select",
@@ -22,7 +22,7 @@ export const PROJECTS = [
     category: "Residential",
     location: "Nr Navrachana University, Bhayli",
     carpetArea: "SBA : 5772 Sq.Ft Onwards",
-    type: "4B2HK & 5B2HK APARTMENT",
+    type: "4B2HK Apartments & 5B2HK Penthouses",
     price: "2.15 Cr",
     status: "Upcoming",
     progress: 75,
@@ -157,14 +157,14 @@ export const PROJECTS = [
   },
   {
     id: "keystone-51",
-    srd: "PLACEHOLDER_SRD",
+    srd: "68e60c75a3d855d95ca44d88", // KEYSTONE 51
     link: "/projects/keystone-51",
     status: "Newly Launched",
     slug: "keystone-51",
     title: "Keystone 51",
     category: "Residential",
     location: "Nr Navrachana University, Bhayli",
-    type: "4BHK VILLA",
+    type: "4BHK Perfectly Crafted Villas",
     carpetArea:
       "PLOT AREA - 1257 Sq.Ft. Onwards | BUILT UP AREA - 2485 Sq.Ft. Onwards",
     price: "1.71 Cr",
@@ -343,7 +343,7 @@ export const PROJECTS = [
   },
   {
     id: "keystone-niwa",
-    srd: "PLACEHOLDER_SRD",
+    srd: "68637205a3d855f6a487f8f5", // KEYSTONE NIWA
     link: "/projects/keystone-niwa-4b2hk-apartments-in-vadodara/",
     slug: "keystone-niwa-4b2hk-apartments-in-vadodara",
     title: "Keystone Niwa",
@@ -351,7 +351,7 @@ export const PROJECTS = [
     category: "Residential",
     location: "Opp. Skyvillas, New Alkapuri",
     carpetArea: "CARPET - 5000 Sq.Ft.",
-    type: "4B2HK & 5B2HK APARTMENT",
+    type: "4BR 2H 2K Garden Apartments One Floor - one unit",
     price: "Price on Request",
     status: "Newly Launched",
     progress: 40,
@@ -451,7 +451,7 @@ export const PROJECTS = [
   },
   {
     id: "keystone-clermont",
-    srd: "PLACEHOLDER_SRD",
+    srd: "67695709735daf277a539171", // KEYSTONE CLERMONT
     link: "/projects/keystone-clermont-4b2hk-apartments-in-vadodara/",
     status: "Under Construction",
     slug: "keystone-clermont-4b2hk-apartments-in-vadodara",
@@ -460,7 +460,7 @@ export const PROJECTS = [
     category: "Residential",
     location: "75 Mtr Main Road, Bhayli",
     carpetArea: "CARPET - 3818 & 5583 Sq.Ft.",
-    type: "4B2HK & 5B2HK APARTMENT",
+    type: "4B2HK Apartments & 5B2HK Penthouses",
     price: "Price on Request",
     reraId: "PR/GJ/VADODARA/VADODARA/Others/RAA00869/160321",
     reraLink: "https://gujrera.gujarat.gov.in/",
@@ -600,7 +600,7 @@ export const PROJECTS = [
   },
   {
     id: "keystone-30",
-    srd: "PLACEHOLDER_SRD",
+
     link: "https://keystone30.in/",
     status: "Under Construction",
     slug: "keystone-30",
@@ -608,7 +608,7 @@ export const PROJECTS = [
     category: "Residential",
     location: "New Vastral, Ahmedabad",
     carpetArea: "PLOT AREA - 1592 to 2927 Sq.Ft.",
-    type: "4BHK BUNGALOW",
+    type: "4 BHK SEAMLESS BUNGALOWS",
     price: "Price on Request",
     reraId: "PR/GJ/VADODARA/VADODARA/Others/RAA00001/010121",
     reraLink: "https://gujrera.gujarat.gov.in/",
@@ -646,7 +646,7 @@ export const PROJECTS = [
   },
   {
     id: "keystone-skyvillas-xl",
-    srd: "PLACEHOLDER_SRD",
+    srd: "6427e762ed23e951fbe0f9f4", // KEYSTONE SKYVILLAS XL
     link: "/projects/keystone-skyvillas-xl",
     status: "Under Construction",
     slug: "keystone-skyvillas-xl",
@@ -655,7 +655,7 @@ export const PROJECTS = [
     category: "Residential",
     location: "New Alkapuri, Gotri",
     carpetArea: "CARPET - 4200 Sq.Ft.",
-    type: "5B2HK APARTMENTS & 6B2HK PENTHOUSES",
+    type: "5B2HK FLATS & 6B2HK PENTHOUSES",
     price: "Price on Request",
     reraId: "PR/GJ/VADODARA/VADODARA/Others/RAA00004/010121",
     reraLink: "https://gujrera.gujarat.gov.in/",
@@ -826,7 +826,7 @@ export const PROJECTS = [
   },
   {
     id: "keystone-48",
-    srd: "PLACEHOLDER_SRD",
+    srd: "62a6fd72ed23e916764150f6", // KEYSTONE 48
     status: "Under Construction",
     slug: "keystone-48",
     title: "Keystone 48",
@@ -835,7 +835,7 @@ export const PROJECTS = [
     customBadge: "Only 1 Unit Left",
     location: "Sevasi, Vadodara",
     carpetArea: "CARPET - 2700 TO 3140 Sq.Ft.",
-    type: "4B2HK & 5B2HK APARTMENT & SHOWROOMS",
+    type: "4B2HK FLATS & 5B2HK PENTHOUSES",
     price: "Price on Request",
     phone: "+91 74349 62962",
     email: "keystone48@vihav.com",
@@ -902,7 +902,7 @@ export const PROJECTS = [
   },
   {
     id: "vihav-cbd-res",
-    srd: "PLACEHOLDER_SRD",
+    srd: "631702f38eb6d855f3ef3505", // VIHAV CBD
     link: "/projects/cbd",
     launchYear: "2022",
     brochureLink:
@@ -916,7 +916,7 @@ export const PROJECTS = [
     category: "Residential",
     location: "Bhayli Cross Road, Vadodara",
     carpetArea: "CARPET - 1830 TO 2934 Sq.Ft.",
-    type: "4BHK & 5B2HK APARTMENT",
+    type: "4BHK FLATS & 5B2HK PENTHOUSES",
     price: "1.31 Cr",
     phone: "+91 7435 894 894",
     email: "cbd@vihav.com",
@@ -1110,7 +1110,7 @@ export const PROJECTS = [
   },
   {
     id: "vihav-spring-woods",
-    srd: "PLACEHOLDER_SRD",
+    srd: "633d351f4443ae66d638fd87", // VIHAV SPRINGWOODS
     link: "/projects/spring-woods/",
     status: "Ready to Move",
     slug: "spring-woods",
@@ -1119,7 +1119,7 @@ export const PROJECTS = [
     category: "Residential",
     location: "Tarsali, Vadodara",
     carpetArea: "PLOT AREA - 770 to 1500 Sq.Ft.",
-    type: "3 & 4 BHK DUPLEX VILLA",
+    type: "3 & 4 BHK PREMIUM DUPLEX",
     price: "Price on Request",
     reraId: "PR/GJ/VADODARA/VADODARA/Others/RAA00003/010121",
     reraLink: "https://gujrera.gujarat.gov.in/",
@@ -1305,7 +1305,7 @@ export const PROJECTS = [
   },
   {
     id: "vihav-elinor",
-    srd: "PLACEHOLDER_SRD",
+    srd: "62a42c758eb6d85bf4fb8729", // VIHAV ELINOR
     link: "/projects/elinor",
     status: "Ready to Move",
     slug: "elinor",
@@ -1314,7 +1314,7 @@ export const PROJECTS = [
     category: "Residential",
     location: "New Alkapuri, Gotri",
     carpetArea: "SBA : 2134 TO 2898 Sq.Ft",
-    type: "3, 4 BHK APARTMENTS & 5 BHK PENTHOUSES",
+    type: "3 & 4BHK Luxurious Flats\n4 & 5BHK Penthouses",
     price: "82.51 Lacs",
     reraId: "PR/GJ/VADODARA/VADODARA/Others/RAA00002/010121",
     reraLink: "https://gujrera.gujarat.gov.in/",
@@ -1504,7 +1504,7 @@ export const PROJECTS = [
   },
   {
     id: "vihav-parvarish-res",
-    srd: "PLACEHOLDER_SRD",
+    srd: "62a6fd0fed23e93e761c8048", // VIHAV PARVARISH
     status: "Ready to Move",
     rentalPrice: "₹45,000 / month",
     slug: "parvarish",
@@ -1514,7 +1514,7 @@ export const PROJECTS = [
     category: "Residential",
     location: "Nr Priya Cinema, Sevasi, Bhayli",
     carpetArea: "SBA : 1575 - 1750 Sq.Ft",
-    type: "3BHK APARTMENT",
+    type: "3BHK Family – Centric Homes",
     price: "49 Lacs",
     reraId: "PR/GJ/VADODARA/VADODARA/Others/RAA00001/010121",
     reraLink: "https://gujrera.gujarat.gov.in/",
@@ -1688,7 +1688,7 @@ export const PROJECTS = [
   },
   {
     id: "vihav-parvarish-comm",
-    srd: "PLACEHOLDER_SRD",
+    srd: "6530c9aea3d85503b2d3ecd6", // VIHAV PARVARISH COMMERCIAL
     slug: "parvarish-commercial",
     title: "Vihav Parvarish Commercial",
     status: "Ready to Move",
@@ -1786,7 +1786,7 @@ export const PROJECTS = [
   },
   {
     id: "vihav-skymont",
-    srd: "PLACEHOLDER_SRD",
+
     status: "Completed",
     slug: "vihav-skymont",
     title: "Keystone Skymont",
@@ -1794,7 +1794,7 @@ export const PROJECTS = [
     category: "Residential",
     location: "New Alkapuri, Vadodara",
     carpetArea: "CARPET - 3700 Sq.Ft.",
-    type: "4B2HK & 5B2HK APARTMENT",
+    type: "4B2HK Luxurious Apartments",
     price: "Price on Request",
     phone: "+91 91206 45645",
     email: "skymont@vihav.com",
@@ -1829,7 +1829,7 @@ export const PROJECTS = [
     category: "Residential",
     location: "New Alkapuri, Vadodara",
     carpetArea: "CARPET - 2100 Sq.Ft.",
-    type: "4B2HK & 5B2HK APARTMENT",
+    type: "4B2HK Premium Flats and 5B2HK Penthouses",
     price: "Price on Request",
     phone: "+91 74348 40840",
     email: "keystone72@vihav.com",
@@ -1864,7 +1864,7 @@ export const PROJECTS = [
     category: "Residential",
     location: "New Alkapuri, Vadodara",
     carpetArea: "CARPET - 2900 Sq.Ft.",
-    type: "4B2HK & 5B2HK APARTMENT",
+    type: "4B2HK Skyrise Villas",
     price: "Price on Request",
     status: "Completed",
     progress: 100,
@@ -1930,6 +1930,7 @@ export const PROJECTS = [
   },
   {
     id: "skyone",
+    srd: "62a6fd8aed23e93e761c80b0", // VIHAV SKYONE
     status: "Completed",
     link: "/projects/skyone/",
     slug: "skyone",
@@ -1938,7 +1939,7 @@ export const PROJECTS = [
     category: "RESI-COMM",
     location: "30 Mtr. Main Road, Bhayli",
     carpetArea: "CARPET - 245 TO 540 Sq.Ft.",
-    type: "3BHK APARTMENT & SHOPS",
+    type: "SHOPS",
     rentalPrice: "₹25,000 / month",
     unitNumber: "Shop G-12",
     price: "Price on Request",
@@ -2042,7 +2043,7 @@ export const PROJECTS = [
     status: "Completed",
     category: "Residential",
     location: "Khanpur, Sevasi",
-    type: "4B2HK BUNGALOW",
+    type: "5B2HK LUXURIOUS VILLAS",
     price: "Price on Request",
     phone: "+91 87916 49164",
     email: "ksm3@vihav.com",
@@ -2077,7 +2078,7 @@ export const PROJECTS = [
     status: "Completed",
     category: "Residential",
     location: "Khanpur, Sevasi",
-    type: "4B2HK BUNGALOW",
+    type: "4B2HK LUXURIOUS VILLAS",
     price: "Price on Request",
     phone: "+91 87916 49164",
     email: "ksm3@vihav.com",
@@ -2107,6 +2108,7 @@ export const PROJECTS = [
   },
   {
     id: "vs-monolith",
+    srd: "67f38f395d8def8bcfa0d1f5", // VS MONOLITH
     link: "/projects/vs-monolith/",
     status: "Under Construction",
     slug: "vs-monolith",
@@ -2115,7 +2117,7 @@ export const PROJECTS = [
     category: "Commercial",
     location: "Atladra Padra 40mtr Main Road",
     carpetArea: "CARPET - 268 TO 3057 Sq.Ft.",
-    type: "SHOWROOMS, SHOPS & OFFICES",
+    type: "Shops, Showrooms & Offices",
     price: "21.51 Lacs",
     reraId: "PR/GJ/VADODARA/VADODARA/Others/CAA00002/010121",
     reraLink: "https://gujrera.gujarat.gov.in/",
@@ -2254,6 +2256,7 @@ export const PROJECTS = [
   },
   {
     id: "supremus-iii",
+    srd: "670ca3c858f1e7baa1e47604", // VIHAV SUPREMUS 3
     link: "/projects/supremus-3/",
     status: "Under Construction",
     slug: "supremus-3",
@@ -2262,7 +2265,7 @@ export const PROJECTS = [
     category: "Commercial",
     location: "Nr. DMart, Vasna Bhayli Main Rd",
     carpetArea: "CARPET - 295 Sq.Ft. Onwards",
-    type: "SHOWROOMS, SHOPS & OFFICES",
+    type: "Offices & Showrooms",
     price: "30 Lacs",
     reraId: "PR/GJ/VADODARA/VADODARA/Others/CAA00003/010121",
     reraLink: "https://gujrera.gujarat.gov.in/",
@@ -2433,6 +2436,7 @@ export const PROJECTS = [
   },
   {
     id: "vihav-cbd",
+    srd: "63d78214c8256117c4e8e7d1", // VIHAV CBD Commercial
     link: "/projects/cbd-commercial/",
     launchYear: "2022",
     brochureLink:
@@ -2444,7 +2448,7 @@ export const PROJECTS = [
     category: "Commercial",
     location: "Bhayli Cross Road, Vadodara",
     carpetArea: "CARPET - 262 TO 4200 Sq.Ft.",
-    type: "SHOWROOMS, SHOPS & OFFICES",
+    type: "OFFICES • SHOPS • SHOWROOMS",
     price: "23.36 Lacs",
     phone: "+91 7435 894 894",
     email: "cbd@vihav.com",
@@ -2572,6 +2576,7 @@ export const PROJECTS = [
   },
   {
     id: "vihav-supremus-2",
+    srd: "62a6fdcbed23e93e761c80d4", // VIHAV SUPREMUS 2
     link: "/projects/supremus2/",
     status: "Ready to Move",
     slug: "supremus2",
@@ -2580,7 +2585,7 @@ export const PROJECTS = [
     category: "Commercial",
     location: "Atladra Padra 40mtr Main Road",
     carpetArea: "CARPET - 225 Sq.Ft. Onwards",
-    type: "SHOWROOMS, SHOPS & OFFICES",
+    type: "SHOWROOMS & OFFICES",
     price: "27 Lacs",
     reraId: "PR/GJ/VADODARA/VADODARA/Others/CAA00001/010121",
     reraLink: "https://gujrera.gujarat.gov.in/",
@@ -2702,6 +2707,7 @@ export const PROJECTS = [
 
   {
     id: "wealth-square",
+    srd: "62a6fdb0ed23e924ca5e5c01", // VIHAV WEALTH SQUARE
     status: "Completed",
     link: "/projects/wealth-square/",
     slug: "wealth-square",
@@ -2710,7 +2716,7 @@ export const PROJECTS = [
     category: "Commercial",
     location: "Gotri",
     carpetArea: "CARPET - 139 TO 699 Sq.Ft.",
-    type: "SHOWROOMS, SHOPS & OFFICES",
+    type: "SHOWROOMS • SHOPS • OFFICES",
     rentalPrice: "₹45,000 / month",
     unitNumber: "Office 304",
     price: "Price on Request",
@@ -2799,6 +2805,7 @@ export const PROJECTS = [
   },
   {
     id: "vtc",
+    srd: "62a6fda4ed23e90a9094fb7f", // VIHAV TRADE CENTER
     status: "Completed",
     link: "/projects/vtc/",
     slug: "vtc",
@@ -2939,6 +2946,7 @@ export const PROJECTS = [
   },
   {
     id: "vbs",
+    srd: "62a6fd97ed23e90877420a0d", // VIHAV BUSINESS SQUARE
     status: "Completed",
     link: "/projects/vbs/",
     slug: "vbs",
@@ -2947,7 +2955,7 @@ export const PROJECTS = [
     category: "Commercial",
     location: "Gotri Main Road",
     carpetArea: "CARPET - 937 TO 1164 Sq.Ft.",
-    type: "SHOWROOMS, SHOPS & OFFICES",
+    type: "SHOWROOMS",
     price: "Price on Request",
     reraId: "PR/GJ/VADODARA/VADODARA/Others/CAA00001/010121",
     reraLink: "https://gujrera.gujarat.gov.in/",
@@ -3060,6 +3068,7 @@ export const PROJECTS = [
   },
   {
     id: "supremus",
+    srd: "62a6fdbded23e915bf4153e6", // VIHAV SUPREMUS 1
     status: "Completed",
     link: "/projects/supremus/",
     slug: "supremus",
@@ -3068,7 +3077,7 @@ export const PROJECTS = [
     category: "Commercial",
     location: "New Alkapuri, Gotri",
     carpetArea: "CARPET - 1219 TO 1720 Sq.Ft.",
-    type: "SHOWROOMS, SHOPS & OFFICES",
+    type: "SHOWROOMS",
     price: "Price on Request",
     reraId: "PR/GJ/VADODARA/VADODARA/Others/CAA00001/010121",
     reraLink: "https://gujrera.gujarat.gov.in/",
@@ -3159,6 +3168,7 @@ export const PROJECTS = [
   },
   {
     id: "elite-square",
+    srd: "62a6fdd7ed23e91a321dac81", // VIHAV ELITE SQUARE
     link: "/projects/elite-square/",
     slug: "elite-square",
     title: "Elite Square",
@@ -3166,7 +3176,7 @@ export const PROJECTS = [
     category: "Commercial",
     location: "Sun Pharma 30 Mtr. Main Road",
     carpetArea: "CARPET - 296 TO 3200 Sq.Ft.",
-    type: "SHOWROOMS, SHOPS & OFFICES",
+    type: "SHOPS & Showrooms",
     price: "Price on Request",
     reraId: "PR/GJ/VADODARA/VADODARA/Others/CAA00001/010121",
     reraLink: "https://gujrera.gujarat.gov.in/",
@@ -3264,7 +3274,7 @@ export const PROJECTS = [
     status: "Completed",
     category: "Commercial",
     location: "Gotri",
-    type: "SHOWROOMS, SHOPS & OFFICES",
+    type: "Commercial Shops, Showrooms & Offices",
     price: "Price on Request",
     phone: "+91 88663 41272",
     email: "sales@vihav.com",
@@ -3297,7 +3307,7 @@ export const PROJECTS = [
     status: "Completed",
     category: "Commercial",
     location: "Vasna Bhayli Road",
-    type: "SHOWROOMS, SHOPS & OFFICES",
+    type: "Commercial Shops, Offices, & Showrooms",
     price: "Price on Request",
     phone: "+91 88663 41272",
     email: "sales@vihav.com",

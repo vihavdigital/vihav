@@ -156,7 +156,9 @@ export default function ProjectGallery({ images, className = "", onIndexChange, 
                     ref={scrollRef}
                     style={{
                         scrollbarWidth: 'none',
-                        msOverflowStyle: 'none'
+                        msOverflowStyle: 'none',
+                        scrollSnapType: isDragging ? 'none' : 'x mandatory', // Disable snap while dragging
+                        scrollBehavior: isDragging ? 'auto' : 'smooth' // Prevent smooth scroll interference during drag
                     }}
                     onMouseDown={handleMouseDown}
                     onMouseLeave={handleMouseLeave}
@@ -195,6 +197,7 @@ export default function ProjectGallery({ images, className = "", onIndexChange, 
                                         fill
                                         className="object-cover transition-transform duration-700 group-hover/card:scale-105 opacity-90 group-hover/card:opacity-100"
                                         sizes="(max-width: 768px) 85vw, (max-width: 1024px) 60vw, 45vw"
+                                        priority={idx < 2} // Prioritize first 2 images
                                     />
                                 )}
 

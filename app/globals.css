@@ -57,35 +57,37 @@
 */
 :root {
   /* Light Theme (Clean Luxury) */
-  --background: #ffffff;
-  --foreground: #0a0a0a;
+  --background: #faf9f6;
+  /* Premium Stone/Off-White */
+  --foreground: #1a1a1a;
+  /* Soft Charcoal */
 
   --card: #ffffff;
-  --card-foreground: #0a0a0a;
+  --card-foreground: #1a1a1a;
 
   --popover: #ffffff;
-  --popover-foreground: #0a0a0a;
+  --popover-foreground: #1a1a1a;
 
-  --primary: #0a0a0a;
+  --primary: #1a1a1a;
   --primary-foreground: #ffffff;
 
-  --secondary: #f4f4f5;
-  /* zinc-100 */
-  --secondary-foreground: #0a0a0a;
+  --secondary: #f5f5f4;
+  /* Stone-100 (Warmer) */
+  --secondary-foreground: #1a1a1a;
 
-  --muted: #f4f4f5;
-  --muted-foreground: #71717a;
-  /* zinc-500 */
+  --muted: #f5f5f4;
+  --muted-foreground: #78716c;
+  /* Stone-500 */
 
-  --accent: #f4f4f5;
-  --accent-foreground: #0a0a0a;
+  --accent: #f5f5f4;
+  --accent-foreground: #1a1a1a;
 
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
 
-  --border: #e4e4e7;
-  /* zinc-200 */
-  --input: #e4e4e7;
+  --border: #e7e5e4;
+  /* Stone-200 */
+  --input: #e7e5e4;
   --ring: #d4af37;
   /* gold-400 */
 
@@ -129,7 +131,13 @@ body {
   color: var(--foreground);
   transition: background-color 0.3s ease, color 0.3s ease;
   overflow-x: hidden;
+  /* Subtle Noise Texture for Light Mode - Pending Optimized Image */
+  /* background-image removed for performance */
+}
 
+/* Remove noise in dark mode to keep deep blacks pure */
+.dark body {
+  background-image: none;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */

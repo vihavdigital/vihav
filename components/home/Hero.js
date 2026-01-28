@@ -70,8 +70,8 @@ export default function Hero() {
                         />
                     )}
 
-                    {/* Gradient Overlay - Lightened for White Theme */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                    {/* Gradient Overlay - Enhanced for Readability & Depth */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-0" />
                 </motion.div>
             </AnimatePresence>
 

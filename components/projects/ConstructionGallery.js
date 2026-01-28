@@ -7,10 +7,6 @@ export default function ConstructionGallery({ images, theme }) {
 
     return (
         <div className="mt-8">
-            <div className="mb-6 flex items-center justify-between">
-                <h3 className={`font-serif text-2xl ${theme.text}`}>Project Status Gallery</h3>
-            </div>
-
             {/* Slider View */}
             <ProjectGallery
                 images={images}

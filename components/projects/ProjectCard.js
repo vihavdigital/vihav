@@ -160,6 +160,11 @@ export default function ProjectCard({ project }) {
                 isOpen={isEnquireOpen}
                 onClose={() => setIsEnquireOpen(false)}
                 title={`Enquiry for ${project.title}`}
+                contextData={{
+                    project_id: project.id,
+                    srd: project.srd,
+                    sub_source: "Homepage Project Card"
+                }}
             />
         </>
     );
