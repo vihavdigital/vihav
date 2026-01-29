@@ -14,16 +14,11 @@ import dynamic from "next/dynamic";
 import CollapsibleSection from "@/components/ui/CollapsibleSection";
 
 import SimilarProjects from "@/components/projects/SimilarProjects";
+import EnquiryModal from "@/components/ui/EnquiryModal";
 
 // ... (existing imports)
 
-// Inside the component return, before the EnquiryModal:
 
-{/* 6. Similar Projects Suggestion */ }
-            <SimilarProjects currentProjectId={project.id} category={project.category} />
-
-            <EnquiryModal
-                isOpen={isModalOpen}
 import MagneticWrapper from "@/components/ui/MagneticWrapper";
 
 // New Gallery Imports
@@ -577,6 +572,9 @@ export default function ProjectDetailsClient({ project, theme }) {
             )}
 
 
+
+            {/* 6. Similar Projects Suggestion */}
+            <SimilarProjects currentProjectId={project.id} category={project.category} />
 
             <EnquiryModal
                 isOpen={isModalOpen}

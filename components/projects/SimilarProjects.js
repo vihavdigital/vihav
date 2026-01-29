@@ -6,16 +6,27 @@ import { ArrowRight, MapPin } from "lucide-react";
 import { PROJECTS } from "@/data/projects";
 
 export default function SimilarProjects({ currentProjectId, category = "Residential" }) {
-    // Filter out current project and only show same category (optional, but good for relevance)
-    const otherProjects = PROJECTS.filter(
-        (p) => p.id !== currentProjectId && (p.category === category || !category)
-    );
+    // Deterministic Selection
+    // Find current project index and take the next 3 projects in the list
+    // This ensures the same projects are shown on Server and Client (No Hydration Mismatch)
+    const currentIndex = PROJECTS.findIndex((p) => p.id === currentProjectId);
+    const totalProjects = PROJECTS.length;
 
-    // Randomly select 3 projects
-    // Using a simple shuffle for client-side randomness
-    const selectedProjects = otherProjects
-        .sort(() => 0.5 - Math.random())
-        .slice(0, 3);
+    const selectedProjects = [];
+
+    // Start checking from the next project
+    for (let i = 1; i < totalProjects; i++) {
+        if (selectedProjects.length >= 3) break;
+
+        const nextIndex = (currentIndex + i) % totalProjects;
+        const project = PROJECTS[nextIndex];
+
+        // Optional: Filter by category if needed, but ensure we have at least some projects
+        // For now, we will show next 3 projects regardless to ensure UI is always populated
+        if (project.id !== currentProjectId) {
+            selectedProjects.push(project);
+        }
+    }
 
     if (selectedProjects.length === 0) return null;
 
