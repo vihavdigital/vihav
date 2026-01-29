@@ -89,7 +89,7 @@ export default function BrandGrid() {
                                             src={brand.logo}
                                             alt={brand.name}
                                             fill
-                                            className="object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500"
+                                            className="object-contain transition-all duration-500"
                                             sizes="(max-width: 768px) 100vw, 33vw"
                                         />
                                     </div>

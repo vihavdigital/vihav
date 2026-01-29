@@ -13,8 +13,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import EnquiryModal from "@/components/ui/EnquiryModal";
 import OverseasProjects from "@/components/overseas/OverseasProjects";
 import { Suspense } from "react";
+import { useRouter } from "next/navigation";
 
 export default function OverseasPage() {
+    const router = useRouter();
     const [isEnquireOpen, setIsEnquireOpen] = useState(false);
 
     return (
@@ -145,6 +147,7 @@ export default function OverseasPage() {
                     project_id: "overseas-nri", // Or appropriate ID
                     sub_source: "Overseas Page"
                 }}
+                onSuccessAction={() => router.push('/thank-you/general')}
             />
         </main>
     );

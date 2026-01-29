@@ -12,11 +12,12 @@ import dynamic from "next/dynamic";
 const EnquiryModal = dynamic(() => import("@/components/ui/EnquiryModal"));
 const SearchModal = dynamic(() => import("@/components/ui/SearchModal"));
 
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import { PROJECTS } from "@/data/projects";
 
 export default function Header() {
+    const router = useRouter();
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isEnquireModalOpen, setIsEnquireModalOpen] = useState(false);
@@ -139,7 +140,7 @@ export default function Header() {
             </header>
 
             <SideMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
-            <EnquiryModal isOpen={isEnquireModalOpen} onClose={() => setIsEnquireModalOpen(false)} />
+            <EnquiryModal isOpen={isEnquireModalOpen} onClose={() => setIsEnquireModalOpen(false)} onSuccessAction={() => router.push('/thank-you/general')} />
             <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
         </>
     );

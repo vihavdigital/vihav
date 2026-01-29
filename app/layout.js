@@ -14,7 +14,7 @@ const lato = Lato({
 });
 
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
-// import CustomCursor from "@/components/ui/CustomCursor"; // Removed
+import CustomCursor from "@/components/ui/CustomCursor";
 import SmoothScroll from "@/components/layout/SmoothScroll";
 import ChatLoader from "@/components/chat/ChatLoader";
 
@@ -84,9 +84,9 @@ export const metadata = {
         // yandex: 'yandex-verification-code',
     },
     icons: {
-        icon: '/images/project-images/other-images/favicon.webp',
-        shortcut: '/images/project-images/other-images/favicon.webp',
-        apple: '/images/project-images/other-images/favicon.webp',
+        icon: '/images/project-images/other-images/favicon.png?v=4',
+        shortcut: '/images/project-images/other-images/favicon.png?v=4',
+        apple: '/images/project-images/other-images/favicon.png?v=4',
     },
 };
 
@@ -98,7 +98,7 @@ export default function RootLayout({ children }) {
                 className={`${playfair.variable} ${lato.variable} antialiased transition-colors duration-300`}
             >
                 <ThemeProvider>
-                    {/* <CustomCursor /> Removed */}
+                    <CustomCursor />
                     <Preloader />
                     {/* <SmoothScroll /> Removed for native responsiveness */}
                     {/* <ChatLoader /> */}

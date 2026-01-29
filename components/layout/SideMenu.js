@@ -22,13 +22,7 @@ const MENU_ITEMS = [
         image: "https://www.vihav.com/wp-content/uploads/KS51-Elevation-1-e1761809057612.jpg",
         desc: "Explore our residential and commercial landmarks."
     },
-    {
-        id: "rentals",
-        label: "RENTALS",
-        href: "/rentals",
-        image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=2000&auto=format&fit=crop", // Example image for rentals
-        desc: "Discover our available rental properties."
-    },
+
     {
         id: "about",
         label: "ABOUT US",

@@ -39,7 +39,7 @@ export default function ProjectsFeed() {
     const cardsRef = useRef(null);
 
     useEffect(() => {
-        return scrollY.onChange(() => {
+        return scrollY.on("change", () => {
             // Check if we are in the cards section
             if (cardsRef.current) {
                 const rect = cardsRef.current.getBoundingClientRect();

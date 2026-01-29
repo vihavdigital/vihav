@@ -68,6 +68,7 @@ export default function FeaturedProject() {
                             alt={featured.title}
                             fill
                             className="object-contain object-left"
+                            sizes="(max-width: 768px) 280px, 400px"
                             priority
                         />
                     </div>

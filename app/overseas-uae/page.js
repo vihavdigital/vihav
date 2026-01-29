@@ -5,10 +5,12 @@ import Header from "@/components/layout/Header";
 import dynamic from "next/dynamic";
 import { ArrowRight, CheckCircle2, Building2, Globe2, ShieldCheck, Plane, Landmark, HandCoins } from "lucide-react";
 import EnquiryForm from "@/components/ui/EnquiryForm";
+import { useRouter } from "next/navigation";
 
 const Footer = dynamic(() => import('@/components/layout/Footer'));
 
 export default function OverseasUAE() {
+    const router = useRouter();
     return (
         <main className="min-h-screen bg-background text-foreground selection:bg-gold-400 selection:text-luxury-black">
             <Header />
@@ -204,7 +206,7 @@ export default function OverseasUAE() {
                         Let us help you build your legacy in Vadodara. Connect with our dedicated NRI desk today.
                     </p>
                     <div className="bg-primary-foreground/5 p-8 rounded-lg border border-primary-foreground/10 text-left">
-                        <EnquiryForm variant="minimal" />
+                        <EnquiryForm variant="minimal" onSuccess={() => router.push('/thank-you/general')} />
                     </div>
                 </div>
             </section>

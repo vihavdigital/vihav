@@ -1,15 +1,10 @@
 "use client";
 import React from "react";
-import { TrendingUp, Scale, Building2, Plane } from "lucide-react";
+import { Scale, Building2, Plane } from "lucide-react";
 import { motion } from "framer-motion";
 
 const stats = [
-    {
-        icon: TrendingUp,
-        label: "Capital Appreciation",
-        value: "12% CAGR",
-        desc: "Vadodara real estate has shown consistent double-digit growth."
-    },
+
     {
         icon: Scale,
         label: "Legal Transparency",

@@ -40,7 +40,7 @@ function ProjectSectionContent({ projects, residentialProjects, commercialProjec
     const cardsRef = useRef(null);
 
     useEffect(() => {
-        return scrollY.onChange(() => {
+        return scrollY.on("change", () => {
             // Check if we are in the cards section
             if (cardsRef.current) {
                 const rect = cardsRef.current.getBoundingClientRect();
@@ -278,12 +278,12 @@ function ProjectSectionContent({ projects, residentialProjects, commercialProjec
                                         layout
                                         initial={{ opacity: 0, y: 20 }}
                                         whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true, margin: "-50px" }}
+                                        viewport={{ once: true, margin: "0px" }}
                                         exit={{ opacity: 0, scale: 0.9 }}
-                                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                                        transition={{ duration: 0.4, delay: (index % 4) * 0.05 }}
                                         className="h-full"
                                     >
-                                        <ProjectCard project={project} />
+                                        <ProjectCard project={project} priority={index < 6} />
                                     </motion.div>
                                 ))}
                             </AnimatePresence>

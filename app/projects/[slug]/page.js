@@ -99,11 +99,22 @@ export default async function ProjectPage({ params }) {
                     {/* Desktop Media (Video or Image) */}
                     <div className={`relative w-full h-full ${project.mobileHeroImage ? 'hidden md:block' : 'block'}`}>
                         {project.heroVideo ? (
-                            <VideoPlayer
-                                src={project.heroVideo}
-                                poster={project.desktopHeroImage || project.heroImage}
-                                className="w-full h-full object-cover brightness-90"
-                            />
+                            <>
+                                {/* Preload Poster Image for Video */}
+                                <Image
+                                    src={project.desktopHeroImage || project.heroImage}
+                                    alt={project.title}
+                                    fill
+                                    priority
+                                    className="object-cover brightness-90 -z-10"
+                                    sizes="100vw"
+                                />
+                                <VideoPlayer
+                                    src={project.heroVideo}
+                                    poster={project.desktopHeroImage || project.heroImage}
+                                    className="w-full h-full object-cover brightness-90 absolute inset-0"
+                                />
+                            </>
                         ) : (
                             <Image
                                 src={project.desktopHeroImage || project.heroImage}

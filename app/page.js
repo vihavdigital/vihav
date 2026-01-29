@@ -13,6 +13,7 @@ import EnquiryForm from "@/components/ui/EnquiryForm";
 import { Trophy, Award, Star } from "lucide-react";
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
+import { useRouter } from 'next/navigation';
 
 const Footer = dynamic(() => import('@/components/layout/Footer'));
 
@@ -47,6 +48,7 @@ const HOME_COMMERCIAL_IDS = [
 ];
 
 export default function Home() {
+  const router = useRouter();
   const orderedResidentialProjects = HOME_PROJECT_IDS.map(id => PROJECTS.find(p => p.id === id)).filter(Boolean);
   const orderedCommercialProjects = HOME_COMMERCIAL_IDS.map(id => PROJECTS.find(p => p.id === id)).filter(Boolean);
 
@@ -121,7 +123,7 @@ export default function Home() {
 
             <h3 className="text-xl md:text-2xl font-serif text-foreground mb-12 uppercase tracking-widest text-center">Begin Your Conversation</h3>
             <div className="bg-background p-8 md:p-12 rounded-none border border-border shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] hover:shadow-[0_40px_70px_-15px_rgba(0,0,0,0.15)] hover:border-gold-400/30 transition-all duration-500">
-              <EnquiryForm className="text-left" variant="minimal" />
+              <EnquiryForm className="text-left" variant="minimal" onSuccess={() => router.push('/thank-you/general')} />
             </div>
           </motion.div>
         </div>
@@ -175,6 +177,7 @@ export default function Home() {
                 fill
                 // Added a thin light border to the image itself to pop it off the dark mat
                 className="object-cover border border-white/10"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
             </div>
           </motion.div>

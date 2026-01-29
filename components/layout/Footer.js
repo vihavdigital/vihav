@@ -17,28 +17,28 @@ export default function Footer() {
 
 
                 {/* 2. Info Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-12 mb-32">
-                    {/* Brand & Address */}
-                    <div className="col-span-1 md:col-span-4 space-y-8">
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-8 mb-32">
+                    {/* Brand & Address (3 Cols) */}
+                    <div className="col-span-1 md:col-span-3 space-y-8">
                         <Link href="/" className="block">
                             <Image
                                 src="/images/project-images/project-logos/vihav-group-logo.svg"
                                 alt="Vihav Group"
                                 width={300}
                                 height={150}
-                                className="h-24 md:h-48 w-auto object-contain"
+                                className="h-24 md:h-40 w-auto object-contain -ml-4"
                             />
                         </Link>
                         <div className="space-y-6 text-muted-foreground font-light text-sm leading-relaxed max-w-xs">
 
-                            <p className="pt-4">
+                            <p className="pt-2">
                                 <a href="mailto:info@vihav.com" className="hover:text-gold-400 transition-colors block mb-1">info@vihav.com</a>
                                 <a href="tel:+918866341272" className="hover:text-gold-400 transition-colors">+91 88663 41272</a>
                             </p>
                         </div>
                     </div>
 
-                    {/* Company Links */}
+                    {/* Company Links (2 Cols) */}
                     <div className="col-span-1 md:col-span-2">
                         <h4 className="text-amber-500 font-bold uppercase tracking-[0.2em] text-xs mb-8">Company</h4>
                         <ul className="space-y-4">
@@ -48,6 +48,23 @@ export default function Footer() {
                                 { name: "About Us", link: "/about" },
                                 { name: "Awards", link: "/awards" },
                                 { name: "One Vihav", link: "/onevihav" },
+                            ].map(item => (
+                                <li key={item.name}>
+                                    <Link href={item.link} className="text-muted-foreground hover:text-foreground transition-colors text-sm uppercase tracking-wider block hover:translate-x-1 duration-300">
+                                        {item.name}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    {/* Quick Resources (New Section - 2 Cols) */}
+                    <div className="col-span-1 md:col-span-2">
+                        <h4 className="text-amber-500 font-bold uppercase tracking-[0.2em] text-xs mb-8">More</h4>
+                        <ul className="space-y-4">
+                            {[
+                                { name: "Preleased", link: "/pre-leased-properties" },
+                                { name: "Blogs", link: "/blogs" },
                                 { name: "Careers", link: "/careers" },
                                 { name: "Contact Us", link: "/contact" }
                             ].map(item => (
@@ -60,7 +77,7 @@ export default function Footer() {
                         </ul>
                     </div>
 
-                    {/* Project Links */}
+                    {/* Project Links (3 Cols) */}
                     <div className="col-span-1 md:col-span-3">
                         <h4 className="text-amber-500 font-bold uppercase tracking-[0.2em] text-xs mb-8">Explore Projects</h4>
                         <ul className="space-y-4">
@@ -80,8 +97,8 @@ export default function Footer() {
                         </ul>
                     </div>
 
-                    {/* Socials */}
-                    <div className="col-span-1 md:col-span-3">
+                    {/* Socials (2 Cols) */}
+                    <div className="col-span-1 md:col-span-2">
                         <h4 className="text-amber-500 font-bold uppercase tracking-[0.2em] text-xs mb-8">Connect</h4>
                         <div className="flex flex-wrap gap-4">
                             {[

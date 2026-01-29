@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import EnquiryForm from "@/components/ui/EnquiryForm";
 
-export default function EnquiryModal({ isOpen, onClose, title = "Enquire Now", layout = "center", contextData = {} }) {
+export default function EnquiryModal({ isOpen, onClose, title = "Enquire Now", layout = "center", contextData = {}, onSuccessAction }) {
     const isSidebar = layout === "right-sheet";
 
     const modalVariants = {
@@ -58,7 +58,14 @@ export default function EnquiryModal({ isOpen, onClose, title = "Enquire Now", l
 
                         {/* Content */}
                         <div className="p-4 md:p-8 overflow-y-auto flex-1">
-                            <EnquiryForm onSuccess={onClose} variant="standard" contextData={contextData} />
+                            <EnquiryForm
+                                onSuccess={() => {
+                                    if (onSuccessAction) onSuccessAction();
+                                    onClose();
+                                }}
+                                variant="standard"
+                                contextData={contextData}
+                            />
                         </div>
                     </motion.div>
                 </>

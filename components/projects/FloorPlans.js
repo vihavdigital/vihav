@@ -15,7 +15,7 @@ export default function FloorPlans({ plans, onEnquire }) {
     const activePlan = plans[activeTab];
 
     return (
-        <section className="bg-white" id="floor-plans">
+        <div className="w-full">
             <div className="container mx-auto px-6 md:px-12">
                 <div className="flex flex-col lg:flex-row gap-4 lg:gap-12 items-start">
                     {/* Left: Navigation Tabs */}
@@ -137,7 +137,7 @@ export default function FloorPlans({ plans, onEnquire }) {
                     />
                 )}
             </AnimatePresence>
-        </section >
+        </div>
     );
 }
 
@@ -217,8 +217,7 @@ function LightboxOverlay({ activePlan, onClose }) {
                                         alt={activePlan.title}
                                         fill
                                         className="object-contain pointer-events-auto select-none"
-                                        sizes="100vw"
-                                        draggable={false}
+                                        sizes="(max-width: 768px) 100vw, 66vw"
                                         priority
                                     />
                                 </div>

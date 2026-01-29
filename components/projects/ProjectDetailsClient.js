@@ -7,12 +7,23 @@ import { motion, useScroll, useTransform, AnimatePresence, useInView } from "fra
 
 import { ArrowLeft, MapPin, Check, FileText, Phone, Mail, ExternalLink, Shield, Trees, Dumbbell, Users, Gamepad2, Car, Waves, Coffee, ArrowUpFromLine, Video, HardHat, CircleCheck, Play, Image as ImageIcon, Maximize, Palette, Music, Activity, Telescope, BookOpen, TrendingUp, Navigation, CloudRain, Layout } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import dynamic from "next/dynamic";
 import CollapsibleSection from "@/components/ui/CollapsibleSection";
 
-import EnquiryModal from "@/components/ui/EnquiryModal";
+import SimilarProjects from "@/components/projects/SimilarProjects";
+
+// ... (existing imports)
+
+// Inside the component return, before the EnquiryModal:
+
+{/* 6. Similar Projects Suggestion */ }
+            <SimilarProjects currentProjectId={project.id} category={project.category} />
+
+            <EnquiryModal
+                isOpen={isModalOpen}
 import MagneticWrapper from "@/components/ui/MagneticWrapper";
 
 // New Gallery Imports
@@ -37,6 +48,7 @@ const ICON_MAP = {
 };
 
 export default function ProjectDetailsClient({ project, theme }) {
+    const router = useRouter();
     const [activeSection, setActiveSection] = useState("overview");
     // State for Gallery Counters (Amenities & Real Site)
     const [amenitiesIndex, setAmenitiesIndex] = useState(0);
@@ -192,9 +204,26 @@ export default function ProjectDetailsClient({ project, theme }) {
                         <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-8 leading-tight">
                             {project.tagline || (project.title.includes(" ") ? `Redefining ${project.title.split(" ").slice(-1)[0]}` : "A New Benchmark")}
                         </h2>
-                        <p className="text-muted-foreground text-lg leading-relaxed mb-8 font-light">
-                            {project.vision || project.description}
-                        </p>
+                        {/* Vision Section - Handles both string and object formats */}
+                        {typeof project.vision === "object" ? (
+                            <div className="mb-8">
+                                <div className="flex items-center gap-3 mb-4">
+                                    <h3 className="font-serif text-2xl md:text-3xl text-foreground">
+                                        {project.vision.title}
+                                    </h3>
+                                    <span className="px-3 py-1 bg-gold-400/10 border border-gold-400/20 text-gold-600 text-[10px] md:text-xs font-bold uppercase tracking-widest rounded-full">
+                                        {project.vision.label}
+                                    </span>
+                                </div>
+                                <p className="text-muted-foreground text-lg leading-relaxed font-light">
+                                    {project.vision.description}
+                                </p>
+                            </div>
+                        ) : (
+                            <p className="text-muted-foreground text-lg leading-relaxed mb-8 font-light">
+                                {project.vision || project.description}
+                            </p>
+                        )}
 
                         {/* Highlights Grid (Moved inside Overview for flow) */}
                         {project.highlights && (
@@ -229,6 +258,7 @@ export default function ProjectDetailsClient({ project, theme }) {
                                                 alt={project.title}
                                                 fill
                                                 className="object-contain"
+                                                sizes="(max-width: 768px) 160px, 200px"
                                             />
                                         </div>
                                     </div>
@@ -505,8 +535,8 @@ export default function ProjectDetailsClient({ project, theme }) {
             )}
 
             {/* 3. Main Gallery (Visual Tour) */}
-            <section id="gallery" className="py-16 md:py-24 bg-background text-foreground scroll-mt-24 border-t border-border">
-                <VisualTourSection images={imagesOnly} videos={videosOnly} theme={theme} />
+            <section id="gallery" className="py-16 md:py-24 bg-luxury-black text-white scroll-mt-24 border-t border-white/10">
+                <VisualTourSection images={imagesOnly} videos={videosOnly} theme={{ ...theme, text: 'text-gold-400' }} isDark={true} />
             </section>
 
 
@@ -554,6 +584,7 @@ export default function ProjectDetailsClient({ project, theme }) {
                 title={`${project.title} - ${modalTitle}`}
                 theme={theme.name}
                 contextData={modalContext}
+                onSuccessAction={() => router.push(`/thank-you/${project.id}`)}
             />
         </div>
     );
@@ -646,7 +677,7 @@ function ConstructionStatus({ project, theme }) {
 
 
 // Helper for Visual Tour (Slider - Mixed Media)
-function VisualTourSection({ title = "Visual Tour", heading = "Gallery", images, videos, theme, showCaptions = false }) {
+function VisualTourSection({ title = "Visual Tour", heading = "Gallery", images, videos, theme, showCaptions = false, isDark = false }) {
     // Merge images and videos into one slider
     const allMedia = [...(images || []), ...(videos || [])];
     const [activeIndex, setActiveIndex] = useState(0);
@@ -657,7 +688,7 @@ function VisualTourSection({ title = "Visual Tour", heading = "Gallery", images,
                 <div className="flex justify-between items-end">
                     <div>
                         <span className={`${theme.text} uppercase tracking-[0.25em] text-[10px] md:text-xs font-bold mb-4 block`}>{title}</span>
-                        <h2 className="font-serif text-3xl md:text-5xl text-foreground">{heading}</h2>
+                        <h2 className={`font-serif text-3xl md:text-5xl ${isDark ? 'text-white' : 'text-foreground'}`}>{heading}</h2>
                     </div>
                     {/* Integrated Counter */}
                     <div className="flex items-end baseline gap-2 font-serif">

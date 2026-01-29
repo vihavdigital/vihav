@@ -9,7 +9,7 @@ export const PHILOSOPHY_SLIDES = [
     },
     {
         type: "image",
-        src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1000&auto=format&fit=crop",
+        src: "/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (3).webp",
         link: "/about",
         label: "The Art of Building",
         title: "Uncompromising Quality",
@@ -17,7 +17,7 @@ export const PHILOSOPHY_SLIDES = [
     },
     {
         type: "image",
-        src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000&auto=format&fit=crop",
+        src: "/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (3).webp",
         link: "/sustainability",
         label: "Sustainability",
         title: "Green Living",
@@ -25,7 +25,7 @@ export const PHILOSOPHY_SLIDES = [
     },
     {
         type: "image",
-        src: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=1000&auto=format&fit=crop",
+        src: "/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (3).webp",
         link: "/projects",
         label: "Design Philosophy",
         title: "Timeless Aesthetics",
@@ -33,7 +33,7 @@ export const PHILOSOPHY_SLIDES = [
     },
     {
         type: "image",
-        src: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=1000&auto=format&fit=crop",
+        src: "/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (3).webp",
         link: "/projects/residential",
         label: "Interiors",
         title: "Bespoke Comfort",
@@ -41,7 +41,7 @@ export const PHILOSOPHY_SLIDES = [
     },
     {
         type: "image",
-        src: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1000&auto=format&fit=crop",
+        src: "/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (3).webp",
         link: "/contact",
         label: "Lifestyle",
         title: "Elevated Living",
@@ -49,7 +49,7 @@ export const PHILOSOPHY_SLIDES = [
     },
     {
         type: "image",
-        src: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=1000&auto=format&fit=crop",
+        src: "/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (3).webp",
         link: "/projects/commercial",
         label: "Commercial Spaces",
         title: "Corporate Excellence",
@@ -57,7 +57,7 @@ export const PHILOSOPHY_SLIDES = [
     },
     {
         type: "image",
-        src: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1000&auto=format&fit=crop",
+        src: "/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (3).webp",
         link: "/about/team",
         label: "Expertise",
         title: "Master Craftsmanship",
@@ -65,7 +65,7 @@ export const PHILOSOPHY_SLIDES = [
     },
     {
         type: "image",
-        src: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=1000&auto=format&fit=crop",
+        src: "/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (3).webp",
         link: "/projects",
         label: "Innovation",
         title: "Future Ready",
@@ -73,7 +73,7 @@ export const PHILOSOPHY_SLIDES = [
     },
     {
         type: "image",
-        src: "https://images.unsplash.com/photo-1600607687644-c7171b42498f?q=80&w=1000&auto=format&fit=crop",
+        src: "/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (3).webp",
         link: "/contact",
         label: "Legacy",
         title: "Building Dreams",

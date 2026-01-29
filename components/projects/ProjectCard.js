@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { ArrowUpRight, Maximize, MousePointer2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import MagneticWrapper from "@/components/ui/MagneticWrapper";
@@ -31,7 +31,8 @@ function StatusTag({ category, possession }) {
     );
 }
 
-export default function ProjectCard({ project }) {
+export default function ProjectCard({ project, priority = false }) {
+    const router = useRouter();
     const [isEnquireOpen, setIsEnquireOpen] = useState(false);
 
     return (
@@ -54,6 +55,7 @@ export default function ProjectCard({ project }) {
                                 src={project.heroImage || 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=1000&auto=format&fit=crop'}
                                 alt={project.title}
                                 fill
+                                priority={priority}
                                 className="object-cover transition-transform duration-700 group-hover:scale-110 group-hover:brightness-[0.8]"
                                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                             />
@@ -165,6 +167,7 @@ export default function ProjectCard({ project }) {
                     srd: project.srd,
                     sub_source: "Homepage Project Card"
                 }}
+                onSuccessAction={() => router.push(`/thank-you/${project.id}`)}
             />
         </>
     );

@@ -17,6 +17,7 @@ const commercialProjects = PROJECTS.filter(p => p.category === "Commercial");
 
 
 export default function ContactPage() {
+    const router = useRouter();
     return (
         <main className="min-h-screen bg-background text-foreground font-sans selection:bg-gold-400 selection:text-black">
             <Header />
@@ -87,7 +88,7 @@ export default function ContactPage() {
                                 <h3 className="text-2xl font-serif mb-4">Send us a Message</h3>
                                 <p className="text-muted-foreground">Fill out the form below and our team will get back to you shortly.</p>
                             </div>
-                            <EnquiryForm />
+                            <EnquiryForm onSuccess={() => router.push('/thank-you/general')} />
                         </div>
 
                         <div>

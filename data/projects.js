@@ -18,6 +18,7 @@ export const PROJECTS = [
     link: "/projects/keystone-select",
     slug: "keystone-select",
     title: "Keystone Select",
+    tagline: "A Signature Address. A Select Lifestyle",
     logo: "/images/project-images/project-logos/keystone-select.png",
     category: "Residential",
     location: "Nr Navrachana University, Bhayli",
@@ -32,7 +33,7 @@ export const PROJECTS = [
     email: "keystoneselect@vihav.com",
     description:
       "A signature address that balances comfort, connectivity, and prestige. Every home is thoughtfully planned to offer generous proportions (3120 - 5046 sq. ft.), seamless layouts, and abundant natural light. Contemporary architecture with timeless appeal.",
-    vision: "75MTR MAIN ROAD.",
+    vision: "For the 'Selected Few'",
     heroImage: "/images/project-images/project-tiles/Select.jpg",
     desktopHeroImage:
       "/images/project-images/hero-banner/desktop-banner/keystone-select.webp",
@@ -53,7 +54,7 @@ export const PROJECTS = [
         title: "Typical Floor Plan - 4B2HK",
         type: "4BHK",
         image:
-          "https://images.unsplash.com/photo-1600596542815-27bfef4093a9?q=80&w=1000&auto=format&fit=crop", // Placeholder
+          "/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (3).webp", // Placeholder
         dimensions: "3120 Sq. Ft.",
       },
       {
@@ -61,7 +62,7 @@ export const PROJECTS = [
         title: "Penthouse Lower Level",
         type: "Penthouse",
         image:
-          "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1000&auto=format&fit=crop", // Placeholder
+          "/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (3).webp", // Placeholder
         dimensions: "5046 Sq. Ft.",
       },
       {
@@ -69,31 +70,38 @@ export const PROJECTS = [
         title: "Penthouse Upper Level",
         type: "Penthouse",
         image:
-          "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1000&auto=format&fit=crop", // Placeholder
+          "/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (3).webp", // Placeholder
         dimensions: "5046 Sq. Ft.",
       },
     ],
     highlights: [
       {
         icon: "FileText",
-        title: "Grand Dimensions",
-        label: "3120 - 5046 Sq. Ft.",
+        title: "Exclusivity",
+        label: "22 Storey",
         description:
-          "Expansive 4B2HK Flats & 5B2HK Penthouses designed for grandeur.",
+          " Single-tower development with 22 storey ensuring exclusivity and low-density living.",
       },
       {
         icon: "Check",
-        title: "Prime Privacy",
-        label: "Select Community",
+        title: "Premium Community",
+        label: "Only two Residences per floor",
         description:
-          "A low-density development ensuring peace and exclusivity.",
+          "Offering enhanced privacy and quiet living with Personal foyer and Private lift access for each residence",
       },
       {
         icon: "MapPin",
-        title: "Strategic Hub",
+        title: "Strategic Location",
         label: "75m Ring Road",
         description:
-          "Seamless connectivity to business and leisure destinations.",
+          "Iconic view providing superior connectivity and visibility.",
+      },
+      {
+        icon: "MapPin",
+        title: "Lifestyle",
+        label: "Amenities for All",
+        description:
+          "Carefully curated lifestyle amenities catering to all age groups.",
       },
     ],
     amenitiesList: [
@@ -136,7 +144,12 @@ export const PROJECTS = [
     ],
     connectivity: [
       { label: "Navrachana Uni", time: "2 Mins" },
-      { label: "75m Ring Road", time: "0 Mins" },
+      { label: "Airport", time: "25 Mins" },
+      { label: "School", time: "5 Mins" },
+      { label: "Hospital", time: "5 Mins" },
+      { label: "Railway Station", time: "20 Mins" },
+      { label: "Expressway", time: "10 Mins" },
+      { label: "Mall", time: "12 Mins" },
     ],
     address: "75 MTR. MAIN ROAD , BHAYLI",
     coordinates: { lat: 22.2944078, lng: 73.1137781 },
@@ -144,10 +157,10 @@ export const PROJECTS = [
     mapEmbed:
       "https://maps.google.com/maps?q=Keystone+Select+Vadodara&t=&z=13&ie=UTF8&iwloc=&output=embed",
     constructionImages: [
-      "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1000&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1000&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1600596542815-27bfef4093a9?q=80&w=1000&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=1000&auto=format&fit=crop",
+      "/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (3).webp",
+      "/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (3).webp",
+      "/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (3).webp",
+      "/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (3).webp",
     ],
     filterData: {
       category: "Residential",
@@ -172,10 +185,10 @@ export const PROJECTS = [
     reraLink: "https://gujrera.gujarat.gov.in/",
     phone: "+91 87916 49164",
     email: "keystone51@vihav.com",
-    tagline: "Exclusive 4BHK Residences",
+    tagline: "4BHK PERFECTLY CRAFTED VILLAS",
     description:
       "Only a select few will experience life at Keystone 51, making it one of the most exclusive residential addresses in Vadodara. 1,00,000 sq.ft for just 51 families. Designed with modern families in mind, each home features expansive living areas, high-end finishes, and is four-side open with 2500 sq.ft Built-up Area.",
-    vision: "1,00,000 SQ.FT FOR JUST 51 FAMILIES.",
+    vision: "Elite Community - Selected 51 Families",
     heroImage: "/images/project-images/project-tiles/keystone-51.jpg",
     desktopHeroImage:
       "/images/project-images/hero-banner/desktop-banner/keystone-51.webp",
@@ -273,31 +286,31 @@ export const PROJECTS = [
     highlights: [
       {
         icon: "Users",
-        title: "Elite Community",
+        title: "Premium Community",
         label: "51 Families",
         description:
-          "Only a select few will experience life at Keystone 51, making it one of the most exclusive residential addresses.",
+          "Limited edition homes with Blend of Privacy + Community living",
       },
       {
         icon: "MapPin",
         title: "Prime Location",
-        label: "Bhayli",
+        label: "Off 75 Mt Ring Road ",
         description:
-          "Convenient access to major business districts, top schools, universities, and healthcare facilities.",
+          "Thoughtfully designed Vastu Compliant residences ",
       },
       {
         icon: "Shield",
-        title: "Unmatched Luxury",
-        label: "Premium Life",
+        title: "Spacious Homes",
+        label: "Four side open",
         description:
-          "A lifestyle that includes premium amenities such as fitness center, pool, and green spaces.",
+          " Exclusively design four side open homes for maximum light and ventilation",
       },
       {
         icon: "Maximize",
-        title: "Spacious Homes",
-        label: "4 Side Open",
+        title: "Lifestyle",
+        label: "Amenities for all",
         description:
-          "Four side open with 2500 sq.ft Built-up Area designed for modern families.",
+          "Designed with recreational and wellness facilities to support family-centric living",
       },
     ],
     amenitiesList: [
@@ -326,7 +339,12 @@ export const PROJECTS = [
     ],
     connectivity: [
       { label: "Navrachana Uni", time: "2 Mins" },
-      { label: "75m Ring Road", time: "0 Mins" },
+      { label: "Airport", time: "25 Mins" },
+      { label: "School", time: "5 Mins" },
+      { label: "Hospital", time: "5 Mins" },
+      { label: "Railway Station", time: "20 Mins" },
+      { label: "Expressway", time: "10 Mins" },
+      { label: "Mall", time: "12 Mins" },
     ],
     address:
       "Near Navrachana University, Off. 75 Mtr. Ring Road, Bhayli – Vadodara",
@@ -359,10 +377,10 @@ export const PROJECTS = [
     reraLink: "https://gujrera.gujarat.gov.in/",
     phone: "+91 7201 950 950",
     email: "keystoneniwa@vihav.com",
-    tagline: "Luxurious 4BR 2H 2K Garden Apartments and Penthouses",
+    tagline: "4BR2H2K Garden Apartments | One Floor - One Unit",
     description:
       "Niwa, meaning garden in Japanese, reflects our belief that a home should feel like nature never left us. At Keystone Niwa, we’ve reimagined luxury to grow not just above ground, but within it. Here, greenery isn’t a view from your window, it’s part of your everyday living. From private garden balconies to lush common spaces, Niwa is where you don’t just come home, you arrive in nature.",
-    vision: "ONE FLOOR. ONE APARTMENT.",
+    vision: "A unique biophilic design",
     heroImage: "/images/project-images/project-tiles/keystone-niwa.jpg",
     desktopHeroImage:
       "/images/project-images/hero-banner/desktop-banner/niwa.webp",
@@ -386,27 +404,27 @@ export const PROJECTS = [
     highlights: [
       {
         icon: "Trees",
-        title: "Nurtured Nature",
-        label: "35% Not Built",
-        description: "Over 35% of the plot isn’t built. It’s nurtured.",
+        title: "Exclusivity",
+        label: "For 26 Families only",
+        description: "With 2 tower - One Floor One Unit",
       },
       {
         icon: "Trees",
-        title: "Garden Lands",
-        label: "1/3rd Dedicated",
-        description: "Over one-third of the land is dedicated to gardens.",
+        title: "Unmatched Luxury",
+        label: "5000 Sq.Ft. carpet area",
+        description: "Vadodara's First Garden Apartment with 5000 Sq.Ft. Carpet ",
       },
       {
         icon: "Maximize",
-        title: "Open to Greens",
-        label: "25% Open",
-        description: "25% of your home opens to greens.",
+        title: "Nurtured Design",
+        label: "1250 Sq.Ft. Carpet",
+        description: "South facing private garden in every unit",
       },
       {
         icon: "Trees",
-        title: "Verdant Views",
-        label: "Garden Balconies",
-        description: "Garden balconies. Verdant views.",
+        title: "Spacious Dual Kitchens ",
+        label: "Gourmet and Utility",
+        description: "Thoughtfully designed Dual Kitchen concept for modern living",
       },
     ],
     amenitiesList: [
@@ -435,8 +453,13 @@ export const PROJECTS = [
       },
     ],
     connectivity: [
-      { label: "New Alkapuri", time: "0 Mins" },
-      { label: "Skyvillas", time: "Opposite" },
+      { label: "Navrachana Uni", time: "2 Mins" },
+      { label: "Airport", time: "25 Mins" },
+      { label: "School", time: "5 Mins" },
+      { label: "Hospital", time: "5 Mins" },
+      { label: "Railway Station", time: "20 Mins" },
+      { label: "Expressway", time: "10 Mins" },
+      { label: "Mall", time: "12 Mins" },
     ],
     address: "Keystone Niwa, Opp. Keystone Skyvillas, New Alkapuri, Vadodara",
     coordinates: { lat: 22.3259887, lng: 73.12589 },
@@ -466,10 +489,10 @@ export const PROJECTS = [
     reraLink: "https://gujrera.gujarat.gov.in/",
     phone: "+91 7434 840 840",
     email: "clermont@vihav.com",
-    tagline: "4B2HK Apartments & 5B2HK Penthouses",
+    tagline: "A Luxury beyond Imagination",
     description:
       "Explore the future of luxury living with Keystone Clermont, an upcoming real estate project by Vihav Group, offering stunning 4B2HK Apartments and 5B2HK Penthouses at the prime location of Vadodara. Whether you’re looking for an investment opportunity or a place to call home, Keystone Clermont combines modern design, world-class amenities, and unparalleled convenience.",
-    vision: "1 FLOOR 2 UNIT - EXTRA TERRACE APARTMENT",
+    vision: "100% Residential community which is Situated on 75m Ring Road touch",
     heroImage: "/images/project-images/project-tiles/clermont.jpg",
     desktopHeroImage:
       "/images/project-images/hero-banner/desktop-banner/clermont.webp",
@@ -502,23 +525,29 @@ export const PROJECTS = [
     highlights: [
       {
         icon: "Shield",
-        title: "Luxury Living",
-        label: "Future Ready",
+        title: "Exclusivity",
+        label: "19 Storey on 75 Mtr. Ring Road touch",
         description:
-          "Keystone Clermont combines modern design, world-class amenities, and unparalleled convenience.",
+          "Only 2 towers in the entire project Low-Density Living",
       },
       {
         icon: "Trees",
-        title: "Grandeur Flooring",
-        label: "Italian Marble",
+        title: "Spacious",
+        label: "180 Ft. distance",
         description:
-          "Italian floor in living, kitchen and dining area for a touch of elegance.",
+          "Enhanced Privacy , Unobstructed Views feels like Stand Alone",
       },
       {
         icon: "MapPin",
-        title: "Prime Location",
-        label: "Bhayli",
-        description: "Located near Navrachana University on 75mtr Ring Road.",
+        title: "Premium Floor Height",
+        label: "11.6 Ft. Floor to Floor",
+        description: "First project with generous height for premium living",
+      },
+      {
+        icon: "MapPin",
+        title: "Premium Community",
+        label: "2 Flats per Floor",
+        description: "Ensures maximum privacy & space",
       },
     ],
     amenitiesList: [
@@ -661,10 +690,10 @@ export const PROJECTS = [
     reraLink: "https://gujrera.gujarat.gov.in/",
     phone: "+91 84900 77611",
     email: "keystoneskyvillasxl@vihav.com",
-    tagline: "Redefining Luxury Living",
+    tagline: "5B2HK Affluent Apartments | One Floor - Two units",
     description:
       "Keystone Skyvillas XL, where opulence meets architectural brilliance. Nestled in the heart of New Alkapuri, Vadodara’s most sought-after residential locale, this iconic address offers an exclusive collection of 5 BHK luxurious apartments, 6B2HK premium penthouses, and 5 BHK premium flats crafted for discerning homeowners.",
-    vision: "THE LARGEST CARPET AREA PROPERTIES IN VADODARA",
+    vision: "Located in Posh neighbourhood, New Alkapuri",
     heroImage: "/images/project-images/project-tiles/skyvillas-xl.jpg",
     desktopHeroImage:
       "/images/project-images/hero-banner/desktop-banner/skyvillas-xl.webp",
@@ -735,33 +764,27 @@ export const PROJECTS = [
     highlights: [
       {
         icon: "Maximize",
-        title: "Massive Scale",
-        label: "30k Sq.Ft Amenities",
-        description: "Upto 30,000 Sq. Ft. Area Dedicated For Amenities.",
+        title: "Exclusivity",
+        label: "Exclusive Configuration & Privacy",
+        description: "80000 sqft dedicated for only 48 families",
       },
       {
         icon: "Users",
-        title: "Exclusive",
-        label: "2 Flats/Floor",
-        description: "Only 2 Flats Per Floor for ultimate privacy.",
+        title: "Unmatched Luxury",
+        label: "30000 Sq.Ft. area",
+        description: "Common podium area for premium amenities ",
       },
       {
         icon: "ArrowUpFromLine",
-        title: "Private Access",
-        label: "Personal Lift",
-        description: "Personalized Lift For Each Flat.",
+        title: "Lifestyle",
+        label: "5 Allotted Car Parking",
+        description: "Ensuring convenience and excusivity",
       },
       {
         icon: "Trees",
-        title: "Grandeur",
-        label: "160 Ft. Distance",
-        description: "Approx 160 Ft. Distance Between Two Towers.",
-      },
-      {
-        icon: "MapPin",
-        title: "Prime Spot",
-        label: "New Alkapuri",
-        description: "Big Campus in the most premium area.",
+        title: "Spacious Homes",
+        label: "Vastu Compliant",
+        description: "Vadodara's Largest Carpet Apartment with vastu compliance",
       },
     ],
     amenitiesList: [
@@ -811,7 +834,15 @@ export const PROJECTS = [
         items: ["High Quality Powder Coated Heavy Aluminum with Deu Glass"],
       },
     ],
-    connectivity: [{ label: "Zydex", time: "Nearby" }],
+    connectivity: [
+      { label: "Navrachana Uni", time: "2 Mins" },
+      { label: "Airport", time: "25 Mins" },
+      { label: "School", time: "5 Mins" },
+      { label: "Hospital", time: "5 Mins" },
+      { label: "Railway Station", time: "20 Mins" },
+      { label: "Expressway", time: "10 Mins" },
+      { label: "Mall", time: "12 Mins" },
+    ],
     address:
       "Opp Greenwoods Bungalows, Near Zydex, Gotri, New Alkapuri, Vadodara, Gujarat, India.",
     coordinates: { lat: 22.3262929, lng: 73.1216785 },
@@ -912,7 +943,7 @@ export const PROJECTS = [
     slug: "cbd",
     title: "CBD Residential",
     logo: "/images/project-images/project-logos/cbd-logo.svg",
-    tagline: "4 BHK APARTMENTS AND 5 B2HK PENTHOUSES IN VADODARA",
+    tagline: "ALL IN ONE - LOCATION, LIFESTYLE & LUXURY",
     category: "Residential",
     location: "Bhayli Cross Road, Vadodara",
     carpetArea: "CARPET - 1830 TO 2934 Sq.Ft.",
@@ -1024,22 +1055,28 @@ export const PROJECTS = [
       {
         icon: "MapPin",
         title: "Prime Location",
-        label: "Bhayli Cross Road",
+        label: "Bhayli 30 Mtr & 24 Mtr Cross Road",
         description:
-          "Located at the heart of Bhayli with seamless connectivity.",
+          "Located at the hearty of bhayli with seamless connectivity",
       },
       {
         icon: "Building",
-        title: "Mixed Use",
-        label: "Residential & Commercial",
+        title: "Premium Community",
+        label: "All 4BHK Apartments",
         description:
-          "A perfect blend of luxury living and business convenience.",
+          "Two Towers with only 88 Units ",
       },
       {
         icon: "Trees",
-        title: "Green Living",
-        label: "Lush Lawns",
-        description: "Dedicated green spaces for relaxation and community.",
+        title: "All Side Open",
+        label: "No Future Obstruction",
+        description: "Enhanced Privacy, Unobstructed Views feels like Stand Alone",
+      },
+      {
+        icon: "Trees",
+        title: "Class Amenities",
+        label: "More than 15+ Premium Amenities",
+        description: "Carefully curated lifestyle amenities catering to all age groups.",
       },
     ],
     amenitiesList: [
@@ -1092,8 +1129,13 @@ export const PROJECTS = [
       },
     ],
     connectivity: [
-      { label: "Bhayli", time: "0 Mins" },
-      { label: "Bright Day School", time: "Nearby" },
+      { label: "Navrachana Uni", time: "2 Mins" },
+      { label: "Airport", time: "25 Mins" },
+      { label: "School", time: "5 Mins" },
+      { label: "Hospital", time: "5 Mins" },
+      { label: "Railway Station", time: "20 Mins" },
+      { label: "Expressway", time: "10 Mins" },
+      { label: "Mall", time: "12 Mins" },
     ],
     address:
       "Beside Rajpath, Nr Bright Day School, Vasna Bhayli Road, Vadodara",
@@ -1520,10 +1562,10 @@ export const PROJECTS = [
     reraLink: "https://gujrera.gujarat.gov.in/",
     phone: "+91 9504 638 638",
     email: "parvarish@vihav.com",
-    tagline: "Ready Possession Flats in the Heart of Bhayli",
+    tagline: "3BHK Family Centric Homes",
     description:
       "Looking for a home that’s ready when you are? Vihav Parvarish offers beautifully crafted ready possession flats that combine thoughtful design, modern amenities, and a prime location in Bhayli, Vadodara. Say goodbye to construction delays and hello to immediate comfort and convenience.",
-    vision: "FAMILY-CENTRIC HOME",
+    vision: "Crafted with Quality in mind",
     heroImage: "/images/project-images/project-tiles/vihav-parvarish.jpg",
     desktopHeroImage:
       "/images/project-images/hero-banner/desktop-banner/parvarish-residential.webp",
@@ -1607,22 +1649,22 @@ export const PROJECTS = [
       },
       {
         icon: "MapPin",
-        title: "Prime Location",
-        label: "Sevasi-Bhayli",
-        description: "Located behind Akshar Public School, near Priya Cinemas.",
+        title: "Prime suburb location",
+        label: "Bhayli-Sevasi",
+        description: "One of the city’s fastest-growing residential zones for minimum daily commute and maximize lifestyle convenience.",
       },
       {
         icon: "Shield",
         title: "Premium Living",
         label: "Wide Spaces",
         description:
-          "Huge wide space between all Towers for unmatched Premium Living Experience.",
+          "Towers designed to ensure ventilation, light, and community interaction.",
       },
       {
         icon: "Car",
-        title: "Convenience",
-        label: "Allotted Parking",
-        description: "One allotted Car park per flat.",
+        title: "Lifestyle",
+        label: "Full of Lifestyle Amenities",
+        description: "To ensure relaxation,recreation promoting health and wellness to all age groups.",
       },
     ],
     amenitiesList: [
@@ -1770,7 +1812,15 @@ export const PROJECTS = [
       { category: "Flooring", items: ["Vitrified Tiles"] },
       { category: "Structure", items: ["RCC Frame Structure"] },
     ],
-    connectivity: [{ label: "Gotri Road", time: "2 Mins" }],
+    connectivity: [
+      { label: "Navrachana Uni", time: "2 Mins" },
+      { label: "Airport", time: "25 Mins" },
+      { label: "School", time: "5 Mins" },
+      { label: "Hospital", time: "5 Mins" },
+      { label: "Railway Station", time: "20 Mins" },
+      { label: "Expressway", time: "10 Mins" },
+      { label: "Mall", time: "12 Mins" },
+    ],
     address:
       "Behind Akshar Public School, Near Priya Cinemas, Sevasi-Bhayli, Vadodara, Gujarat, India.",
     coordinates: { lat: 22.3014023, lng: 73.1192671 },
@@ -1801,7 +1851,7 @@ export const PROJECTS = [
     description: "Touching the sky with elegance.",
     vision: "1 FLOOR 2 UNIT - EXTRA TERRACE APARTMENT",
     heroImage:
-      "https://images.unsplash.com/photo-1460317442991-0ec209397118?q=80&w=1000&auto=format&fit=crop", // Highrise Placeholder
+      "/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (3).webp", // Highrise Placeholder
     features: ["View from Top", "Modern Facade"],
     amenitiesList: [
       { icon: "Shield", label: "Security" },
@@ -1836,7 +1886,7 @@ export const PROJECTS = [
     description: "A community of 72 exclusive families.",
     vision: "4B2HK ULTRA LUXURIOUS AMENITIES",
     heroImage:
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=1000&auto=format&fit=crop", // Apartment Placeholder
+      "/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (3).webp", // Apartment Placeholder
     features: ["3 Units Per Floor", "Premium Finish"],
     amenitiesList: [
       { icon: "Shield", label: "Security" },
@@ -1877,16 +1927,16 @@ export const PROJECTS = [
     vision: "LUXURIOUS 4B2KK APARTMENT",
     heroImage: "https://www.vihav.com/wp-content/uploads/ongoing_thum.jpg",
     galleryImages: [
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c", // Living Room
-      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3", // Kitchen
-      "https://images.unsplash.com/photo-1600210492493-0946911123ea", // Bedroom
-      "https://images.unsplash.com/photo-1600607687644-c7171b42498f", // Bathroom
+      "/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (3).webp", // Living Room
+      "/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (3).webp", // Kitchen
+      "/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (3).webp", // Bedroom
+      "/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (3).webp", // Bathroom
     ],
     constructionImages: [
-      "https://images.unsplash.com/photo-1600596542815-27bfef4093a9?q=80&w=1000&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1000&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=1000&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1000&auto=format&fit=crop",
+      "/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (3).webp",
+      "/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (3).webp",
+      "/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (3).webp",
+      "/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (3).webp",
     ],
     features: ["Sky Decks", "Private Elevators", "Club House"],
     amenitiesList: [
@@ -2051,7 +2101,7 @@ export const PROJECTS = [
       "Expansive villas designed for royalty. The ultimate status symbol in Sevasi.",
     vision: "Royal Living.",
     heroImage:
-      "https://images.unsplash.com/photo-1613977257363-707ba9348227?q=80&w=1000&auto=format&fit=crop", // Villa Placeholder
+      "/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (3).webp", // Villa Placeholder
     features: ["Private Pool", "Gated Community"],
     amenitiesList: [
       { icon: "Shield", label: "Security" },
@@ -2086,7 +2136,7 @@ export const PROJECTS = [
       "Expansive villas designed for royalty. The ultimate status symbol in Sevasi.",
     vision: "Royal Living.",
     heroImage:
-      "https://images.unsplash.com/photo-1613977257363-707ba9348227?q=80&w=1000&auto=format&fit=crop", // Villa Placeholder
+      "/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (3).webp", // Villa Placeholder
     features: ["Private Pool", "Gated Community"],
     amenitiesList: [
       { icon: "Shield", label: "Security" },
@@ -2271,10 +2321,10 @@ export const PROJECTS = [
     reraLink: "https://gujrera.gujarat.gov.in/",
     phone: "+91 879 174 9174",
     email: "supremus3@vihav.com",
-    tagline: "Commercial Units Designed for Success",
+    tagline: "A Supreme Legacy of Corporate Businesses",
     description:
       "A landmark commercial development in Vasna, strategically located near Manisha Circle, Vadodara. Whether you’re a retailer, a growing brand, or a professional looking for a premium workspace, Supremus 3 offers thoughtfully designed shops, showrooms, and offices that cater to every business need.",
-    vision: "A ELEGANT CO-ORPORATE PARK",
+    vision: "Prime business location",
     heroImage: "/images/project-images/project-tiles/supremus-3.webp",
     desktopHeroImage:
       "/images/project-images/hero-banner/desktop-banner/supremus3.webp",
@@ -2363,20 +2413,26 @@ export const PROJECTS = [
       {
         icon: "MapPin",
         title: "Strategic Location",
-        label: "Near Manisha Circle",
-        description: "Located in Vasna, a prime business location.",
+        label: "Near Manisha cross road",
+        description: "Unmatched connectivity and location for businesses",
       },
       {
         icon: "Building",
-        title: "Landmark Dev",
-        label: "Premium Spaces",
-        description: "Thoughtfully designed shops, showrooms, and offices.",
+        title: "Corporate Amenities",
+        label: "Premium Amenities",
+        description: "Which includes High speed Elevators, Gymnasium , Double Height Entry foyer, Waiting Lounge ,Escalators",
       },
       {
         icon: "ArrowUpFromLine",
-        title: "Connectivity",
-        label: "High Speed Lifts",
-        description: "4 Nos. of High speed elevators starting from Basement.",
+        title: "Premium spaces",
+        label: "Corporate Tower",
+        description: "Thoughtfully designed shops , showrooms and offices",
+      },
+      {
+        icon: "Building",
+        title: "High Growth",
+        label: "Steady Footfall",
+        description: "City's Business center",
       },
     ],
     amenitiesList: [
@@ -2420,7 +2476,15 @@ export const PROJECTS = [
         items: ["Water proofing treatment on terrace", "Ample water supply"],
       },
     ],
-    connectivity: [{ label: "D-Mart", time: "1 Min" }],
+    connectivity: [
+      { label: "Navrachana Uni", time: "2 Mins" },
+      { label: "Airport", time: "25 Mins" },
+      { label: "School", time: "5 Mins" },
+      { label: "Hospital", time: "5 Mins" },
+      { label: "Railway Station", time: "20 Mins" },
+      { label: "Expressway", time: "10 Mins" },
+      { label: "Mall", time: "12 Mins" },
+    ],
     address:
       "Beside Indian Oil Petrol Pump, Opp. Taksh Complex, Near D-Mart, Vasna, Vadodara, Gujarat 390015",
     coordinates: { lat: 22.2947902, lng: 73.1542653 },
@@ -2452,7 +2516,7 @@ export const PROJECTS = [
     price: "23.36 Lacs",
     phone: "+91 7435 894 894",
     email: "cbd@vihav.com",
-    tagline: "Premium Commercial Spaces in Bhayli",
+    tagline: "Premium Commercial Hub in City",
     description:
       "A premium development offering versatile commercial properties for sale in Bhayli. Whether you’re looking for a showroom, a shop, or an office, Vihav CBD has the perfect space for you. With its strategic location on the bustling Vasna-Bhayli Road, this is an opportunity you won’t want to miss!",
     vision: "HEART OF BHAYLI",
@@ -2508,29 +2572,28 @@ export const PROJECTS = [
       {
         icon: "MapPin",
         title: "Prime Location",
-        label: "Vasna-Bhayli Road",
+        label: "Bhayli 30 Mtr & 24 Mtr Cross Road",
         description:
-          "Excellent connectivity to key commercial areas of Vadodara.",
+          "Located at the hearty of bhayli with seamless connectivity",
       },
       {
         icon: "Building",
-        title: "Modern Infra",
-        label: "Tech Enabled",
+        title: "Premium Community",
+        label: "All 4BHK Apartments",
         description:
-          "Hi-Tech Security, High-speed internet, and Ample Parking.",
+          "Two Towers with only 88 Units ",
       },
       {
-        icon: "TrendingUp",
-        title: "High Growth",
-        label: "Thriving Market",
-        description: "Bhayli is fast becoming a sought-after commercial hub.",
+        icon: "Trees",
+        title: "All Side Open",
+        label: "No Future Obstruction",
+        description: "Enhanced Privacy, Unobstructed Views feels like Stand Alone",
       },
       {
-        icon: "Briefcase",
-        title: "Versatile Spaces",
-        label: "Shops & Offices",
-        description:
-          "Ideal for showrooms, retail shops, and corporate offices.",
+        icon: "Trees",
+        title: "Class Amenities",
+        label: "More than 15+ Premium Amenities",
+        description: "Carefully curated lifestyle amenities catering to all age groups.",
       },
     ],
     amenitiesList: [
@@ -2560,7 +2623,15 @@ export const PROJECTS = [
       },
       { category: "External", items: ["Decorative Facade", "Terrace Garden"] },
     ],
-    connectivity: [{ label: "Bhayli", time: "0 Mins" }],
+    connectivity: [
+      { label: "Navrachana Uni", time: "2 Mins" },
+      { label: "Airport", time: "25 Mins" },
+      { label: "School", time: "5 Mins" },
+      { label: "Hospital", time: "5 Mins" },
+      { label: "Railway Station", time: "20 Mins" },
+      { label: "Expressway", time: "10 Mins" },
+      { label: "Mall", time: "12 Mins" },
+    ],
     address: "NEAR FOOD CASTLE, BHAYLI, VADODARA, GUJARAT 391410",
     coordinates: { lat: 22.2902491, lng: 73.131856 },
     googleMapsLink: "https://maps.app.goo.gl/m1dFRwuheiMF1xDG6",
@@ -3281,7 +3352,7 @@ export const PROJECTS = [
     description: "A sign of success. Premium offices in Gotri.",
     vision: "Ensign of Success.",
     heroImage:
-      "https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=1000&auto=format&fit=crop", // Office Placeholder
+      "/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (3).webp", // Office Placeholder
     features: ["Corporate Ambience", "Strategic Location"],
     amenitiesList: [
       { icon: "Shield", label: "Security" },
@@ -3314,7 +3385,7 @@ export const PROJECTS = [
     description: "Excellent business spaces for growing enterprises.",
     vision: "Business Excellence.",
     heroImage:
-      "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1000&auto=format&fit=crop", // Office Placeholder
+      "/images/project-images/projects/cbd-res/gallery/vihav-cbd-gallery (3).webp", // Office Placeholder
     features: ["Road Frontage", "Glass Facade"],
     amenitiesList: [
       { icon: "Shield", label: "Security" },
