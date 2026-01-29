@@ -34,6 +34,7 @@ export const PROJECTS = [
     description:
       "A signature address that balances comfort, connectivity, and prestige. Every home is thoughtfully planned to offer generous proportions (3120 - 5046 sq. ft.), seamless layouts, and abundant natural light. Contemporary architecture with timeless appeal.",
     vision: "For the 'Selected Few'",
+    heroVideo: "/videos/niwa.mp4",
     heroImage: "/images/project-images/project-tiles/Select.jpg",
     desktopHeroImage:
       "/images/project-images/hero-banner/desktop-banner/keystone-select.webp",
@@ -189,6 +190,7 @@ export const PROJECTS = [
     description:
       "Only a select few will experience life at Keystone 51, making it one of the most exclusive residential addresses in Vadodara. 1,00,000 sq.ft for just 51 families. Designed with modern families in mind, each home features expansive living areas, high-end finishes, and is four-side open with 2500 sq.ft Built-up Area.",
     vision: "Elite Community - Selected 51 Families",
+    heroVideo: "/videos/niwa.mp4",
     heroImage: "/images/project-images/project-tiles/keystone-51.jpg",
     desktopHeroImage:
       "/images/project-images/hero-banner/desktop-banner/keystone-51.webp",
@@ -227,13 +229,7 @@ export const PROJECTS = [
           "/images/project-images/projects/ks51-project-images/floor-plans/2-51-scaled.webp",
         type: "4BHK",
       },
-      {
-        id: "fp-type-2",
-        title: "Type 2 Plan",
-        image:
-          "/images/project-images/projects/ks51-project-images/floor-plans/3-51-scaled.webp",
-        type: "4BHK",
-      },
+
       {
         id: "fp-type-3",
         title: "Type 3 Plan",
@@ -262,20 +258,8 @@ export const PROJECTS = [
           "/images/project-images/projects/ks51-project-images/floor-plans/7-51-scaled.webp",
         type: "4BHK",
       },
-      {
-        id: "fp-type-7",
-        title: "Type 7 Plan",
-        image:
-          "/images/project-images/projects/ks51-project-images/floor-plans/8-51-scaled.webp",
-        type: "4BHK",
-      },
-      {
-        id: "fp-type-8",
-        title: "Type 8 Plan",
-        image:
-          "/images/project-images/projects/ks51-project-images/floor-plans/9-51-scaled.webp",
-        type: "4BHK",
-      },
+
+
     ],
     features: [
       "1,00,000 Sq.Ft Land",
@@ -493,6 +477,7 @@ export const PROJECTS = [
     description:
       "Explore the future of luxury living with Keystone Clermont, an upcoming real estate project by Vihav Group, offering stunning 4B2HK Apartments and 5B2HK Penthouses at the prime location of Vadodara. Whether you’re looking for an investment opportunity or a place to call home, Keystone Clermont combines modern design, world-class amenities, and unparalleled convenience.",
     vision: "100% Residential community which is Situated on 75m Ring Road touch",
+    heroVideo: "/videos/niwa.mp4",
     heroImage: "/images/project-images/project-tiles/clermont.jpg",
     desktopHeroImage:
       "/images/project-images/hero-banner/desktop-banner/clermont.webp",
@@ -646,6 +631,7 @@ export const PROJECTS = [
     description: "Ultra-luxurious 5 & 6 BHK residences for the elite.",
     vision: "BE-SPOKE BUNGALOWS, NR. SP RING ROAD.",
     heroImage: "/images/project-images/project-tiles/keystone-30.jpg",
+    heroVideo: "/videos/niwa.mp4",
     galleryImages: ["/images/project-images/project-tiles/keystone-30.jpg"],
     features: ["Large Floor Plates", "Luxury Specs"],
     amenitiesList: [
@@ -694,6 +680,7 @@ export const PROJECTS = [
     description:
       "Keystone Skyvillas XL, where opulence meets architectural brilliance. Nestled in the heart of New Alkapuri, Vadodara’s most sought-after residential locale, this iconic address offers an exclusive collection of 5 BHK luxurious apartments, 6B2HK premium penthouses, and 5 BHK premium flats crafted for discerning homeowners.",
     vision: "Located in Posh neighbourhood, New Alkapuri",
+    heroVideo: "/videos/niwa.mp4",
     heroImage: "/images/project-images/project-tiles/skyvillas-xl.jpg",
     desktopHeroImage:
       "/images/project-images/hero-banner/desktop-banner/skyvillas-xl.webp",
@@ -2326,6 +2313,8 @@ export const PROJECTS = [
       "A landmark commercial development in Vasna, strategically located near Manisha Circle, Vadodara. Whether you’re a retailer, a growing brand, or a professional looking for a premium workspace, Supremus 3 offers thoughtfully designed shops, showrooms, and offices that cater to every business need.",
     vision: "Prime business location",
     heroImage: "/images/project-images/project-tiles/supremus-3.webp",
+    heroVideo: "/videos/sup-wt.webm",
+
     desktopHeroImage:
       "/images/project-images/hero-banner/desktop-banner/supremus3.webp",
     mobileHeroImage:
@@ -2667,6 +2656,7 @@ export const PROJECTS = [
       "Enquire now for a superior commercial property in Vadodara Vihav Supremus 2. High-quality shops, showrooms & offices at Vasna 30mt main road.",
     vision: "A-COMMERCIAL MARVEL",
     heroImage: "/images/project-images/project-tiles/supremus-2.webp",
+    heroVideo: "/videos/sup-wt.webm",
     desktopHeroImage:
       "/images/project-images/hero-banner/desktop-banner/supremus2.webp",
     mobileHeroImage:
@@ -3159,6 +3149,7 @@ export const PROJECTS = [
       "Vihav Supremus redefines business presence in Vadodara with its strategic location on Gotri Road. Designed to elevate the way you work, Vihav Supremus offers well-planned shops and offices for sale in Gotri – ideal for forward-thinking entrepreneurs, investors, and professionals.",
     vision: "Corporate Legacy.",
     heroImage: "/images/project-images/project-tiles/supremus-1.webp",
+    heroVideo: "/videos/sup-wt.webm",
     desktopHeroImage:
       "/images/project-images/hero-banner/desktop-banner/supremus1.webp",
     mobileHeroImage:

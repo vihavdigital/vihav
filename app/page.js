@@ -5,7 +5,9 @@ import Header from "@/components/layout/Header";
 import Hero from "@/components/home/Hero";
 import ProjectSection from "@/components/home/ProjectSection";
 import FeaturedProject from "@/components/home/FeaturedProject";
-import PhilosophySlider from "@/components/home/PhilosophySlider";
+import PortfolioVideoShowcase from "@/components/home/PortfolioVideoShowcase";
+import BrandsWeWorkWith from "@/components/home/BrandsWeWorkWith";
+import TestimonialSection from "@/components/home/TestimonialSection";
 import TextReveal from "@/components/ui/TextReveal";
 import { PROJECTS } from "@/data/projects";
 // import { PHILOSOPHY_SLIDES } from "@/data/philosophySlides";
@@ -60,17 +62,7 @@ export default function Home() {
     }
   });
 
-  // Filter for Selected Works Slider (Upcoming & Ongoing)
-  const selectedWorksSlides = PROJECTS
-    .filter(p => ["Upcoming", "Newly Launched", "Under Construction"].includes(p.status) && p.id !== "keystone-30")
-    .map(p => ({
-      type: "image",
-      src: p.desktopHeroImage,
-      link: p.link,
-      label: p.status,
-      title: p.title,
-      alt: p.title
-    }));
+
 
   return (
     <main className="min-h-screen bg-background text-foreground selection:bg-gold-400 selection:text-luxury-black transition-colors duration-500">
@@ -254,27 +246,13 @@ export default function Home() {
       </section>
       <FeaturedProject />
 
-      {/* Selected Works Section */}
-      <section className="py-24 md:py-32 bg-background border-t border-border overflow-hidden">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col gap-12">
-            {/* Header */}
-            <div className="max-w-4xl">
-              <span className="text-gold-400 uppercase tracking-[0.25em] text-xs font-bold mb-6 block">Portfolio Showcase</span>
-              <TextReveal
-                as="h2"
-                text="Our Selected Works"
-                className="font-serif text-3xl md:text-5xl text-foreground leading-none"
-              />
-            </div>
+      {/* Brands We Work With */}
+      <BrandsWeWorkWith />
 
-            {/* Full Width Slider */}
-            <div className="w-full">
-              <PhilosophySlider slides={selectedWorksSlides} />
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Portfolio Video Showcase (New Design) */}
+      <PortfolioVideoShowcase projects={PROJECTS} />
+
+
 
       {/* SEO Content Block - Luxury Dark Edition */}
       <section className="relative py-32 bg-[#050505] text-white overflow-hidden border-t border-white/5">
@@ -330,6 +308,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Testimonials - Light Theme */}
+      <TestimonialSection />
 
       <Footer />
     </main >

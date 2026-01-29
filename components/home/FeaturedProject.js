@@ -5,7 +5,7 @@ import { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import MagneticWrapper from "@/components/ui/MagneticWrapper";
-import { ArrowUpRight, MapPin } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 export default function FeaturedProject() {
     const containerRef = useRef(null);
@@ -14,7 +14,9 @@ export default function FeaturedProject() {
         offset: ["start end", "end start"]
     });
 
-    const y = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
+    // Stronger Parallax Effect
+    // Height 150%, moves from -20% to +20% relative to its centered position (-25% top)
+    const y = useTransform(scrollYProgress, [0, 1], ["-20%", "20%"]);
 
     // Data for Featured Project (Keystone Select)
     const featured = {
@@ -28,91 +30,105 @@ export default function FeaturedProject() {
     };
 
     return (
-        <section ref={containerRef} className="relative h-[80vh] md:h-[90vh] flex items-center justify-center overflow-hidden w-full">
+        <section ref={containerRef} className="relative min-h-screen flex items-center justify-center overflow-hidden w-full bg-luxury-black">
+
             {/* Parallax Background */}
             <motion.div
                 style={{ y }}
-                className="absolute inset-0 z-0 h-[120%] -top-[10%]"
+                className="absolute inset-0 z-0 h-[150%] -top-[25%]"
             >
                 <Image
                     src={featured.image}
                     alt="Keystone Select"
                     fill
-                    className="object-cover"
+                    className="object-cover opacity-60"
                     sizes="100vw"
+                    priority
                 />
-                <div className="absolute inset-0 bg-black/40" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
             </motion.div>
 
-            <div className="container mx-auto px-6 relative z-10 h-full flex flex-col justify-end pb-12 md:pb-24">
+            <div className="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-12 items-center h-full py-24">
+
+                {/* Text Content */}
+                <div className="flex flex-col gap-8 max-w-2xl">
+                    <motion.div
+                        initial={{ opacity: 0, x: -50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
+                    >
+                        <div className="flex items-center gap-4 mb-6">
+                            <span className="w-12 h-[1px] bg-gold-400"></span>
+                            <span className="text-gold-400 uppercase tracking-[0.25em] text-xs font-bold">Featured Project</span>
+                        </div>
+
+                        <div className="relative mb-8 md:mb-12">
+                            <Image
+                                src="/images/project-images/project-logos/keystone-select.png"
+                                alt={featured.title}
+                                width={400} // Increased for better resolution
+                                height={140}
+                                className="object-contain object-left w-[280px] md:w-[400px]"
+                            />
+                        </div>
+
+                        <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif text-white leading-tight mb-6">
+                            A Signature Address.<br />
+                            <span className="text-white/50 italic">A Select Lifestyle.</span>
+                        </h2>
+
+                        <p className="text-gray-300 text-lg md:text-xl font-light leading-relaxed mb-8 border-l border-white/20 pl-6">
+                            {featured.type} in {featured.location}. <br />
+                            Experience {featured.carpetArea} of pure luxury.
+                        </p>
+
+                        <div className="flex flex-wrap gap-4">
+                            <Link href={featured.link}>
+                                <MagneticWrapper>
+                                    <button className="flex items-center gap-3 px-8 py-4 bg-gold-400 text-black font-bold uppercase tracking-widest text-sm hover:bg-white transition-all duration-300">
+                                        View Details
+                                        <ArrowUpRight size={18} />
+                                    </button>
+                                </MagneticWrapper>
+                            </Link>
+
+                            <div className="px-8 py-4 border border-white/20 text-white font-bold uppercase tracking-widest text-sm backdrop-blur-sm">
+                                Status: {featured.status}
+                            </div>
+                        </div>
+                    </motion.div>
+                </div>
+
+                {/* Right Side - Maybe a floating detail or just space for the image to shine?
+                    Let's add a "glass card" with quick stats to make it feel premium.
+                */}
                 <motion.div
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                    className="max-w-5xl"
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                    className="hidden lg:flex justify-end"
                 >
-                    {/* Status - Moved to Top */}
-                    <div className="mb-6">
-                        <div className="inline-block px-3 py-1 bg-white/90 backdrop-blur-md text-luxury-black text-[10px] md:text-xs font-bold uppercase tracking-widest rounded-sm shadow-lg">
-                            {featured.status}
+                    <div className="w-80 bg-black/30 backdrop-blur-xl border border-white/10 p-8 space-y-8">
+                        <div>
+                            <span className="block text-gold-400 text-xs uppercase tracking-widest mb-2 font-bold">Configuration</span>
+                            <span className="block text-2xl text-white font-serif">4B2HK & 5B2HK</span>
+                        </div>
+                        <div className="w-full h-[1px] bg-white/10" />
+                        <div>
+                            <span className="block text-gold-400 text-xs uppercase tracking-widest mb-2 font-bold">Carpet Area</span>
+                            <span className="block text-2xl text-white font-serif">5772 Sq.Ft+</span>
+                        </div>
+                        <div className="w-full h-[1px] bg-white/10" />
+                        <div>
+                            <span className="block text-gold-400 text-xs uppercase tracking-widest mb-2 font-bold">Location</span>
+                            <span className="block text-xl text-white font-serif">Bhayli, Vadodara</span>
                         </div>
                     </div>
-
-                    {/* Main Title */}
-                    {/* Main Logo */}
-                    <div className="mb-6 relative w-[280px] md:w-[400px] h-[100px] md:h-[140px]">
-                        <Image
-                            src="/images/project-images/project-logos/keystone-select.png"
-                            alt={featured.title}
-                            fill
-                            className="object-contain object-left"
-                            sizes="(max-width: 768px) 280px, 400px"
-                            priority
-                        />
-                    </div>
-
-                    {/* Type - Cleaner Typography */}
-                    <p className="text-white/90 text-sm md:text-xl font-light tracking-[0.2em] mb-8 uppercase border-l-2 border-gold-400 pl-4">
-                        {featured.type}
-                    </p>
-
-                    {/* Details Container - Clean Row with better mobile wrapping */}
-                    <div className="flex flex-wrap items-center gap-3 md:gap-6 mb-10">
-                        {/* Carpet Area */}
-                        <div className="inline-flex items-center px-4 py-2 bg-black/40 backdrop-blur-md border border-white/20 hover:bg-white/10 transition-colors">
-                            <span className="text-white text-[10px] md:text-xs font-bold uppercase tracking-widest">
-                                {featured.carpetArea}
-                            </span>
-                        </div>
-
-                        {/* Location */}
-                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-black/40 backdrop-blur-md border border-white/20 hover:bg-white/10 transition-colors">
-                            <MapPin size={14} className="text-gold-400" />
-                            <span className="text-white text-[10px] md:text-xs font-bold uppercase tracking-widest">{featured.location}</span>
-                        </div>
-                    </div>
-
-                    {/* CTA Button */}
-                    <Link href={featured.link}>
-                        <MagneticWrapper>
-                            <button className="group flex items-center gap-4 px-6 py-3 md:px-8 md:py-4 bg-white text-black hover:bg-gold-400 transition-all duration-300 shadow-lg hover:shadow-gold-400/50">
-                                <span className="text-xs md:text-sm uppercase tracking-[0.2em] font-bold">
-                                    Enquire Now
-                                </span>
-                                <ArrowUpRight className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" size={18} />
-                            </button>
-                        </MagneticWrapper>
-                    </Link>
                 </motion.div>
-            </div>
 
-            {/* Decorative Side text */}
-            <div className="absolute right-6 top-1/2 -translate-y-1/2 hidden md:block writing-vertical-rl rotate-180 mix-blend-overlay opacity-50">
-                <span className="text-[10vh] font-bold text-white/10 whitespace-nowrap uppercase tracking-widest">
-                    Signature Collection
-                </span>
             </div>
         </section>
     );
