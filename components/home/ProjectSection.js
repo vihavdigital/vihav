@@ -10,7 +10,7 @@ import FilterDropdown from "@/components/ui/FilterDropdown";
 import { useProjectFilters, FILTER_COMMERCIAL_TYPES } from "@/hooks/useProjectFilters";
 
 // Internal Component with Filter Logic
-function ProjectSectionContent({ projects, residentialProjects, commercialProjects, showAllTab = true }) {
+function ProjectSectionContent({ projects, residentialProjects, commercialProjects, showAllTab = true, srd }) {
     const sectionRef = useRef(null);
     const initialCategory = showAllTab ? "All" : "Residential";
     const {
@@ -286,8 +286,8 @@ function ProjectSectionContent({ projects, residentialProjects, commercialProjec
                                         <ProjectCard
                                             project={project}
                                             priority={index < 6}
-                                            overrideContext={props.srd ? {
-                                                srd: props.srd,
+                                            overrideContext={srd ? {
+                                                srd: srd,
                                                 sub_source: project.title
                                             } : undefined}
                                         />
