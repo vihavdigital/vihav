@@ -16,7 +16,7 @@ import { PROJECTS } from "@/data/projects";
 import { Suspense } from "react";
 import { useRouter } from "next/navigation";
 
-export default function OverseasPage() {
+export default function VadodaraPropertiesPage() {
     const router = useRouter();
     const [isEnquireOpen, setIsEnquireOpen] = useState(false);
 
@@ -97,6 +97,7 @@ export default function OverseasPage() {
                 residentialProjects={PROJECTS.filter(p => p.category === "Residential")}
                 commercialProjects={PROJECTS.filter(p => p.category === "Commercial")}
             />
+
             {/* 4. Vadodara Showcase - Visuals */}
             <VadodaraShowcase />
 
@@ -145,8 +146,8 @@ export default function OverseasPage() {
                 onClose={() => setIsEnquireOpen(false)}
                 contextData={{
                     srd: "67b4277658f1e73887ed6281",
-                    project_id: "overseas-nri", // Or appropriate ID
-                    sub_source: "Overseas Page"
+                    project_id: "properties-in-vadodara", // Updated ID context
+                    sub_source: "Properties In Vadodara Page"
                 }}
                 onSuccessAction={() => router.push('/thank-you/general')}
             />

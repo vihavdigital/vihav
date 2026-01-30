@@ -34,7 +34,7 @@ export const PROJECTS = [
     description:
       "A signature address that balances comfort, connectivity, and prestige. Every home is thoughtfully planned to offer generous proportions (3120 - 5046 sq. ft.), seamless layouts, and abundant natural light. Contemporary architecture with timeless appeal.",
     vision: "For the 'Selected Few'",
-    heroVideo: "/videos/niwa.mp4",
+    showcaseVideo: "/videos/niwa.mp4",
     heroImage: "/images/project-images/project-tiles/Select.jpg",
     desktopHeroImage:
       "/images/project-images/hero-banner/desktop-banner/keystone-select.webp",
@@ -190,7 +190,7 @@ export const PROJECTS = [
     description:
       "Only a select few will experience life at Keystone 51, making it one of the most exclusive residential addresses in Vadodara. 1,00,000 sq.ft for just 51 families. Designed with modern families in mind, each home features expansive living areas, high-end finishes, and is four-side open with 2500 sq.ft Built-up Area.",
     vision: "Elite Community - Selected 51 Families",
-    heroVideo: "/videos/niwa.mp4",
+    showcaseVideo: "/videos/niwa.mp4",
     heroImage: "/images/project-images/project-tiles/keystone-51.jpg",
     desktopHeroImage:
       "/images/project-images/hero-banner/desktop-banner/keystone-51.webp",
@@ -370,7 +370,7 @@ export const PROJECTS = [
       "/images/project-images/hero-banner/desktop-banner/niwa.webp",
     mobileHeroImage:
       "/images/project-images/hero-banner/mobile-banner/keystone-niwa.webp",
-    heroVideo: "/videos/niwa.mp4",
+    showcaseVideo: "/videos/niwa.mp4",
     galleryImages: [
       "https://www.vihav.com/wp-content/uploads/Hurun-KEYSTONE-NIWA-Desktop-Slider-2048-×-778-px-01.webp",
       "https://www.vihav.com/wp-content/uploads/home-gray-bordered-extra-width.png",
@@ -477,7 +477,7 @@ export const PROJECTS = [
     description:
       "Explore the future of luxury living with Keystone Clermont, an upcoming real estate project by Vihav Group, offering stunning 4B2HK Apartments and 5B2HK Penthouses at the prime location of Vadodara. Whether you’re looking for an investment opportunity or a place to call home, Keystone Clermont combines modern design, world-class amenities, and unparalleled convenience.",
     vision: "100% Residential community which is Situated on 75m Ring Road touch",
-    heroVideo: "/videos/niwa.mp4",
+    showcaseVideo: "/videos/niwa.mp4",
     heroImage: "/images/project-images/project-tiles/clermont.jpg",
     desktopHeroImage:
       "/images/project-images/hero-banner/desktop-banner/clermont.webp",
@@ -631,7 +631,7 @@ export const PROJECTS = [
     description: "Ultra-luxurious 5 & 6 BHK residences for the elite.",
     vision: "BE-SPOKE BUNGALOWS, NR. SP RING ROAD.",
     heroImage: "/images/project-images/project-tiles/keystone-30.jpg",
-    heroVideo: "/videos/niwa.mp4",
+    showcaseVideo: "/videos/niwa.mp4",
     galleryImages: ["/images/project-images/project-tiles/keystone-30.jpg"],
     features: ["Large Floor Plates", "Luxury Specs"],
     amenitiesList: [
@@ -680,7 +680,7 @@ export const PROJECTS = [
     description:
       "Keystone Skyvillas XL, where opulence meets architectural brilliance. Nestled in the heart of New Alkapuri, Vadodara’s most sought-after residential locale, this iconic address offers an exclusive collection of 5 BHK luxurious apartments, 6B2HK premium penthouses, and 5 BHK premium flats crafted for discerning homeowners.",
     vision: "Located in Posh neighbourhood, New Alkapuri",
-    heroVideo: "/videos/niwa.mp4",
+    showcaseVideo: "/videos/niwa.mp4",
     heroImage: "/images/project-images/project-tiles/skyvillas-xl.jpg",
     desktopHeroImage:
       "/images/project-images/hero-banner/desktop-banner/skyvillas-xl.webp",

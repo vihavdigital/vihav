@@ -33,7 +33,7 @@ export default function PortfolioVideoShowcase({ projects }) {
     const videoRef = useRef(null);
 
     // Filter only projects with videos
-    const videoProjects = projects.filter((p) => p.heroVideo);
+    const videoProjects = projects.filter((p) => p.showcaseVideo);
 
     if (videoProjects.length === 0) return null;
 
@@ -113,7 +113,7 @@ export default function PortfolioVideoShowcase({ projects }) {
                                 >
                                     <video
                                         ref={videoRef}
-                                        src={currentProject.heroVideo}
+                                        src={currentProject.showcaseVideo}
                                         poster={currentProject.desktopHeroImage}
                                         className="w-full h-full object-cover opacity-90"
                                         autoPlay
