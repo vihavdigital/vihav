@@ -5,7 +5,7 @@ import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motio
 
 export default function CustomCursor() {
     const [isHovered, setIsHovered] = useState(false);
-    const [isVisible, setIsVisible] = useState(true); // Default to true to ensure visibility
+    const [isVisible, setIsVisible] = useState(false); // Default to false (hidden on touch/iPad)
     const [isClicked, setIsClicked] = useState(false); // Track click state
     const cursorX = useMotionValue(-100);
     const cursorY = useMotionValue(-100);
@@ -16,15 +16,19 @@ export default function CustomCursor() {
     const cursorYSpring = useSpring(cursorY, springConfig);
 
     useEffect(() => {
-        // Remove strict hover check to allow cursor on all devices initially
-        // if (typeof window !== "undefined" && window.matchMedia("(hover: hover)").matches) {
-        //     setIsVisible(true);
-        // }
+        // Strict check: Only show if device supports hover (Mouse)
+        // This effectively hides it on iPads, Tablets, and Mobile
+        if (typeof window !== "undefined" && window.matchMedia("(hover: hover)").matches) {
+            setIsVisible(true);
+        }
 
         const moveCursor = (e) => {
             cursorX.set(e.clientX - 16);
             cursorY.set(e.clientY - 16);
-            setIsVisible(true);
+            // Don't auto-enable on move alone, trust the hover check or initial state
+            // But if mouse moves, it's likely a mouse.
+            // We can keep it purely based on hover capability to be safe.
+            // setIsVisible(true); 
         };
 
         const handleMouseOver = (e) => {
@@ -85,8 +89,8 @@ export default function CustomCursor() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    // Hidden on mobile (touch devices usually), visible on md and up
-                    className="fixed inset-0 pointer-events-none z-[9999] overflow-hidden hidden md:block"
+                    // Hidden on mobile/iPad (touch devices usually), visible on lg and up (Desktop) with hover check
+                    className="fixed inset-0 pointer-events-none z-[9999] overflow-hidden hidden lg:block"
                 >
                     {/* Main Dot */}
                     <motion.div
