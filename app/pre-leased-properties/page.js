@@ -115,8 +115,8 @@ export default function PreLeasedProperties() {
                 </div>
             </section>
 
-
-            <section className="py-24 bg-white dark:bg-neutral-900 border-t border-border relative overflow-hidden">
+            {/* 4. CTA Section Replaced with Form */}
+            <section className="py-24 bg-luxury-black border-t border-white/10 relative overflow-hidden">
                 {/* Background Decor */}
                 <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-10 pointer-events-none" />
                 <div className="absolute -left-20 top-1/2 w-96 h-96 bg-gold-400/5 blur-[100px] rounded-full pointer-events-none" />
@@ -127,10 +127,10 @@ export default function PreLeasedProperties() {
                             <span className="text-gold-400 uppercase tracking-[0.25em] text-xs font-bold mb-6 block">
                                 Expert Guidance
                             </span>
-                            <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-8 leading-tight">
+                            <h2 className="font-serif text-4xl md:text-5xl text-white mb-8 leading-tight">
                                 Maximize Your <br /> Portfolio Returns
                             </h2>
-                            <p className="text-muted-foreground text-lg mb-8 font-light leading-relaxed">
+                            <p className="text-gray-400 text-lg mb-8 font-light leading-relaxed">
                                 Our dedicated pre-leased property advisors are ready to help you navigate the high-yield commercial market.
                                 Speak to us to understand lease terms, tenant profiles, and projected appreciation for each asset.
                             </p>
@@ -141,8 +141,8 @@ export default function PreLeasedProperties() {
                                         <BadgePercent size={24} />
                                     </div>
                                     <div>
-                                        <h4 className="font-bold text-foreground">Guaranteed Yields</h4>
-                                        <p className="text-sm text-muted-foreground">Start earning from Day 1</p>
+                                        <h4 className="font-bold text-white">Guaranteed Yields</h4>
+                                        <p className="text-sm text-gray-400">Start earning from Day 1</p>
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-4">
@@ -150,8 +150,8 @@ export default function PreLeasedProperties() {
                                         <ShieldCheck size={24} />
                                     </div>
                                     <div>
-                                        <h4 className="font-bold text-foreground">Secure Tennants</h4>
-                                        <p className="text-sm text-muted-foreground">Fortune 500 & MNC Brands</p>
+                                        <h4 className="font-bold text-white">Secure Tennants</h4>
+                                        <p className="text-sm text-gray-400">Fortune 500 & MNC Brands</p>
                                     </div>
                                 </div>
                             </div>

@@ -2,9 +2,10 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
+import Image from "next/image";
 import EnquiryForm from "@/components/ui/EnquiryForm";
 
-export default function EnquiryModal({ isOpen, onClose, title = "Enquire Now", layout = "center", contextData = {}, onSuccessAction }) {
+export default function EnquiryModal({ isOpen, onClose, title = "Enquire Now", logo, projectName, layout = "center", contextData = {}, onSuccessAction }) {
     const isSidebar = layout === "right-sheet";
 
     const modalVariants = {
@@ -12,7 +13,7 @@ export default function EnquiryModal({ isOpen, onClose, title = "Enquire Now", l
             initial: { opacity: 0, scale: 0.95, y: 20 },
             animate: { opacity: 1, scale: 1, y: 0 },
             exit: { opacity: 0, scale: 0.95, y: 20 },
-            className: "fixed inset-0 m-auto w-full max-w-lg h-fit max-h-[90vh] bg-background border border-border rounded-2xl shadow-2xl z-[70] overflow-hidden flex flex-col"
+            className: "fixed inset-0 m-auto w-[90%] md:w-full max-w-lg h-fit max-h-[90vh] bg-background border border-border rounded-2xl shadow-2xl z-[70] overflow-hidden flex flex-col"
         },
         "right-sheet": {
             initial: { x: "100%", opacity: 0.5 },
@@ -47,17 +48,31 @@ export default function EnquiryModal({ isOpen, onClose, title = "Enquire Now", l
                     >
                         {/* Header */}
                         <div className="flex justify-between items-center p-6 border-b border-border shrink-0">
-                            <h3 className="font-serif text-2xl text-foreground">{title}</h3>
+                            <div className="flex-1 pr-4">
+                                {logo ? (
+                                    <div className="relative h-12 w-40 flex items-center justify-start">
+                                        <Image
+                                            src={logo}
+                                            alt={projectName || "Project Logo"}
+                                            fill
+                                            className="object-contain object-left"
+                                            sizes="200px"
+                                        />
+                                    </div>
+                                ) : (
+                                    <h3 className="font-serif text-2xl text-foreground">{projectName || title}</h3>
+                                )}
+                            </div>
                             <button
                                 onClick={onClose}
-                                className="w-10 h-10 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
+                                className="w-10 h-10 rounded-full flex items-center justify-center bg-gold-400/10 text-gold-700 hover:bg-gold-400 hover:text-black transition-colors"
                             >
                                 <X size={20} />
                             </button>
                         </div>
 
                         {/* Content */}
-                        <div className="p-4 md:p-8 overflow-y-auto flex-1">
+                        <div className="p-6 md:p-8 overflow-y-auto flex-1">
                             <EnquiryForm
                                 onSuccess={() => {
                                     if (onSuccessAction) onSuccessAction();

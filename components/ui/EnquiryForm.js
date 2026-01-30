@@ -5,11 +5,12 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { COUNTRY_CODES } from "@/data/countryCodes";
 
-export default function EnquiryForm({ className, onSuccess, variant = "minimal", isCompact = false, contextData = {} }) {
+export default function EnquiryForm({ className, onSuccess, variant = "minimal", isCompact = false, contextData = {}, showBudget = true, showInterestFields = false }) {
     const [formState, setFormState] = useState({
         name: "",
         phone: "",
         email: "",
+        budget: "", // Added budget
         countryCode: "+91",
         category: "",
         interest: "",
@@ -25,6 +26,8 @@ export default function EnquiryForm({ className, onSuccess, variant = "minimal",
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
+    const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false);
+    const [searchQuery, setSearchQuery] = useState("");
 
     // Capture UTM parameters & Device Info on mount
     useEffect(() => {
@@ -54,6 +57,15 @@ export default function EnquiryForm({ className, onSuccess, variant = "minimal",
     const sortedCountries = [
         ...COUNTRY_CODES.filter(c => PRIORITY_CODES.includes(c.code)),
         ...COUNTRY_CODES.filter(c => !PRIORITY_CODES.includes(c.code))
+    ];
+
+    // Budget Options (Standardized)
+    const BUDGET_OPTIONS = [
+        { label: "50 Lacs and below", value: "below_50_lac" },
+        { label: "50 Lacs to 1 Crore", value: "50lac_to_1cr" },
+        { label: "1 Crore to 1.5 Crore", value: "1cr_to_1_5cr" },
+        { label: "1.5 Crore to 2 Crore", value: "1_5cr_to_2cr" },
+        { label: "2 Crore and above", value: "2cr_and_above" }
     ];
 
     const handleSubmit = async (e) => {
@@ -99,9 +111,9 @@ export default function EnquiryForm({ className, onSuccess, variant = "minimal",
             button: "bg-foreground text-background hover:bg-gold-400 hover:text-black rounded-none py-4 md:py-6 tracking-[0.2em] text-sm md:text-base"
         },
         standard: {
-            input: "w-full bg-secondary border border-border rounded-lg px-3 md:px-4 py-2.5 md:py-3 text-sm md:text-base text-foreground placeholder:text-muted-foreground focus:border-gold-400 focus:outline-none transition-colors",
-            select: "w-full bg-secondary border border-border rounded-lg px-3 md:px-4 py-2.5 md:py-3 text-sm md:text-base text-foreground focus:border-gold-400 focus:outline-none transition-colors appearance-none cursor-pointer",
-            button: "bg-gold-400 text-black hover:bg-foreground hover:text-background rounded-lg py-3 md:py-4 tracking-widest text-sm md:text-base"
+            input: "w-full bg-secondary border border-border rounded-lg px-3.5 py-3 md:py-3 text-sm md:text-base text-foreground placeholder:text-muted-foreground focus:border-gold-400 focus:outline-none transition-colors",
+            select: "w-full bg-secondary border border-border rounded-lg px-3.5 py-3 md:py-3 text-sm md:text-base text-foreground focus:border-gold-400 focus:outline-none transition-colors appearance-none cursor-pointer",
+            button: "bg-gold-400 text-black hover:bg-foreground hover:text-background rounded-lg py-3.5 md:py-4 tracking-widest text-sm font-bold shadow-lg shadow-gold-400/20"
         }
     };
 
@@ -121,7 +133,7 @@ export default function EnquiryForm({ className, onSuccess, variant = "minimal",
 
     return (
         <form onSubmit={handleSubmit} className={`space-y-5 md:space-y-8 ${className}`}>
-            <div className={`space-y-6 ${variant === 'minimal' ? 'space-y-8' : ''}`}>
+            <div className={`space-y-5 md:space-y-8 ${variant === 'minimal' ? 'space-y-8' : ''}`}>
 
                 <div className="group">
                     {/* Honeypot Field - Hidden for humans */}
@@ -135,7 +147,7 @@ export default function EnquiryForm({ className, onSuccess, variant = "minimal",
                         autoComplete="off"
                     />
 
-                    {variant === 'standard' && <label className="block text-xs uppercase tracking-widest text-muted-foreground mb-2">Full Name</label>}
+                    {variant === 'standard' && <label className="block text-xs uppercase tracking-widest text-muted-foreground mb-2 font-medium">Full Name</label>}
                     <input
                         type="text"
                         required
@@ -150,28 +162,98 @@ export default function EnquiryForm({ className, onSuccess, variant = "minimal",
                 <div className="space-y-4 md:space-y-6">
                     {/* Phone Input with Country Code */}
                     <div className="group">
-                        {variant === 'standard' && <label className="block text-xs uppercase tracking-widest text-muted-foreground mb-2">Phone Number</label>}
-                        <div className="flex gap-4">
-                            <div className="w-28 flex-shrink-0 relative">
-                                <select
-                                    value={formState.countryCode}
-                                    onChange={(e) => setFormState({ ...formState, countryCode: e.target.value })}
-                                    className={currentStyle.select}
+                        {variant === 'standard' && <label className="block text-xs uppercase tracking-widest text-muted-foreground mb-2 font-medium">Phone Number</label>}
+                        <div className="flex gap-3">
+                            <div className="relative w-24 md:w-28 flex-shrink-0">
+                                <button
+                                    type="button"
+                                    onClick={() => setIsCountryDropdownOpen(!isCountryDropdownOpen)}
+                                    className={`${currentStyle.select} flex items-center justify-between gap-1 px-2 md:px-0`}
                                     aria-label="Select Country Code"
                                 >
-                                    {sortedCountries.map((item, index) => (
-                                        <option key={index} value={item.code} className="bg-popover text-foreground">
-                                            {item.flag} {item.code}
-                                        </option>
-                                    ))}
-                                </select>
+                                    <span className="w-6 h-4 md:w-8 md:h-5 relative shadow-sm overflow-hidden rounded-[2px] flex items-center justify-center bg-muted shrink-0">
+                                        {(() => {
+                                            const country = COUNTRY_CODES.find(c => c.code === formState.countryCode);
+                                            if (!country) return null;
+                                            const isoCode = [...country.flag].map(c => String.fromCharCode(c.codePointAt(0) - 127397)).join('').toLowerCase();
+                                            return (
+                                                <img
+                                                    src={`https://flagcdn.com/w40/${isoCode}.png`}
+                                                    alt={country.code}
+                                                    className="w-full h-full object-cover"
+                                                />
+                                            );
+                                        })() || "🌍"}
+                                    </span>
+                                    <span className="text-sm md:text-xl font-light truncate flex-1 text-center">{formState.countryCode}</span>
+                                    {/* Chevron Down to indicate dropdown */}
+                                    <span className="opacity-50 text-[10px] md:text-xs">▼</span>
+                                </button>
+
+                                {isCountryDropdownOpen && (
+                                    <>
+                                        <div
+                                            className="fixed inset-0 z-40"
+                                            onClick={() => setIsCountryDropdownOpen(false)}
+                                        />
+                                        {/* Dropdown: Fixed width but responsive safe */}
+                                        <div className="absolute top-full left-0 w-[260px] max-w-[80vw] max-h-64 overflow-y-auto bg-background border border-border rounded-md shadow-xl z-50 mt-1 cursor-hover scrollbar-hide flex flex-col">
+                                            {/* Search Input */}
+                                            <div className="sticky top-0 bg-background p-2 border-b border-border z-10">
+                                                <input
+                                                    type="text"
+                                                    value={searchQuery}
+                                                    placeholder="Search country..."
+                                                    className="w-full bg-secondary px-3 py-2 text-sm rounded-md focus:outline-none focus:ring-1 focus:ring-gold-400 placeholder:text-muted-foreground"
+                                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                                    onClick={(e) => e.stopPropagation()}
+                                                    autoFocus
+                                                />
+                                            </div>
+
+                                            {sortedCountries.filter(c =>
+                                                c.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                                                c.code.includes(searchQuery)
+                                            ).map((item, index) => {
+                                                const isoCode = [...item.flag].map(c => String.fromCharCode(c.codePointAt(0) - 127397)).join('').toLowerCase();
+                                                return (
+                                                    <button
+                                                        key={index}
+                                                        type="button"
+                                                        onClick={() => {
+                                                            setFormState({ ...formState, countryCode: item.code });
+                                                            setIsCountryDropdownOpen(false);
+                                                            setSearchQuery(""); // Reset search on select
+                                                        }}
+                                                        className="flex items-center gap-3 w-full px-4 py-3 hover:bg-secondary text-left transition-colors border-b border-border/10 last:border-none group shrink-0"
+                                                    >
+                                                        <span className="relative w-6 h-4 shadow-sm overflow-hidden rounded-[2px] shrink-0">
+                                                            <img
+                                                                src={`https://flagcdn.com/w40/${isoCode}.png`}
+                                                                srcSet={`https://flagcdn.com/w80/${isoCode}.png 2x`}
+                                                                alt={item.name}
+                                                                className="w-full h-full object-cover"
+                                                                loading="lazy"
+                                                            />
+                                                        </span>
+                                                        <span className="text-sm font-medium w-12 text-foreground group-hover:text-amber-600 transition-colors shrink-0">{item.code}</span>
+                                                        <span className="text-xs text-muted-foreground truncate">{item.name}</span>
+                                                    </button>
+                                                );
+                                            })}
+                                            {sortedCountries.filter(c => c.name.toLowerCase().includes(searchQuery.toLowerCase()) || c.code.includes(searchQuery)).length === 0 && (
+                                                <div className="p-4 text-center text-sm text-muted-foreground">No results found</div>
+                                            )}
+                                        </div>
+                                    </>
+                                )}
                             </div>
                             <input
                                 type="tel"
                                 required
                                 value={formState.phone}
                                 onChange={(e) => setFormState({ ...formState, phone: e.target.value })}
-                                className={currentStyle.input}
+                                className={`${currentStyle.input} h-full`}
                                 placeholder={variant === 'minimal' ? "Phone Number" : "XXXXX XXXXX"}
                                 aria-label="Phone Number"
                             />
@@ -179,7 +261,7 @@ export default function EnquiryForm({ className, onSuccess, variant = "minimal",
                     </div>
 
                     <div className="group">
-                        {variant === 'standard' && <label className="block text-xs uppercase tracking-widest text-muted-foreground mb-2">Email Address</label>}
+                        {variant === 'standard' && <label className="block text-xs uppercase tracking-widest text-muted-foreground mb-2 font-medium">Email Address</label>}
                         <input
                             type="email"
                             required
@@ -193,36 +275,59 @@ export default function EnquiryForm({ className, onSuccess, variant = "minimal",
                 </div>
 
                 {/* 1. Category Selection (Optional) */}
-                <div className="group">
-                    {variant === 'standard' && <label className="block text-xs uppercase tracking-widest text-muted-foreground mb-2">Interested In</label>}
-                    <select
-                        value={formState.category}
-                        onChange={(e) => setFormState({ ...formState, category: e.target.value, interest: "" })}
-                        className={`${currentStyle.select} ${!formState.category ? 'text-muted-foreground/50' : ''}`}
-                        aria-label="Select Property Category"
-                    >
-                        <option value="" disabled className="bg-popover text-muted-foreground">Select Category (Optional)</option>
-                        <option value="Residential" className="bg-popover text-foreground">Residential</option>
-                        <option value="Commercial" className="bg-popover text-foreground">Commercial</option>
-                    </select>
-                </div>
 
-                {/* 2. Type Selection (Conditional & Optional) */}
-                {formState.category && (
-                    <div className="group animate-in fade-in slide-in-from-top-4 duration-500">
-                        {variant === 'standard' && <label className="block text-xs uppercase tracking-widest text-muted-foreground mb-2">Property Type</label>}
+                {/* 1b. Budget Selection (Optional/Conditional) */}
+                {showBudget && (
+                    <div className="group">
+                        {variant === 'standard' && <label className="block text-xs uppercase tracking-widest text-muted-foreground mb-2">Budget</label>}
                         <select
-                            value={formState.interest}
-                            onChange={(e) => setFormState({ ...formState, interest: e.target.value })}
-                            className={`${currentStyle.select} ${!formState.interest ? 'text-muted-foreground/50' : ''}`}
-                            aria-label="Select Property Type"
+                            value={formState.budget}
+                            onChange={(e) => setFormState({ ...formState, budget: e.target.value })}
+                            className={`${currentStyle.select} ${!formState.budget ? 'text-muted-foreground/50' : ''}`}
+                            aria-label="Select Budget"
                         >
-                            <option value="" disabled className="bg-popover text-muted-foreground">Select Specific Requirement (Optional)</option>
-                            {INTEREST_OPTIONS[formState.category].map((option) => (
-                                <option key={option} value={option} className="bg-popover text-foreground">{option}</option>
+                            <option value="" disabled className="bg-popover text-muted-foreground">Select Budget (Optional)</option>
+                            {BUDGET_OPTIONS.map((opt) => (
+                                <option key={opt.value} value={opt.value} className="bg-popover text-foreground">{opt.label}</option>
                             ))}
                         </select>
                     </div>
+                )}
+
+                {/* 2. Interest / Property Type Selection (Conditional) */}
+                {showInterestFields && (
+                    <>
+                        <div className="group">
+                            {variant === 'standard' && <label className="block text-xs uppercase tracking-widest text-muted-foreground mb-2">Interested In</label>}
+                            <select
+                                value={formState.category}
+                                onChange={(e) => setFormState({ ...formState, category: e.target.value, interest: "" })}
+                                className={`${currentStyle.select} ${!formState.category ? 'text-muted-foreground/50' : ''}`}
+                                aria-label="Select Property Category"
+                            >
+                                <option value="" disabled className="bg-popover text-muted-foreground">Select Category (Optional)</option>
+                                <option value="Residential" className="bg-popover text-foreground">Residential</option>
+                                <option value="Commercial" className="bg-popover text-foreground">Commercial</option>
+                            </select>
+                        </div>
+
+                        {formState.category && (
+                            <div className="group animate-in fade-in slide-in-from-top-4 duration-500">
+                                {variant === 'standard' && <label className="block text-xs uppercase tracking-widest text-muted-foreground mb-2">Property Type</label>}
+                                <select
+                                    value={formState.interest}
+                                    onChange={(e) => setFormState({ ...formState, interest: e.target.value })}
+                                    className={`${currentStyle.select} ${!formState.interest ? 'text-muted-foreground/50' : ''}`}
+                                    aria-label="Select Property Type"
+                                >
+                                    <option value="" disabled className="bg-popover text-muted-foreground">Select Specific Requirement (Optional)</option>
+                                    {INTEREST_OPTIONS[formState.category].map((option) => (
+                                        <option key={option} value={option} className="bg-popover text-foreground">{option}</option>
+                                    ))}
+                                </select>
+                            </div>
+                        )}
+                    </>
                 )}
             </div>
 

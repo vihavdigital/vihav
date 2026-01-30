@@ -80,7 +80,8 @@ function ProjectSectionContent({ projects, residentialProjects, commercialProjec
             </div>
 
             {/* 2. Sticky Filter Bar (Full Width, Outside Container) */}
-            <div className={`sticky top-[59px] md:top-[71px] z-40 transition-all duration-300 w-full ${showFilters ? 'bg-background shadow-xl pb-4' : 'bg-background/95 backdrop-blur-xl py-4 border-y border-border'}`}>
+            {/* Fine-tuning: 59px had gap, 48px was too high. Setting to 56px (mobile) and 69px (desktop). */}
+            <div className={`sticky top-[56px] md:top-[69px] z-40 transition-all duration-300 w-full ${showFilters ? 'bg-background shadow-xl pb-4' : 'bg-background/95 backdrop-blur-xl py-4 border-y border-border'}`}>
                 <div className="container mx-auto px-6">
                     <div className="flex flex-col md:flex-row md:items-center md:relative gap-6">
 
@@ -129,15 +130,18 @@ function ProjectSectionContent({ projects, residentialProjects, commercialProjec
                             {activeCategory === "Commercial" && (
                                 <FilterDropdown
                                     label="Transaction"
+                                    heading="Transaction Type"
                                     value={activeTransaction}
                                     options={FILTER_TRANSACTION_OPTIONS}
                                     onChange={setActiveTransaction}
                                     className="w-full md:w-48"
+                                    minimal={true}
                                 />
                             )}
 
                             <FilterDropdown
-                                label="Property Type"
+                                label="Type"
+                                heading="Property Type"
                                 value={activeType}
                                 options={
                                     activeCategory === "Residential" ? FILTER_RESIDENTIAL_TYPES :
@@ -146,14 +150,17 @@ function ProjectSectionContent({ projects, residentialProjects, commercialProjec
                                 }
                                 onChange={setActiveType}
                                 className="w-full md:w-48"
+                                minimal={true}
                             />
 
                             <FilterDropdown
-                                label="Possession Status"
+                                label="Status"
+                                heading="Possession Status"
                                 value={activePossession}
                                 options={FILTER_POSSESSION}
                                 onChange={setActivePossession}
                                 className="w-full md:w-48"
+                                minimal={true}
                             />
                         </div>
                     </div>

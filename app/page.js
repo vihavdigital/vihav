@@ -120,6 +120,8 @@ export default function Home() {
                 variant="minimal"
                 onSuccess={() => router.push('/thank-you/general')}
                 contextData={{ srd: "681f33a158f1e7d028b615c5" }}
+                showBudget={false}
+                showInterestFields={true}
               />
             </div>
           </motion.div>

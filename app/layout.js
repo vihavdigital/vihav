@@ -100,7 +100,7 @@ export default function RootLayout({ children }) {
                 <ThemeProvider>
                     <CustomCursor />
                     <Preloader />
-                    {/* <SmoothScroll /> Removed for native responsiveness */}
+                    <SmoothScroll />
                     {/* <ChatLoader /> */}
                     {children}
                 </ThemeProvider>

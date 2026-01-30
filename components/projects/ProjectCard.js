@@ -161,7 +161,9 @@ export default function ProjectCard({ project, priority = false, overrideContext
             <EnquiryModal
                 isOpen={isEnquireOpen}
                 onClose={() => setIsEnquireOpen(false)}
-                title={`Enquiry for ${project.title}`}
+                logo={project.logo}
+                projectName={project.title}
+                title={project.title}
                 contextData={{
                     project_id: project.id,
                     srd: project.srd,

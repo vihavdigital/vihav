@@ -140,6 +140,24 @@ body {
   background-image: none;
 }
 
+/* Force system cursor to be visible and correct types */
+body {
+  cursor: auto !important;
+}
+
+a,
+button,
+select,
+[role="button"],
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+input,
+textarea {
+  cursor: text !important;
+}
+
 /* Hide scrollbar for Chrome, Safari and Opera */
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
