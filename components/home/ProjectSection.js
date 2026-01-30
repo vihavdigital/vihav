@@ -283,7 +283,14 @@ function ProjectSectionContent({ projects, residentialProjects, commercialProjec
                                         transition={{ duration: 0.4, delay: (index % 4) * 0.05 }}
                                         className="h-full"
                                     >
-                                        <ProjectCard project={project} priority={index < 6} />
+                                        <ProjectCard
+                                            project={project}
+                                            priority={index < 6}
+                                            overrideContext={props.srd ? {
+                                                srd: props.srd,
+                                                sub_source: project.title
+                                            } : undefined}
+                                        />
                                     </motion.div>
                                 ))}
                             </AnimatePresence>

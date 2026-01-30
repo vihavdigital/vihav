@@ -96,6 +96,7 @@ export default function VadodaraPropertiesPage() {
                 projects={PROJECTS}
                 residentialProjects={PROJECTS.filter(p => p.category === "Residential")}
                 commercialProjects={PROJECTS.filter(p => p.category === "Commercial")}
+                srd="681f33a158f1e7d028b615c5"
             />
 
             {/* 4. Vadodara Showcase - Visuals */}
@@ -145,7 +146,7 @@ export default function VadodaraPropertiesPage() {
                 isOpen={isEnquireOpen}
                 onClose={() => setIsEnquireOpen(false)}
                 contextData={{
-                    srd: "67b4277658f1e73887ed6281",
+                    srd: "681f33a158f1e7d028b615c5",
                     project_id: "properties-in-vadodara", // Updated ID context
                     sub_source: "Properties In Vadodara Page"
                 }}

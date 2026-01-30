@@ -96,6 +96,7 @@ export default function OverseasPage() {
                 projects={PROJECTS}
                 residentialProjects={PROJECTS.filter(p => p.category === "Residential")}
                 commercialProjects={PROJECTS.filter(p => p.category === "Commercial")}
+                srd="67b4277658f1e73887ed6281"
             />
             {/* 4. Vadodara Showcase - Visuals */}
             <VadodaraShowcase />
