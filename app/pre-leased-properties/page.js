@@ -114,29 +114,55 @@ export default function PreLeasedProperties() {
                 </div>
             </section>
 
-            {/* 4. CTA Section */}
-            <section className="py-24 bg-white dark:bg-neutral-900 border-t border-border">
-                <div className="container mx-auto px-6 text-center">
-                    <div className="max-w-3xl mx-auto">
-                        <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-6">
-                            Maximize Your Portfolio Returns
-                        </h2>
-                        <p className="text-muted-foreground text-lg mb-8 font-light">
-                            Speak to our investment advisors to understand the lease terms, tenant profiles, and projected appreciation.
-                        </p>
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <a
-                                href="/contact-us"
-                                className="px-8 py-4 bg-gold-400 text-black font-bold uppercase tracking-widest hover:bg-gold-500 transition-colors shadow-lg shadow-gold-400/20"
-                            >
-                                Schedule Consultation
-                            </a>
-                            <a
-                                href="tel:+917201950950"
-                                className="px-8 py-4 bg-transparent border border-foreground text-foreground font-bold uppercase tracking-widest hover:bg-foreground hover:text-background transition-colors"
-                            >
-                                Call Advisor
-                            </a>
+            import PreLeasedEnquiryForm from "@/components/pre-leased/PreLeasedEnquiryForm";
+
+            // ... existing code ...
+
+            {/* 4. CTA Section Replaced with Form */}
+            <section className="py-24 bg-white dark:bg-neutral-900 border-t border-border relative overflow-hidden">
+                {/* Background Decor */}
+                <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-10 pointer-events-none" />
+                <div className="absolute -left-20 top-1/2 w-96 h-96 bg-gold-400/5 blur-[100px] rounded-full pointer-events-none" />
+
+                <div className="container mx-auto px-6">
+                    <div className="grid md:grid-cols-2 gap-16 items-center">
+                        <div>
+                            <span className="text-gold-400 uppercase tracking-[0.25em] text-xs font-bold mb-6 block">
+                                Expert Guidance
+                            </span>
+                            <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-8 leading-tight">
+                                Maximize Your <br /> Portfolio Returns
+                            </h2>
+                            <p className="text-muted-foreground text-lg mb-8 font-light leading-relaxed">
+                                Our dedicated pre-leased property advisors are ready to help you navigate the high-yield commercial market.
+                                Speak to us to understand lease terms, tenant profiles, and projected appreciation for each asset.
+                            </p>
+
+                            <div className="space-y-6">
+                                <div className="flex items-center gap-4">
+                                    <div className="w-12 h-12 rounded-full bg-gold-400/10 flex items-center justify-center text-gold-400">
+                                        <BadgePercent size={24} />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-bold text-foreground">Guaranteed Yields</h4>
+                                        <p className="text-sm text-muted-foreground">Start earning from Day 1</p>
+                                    </div>
+                                </div>
+                                <div className="flex items-center gap-4">
+                                    <div className="w-12 h-12 rounded-full bg-gold-400/10 flex items-center justify-center text-gold-400">
+                                        <ShieldCheck size={24} />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-bold text-foreground">Secure Tennants</h4>
+                                        <p className="text-sm text-muted-foreground">Fortune 500 & MNC Brands</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Right: The Form */}
+                        <div className="relative z-10">
+                            <PreLeasedEnquiryForm />
                         </div>
                     </div>
                 </div>
