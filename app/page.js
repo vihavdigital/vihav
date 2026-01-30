@@ -119,8 +119,8 @@ export default function Home() {
                 className="text-left"
                 variant="minimal"
                 onSuccess={() => router.push('/thank-you/general')}
-                contextData={{ srd: "681f33a158f1e7d028b615c5" }}
-                showBudget={false}
+                // contextData={{ srd: "681f33a158f1e7d028b615c5" }} // Let API handle SRD based on Residential/Commercial selection
+                showBudget={true}
                 showInterestFields={true}
               />
             </div>
