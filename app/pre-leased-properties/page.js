@@ -7,6 +7,7 @@ import BrandGrid from "@/components/pre-leased/BrandGrid";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { TrendingUp, ShieldCheck, Clock, BadgePercent } from "lucide-react";
+import PreLeasedEnquiryForm from "@/components/pre-leased/PreLeasedEnquiryForm";
 
 // Investment Data Mapping for specific projects
 const INVESTMENT_DATA = {
@@ -114,11 +115,7 @@ export default function PreLeasedProperties() {
                 </div>
             </section>
 
-            import PreLeasedEnquiryForm from "@/components/pre-leased/PreLeasedEnquiryForm";
 
-            // ... existing code ...
-
-            {/* 4. CTA Section Replaced with Form */}
             <section className="py-24 bg-white dark:bg-neutral-900 border-t border-border relative overflow-hidden">
                 {/* Background Decor */}
                 <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-10 pointer-events-none" />
