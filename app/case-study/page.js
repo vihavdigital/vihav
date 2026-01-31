@@ -20,6 +20,7 @@ const SectionHeader = ({ title }) => (
     </div>
 );
 
+
 const ColorSwatch = ({ name, colorClass, hex }) => (
     <div className="flex flex-col gap-3 group">
         <div className={`h-24 w-full rounded-xl shadow-lg ${colorClass} flex items-center justify-center border border-black/5 dark:border-white/10 transition-transform group-hover:scale-105`}>
@@ -68,8 +69,8 @@ export default function CaseStudyPage() {
                                     document.getElementById(tab)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                                 }}
                                 className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all whitespace-nowrap ${activeTab === tab
-                                        ? "bg-foreground text-background"
-                                        : "text-muted-foreground hover:text-foreground"
+                                    ? "bg-foreground text-background"
+                                    : "text-muted-foreground hover:text-foreground"
                                     }`}
                             >
                                 {tab}
