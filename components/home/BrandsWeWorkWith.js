@@ -21,6 +21,9 @@ const BRANDS = [
     { name: "Gujco Mart", logo: "/images/project-images/other-images/pre-leased/gujcomart-logo.png" },
     { name: "Swiggy Instamart", logo: "/images/project-images/other-images/pre-leased/swiggy-instamart-logo.png" },
     { name: "Connplex Cinemas", logo: "/images/project-images/other-images/pre-leased/connplex-cinemas.avif" },
+    { name: "Visualsoft", logo: "/images/project-images/other-images/pre-leased/vs-logo.svg" },
+    { name: "HDFC Bank", logo: "/images/project-images/other-images/pre-leased/hdfc-logo.png" },
+    { name: "Kotak Mahindra Bank", logo: "/images/project-images/other-images/pre-leased/kotak-logo.png" },
 ];
 
 function ParallaxStats({ baseVelocity = 100 }) {

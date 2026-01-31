@@ -52,15 +52,19 @@ export async function generateMetadata({ params }) {
     }
 
     return {
-        title: `${project.title} - ${project.category} in ${project.location} | Vihav Group`,
+        title: `${project.title} - ${project.type} in ${project.location}, Vadodara | Vihav Group`,
         description: project.description,
+        keywords: project.seoTags ? project.seoTags.join(", ") : `Real Estate Vadodara, ${project.category} in ${project.location}, Vihav Group`,
         openGraph: {
-            title: project.title,
+            title: `${project.title} - Premium Real Estate in ${project.location}`,
             description: project.description,
             images: [project.heroImage, ...(project.galleryImages || [])],
+            locale: 'en_IN',
+            type: 'website',
         },
     };
 }
+
 
 export default async function ProjectPage({ params }) {
     const { slug } = await params;
@@ -154,6 +158,40 @@ export default async function ProjectPage({ params }) {
 
 
             <Footer />
+
+            {/* SEO Schema Injection */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": ["RealEstateListing", "Place"],
+                        "name": project.title,
+                        "description": project.description,
+                        "address": {
+                            "@type": "PostalAddress",
+                            "streetAddress": project.address || project.location,
+                            "addressLocality": "Vadodara",
+                            "addressRegion": "Gujarat",
+                            "postalCode": "390001", // Default if specific missing
+                            "addressCountry": "IN"
+                        },
+                        "geo": project.coordinates ? {
+                            "@type": "GeoCoordinates",
+                            "latitude": project.coordinates.lat,
+                            "longitude": project.coordinates.lng
+                        } : undefined,
+                        "url": `https://vihav.com${project.link}`,
+                        "image": project.heroImage,
+                        "price": project.price,
+                        "amenityFeature": project.amenitiesList?.map(a => ({
+                            "@type": "LocationFeatureSpecification",
+                            "name": a.label,
+                            "value": true
+                        }))
+                    })
+                }}
+            />
         </main>
     );
 }

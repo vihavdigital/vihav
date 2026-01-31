@@ -551,6 +551,20 @@ export default function ProjectDetailsClient({ project, theme }) {
                         </p>
 
                         <div className="space-y-8">
+                            {/* NEW: SEO Location Highlights */}
+                            {project.locationHighlights && (
+                                <div className="mb-8">
+                                    <h4 className="font-bold text-sm uppercase tracking-widest text-foreground mb-4">Prime Location Advantages</h4>
+                                    <div className="flex flex-wrap gap-2">
+                                        {project.locationHighlights.map((highlight, idx) => (
+                                            <span key={idx} className="px-3 py-1 bg-gold-400/10 border border-gold-400/20 text-gold-600 text-xs font-bold rounded-full flex items-center gap-2">
+                                                <MapPin size={10} /> {highlight}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+
                             {project.connectivity && project.connectivity.map((item, idx) => (
                                 <div key={idx} className={`flex justify-between items-center border-b border-border pb-4 group ${theme.hoverBorder} transition-colors border-transparent`}>
                                     <span className={`text-foreground ${theme.hoverText} transition-colors`}>{item.label}</span>

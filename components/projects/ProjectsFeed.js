@@ -5,7 +5,7 @@ import { useState, useRef, useEffect, Suspense } from "react";
 import { motion, AnimatePresence, useScroll } from "framer-motion";
 import FilterDropdown from "@/components/ui/FilterDropdown";
 import { useProjectFilters } from "@/hooks/useProjectFilters";
-import { Filter, X } from "lucide-react";
+import { Filter, X, ChevronDown } from "lucide-react";
 import { PROJECTS } from "@/data/projects";
 import { Button } from "@/components/ui/Button";
 
@@ -63,14 +63,14 @@ export default function ProjectsFeed() {
     return (
         <section ref={sectionRef} className="pb-20 min-h-screen">
             {/* Sticky Filter Bar */}
-            <div className={`sticky top-[58px] md:top-[72px] z-40 transition-all duration-300 w-full mb-12 ${showFilters ? 'bg-background shadow-xl pb-4' : 'bg-background/95 backdrop-blur-xl py-4 border-y border-border'}`}>
+            <div className={`sticky top-[56px] md:top-[69px] z-40 transition-all duration-300 w-full mb-12 ${showFilters ? 'bg-background shadow-xl pb-4' : 'bg-background/95 backdrop-blur-xl py-4 border-y border-border'}`}>
                 <div className="container mx-auto px-6">
-                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                    <div className="flex flex-col md:flex-row md:items-center md:relative gap-6">
 
                         {/* Top Row: Tabs + Mobile Toggle */}
-                        <div className="flex items-center justify-between gap-4 w-full md:w-auto">
-                            {/* Category Tabs */}
-                            <div className="flex bg-secondary p-1 rounded-full border border-border relative overflow-x-auto scrollbar-hide max-w-[calc(100%-50px)] md:max-w-none">
+                        <div className="flex items-center justify-between w-full md:w-auto">
+                            {/* Category Tabs (Pill Switcher) - Scrollable on mobile */}
+                            <div className="flex bg-secondary p-1 rounded-full border border-border relative overflow-x-auto scrollbar-hide max-w-[calc(100%-50px)] md:max-w-none md:mx-0">
                                 {["All", "Residential", "Commercial"].map(type => (
                                     <button
                                         key={type}
@@ -95,27 +95,32 @@ export default function ProjectsFeed() {
                             {/* Mobile Filter Toggle Button */}
                             <button
                                 onClick={() => setShowFilters(!showFilters)}
-                                className={`md:hidden flex items-center justify-center w-10 h-10 rounded-full border transition-colors ${showFilters ? 'bg-luxury-black text-gold-400 border-luxury-black' : 'bg-secondary border-border text-muted-foreground'}`}
+                                className={`md:hidden flex items-center justify-center w-10 h-10 rounded-full border transition-colors ${showFilters ? 'bg-luxury-black text-gold-400 border-luxury-black' : 'bg-gold-400 border-gold-400 text-luxury-black hover:bg-gold-500 shadow-md'}`}
                             >
-                                {showFilters ? <X size={18} /> : <Filter size={18} />}
+                                {showFilters ? <ChevronDown size={18} className="rotate-180" /> : <Filter size={18} />}
                             </button>
                         </div>
 
-                        {/* Desktop Filters (Hidden on Mobile) */}
-                        <div className="hidden md:flex md:flex-row md:gap-4 w-full md:w-auto">
+                        {/* Collapsible Dropdowns Area */}
+                        {/* Mobile: Hidden unless open (Grid layout). Desktop: Always visible (Flex layout) */}
+                        <div className="hidden md:flex md:flex-row md:items-center md:items-center md:gap-4 md:ml-auto animate-in fade-in slide-in-from-top-2 md:animate-none">
+
                             {/* Transaction Type Filter (Commercial Only) */}
                             {activeCategory === "Commercial" && (
                                 <FilterDropdown
                                     label="Transaction"
+                                    heading="Transaction Type"
                                     value={activeTransaction}
                                     options={FILTER_TRANSACTION_OPTIONS}
                                     onChange={setActiveTransaction}
-                                    className="w-full md:w-40"
+                                    className="w-full md:w-48"
+                                    minimal={true}
                                 />
                             )}
 
                             <FilterDropdown
-                                label="Property Type"
+                                label="Type"
+                                heading="Property Type"
                                 value={activeType}
                                 options={
                                     activeCategory === "Residential" ? FILTER_RESIDENTIAL_TYPES :
@@ -123,17 +128,20 @@ export default function ProjectsFeed() {
                                             FILTER_ALL_TYPES
                                 }
                                 onChange={setActiveType}
-                                className="flex-1 min-w-[130px] md:min-w-[160px] md:w-auto"
+                                className="w-full md:w-48"
+                                minimal={true}
                             />
+
                             <FilterDropdown
-                                label="Possession"
+                                label="Status"
+                                heading="Possession Status"
                                 value={activePossession}
                                 options={FILTER_POSSESSION}
                                 onChange={setActivePossession}
-                                className="flex-1 min-w-[130px] md:min-w-[160px] md:w-auto"
+                                className="w-full md:w-48"
+                                minimal={true}
                             />
                         </div>
-
                     </div>
                 </div>
             </div>

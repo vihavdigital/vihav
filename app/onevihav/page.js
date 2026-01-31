@@ -35,12 +35,12 @@ export default function OneVihavPage() {
                         <span className="text-xs font-bold tracking-widest text-gold-400 uppercase">Exclusive Associate Program</span>
                     </div>
 
-                    <h1 className="text-5xl md:text-7xl font-serif text-white leading-tight">
+                    <h1 className="text-4xl md:text-7xl font-serif text-white leading-tight">
                         One<span className="text-gold-400">Vihav</span> <br />
-                        <span className="text-3xl md:text-4xl text-white/60 font-light italic">Privilege Circle</span>
+                        <span className="text-2xl md:text-4xl text-white/60 font-light italic">Privilege Circle</span>
                     </h1>
 
-                    <p className="text-lg text-gray-300 max-w-lg leading-relaxed border-l-2 border-gold-400 pl-6">
+                    <p className="text-base md:text-lg text-gray-300 max-w-lg leading-relaxed border-l-2 border-gold-400 pl-4 md:pl-6">
                         An ecosystem of rewards designed to honor the valuable contributions of our Vihav Group Associates.
                         Refer excellence, earn limitlessly.
                     </p>
@@ -120,9 +120,9 @@ export default function OneVihavPage() {
 
                         {/* Right: The Form (Existing Component) */}
                         <div className="lg:w-2/3">
-                            <div className="bg-white/5 border border-white/10 p-8 rounded-2xl">
-                                <h3 className="text-xl font-serif text-white mb-8 border-b border-white/10 pb-4">Associate Registration</h3>
-                                <ReferralForm />
+                            <div className="md:bg-white/5 md:border md:border-white/10 md:p-8 rounded-2xl">
+                                <h3 className="text-xl font-serif text-white mb-8 border-b border-white/10 pb-4 md:block hidden">Associate Registration</h3>
+                                <ReferralForm className="md:shadow-2xl md:bg-gradient-to-br" />
                             </div>
                         </div>
                     </div>

@@ -106,14 +106,14 @@ export default function EnquiryForm({ className, onSuccess, variant = "minimal",
     // Styles based on variant
     const styles = {
         minimal: {
-            input: "w-full bg-transparent border-b border-border py-2 md:py-4 text-base md:text-xl text-foreground placeholder:text-muted-foreground/50 focus:border-gold-400 focus:outline-none transition-all font-light",
-            select: "w-full bg-transparent border-b border-border py-2 md:py-4 text-base md:text-xl text-foreground focus:border-gold-400 focus:outline-none transition-all font-light appearance-none cursor-pointer",
+            input: "w-full bg-transparent border-b border-border py-4 md:py-4 text-base md:text-xl text-foreground placeholder:text-muted-foreground/50 focus:border-gold-400 focus:outline-none transition-all font-light",
+            select: "w-full bg-transparent border-b border-border py-4 md:py-4 text-base md:text-xl text-foreground focus:border-gold-400 focus:outline-none transition-all font-light appearance-none cursor-pointer",
             button: "bg-foreground text-background hover:bg-gold-400 hover:text-black rounded-none py-4 md:py-6 tracking-[0.2em] text-sm md:text-base"
         },
         standard: {
-            input: "w-full bg-secondary border border-border rounded-lg px-3.5 py-3 md:py-3 text-sm md:text-base text-foreground placeholder:text-muted-foreground focus:border-gold-400 focus:outline-none transition-colors",
-            select: "w-full bg-secondary border border-border rounded-lg px-3.5 py-3 md:py-3 text-sm md:text-base text-foreground focus:border-gold-400 focus:outline-none transition-colors appearance-none cursor-pointer",
-            button: "bg-gold-400 text-black hover:bg-foreground hover:text-background rounded-lg py-3.5 md:py-4 tracking-widest text-sm font-bold shadow-lg shadow-gold-400/20"
+            input: "w-full bg-secondary border border-border rounded-lg px-4 py-4 md:py-3 text-base md:text-base text-foreground placeholder:text-muted-foreground focus:border-gold-400 focus:outline-none transition-colors",
+            select: "w-full bg-secondary border border-border rounded-lg px-4 py-4 md:py-3 text-base md:text-base text-foreground focus:border-gold-400 focus:outline-none transition-colors appearance-none cursor-pointer",
+            button: "bg-gold-400 text-black hover:bg-foreground hover:text-background rounded-lg py-4 md:py-4 tracking-widest text-sm font-bold shadow-lg shadow-gold-400/20"
         }
     };
 
