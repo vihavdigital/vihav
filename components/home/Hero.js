@@ -11,6 +11,7 @@ const SLIDES = [
         id: 1,
         type: "video",
         src: "/videos/niwa.mp4", // Keystone Niwa
+        poster: "/images/project-images/hero-banner/desktop-banner/niwa.webp", // Priority Image
         title: "Curated <br/> <span class='text-white/80 italic font-light'>Collections</span>",
         subtitle: "Luxury Homes crafted for modern living."
     },
@@ -18,6 +19,7 @@ const SLIDES = [
         id: 2,
         type: "video",
         src: "/videos/sup-wt.webm", // Lifestyle/Aerial
+        poster: "/images/project-images/hero-banner/desktop-banner/cbd-banner.webp", // Priority Image (Commercial context)
         title: "Corporate <br/> <span class='text-white/80 italic font-light'>Excellence</span>",
         subtitle: "Commercial Real Estate for Growing Businesses"
     }
@@ -58,7 +60,22 @@ export default function Hero() {
                 >
                     {/* Media Layer */}
                     {SLIDES[currentSlide].type === "video" ? (
-                        <VideoPlayer src={SLIDES[currentSlide].src} />
+                        <>
+                            {/* Priority Background Image (Loads faster than video) */}
+                            <Image
+                                src={SLIDES[currentSlide].poster}
+                                alt="Hero Background"
+                                fill
+                                priority
+                                className="object-cover transform scale-105 -z-10"
+                                sizes="100vw"
+                            />
+                            <VideoPlayer
+                                src={SLIDES[currentSlide].src}
+                                poster={SLIDES[currentSlide].poster}
+                                className="w-full h-full object-cover absolute inset-0"
+                            />
+                        </>
                     ) : (
                         <Image
                             src={SLIDES[currentSlide].src}

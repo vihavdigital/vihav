@@ -2,9 +2,11 @@
 
 import { motion } from "framer-motion";
 
-export const TextReveal = ({ text, className = "", delay = 0, as = "div" }) => {
+export const TextReveal = ({ text, children, className = "", delay = 0, as = "div" }) => {
+    // Use text prop or children as source
+    const content = text || (typeof children === "string" ? children : "") || "";
     // Split text into words
-    const words = text.split(" ");
+    const words = content.split(" ");
 
     const MotionTag = motion[as] || motion.div;
 

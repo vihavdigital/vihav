@@ -28,13 +28,15 @@ export default function Header() {
     let logoSrc = "/images/project-images/project-logos/vihav-group-logo.svg";
     let logoAlt = "Vihav Group";
 
+    let currentProject = null;
+
     if (pathname?.includes('rentals')) {
         logoSrc = "/images/project-images/other-images/vihav-rentals-logo.png";
         logoAlt = "Vihav Rentals";
     } else {
         // Try to find matching project
         // We look for a project where the pathname starts with /projects/slug or matches project link
-        const currentProject = PROJECTS.find(p =>
+        currentProject = PROJECTS.find(p =>
             pathname === p.link ||
             (p.slug && pathname?.startsWith(`/projects/${p.slug}`))
         );
@@ -91,7 +93,9 @@ export default function Header() {
                             {/* Logo with improved sizing for elegance */}
                             <div className={cn(
                                 "relative transition-all duration-500 flex items-center justify-center",
-                                isScrolled ? "h-10 md:h-14 w-auto" : "h-12 md:h-24 w-auto"
+                                (currentProject?.id === 'keystone-skyvillas-xl' || currentProject?.id === 'keystone-51')
+                                    ? (isScrolled ? "h-8 md:h-9 w-auto" : "h-10 md:h-14 w-auto") // Much smaller for XL/51
+                                    : (isScrolled ? "h-10 md:h-14 w-auto" : "h-12 md:h-24 w-auto")
                             )}>
                                 <Image
                                     src={(!isScrolled && logoSrc.includes('vihav-group-logo'))

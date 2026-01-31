@@ -176,6 +176,7 @@ export const PROJECTS = [
     status: "Newly Launched",
     slug: "keystone-51",
     title: "Keystone 51",
+    logo: "/images/project-images/project-logos/keystone-51.svg",
     category: "Residential",
     location: "Nr Navrachana University, Bhayli",
     type: "4BHK Perfectly Crafted Villas",
@@ -2313,7 +2314,7 @@ export const PROJECTS = [
       "A landmark commercial development in Vasna, strategically located near Manisha Circle, Vadodara. Whether you’re a retailer, a growing brand, or a professional looking for a premium workspace, Supremus 3 offers thoughtfully designed shops, showrooms, and offices that cater to every business need.",
     vision: "Prime business location",
     heroImage: "/images/project-images/project-tiles/supremus-3.webp",
-    heroVideo: "/videos/sup-wt.webm",
+
 
     desktopHeroImage:
       "/images/project-images/hero-banner/desktop-banner/supremus3.webp",
@@ -2656,7 +2657,7 @@ export const PROJECTS = [
       "Enquire now for a superior commercial property in Vadodara Vihav Supremus 2. High-quality shops, showrooms & offices at Vasna 30mt main road.",
     vision: "A-COMMERCIAL MARVEL",
     heroImage: "/images/project-images/project-tiles/supremus-2.webp",
-    heroVideo: "/videos/sup-wt.webm",
+
     desktopHeroImage:
       "/images/project-images/hero-banner/desktop-banner/supremus2.webp",
     mobileHeroImage:
@@ -3149,7 +3150,7 @@ export const PROJECTS = [
       "Vihav Supremus redefines business presence in Vadodara with its strategic location on Gotri Road. Designed to elevate the way you work, Vihav Supremus offers well-planned shops and offices for sale in Gotri – ideal for forward-thinking entrepreneurs, investors, and professionals.",
     vision: "Corporate Legacy.",
     heroImage: "/images/project-images/project-tiles/supremus-1.webp",
-    heroVideo: "/videos/sup-wt.webm",
+
     desktopHeroImage:
       "/images/project-images/hero-banner/desktop-banner/supremus1.webp",
     mobileHeroImage:
